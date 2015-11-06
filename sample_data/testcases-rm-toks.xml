@@ -1,1 +1,2130 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?><TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><!-- "Audienz-Zimmer" (Zeile 46) muss ein Token sein. --><p rend="indent"><tei:w lemma="lassen" type="VVIMP">Laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glüenden" type="ADJA">glüenden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Pfriemen" type="NN">Pfriemen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="außste" part="I" type="ADJD">außste</tei:w><lb break="no" type="d"/><tei:w lemma="chen" part="F" type="ADJD">chen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Auge" type="NN">Augen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dise" type="ADJA">dise</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gläserne" type="NN">gläserne</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Kuppler" type="NN">Kuppler</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="lassen" type="VVIMP">laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><choice><sic><tei:w lemma="glünendem" type="ADJA">glünendem</tei:w></sic><corr cert="high">glüendem</corr></choice><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Messer" type="NN">Messer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="abschneiden" type="VVFIN">abschneiden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Nase" type="NN">Nasen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="disen" type="NN">disen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="pollierten" type="ADJA">pollierten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Rauchfang" type="NN">Rauchfang</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="lassen" type="VVIMP">laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glü" part="I" type="NE">glü</tei:w><lb break="no" type="d"/><tei:w lemma="enden" part="F" type="VVFIN">enden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Scheeren" type="NN">Scheeren</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="abschneiden" type="VVFIN">abschneiden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Ohr" type="NN">Ohren</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dise" type="VVFIN">dise</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="zwey" type="NE">zwey</tei:w><tei:seg type="whitespace"> </tei:seg><seg rend="antiqua"><tei:w lemma="Audienz-" part="I" type="TRUNC">Audienz-</tei:w></seg><tei:w lemma="Zimmer" part="F" type="NN">Zimmer</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="lassen" type="VVIMP">laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glüen" part="I" type="NE">glüen</tei:w><lb break="no" type="d"/><tei:w lemma="die" part="F" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schnitzer" type="NN">Schnitzer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="außschneiden" type="ADJD">außschneiden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Zung" type="NN">Zung</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="disen" type="NN">disen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="künstlich" type="ADJA">künstlichen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Sprachmeister" type="NN">Sprachmeister</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="lassen" type="VVIMP">laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glüen" part="I" type="NE">glüen</tei:w><lb break="no" type="d"/><tei:w lemma="die" part="F" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Zange" type="NN">Zangen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="außbrechen" type="ADJD">außbrechen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Zähn" type="NN">Zähn</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dise" type="ADJA">dise</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="helffen" part="I" type="ADJA">helffen</tei:w><lb break="no" type="d"/><tei:w lemma="beinene" part="F" type="ADJA">beinene</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Zuschrotter" type="NN">Zuschrotter</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="lassen" type="VVIMP">laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glüendem" type="ADJA">glüendem</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Beyl" type="NN">Beyl</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="abhauen" type="VVFIN">abhauen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Finger" type="NN">Finger</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dise" type="VVFIN">dise</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="spitzfindig" type="ADJA">spitzfindige</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Künstler" type="NN">Künstler</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="lassen" type="VVIMP">laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glüenden" type="ADJA">glüenden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Stämmeisen" type="NN">Stämmeisen</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="abhacken" type="VVFIN">abhacken</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Zeh|Zehe" type="NN">Zehen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="disen" type="NN">disen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="steiffen" type="ADJA">steiffen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Fußboden" type="NN">Fußboden</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="lassen" type="VVIMP">laß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="du" type="PRF">dir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glüenden" type="ADJA">glüenden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Scheermessern" type="NN">Scheermessern</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Riemen" type="NN">Riemen</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="schneiden" type="VVFIN">schneiden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auß" type="NN">auß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gantzen" type="ADJA">gantzen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Haut" type="NN">Haut</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auß" type="NN">auß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="disem" type="NE">disem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="häcklichen" type="ADJA">häcklichen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Uberzug" type="NN">Uberzug</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sein" type="VAFIN">ist</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="doch" type="ADV">doch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="alle" type="PIAT">alles</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dises" type="NN">dises</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nur" type="ADV">nur</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schatten" type="NN">Schatten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mehr" type="ADV">mehr</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nichts" type="PIS">nichts</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOKOM">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schatten" type="NN">Schatten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="weiter" type="ADV">weiter</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nichts" type="PIS">nichts</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOKOM">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schatten" type="NN">Schatten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gegen" type="APPR">gegen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="min" part="I" type="ADJA">min</tei:w><lb break="no" type="d"/><tei:w lemma="desten" part="F" type="ADJA">desten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Pein" type="NN">Pein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPRART">im</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Feegfeuer" type="NN">Feegfeuer</tei:w><tei:pc type="$.">.</tei:pc></p><!-- "registriret" (Zeile 61,62) muss ein Token sein. --><p rend="indent"><tei:w lemma="jen" type="PDAT">Jener</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Religios" type="NN">Religios</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="von" type="APPR">von</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="deme" type="ADJA">deme</tei:w><tei:seg type="whitespace"> </tei:seg><seg rend="antiqua"><persName type="hist"><tei:w lemma="Baronius" type="NE">Baronius</tei:w></persName><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Regi" part="I" type="NE">regi</tei:w></seg><lb break="no" type="s"/><seg rend="antiqua"><tei:w lemma="stri" part="M" type="NE">stri</tei:w></seg><tei:w lemma="ret" part="F" type="VVFIN">ret</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="es" type="PPER">es</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="genugsam" type="ADV">genugsam</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="erfahren" type="VVPP">erfahren</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dass" type="KOUS">daß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sich" type="PRF">sich</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="GOtt" type="VVFIN">GOtt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">eines</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="solche" type="PIS">solchen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="erbarmen" type="VVFIN">erbarme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sich" type="PRF">sich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auch" type="ADV">auch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="über" type="APPR">über</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><fw place="bot_right" type="catch">die</fw><pb facs="Abraham-Augustini_feuriges_Hertz_n0033.jpg" n="S. 33" xml:id="n0033"/><seg type="header"><fw n="33" place="top_center" type="pageNum"><milestone rend="flower" type="symbol"/>(33)<milestone rend="flower" type="symbol"/></fw></seg><milestone rend="line" type="hr"/><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="arm" type="ADJA">armen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Seele" type="NN">Seelen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="erbarmet" type="NE">erbarmet</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="maßen|messen" type="VVFIN">massen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="diser" type="ADJD">diser</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="nach" type="APPR">nach</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sein" type="PPOSAT">seinem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zeitlich" type="ADJA">zeitlichen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Hintritt" type="NN">Hintritt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vilen" type="ADJA">vilen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="andere" type="ADJA">andern</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Seele" type="NN">Seelen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gleich" type="ADJD">gleich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dazumahl" type="NN">dazumahl</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="derselbigen" type="ADJA">derselbigen</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Stund" type="NN">Stund</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="von" type="APPR">von</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="hinnen" type="NN">hinnen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="abgeschiden" type="ADJA">abgeschiden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vor" type="APPR">vor</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Gött" part="I" type="NN">Gött</tei:w><lb break="no" type="d"/><tei:w lemma="lichen" part="F" type="ADJA">lichen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Richterstul" type="NE">Richterstul</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="stellen" type="VVPP">gestellt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="von" type="APPR">von</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="böse" type="ADJA">bösen</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Geist" type="NN">Geistern</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dermaßen" type="ADV">dermassen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="hart" type="ADJD">hart</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="anklagen" type="VVPP">angeklagt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAPP">worden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dass" type="KOUS">daß</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="bereits" type="ADV">bereits</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="über" type="APPR">über</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">ihn</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="solte" type="ADJD">solte</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="fällen" type="VVPP">gefällt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAFIN">werden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">das</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Urtheil" type="NN">Urtheil</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ewig" type="ADJA">ewigen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Verdamnuß" type="NN">Verdamnuß</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="weil" type="KOUS">Weil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="aber" type="ADV">aber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="seyn" type="NE">seyn</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Lebtag" type="NN">Lebtag</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sonderbahrer" type="NN">sonderbahrer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Liebhaber" type="NN">Liebhaber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="arm" type="ADJA">armen</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Seele" type="NN">Seelen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gewest" type="ADJA">gewest</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="selbiger" type="VVFIN">selbiger</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sein" type="PPOSAT">seinem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Gebett" type="NN">Gebett</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="nie" type="ADV">nie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vergessen" type="VVINF">vergessen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="also" type="ADV">also</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="GOtt" type="ADJD">GOtt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Ansehung" type="NN">Ansehung</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="diser" type="ADJA">diser</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Lieb" type="NN">Lieb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="APPR">zu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="abgestorben" type="ADJA">abgestorbenen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Christglaubigen" type="NN">Christglaubigen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="auch" type="ADV">auch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vermittels" type="APPR">vermittels</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Vorbitt" type="NN">Vorbitt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="arm" type="ADJA">armen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="See" part="I" type="NN">See</tei:w><lb break="no" type="d"/><tei:w lemma="len" part="F" type="VVFIN">len</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">ihn</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="verschonet" type="VVFIN">verschonet</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="beynebens" type="NN">beynebens</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="anbefehlen" type="VVPP">anbefohlen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sollen" type="VMFIN">solle</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="widerumb" type="ADJD">widerumb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="APPRART">zum</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Leben" type="NN">Leben</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="kehren" type="VVFIN">kehren</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="noch" type="ADV">noch</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="genugsame" type="ADJA">genugsame</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Buß" type="NN">Buß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auff" type="NN">auff</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Welt" type="NN">Welt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="würcken" type="VVFIN">würcken</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><bibl><foreign xml:lang="la"><seg rend="antiqua"><persName type="hist"><tei:w lemma="Tom" type="NE">Tom</tei:w><tei:pc type="$.">.</tei:pc></persName><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="9" type="CARD">9</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ad" type="FM">ad</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Ann" type="NE">Ann</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="@card@" type="CARD">716</tei:w><tei:pc type="$.">.</tei:pc></seg></foreign></bibl></p><!-- "besagtem" muss ein Token sein (Z. 105f.) --><p rend="indent"><tei:w lemma="ich" type="PPER">Mir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">einer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="glaubwürdig" type="ADJD">glaubwürdig</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="erzehlt" type="ADJA">erzehlt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auß" type="NN">auß</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="eine" type="ART">einer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sehr" type="ADV">sehr</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="berühmt" type="ADJA">berühmten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Orden" type="NN">Orden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auch" type="ADV">auch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">einem</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Schwur" type="NN">Schwur</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="bestättiget" type="VVFIN">bestättiget</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="annoch" type="ADJD">annoch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPRART">im</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Leben" type="NN">Leben</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="eine" type="ART">eines</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gut" type="ADJA">guten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Wandel" type="NN">Wandels</tei:w><tei:pc type="$.">:</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOUS">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Bey" type="NE">bey</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Nacht" type="NN">Nacht</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Studiren" type="NN">Studiren</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="abliegen" type="VVPP">abgelegen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vmb" type="NN">vmb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="weilen" type="VVFIN">weilen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ihme" type="ADV">ihme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Verhindernussen" type="NN">Verhindernussen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="beym" type="ADJA">beym</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tag" type="NN">Tag</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="PTKA">zu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="häuffig" type="ADJD">häuffig</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">habe</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="ihme" type="ADV">ihme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zwey" type="NE">zwey</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Nacht" type="NN">Nacht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nacheinander" type="ADV">nacheinander</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnsichtbare" type="NN">vnsichtbare</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Hand" type="NN">Hand</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="immerzu" type="ADV">immerzu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Bibel" type="NN">Bibel</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="oder" type="KON">oder</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="H" type="NN">H</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schrifft" type="NN">Schrifft</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="vor" type="APPR">vor</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sein" type="PPOSAT">seiner</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vmbgeblättert" type="NN">vmbgeblättert</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="welche" type="PWS">welches</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Anfang" type="NN">Anfangs</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="für" type="APPR">für</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="natürlich" type="ADV">natürlich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="halten" type="VVPP">gehalten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Meynung" type="NN">Meynung</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOKOM">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wur" part="I" type="NN">wur</tei:w><lb break="no" type="d"/><tei:w lemma="die" part="F" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Blatt" type="NN">Blätter</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="von" type="APPR">von</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">einem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="klein" type="ADJA">kleinen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Wind" type="NN">Wind</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="be" part="I" type="ADJD">be</tei:w><lb break="no" type="d"/><tei:w lemma="rühren" part="F" type="VVFIN">rührt</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Nachdeme" type="VVFIN">Nachdeme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="aber" type="ADV">aber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="einist" type="NN">einist</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="beiner" part="I" type="ADJA">beiner</tei:w><lb break="no" type="d"/><tei:w lemma="nen" part="F" type="ADJA">nen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Streicher" type="NN">Streicher</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOKOM">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><foreign xml:lang="la"><seg rend="antiqua"><tei:w lemma="Signaculum" type="NN">Signaculum</tei:w></seg></foreign><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Bibel" type="NN">Bibel</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><fw place="bot_right" type="catch">gesteckt /</fw><pb facs="Abraham-Augustini_feuriges_Hertz_n0051.jpg" n="S. 51" xml:id="n0051"/><seg type="header"><fw n="51" place="top_center" type="pageNum"><milestone rend="flower" type="symbol"/>(51)<milestone rend="flower" type="symbol"/></fw></seg><milestone rend="line" type="hr"/><tei:w lemma="stecken" type="VVPP">gesteckt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="da" type="ADV">da</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wahrnehmen" type="VVPP">wahrgenommen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dass" type="KOUS">daß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="jemand" type="PIS">jemand</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="derselb" type="PDAT">denselben</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnsichtbarer" type="NN">vnsichtbarer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="herauß" type="NN">herauß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ziehen" type="VVPP">gezogen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Gegenwart" type="NN">Gegenwart</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sein" type="PPOSAT">seiner</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="anders" type="ADV">anders</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Orth" type="ADJD">Orth</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><choice><sic><tei:w lemma="b" part="I" type="ADJA">b</tei:w><supplied reason="missing"><tei:w lemma="e" part="M" type="ADJA">e</tei:w></supplied><tei:w lemma="sagen" part="M" type="VVIMP">sag</tei:w><lb break="no" type="d"/><tei:w lemma="tem" part="F" type="ADJA">tem</tei:w></sic><corr cert="high">besagtem</corr></choice><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Buch" type="NN">Buch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="legen" type="VVPP">gelegt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="welche" type="PIS">welches</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ihme" type="VVFIN">ihme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOKOM">wie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="billich" type="ADJD">billich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ei" part="I" type="ADJA">ei</tei:w><lb break="no" type="d"/><tei:w lemma="nen" part="F" type="ADJA">nen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Grausen" type="NN">Grausen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="verursachen" type="VVPP">verursacht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="weil" type="KOUS">weil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sich" type="PRF">sich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="aber" type="ADV">aber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="an" type="APPR">an</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="dises" type="NN">dises</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auch" type="ADV">auch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nicht" type="PTKNEG">nicht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vil" type="ADJD">vil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="kehren" type="VVFIN">kehren</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wolte" type="ADJD">wolte</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="da" type="ADV">da</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="end" part="I" type="ADJD">end</tei:w><lb break="no" type="d"/><tei:w lemma="lich" part="F" type="ADJD">lich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnsichbare" type="NN">vnsichbare</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Hand" type="NN">Hand</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="widerumb" type="VVFIN">widerumb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="bei" part="I" type="APPR">bei</tei:w><lb break="no" type="d"/><tei:w lemma="nernen" part="F" type="ADJA">nernen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Streicher" type="NN">Streicher</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="herauß" type="NN">herauß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nehmen" type="VVPP">genommen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="solche" type="PIAT">solchem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Gewalt" type="NN">Gewalt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auff" type="NN">auff</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tisch" type="NN">Tisch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="schlagen" type="VVPP">geschlagen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dass" type="KOUS">daß</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vor" type="APPR">vor</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schrecken" type="NN">Schrecken</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="fast" type="ADV">fast</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Ohnmacht" type="NN">Ohnmacht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="fallen|gefallen" type="VVPP">gefallen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="deß" type="NN">deß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="andere" type="ADJA">andern</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tag" type="NN">Tags</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wolte" type="ADJD">wolte</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="weil" type="KOUS">weil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ihme" type="ADV">ihme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="je" type="ADV">je</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mehr" type="PIAT">mehr</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mehr" type="PIAT">mehr</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Gedancken" type="NN">Gedancken</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="einfallen" type="VVPP">eingefallen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Bibel" type="NN">Bibel</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="wohl" type="ADV">wohl</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="beschauen" type="VVINF">beschauen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="findt" type="NE">findt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="aber" type="KON">aber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Streicher" type="NN">Streicher</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wide" part="I" type="ADJD">wide</tei:w><lb break="no" type="d"/><tei:w lemma="rumb" part="F" type="VVFIN">rumb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="darinn" type="NN">darinn</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="darzu" type="ADV">darzu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Reißbley" type="NE">Reißbley</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="auff" type="NN">auff</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Seite" type="NN">Seiten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="deß" type="NE">deß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Blats" type="NN">Blats</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gemacht" type="ADJA">gemachtes</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Creutzel" type="NN">Creutzel</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">ihn</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nicht" type="PTKNEG">nicht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wenige" type="PIAT">wenig</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="befrembdet" type="ADJA">befrembdet</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mei" part="I" type="NN">mei</tei:w><lb break="no" type="d"/><tei:w lemma="stens" part="F" type="NN">stens</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="darumb" type="VVFIN">darumb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="weil" type="KOUS">weil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auch" type="ADV">auch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><seg rend="antiqua"><tei:w lemma="NB" type="NE">NB</tei:w></seg><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="darbey" type="NE">darbey</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="setzen" type="VVPP">gesetzt</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="sein" type="VAFIN">war</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="welche" type="PWS">welches</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">ihn</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dann" type="ADV">dann</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="veranlast" type="NN">veranlast</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="weiter" type="ADV">weiter</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="PTKZU">zu</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="sehen" type="VVINF">sehen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="PTKZU">zu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="lesen" type="VVINF">lesen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="was" type="PWS">was</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dann" type="ADV">dann</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="jen" type="PDAT">jene</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Zeil" type="NE">Zeil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sich" type="PRF">sich</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="halten" type="VVFIN">halte</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Creutzel" type="NN">Creutzel</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="bezeichnen" type="VVPP">bezeichnet</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="findt" type="NE">findt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="end" part="I" type="VVFIN">end</tei:w><lb break="no" type="d"/><tei:w lemma="lich" part="F" type="ADJD">lich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="kurtzen" type="ADJA">kurtzen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Text" type="NN">Text</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="deß" type="NE">deß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="H" type="NN">H</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Evangelii" type="NE">Evangelii</tei:w><tei:pc type="$.">:</tei:pc><tei:seg type="whitespace"> </tei:seg><foreign xml:lang="la"><seg rend="antiqua"><tei:w lemma="Dixit" type="NN">Dixit</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="ad" type="FM">ad</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="bibl"><tei:w lemma="Philippum" type="NN">Philippum</tei:w></persName><tei:pc type="$,">,</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="unde" type="ADJA">unde</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ememus" type="NN">ememus</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="panes" type="VVFIN">panes</tei:w><tei:pc type="$.">?</tei:pc></seg></foreign><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">Er</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="sprechen" type="VVFIN">sprach</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="APPR">zu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="bibl"><tei:w lemma="Philipp" type="NE">Philipp</tei:w></persName><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wo" type="PWAV">wo</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAFIN">werden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wir" type="PPER">wir</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dann" type="ADV">dann</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Brod" type="NE">Brod</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nehmen" type="VVINF">nehmen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><bibl><persName type="bibl"><seg rend="antiqua"><tei:w lemma="Joann" type="NE">Joann</tei:w><tei:pc type="$.">.</tei:pc></seg></persName><tei:seg type="whitespace"> </tei:seg><tei:w lemma="an" type="APPRART">am</tei:w><tei:seg type="whitespace"> </tei:seg><seg rend="antiqua"><tei:w lemma="6" type="CARD">6</tei:w><tei:pc type="$.">.</tei:pc></seg><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Capitel" type="NN">Capitel</tei:w></bibl><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dises" type="NN">dises</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">hat</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="ihme" type="ADV">ihme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="alsobald" type="NE">alsobald</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Gedächtnuß" type="NN">Gedächtnuß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="bewegen" type="VVFIN">bewegt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dass" type="KOUS">daß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="nichts" type="PIS">nichts</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="anderst" type="ADV">anderst</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="denken|gedenken" type="VVPP">gedacht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOKOM">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dass" type="KOUS">daß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sein" type="PPOSAT">sein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gut" type="ADJA">bester</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Freund" type="NN">Freund</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Nahmen" type="NE">Nahmen</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="hist"><tei:w lemma="Philipp" type="NE">Philipp</tei:w></persName><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vor" type="APPR">vor</tei:w><tei:seg type="whitespace"> </tei:seg><seg rend="antiqua"><tei:w lemma="14" type="CARD">14</tei:w><tei:pc type="$.">.</tei:pc></seg><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Tag" type="NN">Tagen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mit" type="APPR">mit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tod" type="NN">Tod</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="abgangen" type="VVFIN">abgangen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="noch" type="ADV">noch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="fern" type="ADJA">fernere</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Hülff" type="NE">Hülff</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><seg type="footer"><fw place="bot_center" type="pageNum">D 2</fw></seg><fw place="bot_right" type="catch">von</fw><pb facs="Abraham-Augustini_feuriges_Hertz_n0052.jpg" n="S. 52" xml:id="n0052"/><seg type="header"><fw n="52" place="top_center" type="pageNum"><milestone rend="flower" type="symbol"/>(52)<milestone rend="flower" type="symbol"/></fw></seg><milestone rend="line" type="hr"/><tei:w lemma="von" type="APPR">von</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ihme" type="ADV">ihme</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="verlangen" type="VVFIN">verlange</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="fordern" type="VVFIN">forderst</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="andere" type="PIAT">andere</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="heilig" type="ADJA">heilige</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Meß" type="NN">Meß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="in" type="APPR">in</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="welche" type="PIS">welchen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">das</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Brod" type="NN">Brod</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="En" part="I" type="NE">En</tei:w><lb break="no" type="d"/><tei:w lemma="geln" part="F" type="NE">geln</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auffgesetzet" type="VVFIN">auffgesetzet</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAFIN">wird</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="welche" type="PWS">welches</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auch" type="ADV">auch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nach" part="I" type="APPR">nach</tei:w><lb break="no" type="d"/><tei:w lemma="Mahl" part="F" type="NN">mahls</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="geschehen" type="VVINF">geschehen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="worauff" type="VVFIN">worauff</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nichts" type="PIS">nichts</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mehr" type="ADV">mehr</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ge" part="I" type="ADJD">ge</tei:w><lb break="no" type="d"/><tei:w lemma="spühret" part="F" type="VVFIN">spühret</tei:w><tei:pc type="$.">.</tei:pc></p><!-- "Iscarioth" (Z. 159f.) muss ein Token sein--><p rend="indent"><tei:w lemma="die" type="ART">Die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Hohepriester" type="NN">Hohepriester</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Jude" type="NN">Juden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="seynd" type="VVFIN">seynd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="wohl" type="ADV">wohl</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ja" type="ADV">ja</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mehrer" type="ADJD">mehrer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOKOM">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="bibl"><seg rend="antiqua"><tei:w lemma="Iscarioth" type="NN">Iscarioth</tei:w></seg></persName><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Ursach" type="NE">Ursach</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ge" part="I" type="ADJA">ge</tei:w><lb break="no" type="d"/><tei:w lemma="west" part="F" type="FM">west</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="an" type="APPR">an</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="bitter" type="ADJA">bittern</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tod" type="NN">Tod</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="deß" type="NE">deß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Herr" type="NN">HErrn</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="bibl"><tei:w lemma="JEsu" type="NE">JEsu</tei:w></persName><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="dann" type="ADV">dann</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="keine" type="PIAT">kein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tag" type="NN">Tag</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ware" type="ADJD">ware</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="da" type="KOUS">da</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sie" type="PPER">sie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nicht" type="PTKNEG">nicht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Under" part="I" type="NN">Under</tei:w><lb break="no" type="d"/><tei:w lemma="gang" part="F" type="ADJD">gang</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="diser" type="ADJA">diser</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="göttlich" type="ADJA">Göttlichen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Sonne" type="NN">Sonnen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="suchen" type="VVFIN">suchten</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="keine" type="PIAT">Kein</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><fw place="bot_right" type="catch">Nacht</fw><pb facs="Abraham-Augustini_feuriges_Hertz_n0095.jpg" n="S. 95" xml:id="n0095"/><seg type="header"><fw n="95" place="top_center" type="pageNum"><milestone rend="flower" type="symbol"/>(95)<milestone rend="flower" type="symbol"/></fw></seg><milestone rend="line" type="hr"/><tei:w lemma="Nacht" type="NN">Nacht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ware" type="ADJD">ware</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="da" type="KOUS">da</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sie" type="PPER">sie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nicht" type="PTKNEG">nicht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sich" type="PRF">sich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="bemüht" type="ADJA">bemühten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dises" type="NN">dises</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="göttlich" type="ADJA">Göttliche</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Liecht" type="NN">Liecht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="außzulöschen" type="ADJA">außzulöschen</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOUS">Wie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Wölff" type="NE">Wölff</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="verfolgen" type="VVFIN">verfolgten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sie" type="PPER">sie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dises" type="ADJA">dises</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Lamm" type="NN">Lamm</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Gott" type="NN">GOttes</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOUS">Wie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Geyer" type="NE">Geyer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NE">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Raub=Vögel" type="NN">Raub=Vögel</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dise" type="ADJA">dise</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnschuldige" type="NN">vnschuldige</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tau" part="I" type="NN">Tau</tei:w><lb break="no" type="d"/><tei:w lemma="ben" part="F" type="VVFIN">ben</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOKOM">Wie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="tobend" type="ADJA">tobende</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Sturm=Wind" type="NN">Sturm=Wind</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dises" type="NN">dises</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schif" part="I" type="NE">Schif</tei:w><lb break="no" type="d"/><tei:w lemma="fel" part="F" type="ADJA">fel</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="deß" type="NN">deß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Heyls" type="VVFIN">Heyls</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="beißen" type="VVFIN">biß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sie" type="PPER">sie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="endlich" type="ADV">endlich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dise" type="ADJA">dise</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="blutgierig" type="ADJA">blutgierige</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Egel" type="NN">Egel</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NE">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnmenschliche" type="NN">vnmenschliche</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tyger=Gemüther" type="VVFIN">Tyger=Gemüther</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">den</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Heyland" type="NN">Heyland</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="an" type="APPR">an</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">das</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Creutz" type="NN">Creutz</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="bringen" type="VVPP">gebracht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="folgen" part="I" type="VVIMP">folg</tei:w><lb break="no" type="d"/><tei:w lemma="samb" part="F" type="ADJA">samb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="mehrer" type="NN">mehrer</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="verschulden" type="VVPP">verschuldet</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="als" type="KOUS">als</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="bibl"><tei:w lemma="Judas" type="NE">Judas</tei:w><tei:seg type="whitespace"> </tei:seg><seg rend="antiqua"><tei:w lemma="Isca" part="I" type="NE">Isca</tei:w><lb break="no" type="s"/><tei:w lemma="rioth" part="F" type="NE">rioth</tei:w></seg></persName><seg rend="antiqua"><tei:pc type="$,">,</tei:pc></seg><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dannoch" type="NE">dannoch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="aber" type="KON">aber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auff" type="NE">auff</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Welt" type="NN">Welt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nicht" type="PTKNEG">nicht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="also" type="ADV">also</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="straffen" type="VVPP">gestrafft</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAPP">worden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOUS">wie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nicht" type="PTKNEG">nicht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="PIS">eines</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="so" type="ADV">so</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnglück" part="I" type="NN">vnglück</tei:w><lb break="no" type="d"/><tei:w lemma="seeligen" part="F" type="ADJA">seeligen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tod" type="NN">Tods</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sterben" type="VVPP">gestorben</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOUS">wie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nicht" type="PTKNEG">nicht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gan" part="I" type="ADJA">gan</tei:w><lb break="no" type="d"/><tei:w lemma="tzen" part="F" type="ADJA">tzen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Welt" type="NN">Welt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="APPR">zu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schand" type="NN">Schand</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NE">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Spott" type="NN">Spott</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAPP">worden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOUS">wie</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="er" type="PPER">er</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="warum" type="PWAV">warum</tei:w><tei:pc type="$.">?</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">Die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Ursach" type="NN">Ursach</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sein" type="VAFIN">war</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dise" type="ADJD">dise</tei:w><tei:pc type="$.">:</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Jhre" type="ADJA">Jhre</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Würf" part="I" type="NN">Würf</tei:w><lb break="no" type="d"/><tei:w lemma="fel" part="F" type="ADJD">fel</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">haben</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vil" type="ADJA">vil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Schwartz" type="NN">Schwartz</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="geworffen" type="VVPP">geworffen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sie" type="PPER">sie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="haben" type="VAFIN">haben</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="sich" type="PRF">sich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Todten" type="NN">Todten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="annehmen" type="VVPP">angenommen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dann" type="ADV">dann</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sie" type="PPER">sie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vmb" type="NN">vmb</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="je" part="I" type="APPR">je</tei:w><lb break="no" type="d"/><tei:w lemma="nes" part="F" type="NE">nes</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Blut=Geld" type="NN">Blut=Geld</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wormit" type="NN">wormit</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">das</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="hoch" type="ADJA">höchste</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Gut" type="NN">Gut</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ver" part="I" type="VVFIN">ver</tei:w><lb break="no" type="d"/><tei:w lemma="kaufft" part="F" type="ADJD">kaufft</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAPP">worden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">einen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Acker" type="NN">Acker</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="einhandeln" type="VVPP">eingehandelt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="da" type="ADV">da</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="zu" type="APPR">zu</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="alle" type="PIAT">allen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Zeit" type="NN">Zeiten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sollen" type="VMFIN">soll</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="seyn" type="NE">seyn</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="eine" type="ART">ein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Freudhoff" type="NE">Freudhoff</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NE">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Begräbnuß" type="NN">Begräbnuß</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Frembdling" type="NN">Frembdling</tei:w><tei:pc type="$.">;</tei:pc><tei:seg type="whitespace"> </tei:seg><foreign xml:lang="la"><seg rend="antiqua"><tei:w lemma="in" type="APPR">In</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sepulturam" type="NE">sepulturam</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Peregrinorum" type="NN">Peregrinorum</tei:w><tei:pc type="$,">,</tei:pc><tei:seg type="whitespace"> </tei:seg><bibl><persName type="bibl"><tei:w lemma="Matth" type="NE">Matth</tei:w><tei:pc type="$.">.</tei:pc></persName><tei:seg type="whitespace"> </tei:seg><tei:w lemma="27" type="CARD">27</tei:w></bibl></seg><tei:pc type="$.">.</tei:pc></foreign><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wie" type="KOKOM">Wie</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="dann" type="ADV">dann</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="von" type="APPR">von</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="besagt" type="ADJA">besagtem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Acker" type="NN">Acker</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="sehr" type="ADV">sehr</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vil" type="ADJD">vil</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Erd" type="VVFIN">Erd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nach" type="APPR">nach</tei:w><tei:seg type="whitespace"> </tei:seg><placeName key="rome" subtype="dire" type="city"><tei:w lemma="Rom" type="NE">Rom</tei:w></placeName><tei:seg type="whitespace"> </tei:seg><tei:w lemma="über" part="I" type="PTKVZ">über</tei:w><lb break="no" type="d"/><tei:w lemma="brechen" part="F" type="VVFIN">bracht</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="worden" type="ADJD">worden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NN">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="werden" type="VAFIN">wird</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">das</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Ort" type="NN">Ort</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="genennt" type="VVFIN">genennt</tei:w><tei:pc type="$.">:</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><seg rend="antiqua"><foreign xml:lang="la"><tei:w lemma="Capo" type="NE">Capo</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Santo" type="NE">Santo</tei:w></foreign><tei:pc type="$,">,</tei:pc></seg><tei:seg type="whitespace"> </tei:seg><tei:w lemma="allwo" type="NE">allwo</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="noch" type="KON">noch</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="auff" type="NE">auff</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="heuntigen" type="ADJA">heuntigen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Tag" type="NN">Tag</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="dise" type="ADJD">dise</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Erd" type="VVFIN">Erd</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="nur" type="ADV">nur</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">die</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Leib" type="NN">Leiber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Frembden" type="NN">Frembden</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="behalten" type="VVFIN">behaltet</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Jnwohner" type="NN">Jnwohner</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="aber" type="ADV">aber</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="gleich" type="ADJD">gleich</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="wider" type="APPR">wider</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="außwirfft" type="ADJD">außwirfft</tei:w><tei:pc type="$.">.</tei:pc></p><!-- "&c" muss ein Token sein, wenn als abbreviations/abbr im Parameter-file definiert --><p rend="indent"><tei:w lemma="wann" type="PWAV">Wann</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">der</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Geist" type="NN">Geist</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="keine" type="PIAT">kein</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Scheühen" type="NN">Scheühen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="tragen" type="VVFIN">tragt</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="ob" type="KOUS">ob</tei:w><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="H" type="NN">H</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="Creutz=Zeichen" type="ADJA">Creutz=Zeichen</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="an" type="APPR">an</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="die" type="ART">dem</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="süß" type="ADJA">süssesten</tei:w><tei:seg type="whitespace"> </tei:seg><tei:w lemma="na" part="I" type="ITJ">Na</tei:w><lb break="no" type="d"/><tei:w lemma="men" part="F" type="ADJA">men</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="bibl"><tei:w lemma="Jesu" type="NN">JESU</tei:w></persName><tei:seg type="whitespace"> </tei:seg><tei:w lemma="vnd" type="NE">vnd</tei:w><tei:seg type="whitespace"> </tei:seg><persName type="bibl"><tei:w lemma="Maria" type="NE">Maria</tei:w></persName><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><tei:w lemma="H" type="NN">H</tei:w><tei:pc type="$.">.</tei:pc><tei:seg type="whitespace"> </tei:seg><seg rend="antiqua"><tei:w lemma="Reliqui" part="I" type="NE">Reliqui</tei:w></seg><tei:w lemma="en" part="F" type="FM">en</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><lb/><tei:w lemma="Weyhwasser" type="NN">Weyhwasser</tei:w><tei:seg type="whitespace"> </tei:seg><tei:pc type="$(">/</tei:pc><tei:seg type="whitespace"> </tei:seg><foreign xml:lang="la"><seg rend="antiqua"><tei:w lemma="Agnus" type="NE">Agnus</tei:w><tei:seg type="whitespace"> </tei:seg><seg rend="smallCaps"><tei:w lemma="Dei" type="NE">Dei</tei:w></seg><tei:seg type="whitespace"> </tei:seg><tei:pc type="KON">&amp;</tei:pc><tei:w lemma="c" type="VVFIN">c</tei:w><tei:pc type="$.">.</tei:pc></seg></foreign></p></TEI>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><!-- "Audienz-Zimmer" (Zeile 46) muss ein Token sein. -->
+    <p rend="indent">
+        <tei:w lemma="lassen" type="VVIMP">Laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glüenden" type="ADJA">glüenden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Pfriemen" type="NN">Pfriemen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="außste" part="I" type="ADJD">außste</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="chen" part="F" type="ADJD">chen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Auge" type="NN">Augen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dise" type="ADJA">dise</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gläserne" type="NN">gläserne</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Kuppler" type="NN">Kuppler</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="lassen" type="VVIMP">laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <choice>
+            <sic>
+                <tei:w lemma="glünendem" type="ADJA">glünendem</tei:w>
+            </sic>
+            <corr cert="high">glüendem</corr>
+        </choice>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Messer" type="NN">Messer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="abschneiden" type="VVFIN">abschneiden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Nase" type="NN">Nasen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="disen" type="NN">disen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="pollierten" type="ADJA">pollierten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Rauchfang" type="NN">Rauchfang</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="lassen" type="VVIMP">laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glü" part="I" type="NE">glü</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="enden" part="F" type="VVFIN">enden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Scheeren" type="NN">Scheeren</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="abschneiden" type="VVFIN">abschneiden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Ohr" type="NN">Ohren</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dise" type="VVFIN">dise</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="zwey" type="NE">zwey</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <seg rend="antiqua">
+            <tei:w lemma="Audienz-" part="I" type="TRUNC">Audienz-</tei:w>
+        </seg>
+        <tei:w lemma="Zimmer" part="F" type="NN">Zimmer</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="lassen" type="VVIMP">laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glüen" part="I" type="NE">glüen</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="die" part="F" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schnitzer" type="NN">Schnitzer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="außschneiden" type="ADJD">außschneiden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Zung" type="NN">Zung</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="disen" type="NN">disen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="künstlich" type="ADJA">künstlichen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Sprachmeister" type="NN">Sprachmeister</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="lassen" type="VVIMP">laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glüen" part="I" type="NE">glüen</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="die" part="F" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Zange" type="NN">Zangen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="außbrechen" type="ADJD">außbrechen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Zähn" type="NN">Zähn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dise" type="ADJA">dise</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="helffen" part="I" type="ADJA">helffen</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="beinene" part="F" type="ADJA">beinene</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Zuschrotter" type="NN">Zuschrotter</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="lassen" type="VVIMP">laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glüendem" type="ADJA">glüendem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Beyl" type="NN">Beyl</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="abhauen" type="VVFIN">abhauen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Finger" type="NN">Finger</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dise" type="VVFIN">dise</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="spitzfindig" type="ADJA">spitzfindige</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Künstler" type="NN">Künstler</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="lassen" type="VVIMP">laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glüenden" type="ADJA">glüenden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Stämmeisen" type="NN">Stämmeisen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="abhacken" type="VVFIN">abhacken</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Zeh|Zehe" type="NN">Zehen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="disen" type="NN">disen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="steiffen" type="ADJA">steiffen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Fußboden" type="NN">Fußboden</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="lassen" type="VVIMP">laß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="du" type="PRF">dir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glüenden" type="ADJA">glüenden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Scheermessern" type="NN">Scheermessern</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Riemen" type="NN">Riemen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="schneiden" type="VVFIN">schneiden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auß" type="NN">auß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gantzen" type="ADJA">gantzen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Haut" type="NN">Haut</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auß" type="NN">auß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="disem" type="NE">disem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="häcklichen" type="ADJA">häcklichen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Uberzug" type="NN">Uberzug</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sein" type="VAFIN">ist</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="doch" type="ADV">doch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="alle" type="PIAT">alles</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dises" type="NN">dises</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nur" type="ADV">nur</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schatten" type="NN">Schatten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mehr" type="ADV">mehr</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nichts" type="PIS">nichts</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOKOM">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schatten" type="NN">Schatten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="weiter" type="ADV">weiter</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nichts" type="PIS">nichts</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOKOM">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schatten" type="NN">Schatten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gegen" type="APPR">gegen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="min" part="I" type="ADJA">min</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="desten" part="F" type="ADJA">desten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Pein" type="NN">Pein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPRART">im</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Feegfeuer" type="NN">Feegfeuer</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+    </p><!-- "registriret" (Zeile 61,62) muss ein Token sein. -->
+    <p rend="indent">
+        <tei:w lemma="jen" type="PDAT">Jener</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Religios" type="NN">Religios</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="von" type="APPR">von</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="deme" type="ADJA">deme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <seg rend="antiqua">
+            <persName type="hist">
+                <tei:w lemma="Baronius" type="NE">Baronius</tei:w>
+            </persName>
+            <tei:seg type="whitespace"> </tei:seg>
+            <tei:w lemma="Regi" part="I" type="NE">regi</tei:w>
+        </seg>
+        <lb break="no" type="s"/>
+        <seg rend="antiqua">
+            <tei:w lemma="stri" part="M" type="NE">stri</tei:w>
+        </seg>
+        <tei:w lemma="ret" part="F" type="VVFIN">ret</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="es" type="PPER">es</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="genugsam" type="ADV">genugsam</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="erfahren" type="VVPP">erfahren</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dass" type="KOUS">daß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sich" type="PRF">sich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="GOtt" type="VVFIN">GOtt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">eines</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="solche" type="PIS">solchen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="erbarmen" type="VVFIN">erbarme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sich" type="PRF">sich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auch" type="ADV">auch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="über" type="APPR">über</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <fw place="bot_right" type="catch">die</fw>
+        <pb facs="Abraham-Augustini_feuriges_Hertz_n0033.jpg" n="S. 33" xml:id="n0033"/>
+        <seg type="header">
+            <fw n="33" place="top_center" type="pageNum">
+                <milestone rend="flower" type="symbol"/>(33)<milestone rend="flower" type="symbol"/>
+            </fw>
+        </seg>
+        <milestone rend="line" type="hr"/>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="arm" type="ADJA">armen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Seele" type="NN">Seelen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="erbarmet" type="NE">erbarmet</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="maßen|messen" type="VVFIN">massen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="diser" type="ADJD">diser</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="nach" type="APPR">nach</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sein" type="PPOSAT">seinem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zeitlich" type="ADJA">zeitlichen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Hintritt" type="NN">Hintritt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vilen" type="ADJA">vilen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="andere" type="ADJA">andern</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Seele" type="NN">Seelen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gleich" type="ADJD">gleich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dazumahl" type="NN">dazumahl</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="derselbigen" type="ADJA">derselbigen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Stund" type="NN">Stund</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="von" type="APPR">von</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="hinnen" type="NN">hinnen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="abgeschiden" type="ADJA">abgeschiden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vor" type="APPR">vor</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Gött" part="I" type="NN">Gött</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="lichen" part="F" type="ADJA">lichen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Richterstul" type="NE">Richterstul</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="stellen" type="VVPP">gestellt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="von" type="APPR">von</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="böse" type="ADJA">bösen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Geist" type="NN">Geistern</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dermaßen" type="ADV">dermassen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="hart" type="ADJD">hart</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="anklagen" type="VVPP">angeklagt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAPP">worden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dass" type="KOUS">daß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="bereits" type="ADV">bereits</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="über" type="APPR">über</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">ihn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="solte" type="ADJD">solte</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="fällen" type="VVPP">gefällt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAFIN">werden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">das</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Urtheil" type="NN">Urtheil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ewig" type="ADJA">ewigen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Verdamnuß" type="NN">Verdamnuß</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="weil" type="KOUS">Weil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="aber" type="ADV">aber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="seyn" type="NE">seyn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Lebtag" type="NN">Lebtag</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sonderbahrer" type="NN">sonderbahrer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Liebhaber" type="NN">Liebhaber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="arm" type="ADJA">armen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Seele" type="NN">Seelen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gewest" type="ADJA">gewest</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="selbiger" type="VVFIN">selbiger</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sein" type="PPOSAT">seinem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Gebett" type="NN">Gebett</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="nie" type="ADV">nie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vergessen" type="VVINF">vergessen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="also" type="ADV">also</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="GOtt" type="ADJD">GOtt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Ansehung" type="NN">Ansehung</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="diser" type="ADJA">diser</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Lieb" type="NN">Lieb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="APPR">zu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="abgestorben" type="ADJA">abgestorbenen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Christglaubigen" type="NN">Christglaubigen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="auch" type="ADV">auch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vermittels" type="APPR">vermittels</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Vorbitt" type="NN">Vorbitt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="arm" type="ADJA">armen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="See" part="I" type="NN">See</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="len" part="F" type="VVFIN">len</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">ihn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="verschonet" type="VVFIN">verschonet</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="beynebens" type="NN">beynebens</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="anbefehlen" type="VVPP">anbefohlen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sollen" type="VMFIN">solle</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="widerumb" type="ADJD">widerumb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="APPRART">zum</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Leben" type="NN">Leben</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="kehren" type="VVFIN">kehren</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="noch" type="ADV">noch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="genugsame" type="ADJA">genugsame</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Buß" type="NN">Buß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auff" type="NN">auff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Welt" type="NN">Welt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="würcken" type="VVFIN">würcken</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <bibl>
+            <foreign xml:lang="la">
+                <seg rend="antiqua">
+                    <persName type="hist">
+                        <tei:w lemma="Tom" type="NE">Tom</tei:w>
+                        <tei:pc type="$.">.</tei:pc>
+                    </persName>
+                    <tei:seg type="whitespace"> </tei:seg>
+                    <lb/>
+                    <tei:w lemma="9" type="CARD">9</tei:w>
+                    <tei:pc type="$.">.</tei:pc>
+                    <tei:seg type="whitespace"> </tei:seg>
+                    <tei:w lemma="ad" type="FM">ad</tei:w>
+                    <tei:seg type="whitespace"> </tei:seg>
+                    <tei:w lemma="Ann" type="NE">Ann</tei:w>
+                    <tei:pc type="$.">.</tei:pc>
+                    <tei:seg type="whitespace"> </tei:seg>
+                    <tei:w lemma="@card@" type="CARD">716</tei:w>
+                    <tei:pc type="$.">.</tei:pc>
+                </seg>
+            </foreign>
+        </bibl>
+    </p><!-- "besagtem" muss ein Token sein (Z. 105f.) -->
+    <p rend="indent">
+        <tei:w lemma="ich" type="PPER">Mir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">einer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="glaubwürdig" type="ADJD">glaubwürdig</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="erzehlt" type="ADJA">erzehlt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auß" type="NN">auß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="eine" type="ART">einer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sehr" type="ADV">sehr</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="berühmt" type="ADJA">berühmten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Orden" type="NN">Orden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auch" type="ADV">auch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">einem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Schwur" type="NN">Schwur</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="bestättiget" type="VVFIN">bestättiget</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="annoch" type="ADJD">annoch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPRART">im</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Leben" type="NN">Leben</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="eine" type="ART">eines</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gut" type="ADJA">guten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Wandel" type="NN">Wandels</tei:w>
+        <tei:pc type="$.">:</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOUS">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Bey" type="NE">bey</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Nacht" type="NN">Nacht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Studiren" type="NN">Studiren</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="abliegen" type="VVPP">abgelegen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vmb" type="NN">vmb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="weilen" type="VVFIN">weilen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ihme" type="ADV">ihme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Verhindernussen" type="NN">Verhindernussen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="beym" type="ADJA">beym</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tag" type="NN">Tag</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="PTKA">zu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="häuffig" type="ADJD">häuffig</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">habe</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="ihme" type="ADV">ihme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zwey" type="NE">zwey</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Nacht" type="NN">Nacht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nacheinander" type="ADV">nacheinander</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnsichtbare" type="NN">vnsichtbare</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Hand" type="NN">Hand</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="immerzu" type="ADV">immerzu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Bibel" type="NN">Bibel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="oder" type="KON">oder</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="H" type="NN">H</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schrifft" type="NN">Schrifft</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="vor" type="APPR">vor</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sein" type="PPOSAT">seiner</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vmbgeblättert" type="NN">vmbgeblättert</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="welche" type="PWS">welches</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Anfang" type="NN">Anfangs</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="für" type="APPR">für</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="natürlich" type="ADV">natürlich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="halten" type="VVPP">gehalten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Meynung" type="NN">Meynung</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOKOM">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wur" part="I" type="NN">wur</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="die" part="F" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Blatt" type="NN">Blätter</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="von" type="APPR">von</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">einem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="klein" type="ADJA">kleinen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Wind" type="NN">Wind</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="be" part="I" type="ADJD">be</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="rühren" part="F" type="VVFIN">rührt</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Nachdeme" type="VVFIN">Nachdeme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="aber" type="ADV">aber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="einist" type="NN">einist</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="beiner" part="I" type="ADJA">beiner</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="nen" part="F" type="ADJA">nen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Streicher" type="NN">Streicher</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOKOM">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <foreign xml:lang="la">
+            <seg rend="antiqua">
+                <tei:w lemma="Signaculum" type="NN">Signaculum</tei:w>
+            </seg>
+        </foreign>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Bibel" type="NN">Bibel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <fw place="bot_right" type="catch">gesteckt /</fw>
+        <pb facs="Abraham-Augustini_feuriges_Hertz_n0051.jpg" n="S. 51" xml:id="n0051"/>
+        <seg type="header">
+            <fw n="51" place="top_center" type="pageNum">
+                <milestone rend="flower" type="symbol"/>(51)<milestone rend="flower" type="symbol"/>
+            </fw>
+        </seg>
+        <milestone rend="line" type="hr"/>
+        <tei:w lemma="stecken" type="VVPP">gesteckt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="da" type="ADV">da</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wahrnehmen" type="VVPP">wahrgenommen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dass" type="KOUS">daß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="jemand" type="PIS">jemand</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="derselb" type="PDAT">denselben</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnsichtbarer" type="NN">vnsichtbarer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="herauß" type="NN">herauß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ziehen" type="VVPP">gezogen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Gegenwart" type="NN">Gegenwart</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sein" type="PPOSAT">seiner</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="anders" type="ADV">anders</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Orth" type="ADJD">Orth</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <choice>
+            <sic>
+                <tei:w lemma="b" part="I" type="ADJA">b</tei:w>
+                <supplied reason="missing">
+                    <tei:w lemma="e" part="M" type="ADJA">e</tei:w>
+                </supplied>
+                <tei:w lemma="sagen" part="M" type="VVIMP">sag</tei:w>
+                <lb break="no" type="d"/>
+                <tei:w lemma="tem" part="F" type="ADJA">tem</tei:w>
+            </sic>
+            <corr cert="high">besagtem</corr>
+        </choice>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Buch" type="NN">Buch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="legen" type="VVPP">gelegt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="welche" type="PIS">welches</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ihme" type="VVFIN">ihme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOKOM">wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="billich" type="ADJD">billich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ei" part="I" type="ADJA">ei</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="nen" part="F" type="ADJA">nen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Grausen" type="NN">Grausen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="verursachen" type="VVPP">verursacht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="weil" type="KOUS">weil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sich" type="PRF">sich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="aber" type="ADV">aber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="an" type="APPR">an</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="dises" type="NN">dises</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auch" type="ADV">auch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nicht" type="PTKNEG">nicht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vil" type="ADJD">vil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="kehren" type="VVFIN">kehren</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wolte" type="ADJD">wolte</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="da" type="ADV">da</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="end" part="I" type="ADJD">end</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="lich" part="F" type="ADJD">lich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnsichbare" type="NN">vnsichbare</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Hand" type="NN">Hand</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="widerumb" type="VVFIN">widerumb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="bei" part="I" type="APPR">bei</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="nernen" part="F" type="ADJA">nernen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Streicher" type="NN">Streicher</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="herauß" type="NN">herauß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nehmen" type="VVPP">genommen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="solche" type="PIAT">solchem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Gewalt" type="NN">Gewalt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auff" type="NN">auff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tisch" type="NN">Tisch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="schlagen" type="VVPP">geschlagen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dass" type="KOUS">daß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vor" type="APPR">vor</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schrecken" type="NN">Schrecken</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="fast" type="ADV">fast</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Ohnmacht" type="NN">Ohnmacht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="fallen|gefallen" type="VVPP">gefallen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="deß" type="NN">deß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="andere" type="ADJA">andern</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tag" type="NN">Tags</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wolte" type="ADJD">wolte</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="weil" type="KOUS">weil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ihme" type="ADV">ihme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="je" type="ADV">je</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mehr" type="PIAT">mehr</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mehr" type="PIAT">mehr</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Gedancken" type="NN">Gedancken</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="einfallen" type="VVPP">eingefallen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Bibel" type="NN">Bibel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="wohl" type="ADV">wohl</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="beschauen" type="VVINF">beschauen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="findt" type="NE">findt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="aber" type="KON">aber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Streicher" type="NN">Streicher</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wide" part="I" type="ADJD">wide</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="rumb" part="F" type="VVFIN">rumb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="darinn" type="NN">darinn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="darzu" type="ADV">darzu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Reißbley" type="NE">Reißbley</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="auff" type="NN">auff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Seite" type="NN">Seiten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="deß" type="NE">deß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Blats" type="NN">Blats</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gemacht" type="ADJA">gemachtes</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Creutzel" type="NN">Creutzel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">ihn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nicht" type="PTKNEG">nicht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wenige" type="PIAT">wenig</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="befrembdet" type="ADJA">befrembdet</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mei" part="I" type="NN">mei</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="stens" part="F" type="NN">stens</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="darumb" type="VVFIN">darumb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="weil" type="KOUS">weil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auch" type="ADV">auch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <seg rend="antiqua">
+            <tei:w lemma="NB" type="NE">NB</tei:w>
+        </seg>
+        <tei:pc type="$.">.</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="darbey" type="NE">darbey</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="setzen" type="VVPP">gesetzt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="sein" type="VAFIN">war</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="welche" type="PWS">welches</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">ihn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dann" type="ADV">dann</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="veranlast" type="NN">veranlast</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="weiter" type="ADV">weiter</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="PTKZU">zu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="sehen" type="VVINF">sehen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="PTKZU">zu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="lesen" type="VVINF">lesen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="was" type="PWS">was</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dann" type="ADV">dann</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="jen" type="PDAT">jene</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Zeil" type="NE">Zeil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sich" type="PRF">sich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="halten" type="VVFIN">halte</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Creutzel" type="NN">Creutzel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="bezeichnen" type="VVPP">bezeichnet</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="findt" type="NE">findt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="end" part="I" type="VVFIN">end</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="lich" part="F" type="ADJD">lich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="kurtzen" type="ADJA">kurtzen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Text" type="NN">Text</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="deß" type="NE">deß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="H" type="NN">H</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Evangelii" type="NE">Evangelii</tei:w>
+        <tei:pc type="$.">:</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <foreign xml:lang="la">
+            <seg rend="antiqua">
+                <tei:w lemma="Dixit" type="NN">Dixit</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <lb/>
+                <tei:w lemma="ad" type="FM">ad</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <persName type="bibl">
+                    <tei:w lemma="Philippum" type="NN">Philippum</tei:w>
+                </persName>
+                <tei:pc type="$,">,</tei:pc>
+                <tei:seg type="whitespace"> </tei:seg>
+                <tei:w lemma="unde" type="ADJA">unde</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <tei:w lemma="ememus" type="NN">ememus</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <tei:w lemma="panes" type="VVFIN">panes</tei:w>
+                <tei:pc type="$.">?</tei:pc>
+            </seg>
+        </foreign>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">Er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="sprechen" type="VVFIN">sprach</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="APPR">zu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <persName type="bibl">
+            <tei:w lemma="Philipp" type="NE">Philipp</tei:w>
+        </persName>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wo" type="PWAV">wo</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAFIN">werden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wir" type="PPER">wir</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dann" type="ADV">dann</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Brod" type="NE">Brod</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nehmen" type="VVINF">nehmen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <bibl>
+            <persName type="bibl">
+                <seg rend="antiqua">
+                    <tei:w lemma="Joann" type="NE">Joann</tei:w>
+                    <tei:pc type="$.">.</tei:pc>
+                </seg>
+            </persName>
+            <tei:seg type="whitespace"> </tei:seg>
+            <tei:w lemma="an" type="APPRART">am</tei:w>
+            <tei:seg type="whitespace"> </tei:seg>
+            <seg rend="antiqua">
+                <tei:w lemma="6" type="CARD">6</tei:w>
+                <tei:pc type="$.">.</tei:pc>
+            </seg>
+            <tei:seg type="whitespace"> </tei:seg>
+            <tei:w lemma="Capitel" type="NN">Capitel</tei:w>
+        </bibl>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dises" type="NN">dises</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">hat</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="ihme" type="ADV">ihme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="alsobald" type="NE">alsobald</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Gedächtnuß" type="NN">Gedächtnuß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="bewegen" type="VVFIN">bewegt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dass" type="KOUS">daß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="nichts" type="PIS">nichts</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="anderst" type="ADV">anderst</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="denken|gedenken" type="VVPP">gedacht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOKOM">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dass" type="KOUS">daß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sein" type="PPOSAT">sein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gut" type="ADJA">bester</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Freund" type="NN">Freund</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Nahmen" type="NE">Nahmen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <persName type="hist">
+            <tei:w lemma="Philipp" type="NE">Philipp</tei:w>
+        </persName>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vor" type="APPR">vor</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <seg rend="antiqua">
+            <tei:w lemma="14" type="CARD">14</tei:w>
+            <tei:pc type="$.">.</tei:pc>
+        </seg>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Tag" type="NN">Tagen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mit" type="APPR">mit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tod" type="NN">Tod</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="abgangen" type="VVFIN">abgangen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="noch" type="ADV">noch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="fern" type="ADJA">fernere</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Hülff" type="NE">Hülff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <seg type="footer">
+            <fw place="bot_center" type="pageNum">D 2</fw>
+        </seg>
+        <fw place="bot_right" type="catch">von</fw>
+        <pb facs="Abraham-Augustini_feuriges_Hertz_n0052.jpg" n="S. 52" xml:id="n0052"/>
+        <seg type="header">
+            <fw n="52" place="top_center" type="pageNum">
+                <milestone rend="flower" type="symbol"/>(52)<milestone rend="flower" type="symbol"/>
+            </fw>
+        </seg>
+        <milestone rend="line" type="hr"/>
+        <tei:w lemma="von" type="APPR">von</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ihme" type="ADV">ihme</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="verlangen" type="VVFIN">verlange</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="fordern" type="VVFIN">forderst</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="andere" type="PIAT">andere</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="heilig" type="ADJA">heilige</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Meß" type="NN">Meß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="in" type="APPR">in</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="welche" type="PIS">welchen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">das</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Brod" type="NN">Brod</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="En" part="I" type="NE">En</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="geln" part="F" type="NE">geln</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auffgesetzet" type="VVFIN">auffgesetzet</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAFIN">wird</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="welche" type="PWS">welches</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auch" type="ADV">auch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nach" part="I" type="APPR">nach</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="Mahl" part="F" type="NN">mahls</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="geschehen" type="VVINF">geschehen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="worauff" type="VVFIN">worauff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nichts" type="PIS">nichts</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mehr" type="ADV">mehr</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ge" part="I" type="ADJD">ge</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="spühret" part="F" type="VVFIN">spühret</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+    </p><!-- "Iscarioth" (Z. 159f.) muss ein Token sein-->
+    <p rend="indent">
+        <tei:w lemma="die" type="ART">Die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Hohepriester" type="NN">Hohepriester</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Jude" type="NN">Juden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="seynd" type="VVFIN">seynd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="wohl" type="ADV">wohl</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ja" type="ADV">ja</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mehrer" type="ADJD">mehrer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOKOM">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <persName type="bibl">
+            <seg rend="antiqua">
+                <tei:w lemma="Iscarioth" type="NN">Iscarioth</tei:w>
+            </seg>
+        </persName>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Ursach" type="NE">Ursach</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ge" part="I" type="ADJA">ge</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="west" part="F" type="FM">west</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="an" type="APPR">an</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="bitter" type="ADJA">bittern</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tod" type="NN">Tod</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="deß" type="NE">deß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Herr" type="NN">HErrn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <persName type="bibl">
+            <tei:w lemma="JEsu" type="NE">JEsu</tei:w>
+        </persName>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="dann" type="ADV">dann</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="keine" type="PIAT">kein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tag" type="NN">Tag</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ware" type="ADJD">ware</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="da" type="KOUS">da</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sie" type="PPER">sie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nicht" type="PTKNEG">nicht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Under" part="I" type="NN">Under</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="gang" part="F" type="ADJD">gang</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="diser" type="ADJA">diser</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="göttlich" type="ADJA">Göttlichen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Sonne" type="NN">Sonnen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="suchen" type="VVFIN">suchten</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="keine" type="PIAT">Kein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <fw place="bot_right" type="catch">Nacht</fw>
+        <pb facs="Abraham-Augustini_feuriges_Hertz_n0095.jpg" n="S. 95" xml:id="n0095"/>
+        <seg type="header">
+            <fw n="95" place="top_center" type="pageNum">
+                <milestone rend="flower" type="symbol"/>(95)<milestone rend="flower" type="symbol"/>
+            </fw>
+        </seg>
+        <milestone rend="line" type="hr"/>
+        <tei:w lemma="Nacht" type="NN">Nacht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ware" type="ADJD">ware</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="da" type="KOUS">da</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sie" type="PPER">sie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nicht" type="PTKNEG">nicht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sich" type="PRF">sich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="bemüht" type="ADJA">bemühten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dises" type="NN">dises</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="göttlich" type="ADJA">Göttliche</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Liecht" type="NN">Liecht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="außzulöschen" type="ADJA">außzulöschen</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOUS">Wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Wölff" type="NE">Wölff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="verfolgen" type="VVFIN">verfolgten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sie" type="PPER">sie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dises" type="ADJA">dises</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Lamm" type="NN">Lamm</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Gott" type="NN">GOttes</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOUS">Wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Geyer" type="NE">Geyer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NE">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Raub=Vögel" type="NN">Raub=Vögel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dise" type="ADJA">dise</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnschuldige" type="NN">vnschuldige</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tau" part="I" type="NN">Tau</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="ben" part="F" type="VVFIN">ben</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOKOM">Wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="tobend" type="ADJA">tobende</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Sturm=Wind" type="NN">Sturm=Wind</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dises" type="NN">dises</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schif" part="I" type="NE">Schif</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="fel" part="F" type="ADJA">fel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="deß" type="NN">deß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Heyls" type="VVFIN">Heyls</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="beißen" type="VVFIN">biß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sie" type="PPER">sie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="endlich" type="ADV">endlich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dise" type="ADJA">dise</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="blutgierig" type="ADJA">blutgierige</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Egel" type="NN">Egel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NE">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnmenschliche" type="NN">vnmenschliche</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tyger=Gemüther" type="VVFIN">Tyger=Gemüther</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">den</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Heyland" type="NN">Heyland</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="an" type="APPR">an</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">das</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Creutz" type="NN">Creutz</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="bringen" type="VVPP">gebracht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="folgen" part="I" type="VVIMP">folg</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="samb" part="F" type="ADJA">samb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="mehrer" type="NN">mehrer</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="verschulden" type="VVPP">verschuldet</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="als" type="KOUS">als</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <persName type="bibl">
+            <tei:w lemma="Judas" type="NE">Judas</tei:w>
+            <tei:seg type="whitespace"> </tei:seg>
+            <seg rend="antiqua">
+                <tei:w lemma="Isca" part="I" type="NE">Isca</tei:w>
+                <lb break="no" type="s"/>
+                <tei:w lemma="rioth" part="F" type="NE">rioth</tei:w>
+            </seg>
+        </persName>
+        <seg rend="antiqua">
+            <tei:pc type="$,">,</tei:pc>
+        </seg>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dannoch" type="NE">dannoch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="aber" type="KON">aber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auff" type="NE">auff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Welt" type="NN">Welt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nicht" type="PTKNEG">nicht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="also" type="ADV">also</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="straffen" type="VVPP">gestrafft</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAPP">worden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOUS">wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nicht" type="PTKNEG">nicht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="PIS">eines</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="so" type="ADV">so</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnglück" part="I" type="NN">vnglück</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="seeligen" part="F" type="ADJA">seeligen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tod" type="NN">Tods</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sterben" type="VVPP">gestorben</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOUS">wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nicht" type="PTKNEG">nicht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gan" part="I" type="ADJA">gan</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="tzen" part="F" type="ADJA">tzen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Welt" type="NN">Welt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="APPR">zu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schand" type="NN">Schand</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NE">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Spott" type="NN">Spott</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAPP">worden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOUS">wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="er" type="PPER">er</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="warum" type="PWAV">warum</tei:w>
+        <tei:pc type="$.">?</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">Die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Ursach" type="NN">Ursach</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sein" type="VAFIN">war</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dise" type="ADJD">dise</tei:w>
+        <tei:pc type="$.">:</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Jhre" type="ADJA">Jhre</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Würf" part="I" type="NN">Würf</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="fel" part="F" type="ADJD">fel</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">haben</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vil" type="ADJA">vil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Schwartz" type="NN">Schwartz</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="geworffen" type="VVPP">geworffen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sie" type="PPER">sie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="haben" type="VAFIN">haben</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="sich" type="PRF">sich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Todten" type="NN">Todten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="annehmen" type="VVPP">angenommen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dann" type="ADV">dann</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sie" type="PPER">sie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vmb" type="NN">vmb</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="je" part="I" type="APPR">je</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="nes" part="F" type="NE">nes</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Blut=Geld" type="NN">Blut=Geld</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wormit" type="NN">wormit</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">das</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="hoch" type="ADJA">höchste</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Gut" type="NN">Gut</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ver" part="I" type="VVFIN">ver</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="kaufft" part="F" type="ADJD">kaufft</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAPP">worden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">einen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Acker" type="NN">Acker</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="einhandeln" type="VVPP">eingehandelt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="da" type="ADV">da</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="zu" type="APPR">zu</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="alle" type="PIAT">allen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Zeit" type="NN">Zeiten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sollen" type="VMFIN">soll</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="seyn" type="NE">seyn</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="eine" type="ART">ein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Freudhoff" type="NE">Freudhoff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NE">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Begräbnuß" type="NN">Begräbnuß</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Frembdling" type="NN">Frembdling</tei:w>
+        <tei:pc type="$.">;</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <foreign xml:lang="la">
+            <seg rend="antiqua">
+                <tei:w lemma="in" type="APPR">In</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <tei:w lemma="sepulturam" type="NE">sepulturam</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <lb/>
+                <tei:w lemma="Peregrinorum" type="NN">Peregrinorum</tei:w>
+                <tei:pc type="$,">,</tei:pc>
+                <tei:seg type="whitespace"> </tei:seg>
+                <bibl>
+                    <persName type="bibl">
+                        <tei:w lemma="Matth" type="NE">Matth</tei:w>
+                        <tei:pc type="$.">.</tei:pc>
+                    </persName>
+                    <tei:seg type="whitespace"> </tei:seg>
+                    <tei:w lemma="27" type="CARD">27</tei:w>
+                </bibl>
+            </seg>
+            <tei:pc type="$.">.</tei:pc>
+        </foreign>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wie" type="KOKOM">Wie</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="dann" type="ADV">dann</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="von" type="APPR">von</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="besagt" type="ADJA">besagtem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Acker" type="NN">Acker</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="sehr" type="ADV">sehr</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vil" type="ADJD">vil</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Erd" type="VVFIN">Erd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nach" type="APPR">nach</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <placeName key="rome" subtype="dire" type="city">
+            <tei:w lemma="Rom" type="NE">Rom</tei:w>
+        </placeName>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="über" part="I" type="PTKVZ">über</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="brechen" part="F" type="VVFIN">bracht</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="worden" type="ADJD">worden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NN">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="werden" type="VAFIN">wird</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">das</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Ort" type="NN">Ort</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="genennt" type="VVFIN">genennt</tei:w>
+        <tei:pc type="$.">:</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <seg rend="antiqua">
+            <foreign xml:lang="la">
+                <tei:w lemma="Capo" type="NE">Capo</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <tei:w lemma="Santo" type="NE">Santo</tei:w>
+            </foreign>
+            <tei:pc type="$,">,</tei:pc>
+        </seg>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="allwo" type="NE">allwo</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="noch" type="KON">noch</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="auff" type="NE">auff</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="heuntigen" type="ADJA">heuntigen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Tag" type="NN">Tag</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="dise" type="ADJD">dise</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Erd" type="VVFIN">Erd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="nur" type="ADV">nur</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">die</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Leib" type="NN">Leiber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Frembden" type="NN">Frembden</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="behalten" type="VVFIN">behaltet</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Jnwohner" type="NN">Jnwohner</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="aber" type="ADV">aber</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="gleich" type="ADJD">gleich</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="wider" type="APPR">wider</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="außwirfft" type="ADJD">außwirfft</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+    </p><!-- "&c" muss ein Token sein, wenn als abbreviations/abbr im Parameter-file definiert -->
+    <p rend="indent">
+        <tei:w lemma="wann" type="PWAV">Wann</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">der</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Geist" type="NN">Geist</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="keine" type="PIAT">kein</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Scheühen" type="NN">Scheühen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="tragen" type="VVFIN">tragt</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="ob" type="KOUS">ob</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="H" type="NN">H</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="Creutz=Zeichen" type="ADJA">Creutz=Zeichen</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="an" type="APPR">an</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="die" type="ART">dem</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="süß" type="ADJA">süssesten</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="na" part="I" type="ITJ">Na</tei:w>
+        <lb break="no" type="d"/>
+        <tei:w lemma="men" part="F" type="ADJA">men</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <persName type="bibl">
+            <tei:w lemma="Jesu" type="NN">JESU</tei:w>
+        </persName>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="vnd" type="NE">vnd</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <persName type="bibl">
+            <tei:w lemma="Maria" type="NE">Maria</tei:w>
+        </persName>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:w lemma="H" type="NN">H</tei:w>
+        <tei:pc type="$.">.</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <seg rend="antiqua">
+            <tei:w lemma="Reliqui" part="I" type="NE">Reliqui</tei:w>
+        </seg>
+        <tei:w lemma="en" part="F" type="FM">en</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <lb/>
+        <tei:w lemma="Weyhwasser" type="NN">Weyhwasser</tei:w>
+        <tei:seg type="whitespace"> </tei:seg>
+        <tei:pc type="$(">/</tei:pc>
+        <tei:seg type="whitespace"> </tei:seg>
+        <foreign xml:lang="la">
+            <seg rend="antiqua">
+                <tei:w lemma="Agnus" type="NE">Agnus</tei:w>
+                <tei:seg type="whitespace"> </tei:seg>
+                <seg rend="smallCaps">
+                    <tei:w lemma="Dei" type="NE">Dei</tei:w>
+                </seg>
+                <tei:seg type="whitespace"> </tei:seg>
+                <tei:pc type="KON">&amp;</tei:pc>
+                <tei:w lemma="c" type="VVFIN">c</tei:w>
+                <tei:pc type="$.">.</tei:pc>
+            </seg>
+        </foreign>
+    </p>
+</TEI>
