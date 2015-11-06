@@ -6,6 +6,7 @@ CREATE TABLE documents (
 	document_id int primary key,
 	token_xpath text not null
 );
+CREATE SEQUENCE document_id_seq;
 
 CREATE TABLE documents_users (
 	document_id int not null references documents (document_id),
@@ -20,32 +21,44 @@ CREATE TABLE tokens (
 	primary key (document_id, token_id)
 );
 
-CREATE TABLE attribute_types (
+CREATE TABLE property_types (
 	type_id text primary key
 );
-INSERT INTO attribute_types VALUES ('closed list'), ('free text');
+INSERT INTO property_types VALUES ('closed list'), ('free text');
 
-CREATE TABLE attributes (
+CREATE TABLE properties (
 	document_id int not null references documents (document_id),
-	attribute_xpath text not null,
-	type_id text not null references attribute_types (type_id),
-	primary key (document_id, attribute_xpath)
+	property_xpath text not null,
+	type_id text not null references property_types (type_id),
+	name text not null,
+	primary key (document_id, property_xpath)
 );
 
-CREATE TABLE dict_attributes (
+CREATE TABLE dict_values (
 	document_id int not null,
-	attribute_xpath text not null,
+	property_xpath text not null,
 	value text not null,
-	primary key (document_id, attribute_xpath, value),
-	foreign key (document_id, attribute_xpath) references attributes (document_id, attribute_xpath)
+	primary key (document_id, property_xpath, value),
+	foreign key (document_id, property_xpath) references properties (document_id, property_xpath)
+);
+
+CREATE TABLE orig_values (
+	document_id int not null,
+	token_id int not null,
+	property_xpath text not null,
+	value text not null,
+	foreign key (document_id, token_id) references tokens (document_id, token_id),
+	foreign key (document_id, property_xpath) references properties (document_id, property_xpath),
+	primary key (document_id, token_id, property_xpath)
 );
 
 CREATE TABLE values (
 	document_id int not null,
-	attribute_xpath text not null,
+	property_xpath text not null,
+	token_id int not null,
 	user_id text not null references users (user_id),
 	value text not null,
-	foreign key (document_id, attribute_xpath) references attributes (document_id, attribute_xpath),
-	primary key (document_id, attribute_xpath, user_id)
+	foreign key (document_id, token_id, property_xpath) references orig_values (document_id, token_id, property_xpath),
+	primary key (document_id, token_id, property_xpath, user_id)
 );
 
