@@ -31,6 +31,114 @@ namespace import;
  *
  * @author zozlak
  */
-class Datafile {
-	//put your code here
+class Datafile implements \Iterator {
+	private $path;
+	private $schema;
+
+	private $documentId;
+	private $tokenId = 0;
+
+	private $xpath;
+	private $tokens;
+	private $pos = 0;
+	
+	/**
+	 * 
+	 * @param type $path
+	 * @param \import\Schema $schema
+	 * @throws \RuntimeException
+	 */
+	public function __construct($path, Schema $schema) {
+		if(!is_file($path)){
+			throw new \RuntimeException($path . ' is not a valid file');
+		}
+		$this->path   = $path;
+		$this->schema = $schema;
+	}
+
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getDOMXPath(){
+		return $this->xpath;
+	}
+	
+	/**
+	 * 
+	 * @return integer
+	 */
+	public function getId(){
+		return $this->documentId;
+	}
+	
+	/**
+	 * 
+	 * @return integer
+	 */
+	public function generateTokenId(){
+		$this->tokenId++;
+		return $this->tokenId;
+	}
+
+	/**
+	 * 
+	 * @param \PDO $PDO
+	 */
+	public function save(\PDO $PDO){
+		$this->documentId = $PDO->
+			query("SELECT nextval('document_id_seq')")->
+			fetchColumn();
+		
+		$query = $PDO->prepare("INSERT INTO documents (document_id, token_xpath) VALUES (?, ?)");
+		$query->execute(array($this->documentId, $this->schema->getTokenXPath()));
+				
+		$this->schema->save($PDO, $this->documentId);
+	}
+	
+	/**
+	 * 
+	 * @return type
+	 */
+	public function current() {
+		return $this->tokens[$this->pos];
+	}
+
+	/**
+	 * 
+	 * @return integer
+	 */
+	public function key() {
+		return $this->pos;
+	}
+
+	/**
+	 * 
+	 */
+	public function next() {
+		$this->pos++;
+	}
+
+	/**
+	 * 
+	 */
+	public function rewind() {
+		$dom = new \DOMDocument();
+		$dom->preserveWhiteSpace = false;
+		$dom->Load($this->path);
+		$this->xpath = new \DOMXPath($dom);
+		foreach($this->schema->getNs() as $ns){
+			$this->xpath->registerNamespace($ns->prefix, $ns->namespace);
+		}
+		$this->tokens = $this->xpath->query($this->schema->getTokenXPath());
+		$this->pos = 0;
+	}
+
+	/**
+	 * 
+	 * @return boolean
+	 */
+	public function valid() {
+		return $this->pos < $this->tokens->length;
+	}
 }

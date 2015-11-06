@@ -31,6 +31,79 @@ namespace import;
  *
  * @author zozlak
  */
-class Schema {
-	//put your code here
+class Schema implements \IteratorAggregate {
+	private $dom;
+	private $tokenXPath;
+	private $namespaces = array();
+	private $properties = array();
+	
+	/**
+	 * 
+	 * @param type $path
+	 * @throws \RuntimeException
+	 * @throws \LengthException
+	 */
+	public function __construct($path) {
+		if(!is_file($path)){
+			throw new \RuntimeException($path . ' is not a valid file');
+		}
+		$this->dom = new \SimpleXMLElement(file_get_contents($path));
+		
+		foreach($this->dom->attributes() as $attr => $val){
+			if(preg_match('/^xmlns:/', $attr)){
+				$this->namespaces[] = new Ns(preg_replace('/^xmlns:/', '', $attr), $val);
+			}
+		}		
+		
+		if(!isset($this->dom->tokenXPath) || count($this->dom->tokenXPath) != 1){
+			throw new \LengthException('exactly one tokenXPath has to be provided');
+		}
+		$this->tokenXPath = (string)$this->dom->tokenXPath;
+		
+		if(
+			!isset($this->dom->properties) 
+			|| !isset($this->dom->properties->property) 
+			|| count($this->dom->properties->property) == 0
+		){
+			throw new \LengthException('no token properties defined');
+		}
+		foreach($this->dom->properties->property as $i){
+			$this->properties[] = new Property($i);
+		}
+	}
+	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getTokenXPath(){
+		return $this->tokenXPath;
+	}
+	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getNs(){
+		return $this->namespaces;
+	}
+	
+	/**
+	 * 
+	 * @return \ArrayIterator
+	 */
+	public function getIterator() {
+		return new \ArrayIterator($this->properties);
+	}
+	
+	/**
+	 * 
+	 * @param \PDO $PDO
+	 * @param type $datafileId
+	 */
+	public function save(\PDO $PDO, $datafileId){
+		foreach($this->properties as $prop){
+			$prop->save($PDO, $datafileId);
+		}
+	}
 }
