@@ -26,21 +26,23 @@
 
 namespace import;
 
+const DOM_DOCUMENT = '\import\tokenIterator\DOMDocument';
+const XML_READER = '\import\tokenIterator\XMLReader';
+const PDO = '\import\tokenIterator\PDO';
+
 /**
  * Description of Datafile
  *
  * @author zozlak
  */
-class Datafile implements \Iterator {
+class Datafile implements \IteratorAggregate {
 	private $path;
 	private $schema;
+	private $tokenIteratorClassName;
+	private $tokenIterator;
 
 	private $documentId;
 	private $tokenId = 0;
-
-	private $xpath;
-	private $tokens;
-	private $pos = 0;
 	
 	/**
 	 * 
@@ -54,14 +56,14 @@ class Datafile implements \Iterator {
 		}
 		$this->path   = $path;
 		$this->schema = $schema;
+		$this->chooseTokenIterator();
 	}
-
-	/**
-	 * 
-	 * @return string
-	 */
-	public function getDOMXPath(){
-		return $this->xpath;
+	
+	public function setTokenIterator($tokenIteratorClass){
+		if(!in_array($tokenIteratorClass, array(DOM_DOCUMENT, XML_READER, PDO))){
+			throw new \InvalidArgumentException('tokenIteratorClass should be one of import::DOM_DOCUMENT, import::XML_READER or import::PDO');
+		}
+		$this->tokenIteratorClassName = $tokenIteratorClass;
 	}
 	
 	/**
@@ -95,50 +97,13 @@ class Datafile implements \Iterator {
 				
 		$this->schema->save($PDO, $this->documentId);
 	}
-	
-	/**
-	 * 
-	 * @return type
-	 */
-	public function current() {
-		return $this->tokens[$this->pos];
+
+	public function getIterator() {
+		$this->tokenIterator = new $this->tokenIteratorClassName($this->path, $this->schema);
+		return $this->tokenIterator;
 	}
 
-	/**
-	 * 
-	 * @return integer
-	 */
-	public function key() {
-		return $this->pos;
-	}
-
-	/**
-	 * 
-	 */
-	public function next() {
-		$this->pos++;
-	}
-
-	/**
-	 * 
-	 */
-	public function rewind() {
-		$dom = new \DOMDocument();
-		$dom->preserveWhiteSpace = false;
-		$dom->Load($this->path);
-		$this->xpath = new \DOMXPath($dom);
-		foreach($this->schema->getNs() as $ns){
-			$this->xpath->registerNamespace($ns->prefix, $ns->namespace);
-		}
-		$this->tokens = $this->xpath->query($this->schema->getTokenXPath());
-		$this->pos = 0;
-	}
-
-	/**
-	 * 
-	 * @return boolean
-	 */
-	public function valid() {
-		return $this->pos < $this->tokens->length;
+	public function chooseTokenIterator() {
+		$this->tokenIteratorClassName = DOM_DOCUMENT;
 	}
 }

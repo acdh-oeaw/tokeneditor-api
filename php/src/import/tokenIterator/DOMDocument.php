@@ -24,53 +24,71 @@
  * THE SOFTWARE.
  */
 
-namespace import;
+namespace import\tokenIterator;
 
 /**
- * Description of Token
+ * Description of DOMDocument
  *
  * @author zozlak
  */
-class Token {
-	private $value;
-	private $properties = array();
+class DOMDocument implements \Iterator{
+	private $xmlFilePath;
+	private $schema;
+	private $tokens;
+	private $pos = 0;
 	
 	/**
 	 * 
-	 * @param \DOMElement $xml
-	 * @param \DOMXPath $xpath
-	 * @param \import\Schema $schema
-	 * @throws \LengthException
+	 * @param type $path
 	 */
-	public function __construct($xml, Schema $schema){
-		$dom = new \DOMDocument();
-		$dom->loadXml($xml);
-		$xpath = new \DOMXPath($dom);
-		$this->value = $dom->nodeValue;
-		foreach($schema as $prop){
-			try{
-				$value = $xpath->query($prop->getXPath(), $dom);
-				if($value->length != 1){
-					throw new \LengthException('property not found or many properties found');
-				}
-				$value = $value->item(0);
-				$this->properties[$prop->getXPath()] = isset($value->value) ? $value->value : $value->nodeValue;
-			}catch (\LengthException $e){}
-		}
+	public function __construct($path, \import\Schema $schema) {
+		$this->xmlFilePath = $path;
+		$this->schema = $schema;
 	}
 	
 	/**
 	 * 
-	 * @param \PDO $PDO
-	 * @param type $documentId
+	 * @return string
 	 */
-	public function save(\PDO $PDO, $documentId, $tokenId){
-		$query = $PDO->prepare("INSERT INTO tokens (document_id, token_id, value) VALUES (?, ?, ?)");
-		$query->execute(array($documentId, $tokenId, $this->value));
-		
-		$query = $PDO->prepare("INSERT INTO orig_values (document_id, token_id, property_xpath, value) VALUES (?, ?, ?, ?)");
-		foreach ($this->properties as $xpath => $value){
-			$query->execute(array($documentId, $tokenId, $xpath, $value));
+	public function current() {
+		return $this->tokens[$this->pos]->C14N();
+	}
+
+	/**
+	 * 
+	 * @return integer
+	 */
+	public function key() {
+		return $this->pos;
+	}
+
+	/**
+	 * 
+	 */
+	public function next() {
+		$this->pos++;
+	}
+
+	/**
+	 * 
+	 */
+	public function rewind() {
+		$dom = new \DOMDocument();
+		$dom->preserveWhiteSpace = false;
+		$dom->Load($this->xmlFilePath);
+		$xpath = new \DOMXPath($dom);
+		foreach($this->schema->getNs() as $ns){
+			$xpath->registerNamespace($ns->prefix, $ns->namespace);
 		}
+		$this->tokens = $xpath->query($this->schema->getTokenXPath());
+		$this->pos = 0;
+	}
+
+	/**
+	 * 
+	 * @return boolean
+	 */
+	public function valid() {
+		return $this->pos < $this->tokens->length;
 	}
 }

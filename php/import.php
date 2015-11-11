@@ -14,12 +14,15 @@ $PDO->beginTransaction();
 
 $schema = new import\Schema($schemaPath);
 $doc = new import\Datafile($dataPath, $schema);
-$doc->save($PDO);
+//$doc->save($PDO);
 
 $pb = new utils\ProgressBar(null, 10);
 foreach($doc as $tokenXml){
-	$token = new import\Token($tokenXml, $doc->getDOMXPath(), $schema);
-	$token->save($PDO, $doc->getId(), $doc->generateTokenId());
+	$token = new import\Token($tokenXml, $schema);
+	//$token->save($PDO, $doc->getId(), $doc->generateTokenId());
 	$pb->next();
+//	if($pb->getN() > 1){
+//		break;
+//	}
 }
 //$PDO->commit();
