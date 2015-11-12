@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<schema xmlns:tei="http://www.tei-c.org/ns/1.0">
+    <tokenXPath>//entry</tokenXPath>
+    <properties>
+        <property>
+            <propertyName>pos</propertyName>
+            <propertyXPath>//gram[@type='pos']</propertyXPath>
+            <propertyType>free text</propertyType>
+        </property>
+        <property>
+            <propertyName>gen</propertyName>
+            <propertyXPath>//gram[@type='gen']</propertyXPath>
+            <propertyType>free text</propertyType>
+        </property>
+        <property>
+            <propertyName>lemma</propertyName>
+            <propertyXPath>//form[@type='lemma']/orth</propertyXPath>
+            <propertyType>free text</propertyType>
+        </property>
+    </properties>
+</schema>

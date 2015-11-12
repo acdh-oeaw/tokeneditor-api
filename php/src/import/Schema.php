@@ -32,6 +32,8 @@ namespace import;
  * @author zozlak
  */
 class Schema implements \IteratorAggregate {
+	private $PDO;
+	private $documentId;
 	private $dom;
 	private $tokenXPath;
 	private $namespaces = array();
@@ -43,7 +45,10 @@ class Schema implements \IteratorAggregate {
 	 * @throws \RuntimeException
 	 * @throws \LengthException
 	 */
-	public function __construct($path) {
+	public function __construct(\PDO $PDO){
+	}
+	
+	public function loadFile($path) {
 		if(!is_file($path)){
 			throw new \RuntimeException($path . ' is not a valid file');
 		}
@@ -64,6 +69,14 @@ class Schema implements \IteratorAggregate {
 		foreach($this->dom->properties->property as $i){
 			$this->properties[] = new Property($i);
 		}
+	}
+	
+	public function loadDb($documentId){
+		$this->documentId = $documentId;
+		
+		$query = $this->PDO->prepare("SELECT token_xpath FROM documents WHERE document_id = ?");
+		$query->execute(array($this->documentId));
+		
 	}
 	
 	/**
@@ -95,9 +108,9 @@ class Schema implements \IteratorAggregate {
 	 * @param \PDO $PDO
 	 * @param type $datafileId
 	 */
-	public function save(\PDO $PDO, $datafileId){
+	public function save($documentId){
 		foreach($this->properties as $prop){
-			$prop->save($PDO, $datafileId);
+			$prop->save($this->PDO, $documentId);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <schema xmlns:tei="http://www.tei-c.org/ns/1.0">
-    <tokenXPath>/TEI/p/tei:w</tokenXPath>
+    <tokenXPath>//tei:w</tokenXPath>
     <properties>
         <property>
             <propertyName>lemma</propertyName>

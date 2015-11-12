@@ -51,21 +51,38 @@ class Datafile implements \IteratorAggregate {
 	 * @param \import\Schema $schema
 	 * @throws \RuntimeException
 	 */
-	public function __construct($path, Schema $schema, \PDO $PDO) {
+	public function __construct(\PDO $PDO) {
 		if(!is_file($path)){
 			throw new \RuntimeException($path . ' is not a valid file');
 		}
-		$this->path   = $path;
-		$this->schema = $schema;
 		$this->PDO = $PDO;
-		$this->chooseTokenIterator();
+		$this->schema = new Schema($this->PDO);
 	}
 	
-	public function setTokenIterator($tokenIteratorClass){
-		if(!in_array($tokenIteratorClass, array(self::DOM_DOCUMENT, self::XML_READER, self::PDO))){
-			throw new \InvalidArgumentException('tokenIteratorClass should be one of import\Datafile::DOM_DOCUMENT, import\Datafile::XML_READER or import\Datafile::PDO');
+	public function loadFile($filePath, $schemaPath, $iteratorClass = null){
+		$this->path   = $filePath;
+		$this->schema->loadFile($schemaPath);
+		$this->chooseTokenIterator();
+		
+		if($iteratorClass === null){
+			$this->chooseTokenIterator();
+		}else{
+			if(!in_array($iteratorClass, array(self::DOM_DOCUMENT, self::XML_READER, self::PDO))){
+				throw new \InvalidArgumentException('tokenIteratorClass should be one of import\Datafile::DOM_DOCUMENT, import\Datafile::XML_READER or import\Datafile::PDO');
+			}
+			$this->tokenIteratorClassName = $iteratorClass;
 		}
-		$this->tokenIteratorClassName = $tokenIteratorClass;
+	}
+	
+	public function loadDb($documentId){
+		$this->documentId = $documentId;
+		$this->schema->loadDb($this->documentId);
+		
+		$query = $this->PDO->prepare("SELECT path FROM documents WHERE document_id = ?");
+		$query->execute(array($this->documentId));
+		$this->path = $query->fetch(\PDO::FETCH_COLUMN);
+		
+		$this->tokenIteratorClassName = self::DOM_DOCUMENT;
 	}
 	
 	/**
@@ -74,6 +91,14 @@ class Datafile implements \IteratorAggregate {
 	 */
 	public function getId(){
 		return $this->documentId;
+	}
+	
+	/**
+	 * 
+	 * @return Schema
+	 */
+	public function getSchema(){
+		return $this->schema;
 	}
 	
 	/**
