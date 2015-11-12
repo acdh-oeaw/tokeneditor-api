@@ -49,12 +49,6 @@ class Schema implements \IteratorAggregate {
 		}
 		$this->dom = new \SimpleXMLElement(file_get_contents($path));
 		
-		foreach($this->dom->attributes() as $attr => $val){
-			if(preg_match('/^xmlns:/', $attr)){
-				$this->namespaces[] = new Ns(preg_replace('/^xmlns:/', '', $attr), $val);
-			}
-		}		
-		
 		if(!isset($this->dom->tokenXPath) || count($this->dom->tokenXPath) != 1){
 			throw new \LengthException('exactly one tokenXPath has to be provided');
 		}
@@ -82,10 +76,10 @@ class Schema implements \IteratorAggregate {
 	
 	/**
 	 * 
-	 * @return string
+	 * @return array
 	 */
 	public function getNs(){
-		return $this->namespaces;
+		return $this->dom->getDocNamespaces();
 	}
 	
 	/**

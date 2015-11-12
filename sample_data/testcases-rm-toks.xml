@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><!-- "Audienz-Zimmer" (Zeile 46) muss ein Token sein. -->
     <p rend="indent">
         <tei:w lemma="lassen" type="VVIMP">Laß</tei:w>

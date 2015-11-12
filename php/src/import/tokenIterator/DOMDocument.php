@@ -27,7 +27,10 @@
 namespace import\tokenIterator;
 
 /**
- * Description of DOMDocument
+ * Basic token iterator class using DOM parser (DOMDocument).
+ * It is memory inefficient as every DOM parser but quite fast (at least as long 
+ * Token class constuctor supports passing Token XML as a DOMElement object; if 
+ * conversion to string was required, it would be very slow).
  *
  * @author zozlak
  */
@@ -41,7 +44,7 @@ class DOMDocument implements \Iterator{
 	 * 
 	 * @param type $path
 	 */
-	public function __construct($path, \import\Schema $schema) {
+	public function __construct($path, \import\Schema $schema, \PDO $PDO) {
 		$this->xmlFilePath = $path;
 		$this->schema = $schema;
 	}
@@ -51,7 +54,7 @@ class DOMDocument implements \Iterator{
 	 * @return string
 	 */
 	public function current() {
-		return $this->tokens[$this->pos]->C14N();
+		return $this->tokens[$this->pos];
 	}
 
 	/**
@@ -77,8 +80,8 @@ class DOMDocument implements \Iterator{
 		$dom->preserveWhiteSpace = false;
 		$dom->Load($this->xmlFilePath);
 		$xpath = new \DOMXPath($dom);
-		foreach($this->schema->getNs() as $ns){
-			$xpath->registerNamespace($ns->prefix, $ns->namespace);
+		foreach($this->schema->getNs() as $prefix => $ns){
+			$xpath->registerNamespace($prefix, $ns);
 		}
 		$this->tokens = $xpath->query($this->schema->getTokenXPath());
 		$this->pos = 0;

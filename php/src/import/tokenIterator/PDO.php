@@ -27,10 +27,99 @@
 namespace import\tokenIterator;
 
 /**
- * Description of PDO
+ * Token iterator class using relational database backend.
+ * On Postgresql it is very fast but memory ineficient (like every DOM parser).
+ * 
  *
  * @author zozlak
  */
-class PDO {
-	//put your code here
+class PDO implements \Iterator {
+	private $PDO;
+	private $id;
+	private $schema;
+	private $pos;
+	private $results;
+	private $token = false;
+	
+	/**
+	 * 
+	 * @param type $path
+	 * @param \import\Schema $schema
+	 * @param \PDO $PDO
+	 */
+	public function __construct($path, \import\Schema $schema, \PDO $PDO){
+		$this->schema = $schema;
+		$this->PDO = $PDO;
+		
+		$this->id = $PDO->
+			query("SELECT nextval('import_tmp_seq')")->
+			fetchColumn();
+		
+		$query = $this->PDO->prepare("INSERT INTO import_tmp VALUES (?, ?)");
+		$query->execute(array($this->id, preg_replace('/^[^<]*/', '', file_get_contents($path))));
+	}
+	
+	/**
+	 * 
+	 */
+	public function __destruct() {
+		$query = $this->PDO->prepare("DELETE FROM import_tmp WHERE id = ?");
+		$query->execute(array($this->id));
+	}
+	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function current() {
+		return $this->token;
+	}
+
+	/**
+	 * 
+	 * @return int
+	 */
+	public function key() {
+		return $this->pos;
+	}
+
+	/**
+	 * 
+	 */
+	public function next() {
+		$this->token = $this->results->fetch(\PDO::FETCH_COLUMN);
+	}
+
+	/**
+	 * 
+	 */
+	public function rewind() {
+		$param = array($this->schema->getTokenXPath());
+		
+		$ns = array();
+		foreach($this->schema->getNs() as $prefix => $namespace){
+			$ns[] = 'array[?, ?]';
+			$param[] = $prefix;
+			$param[] = $namespace;
+		}
+		$ns = implode(',', $ns);
+		if($ns != ''){
+			$ns = ', array[' . $ns . ']';
+		}
+		
+		$param[] = $this->id;
+		
+		$this->results = $this->PDO->prepare("SELECT unnest(xpath(?, xml" . $ns . ")) FROM import_tmp WHERE id = ?");
+		$this->results->execute($param);
+		$this->pos = 0;
+		$this->token = $this->results->fetch(\PDO::FETCH_COLUMN);
+	}
+
+	/**
+	 * 
+	 * @return boolean
+	 */
+	public function valid() {
+		return $this->token !== false;
+	}
 }

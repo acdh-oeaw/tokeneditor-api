@@ -27,10 +27,86 @@
 namespace import\tokenIterator;
 
 /**
- * Description of XMLReader
+ * Token iterator class developed using stream XML parser (XMLReader).
+ * It is memory efficient (requires constant memory no matter XML size)
+ * and very fast but (at least at the moment) can handle token XPaths
+ * specyfying single node name only.
+ * This is because XMLReader does not provide any way to execute XPaths on it
+ * and I was to lazy to implement more compound XPath handling. Maybe it will
+ * be extended in the future.
  *
  * @author zozlak
  */
-class XMLReader {
-	//put your code here
+class XMLReader implements \Iterator {
+	private $schema;
+	private $path;
+	private $reader;
+	private $pos = 0;
+	private $token = false;
+	
+	/**
+	 * 
+	 * @param type $path
+	 * @param \import\Schema $schema
+	 * @param \PDO $PDO
+	 * @throws \RuntimeException
+	 */
+	public function __construct($path, \import\Schema $schema, \PDO $PDO){
+		$this->path = $path;
+		$this->schema = $schema;
+		$this->reader = new \XMLReader();
+		$tokenXPath = $this->schema->getTokenXPath();
+		if(!preg_match('|^//[a-zA-Z0-9_:.]+$|', $tokenXPath)){
+			throw new \RuntimeException('Token XPath is too complicated for XMLReader');
+		}
+		$this->tokenXPath = mb_substr($tokenXPath, 2);
+	}
+	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function current() {
+		return $this->token;
+	}
+
+	/**
+	 * 
+	 * @return int
+	 */
+	public function key() {
+		return $this->pos;
+	}
+
+	/**
+	 * 
+	 */
+	public function next() {
+		$this->token = false;
+		do{
+			$res = $this->reader->read();
+		}while(
+			($this->reader->nodeType != \XMLReader::ELEMENT || $this->reader->name != $this->tokenXPath) 
+			&& $res
+		);
+		if($res){
+			$this->token = $this->reader->readOuterXml();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public function rewind() {
+		$this->reader->open($this->path);
+		$this->next();
+	}
+
+	/**
+	 * 
+	 * @return boolean
+	 */
+	public function valid() {
+		return $this->token !== false;
+	}
 }

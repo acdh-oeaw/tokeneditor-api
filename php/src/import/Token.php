@@ -37,14 +37,17 @@ class Token {
 	
 	/**
 	 * 
-	 * @param \DOMElement $xml
-	 * @param \DOMXPath $xpath
+	 * @param type $xml
 	 * @param \import\Schema $schema
 	 * @throws \LengthException
 	 */
 	public function __construct($xml, Schema $schema){
-		$dom = new \DOMDocument();
-		$dom->loadXml($xml);
+		if(!is_object($xml)){
+			$dom = new \DOMDocument();
+			$dom->loadXml($xml);
+		}else{
+			$dom = $xml->ownerDocument;
+		}
 		$xpath = new \DOMXPath($dom);
 		$this->value = $dom->nodeValue;
 		foreach($schema as $prop){
@@ -63,6 +66,7 @@ class Token {
 	 * 
 	 * @param \PDO $PDO
 	 * @param type $documentId
+	 * @param $tokenId
 	 */
 	public function save(\PDO $PDO, $documentId, $tokenId){
 		$query = $PDO->prepare("INSERT INTO tokens (document_id, token_id, value) VALUES (?, ?, ?)");

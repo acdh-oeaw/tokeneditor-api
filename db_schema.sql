@@ -62,3 +62,8 @@ CREATE TABLE values (
 	primary key (document_id, token_id, property_xpath, user_id)
 );
 
+CREATE TABLE import_tmp (
+    id int primary key, 
+    xml xml not null
+);
+CREATE SEQUENCE import_tmp_seq;
