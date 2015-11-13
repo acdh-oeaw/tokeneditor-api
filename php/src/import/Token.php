@@ -32,7 +32,23 @@ namespace import;
  * @author zozlak
  */
 class Token {
-	private $value;
+	/**
+	 *
+	 * @var \PDOStatement
+	 */
+	private static $valuesQuery = null;
+	
+	/**
+	 *
+	 * @var DomElement
+	 */
+	private $dom;
+	/**
+	 *
+	 * @var Document
+	 */
+	private $document;
+	private $tokenId;
 	private $properties = array();
 	
 	/**
@@ -41,23 +57,19 @@ class Token {
 	 * @param \import\Schema $schema
 	 * @throws \LengthException
 	 */
-	public function __construct($xml, Schema $schema){
-		if(!is_object($xml)){
-			$dom = new \DOMDocument();
-			$dom->loadXml($xml);
-		}else{
-			$dom = $xml->ownerDocument;
-		}
-		$xpath = new \DOMXPath($dom);
-		$this->value = $dom->nodeValue;
-		foreach($schema as $prop){
+	public function __construct(\DOMElement $dom, Document $document){
+		$this->dom = $dom;
+		$this->document = $document;
+		$this->tokenId = $this->document->generateTokenId();
+		
+		$xpath = new \DOMXPath($dom->ownerDocument);
+		foreach($this->document->getSchema() as $prop){
 			try{
 				$value = $xpath->query($prop->getXPath(), $dom);
 				if($value->length != 1){
 					throw new \LengthException('property not found or many properties found');
 				}
-				$value = $value->item(0);
-				$this->properties[$prop->getXPath()] = isset($value->value) ? $value->value : $value->nodeValue;
+				$this->properties[$prop->getXPath()] = $value->item(0);
 			}catch (\LengthException $e){}
 		}
 	}
@@ -68,13 +80,83 @@ class Token {
 	 * @param type $documentId
 	 * @param $tokenId
 	 */
-	public function save(\PDO $PDO, $documentId, $tokenId){
+	public function save(){
+		$PDO = $this->document->getPDO();
+		$docId = $this->document->getId();
+		
 		$query = $PDO->prepare("INSERT INTO tokens (document_id, token_id, value) VALUES (?, ?, ?)");
-		$query->execute(array($documentId, $tokenId, $this->value));
+		$query->execute(array($docId, $this->tokenId, $this->dom->nodeValue));
 		
 		$query = $PDO->prepare("INSERT INTO orig_values (document_id, token_id, property_xpath, value) VALUES (?, ?, ?, ?)");
-		foreach ($this->properties as $xpath => $value){
-			$query->execute(array($documentId, $tokenId, $xpath, $value));
+		foreach ($this->properties as $xpath => $prop){
+			$value = isset($prop->value) ? $prop->value : $prop->nodeValue;
+			$query->execute(array($docId, $this->tokenId, $xpath, $value));
 		}
+	}
+	
+	public function enrich(){
+		if(self::$valuesQuery === null){
+			self::$valuesQuery = $this->document->getPDO()->
+				prepare("SELECT user_id, value, date FROM values WHERE (document_id, property_xpath, token_id) = (?, ?, ?)");
+		}
+		
+		$doc = $this->dom->ownerDocument;
+		
+		foreach($this->properties as $xpath => $prop){
+			self::$valuesQuery->execute(array($this->document->getId(), $xpath, $this->tokenId));
+			while($value = self::$valuesQuery->fetch(\PDO::FETCH_OBJ)){
+				$user  = $this->createTeiFeature('user', $value->user_id);
+				$date  = $this->createTeiFeature('date', $value->date);
+				$xpath = $this->createTeiFeature('property_xpath', $xpath);
+				$val   = $this->createTeiFeature('value', $value->value);
+				$fs    = $this->createTeiFeatureSet();
+				$fs->appendChild($user);
+				$fs->appendChild($date);
+				$fs->appendChild($xpath);
+				$fs->appendChild($val);
+				if($prop->nodeType !== XML_ELEMENT_NODE){
+					$prop->parentNode->appendChild($fs);
+				}else{
+					$prop->appendChild($fs);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @return \DOMNode
+	 */
+	private function createTeiFeatureSet(){
+		$doc = $this->dom->ownerDocument;
+		
+		$type = $doc->createAttribute('type');
+		$type->value = 'tokeneditor';
+
+		$fs = $doc->createElement('fs');
+		$fs->appendChild($type);
+		
+		return($fs);
+	}
+	
+	/**
+	 * 
+	 * @param string $name
+	 * @param string $value
+	 * @return \DOMNode
+	 */
+	private function createTeiFeature($name, $value){
+		$doc = $this->dom->ownerDocument;
+		
+		$fn = $doc->createAttribute('name');
+		$fn->value = $name;
+		
+		$v = $doc->createElement('string', $value);
+		
+		$f = $doc->createElement('f');
+		$f->appendChild($fn);
+		$f->appendChild($v);
+		
+		return $f;
 	}
 }

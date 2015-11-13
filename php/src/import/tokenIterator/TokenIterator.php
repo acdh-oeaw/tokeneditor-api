@@ -27,62 +27,52 @@
 namespace import\tokenIterator;
 
 /**
- * Token iterator class developed using stream XML parser (XMLReader).
- * It is memory efficient (requires constant memory no matter XML size)
- * and very fast but (at least at the moment) can handle token XPaths
- * specyfying single node name only.
- * This is because XMLReader does not provide any way to execute XPaths on it
- * and I was to lazy to implement more compound XPath handling. Maybe it will
- * be extended in the future.
+ * Description of TokenIterator
  *
  * @author zozlak
  */
-class XMLReader extends TokenIterator {
-	private $reader;
-	
+abstract class TokenIterator implements \Iterator {
+	/**
+	 *
+	 * @var \import\Document
+	 */
+	protected $document;
+	protected $path;
+	protected $pos;
+	protected $token = false;
+
 	/**
 	 * 
 	 * @param type $path
 	 * @param \import\Schema $schema
 	 * @param \PDO $PDO
-	 * @throws \RuntimeException
 	 */
 	public function __construct($path, \import\Document $document){
-		parent::__construct($path, $document);
-
-		$this->reader = new \XMLReader();
-		$tokenXPath = $this->document->getSchema()->getTokenXPath();
-		if(!preg_match('|^//[a-zA-Z0-9_:.]+$|', $tokenXPath)){
-			throw new \RuntimeException('Token XPath is too complicated for XMLReader');
-		}
-		$this->tokenXPath = mb_substr($tokenXPath, 2);
+		$this->path = $path;
+		$this->document = $document;
 	}
 	
 	/**
 	 * 
+	 * @return import\Token
 	 */
-	public function next() {
-		$this->pos++;
-		$this->token = false;
-		do{
-			$res = $this->reader->read();
-		}while(
-			($this->reader->nodeType != \XMLReader::ELEMENT || $this->reader->name != $this->tokenXPath) 
-			&& $res
-		);
-		if($res){
-			$tokenDom = new \DOMDocument();
-			$tokenDom->loadXml($this->reader->readOuterXml());
-			$this->token = new \import\Token($tokenDom->documentElement, $this->document);
-		}
+	public function current() {
+		return $this->token;
+	}
+	
+	/**
+	 * 
+	 * @return int
+	 */
+	public function key() {
+		return $this->pos;
 	}
 
 	/**
 	 * 
+	 * @return boolean
 	 */
-	public function rewind() {
-		$this->reader->open($this->path);
-		$this->pos = -1;
-		$this->next();
+	public function valid() {
+		return $this->token !== false;
 	}
 }

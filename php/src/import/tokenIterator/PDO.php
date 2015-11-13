@@ -33,13 +33,10 @@ namespace import\tokenIterator;
  *
  * @author zozlak
  */
-class PDO implements \Iterator {
+class PDO extends TokenIterator {
 	private $PDO;
 	private $id;
-	private $schema;
-	private $pos;
 	private $results;
-	private $token = false;
 	
 	/**
 	 * 
@@ -47,16 +44,16 @@ class PDO implements \Iterator {
 	 * @param \import\Schema $schema
 	 * @param \PDO $PDO
 	 */
-	public function __construct($path, \import\Schema $schema, \PDO $PDO){
-		$this->schema = $schema;
-		$this->PDO = $PDO;
+	public function __construct($path, \import\Document $document){
+		parent::__construct($path, $document);
+		$this->PDO = $this->document->getPDO();
 		
-		$this->id = $PDO->
+		$this->id = $this->PDO->
 			query("SELECT nextval('import_tmp_seq')")->
 			fetchColumn();
 		
 		$query = $this->PDO->prepare("INSERT INTO import_tmp VALUES (?, ?)");
-		$query->execute(array($this->id, preg_replace('/^[^<]*/', '', file_get_contents($path))));
+		$query->execute(array($this->id, preg_replace('/^[^<]*/', '', file_get_contents($this->path))));
 	}
 	
 	/**
@@ -66,38 +63,28 @@ class PDO implements \Iterator {
 		$query = $this->PDO->prepare("DELETE FROM import_tmp WHERE id = ?");
 		$query->execute(array($this->id));
 	}
-	
-	/**
-	 * 
-	 * @return string
-	 */
-	public function current() {
-		return $this->token;
-	}
-
-	/**
-	 * 
-	 * @return int
-	 */
-	public function key() {
-		return $this->pos;
-	}
 
 	/**
 	 * 
 	 */
 	public function next() {
+		$this->pos++;
 		$this->token = $this->results->fetch(\PDO::FETCH_COLUMN);
+		if($this->token !== false){
+			$tokenDom = new \DOMDocument();
+			$tokenDom->loadXml($this->token);
+			$this->token = new \import\Token($tokenDom->documentElement, $this->document);
+		}
 	}
 
 	/**
 	 * 
 	 */
 	public function rewind() {
-		$param = array($this->schema->getTokenXPath());
+		$param = array($this->document->getSchema()->getTokenXPath());
 		
 		$ns = array();
-		foreach($this->schema->getNs() as $prefix => $namespace){
+		foreach($this->document->getSchema()->getNs() as $prefix => $namespace){
 			$ns[] = 'array[?, ?]';
 			$param[] = $prefix;
 			$param[] = $namespace;
@@ -111,15 +98,7 @@ class PDO implements \Iterator {
 		
 		$this->results = $this->PDO->prepare("SELECT unnest(xpath(?, xml" . $ns . ")) FROM import_tmp WHERE id = ?");
 		$this->results->execute($param);
-		$this->pos = 0;
-		$this->token = $this->results->fetch(\PDO::FETCH_COLUMN);
-	}
-
-	/**
-	 * 
-	 * @return boolean
-	 */
-	public function valid() {
-		return $this->token !== false;
+		$this->pos = -1;
+		$this->next();
 	}
 }

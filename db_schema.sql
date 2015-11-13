@@ -14,6 +14,13 @@ CREATE TABLE documents_users (
 	primary key (document_id, user_id)
 );
 
+CREATE TABLE documents_namespaces (
+        document_id int not null references documents (document_id),
+        prefix text not null,
+        ns text not null,
+        primary key (document_id, prefix)
+);
+
 CREATE TABLE tokens (
 	document_id int not null references documents (document_id),
 	token_id int not null,
@@ -58,6 +65,7 @@ CREATE TABLE values (
 	token_id int not null,
 	user_id text not null references users (user_id),
 	value text not null,
+        date timestamp not null default now(),
 	foreign key (document_id, token_id, property_xpath) references orig_values (document_id, token_id, property_xpath),
 	primary key (document_id, token_id, property_xpath, user_id)
 );

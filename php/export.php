@@ -3,15 +3,16 @@ require_once 'src/utils/ClassLoader.php';
 new utils\ClassLoader();
 require_once 'config.inc.php';
 
-$iterator = null;//import\Datafile::PDO;
-$save = true;
-$onlyOne = false;
-$schemaPath = '../sample_data/testcases-rm-toks-schema.xml';
-$dataPath   = '../sample_data/testcases-rm-toks.xml';
-//$schemaPath = '../sample_data/SwissProt-schema.xml';
-//$dataPath   = '../sample_data/SwissProt.xml';
+$documentId = 21;
 
 ###########################################################
 
 $PDO = new \PDO($CONFIG['dbConn'], $CONFIG['dbUser'], $CONFIG['dbPasswd']);
 $PDO->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+$doc = new import\Document($PDO);
+$doc->loadDb($documentId);
+foreach($doc as $token){
+	$token->enrich();
+}
+$doc->export();

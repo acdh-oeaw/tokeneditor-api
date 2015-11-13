@@ -31,7 +31,7 @@ namespace import;
  *
  * @author zozlak
  */
-class Datafile implements \IteratorAggregate {
+class Document implements \IteratorAggregate {
 	const DOM_DOCUMENT = '\import\tokenIterator\DOMDocument';
 	const XML_READER = '\import\tokenIterator\XMLReader';
 	const PDO = '\import\tokenIterator\PDO';
@@ -52,14 +52,14 @@ class Datafile implements \IteratorAggregate {
 	 * @throws \RuntimeException
 	 */
 	public function __construct(\PDO $PDO) {
-		if(!is_file($path)){
-			throw new \RuntimeException($path . ' is not a valid file');
-		}
 		$this->PDO = $PDO;
 		$this->schema = new Schema($this->PDO);
 	}
 	
 	public function loadFile($filePath, $schemaPath, $iteratorClass = null){
+		if(!is_file($filePath)){
+			throw new \RuntimeException($filePath . ' is not a valid file');
+		}
 		$this->path   = $filePath;
 		$this->schema->loadFile($schemaPath);
 		$this->chooseTokenIterator();
@@ -103,6 +103,14 @@ class Datafile implements \IteratorAggregate {
 	
 	/**
 	 * 
+	 * @return PDO
+	 */
+	public function getPDO(){
+		return $this->PDO;
+	}
+	
+	/**
+	 * 
 	 * @return integer
 	 */
 	public function generateTokenId(){
@@ -119,20 +127,24 @@ class Datafile implements \IteratorAggregate {
 			query("SELECT nextval('document_id_seq')")->
 			fetchColumn();
 		
-		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath) VALUES (?, ?)");
-		$query->execute(array($this->documentId, $this->schema->getTokenXPath()));
+		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, path) VALUES (?, ?, ?)");
+		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->path));
 				
-		$this->schema->save($this->PDO, $this->documentId);
+		$this->schema->save($this->documentId);
+	}
+	
+	public function export(){
+		$this->tokenIterator->export();
 	}
 
 	public function getIterator() {
-		$this->tokenIterator = new $this->tokenIteratorClassName($this->path, $this->schema, $this->PDO);
+		$this->tokenIterator = new $this->tokenIteratorClassName($this->path, $this);
 		return $this->tokenIterator;
 	}
 
 	private function chooseTokenIterator() {
 		try{
-			new tokenIterator\XMLReader($this->path, $this->schema, $this->PDO);
+			new tokenIterator\XMLReader($this->path, $this);
 			$this->tokenIteratorClassName = self::XML_READER;
 		} catch (\RuntimeException $ex) {
 			$this->tokenIteratorClassName = self::DOM_DOCUMENT;

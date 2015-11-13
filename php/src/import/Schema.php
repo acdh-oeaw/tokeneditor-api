@@ -34,7 +34,6 @@ namespace import;
 class Schema implements \IteratorAggregate {
 	private $PDO;
 	private $documentId;
-	private $dom;
 	private $tokenXPath;
 	private $namespaces = array();
 	private $properties = array();
@@ -46,37 +45,79 @@ class Schema implements \IteratorAggregate {
 	 * @throws \LengthException
 	 */
 	public function __construct(\PDO $PDO){
+		$this->PDO = $PDO;
 	}
 	
 	public function loadFile($path) {
 		if(!is_file($path)){
 			throw new \RuntimeException($path . ' is not a valid file');
 		}
-		$this->dom = new \SimpleXMLElement(file_get_contents($path));
+		$this->loadXML(file_get_contents($path));
+	}
+	
+	public function loadXML($xml){
+		$dom = new \SimpleXMLElement($xml);
 		
-		if(!isset($this->dom->tokenXPath) || count($this->dom->tokenXPath) != 1){
+		if(!isset($dom->tokenXPath) || count($dom->tokenXPath) != 1){
 			throw new \LengthException('exactly one tokenXPath has to be provided');
 		}
-		$this->tokenXPath = (string)$this->dom->tokenXPath;
+		$this->tokenXPath = $dom->tokenXPath;
 		
 		if(
-			!isset($this->dom->properties) 
-			|| !isset($this->dom->properties->property) 
-			|| count($this->dom->properties->property) == 0
+			!isset($dom->properties) 
+			|| !isset($dom->properties->property) 
+			|| count($dom->properties->property) == 0
 		){
 			throw new \LengthException('no token properties defined');
 		}
-		foreach($this->dom->properties->property as $i){
+		foreach($dom->properties->property as $i){
 			$this->properties[] = new Property($i);
 		}
+		
+		$this->namespaces = $dom->getDocNamespaces();
 	}
 	
 	public function loadDb($documentId){
 		$this->documentId = $documentId;
 		
+		$schema = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><schema';
+		$query = $this->PDO->prepare("SELECT prefix, ns FROM documents_namespaces WHERE document_id = ?");
+		$query->execute(array($this->documentId));
+		while($ns = $query->fetch(\PDO::FETCH_OBJ)){
+			$schema .= ' xmlns:' . $ns->prefix . '="' . $ns->ns . '"';
+		}
+		$schema .= '>';
+		
 		$query = $this->PDO->prepare("SELECT token_xpath FROM documents WHERE document_id = ?");
 		$query->execute(array($this->documentId));
+		$schema .= '<tokenXPath>' . $query->fetch(\PDO::FETCH_COLUMN) . '</tokenXPath>';
 		
+		$schema .= '<properties>';
+		$query = $this->PDO->prepare("SELECT property_xpath, type_id, name FROM properties WHERE document_id = ?");
+		$valuesQuery = $this->PDO->prepare("SELECT value FROM dict_values WHERE (document_id, property_xpath) = (?, ?)");
+		$query->execute(array($this->documentId));
+		while($prop = $query->fetch(\PDO::FETCH_OBJ)){
+			$schema .= '<property>';
+			$schema .= '<propertyName>' . $prop->name . '</propertyName>';
+            $schema .= '<propertyXPath>' . $prop->property_xpath . '</propertyXPath>';
+            $schema .= '<propertyType>' . $prop->type_id . '</propertyType>';
+			
+			$valuesQuery->execute(array($this->documentId, $prop->property_xpath));
+			$values = $valuesQuery->fetchAll(\PDO::FETCH_COLUMN);
+			if(count($values) > 0){
+				$schema .= '<values>';
+				foreach($values as $v){
+					$schema .= '<value>' . $v . '</value>';
+				}
+				$schema .= '</values>';
+			}
+			$schema .= '</property>';
+		}
+		$schema .= '</properties>';
+
+		$schema .= '</schema>';
+		
+		$this->loadXML($schema);
 	}
 	
 	/**
@@ -84,7 +125,7 @@ class Schema implements \IteratorAggregate {
 	 * @return string
 	 */
 	public function getTokenXPath(){
-		return $this->tokenXPath;
+		return (string)$this->tokenXPath;
 	}
 	
 	/**
@@ -92,7 +133,7 @@ class Schema implements \IteratorAggregate {
 	 * @return array
 	 */
 	public function getNs(){
-		return $this->dom->getDocNamespaces();
+		return $this->tokenXPath->getDocNamespaces();
 	}
 	
 	/**
@@ -109,6 +150,11 @@ class Schema implements \IteratorAggregate {
 	 * @param type $datafileId
 	 */
 	public function save($documentId){
+		$query = $this->PDO->prepare("INSERT INTO documents_namespaces (document_id, prefix, ns) VALUES (?, ?, ?)");
+		foreach($this->getNs() as $prefix => $ns){
+			$query->execute(array($documentId, $prefix, $ns));
+		}
+		
 		foreach($this->properties as $prop){
 			$prop->save($this->PDO, $documentId);
 		}

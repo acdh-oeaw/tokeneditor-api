@@ -34,64 +34,46 @@ namespace import\tokenIterator;
  *
  * @author zozlak
  */
-class DOMDocument implements \Iterator{
-	private $xmlFilePath;
-	private $schema;
+class DOMDocument extends TokenIterator {
+	private $dom;
 	private $tokens;
-	private $pos = 0;
 	
 	/**
 	 * 
 	 * @param type $path
 	 */
-	public function __construct($path, \import\Schema $schema, \PDO $PDO) {
-		$this->xmlFilePath = $path;
-		$this->schema = $schema;
+	public function __construct($path, \import\Document $document) {
+		parent::__construct($path, $document);
 	}
 	
 	/**
 	 * 
-	 * @return string
-	 */
-	public function current() {
-		return $this->tokens[$this->pos];
-	}
-
-	/**
-	 * 
-	 * @return integer
-	 */
-	public function key() {
-		return $this->pos;
-	}
-
-	/**
-	 * 
 	 */
 	public function next() {
+		$this->token = false;
 		$this->pos++;
+		if($this->pos < $this->tokens->length){
+			$this->token = new \import\Token($this->tokens[$this->pos], $this->document);
+		}
 	}
 
 	/**
 	 * 
 	 */
 	public function rewind() {
-		$dom = new \DOMDocument();
-		$dom->preserveWhiteSpace = false;
-		$dom->Load($this->xmlFilePath);
-		$xpath = new \DOMXPath($dom);
-		foreach($this->schema->getNs() as $prefix => $ns){
+		$this->dom = new \DOMDocument();
+		$this->dom->preserveWhiteSpace = false;
+		$this->dom->Load($this->path);
+		$xpath = new \DOMXPath($this->dom);
+		foreach($this->document->getSchema()->getNs() as $prefix => $ns){
 			$xpath->registerNamespace($prefix, $ns);
 		}
-		$this->tokens = $xpath->query($this->schema->getTokenXPath());
-		$this->pos = 0;
+		$this->tokens = $xpath->query($this->document->getSchema()->getTokenXPath());
+		$this->pos = -1;
+		$this->next();
 	}
-
-	/**
-	 * 
-	 * @return boolean
-	 */
-	public function valid() {
-		return $this->pos < $this->tokens->length;
+	
+	public function export(){
+		$this->dom->save('../sample_data/export.xml');
 	}
 }
