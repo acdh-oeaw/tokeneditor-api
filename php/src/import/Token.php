@@ -94,13 +94,24 @@ class Token {
 		}
 	}
 	
-	public function enrich(){
-		if(self::$valuesQuery === null){
-			self::$valuesQuery = $this->document->getPDO()->
-				prepare("SELECT user_id, value, date FROM values WHERE (document_id, property_xpath, token_id) = (?, ?, ?)");
-		}
+	public function update(){
+		$this->checkValuesQuery();
 		
-		$doc = $this->dom->ownerDocument;
+		foreach($this->properties as $xpath => $prop){
+			self::$valuesQuery->execute(array($this->document->getId(), $xpath, $this->tokenId));
+			$value = self::$valuesQuery->fetch(\PDO::FETCH_OBJ);
+			if($value !== false){
+				if(isset($prop->value)){
+					$prop->value = $value->value;
+				}else{
+					$prop->nodeValue = $value->value;
+				}
+			}
+		}
+	}
+	
+	public function enrich(){
+		$this->checkValuesQuery();
 		
 		foreach($this->properties as $xpath => $prop){
 			self::$valuesQuery->execute(array($this->document->getId(), $xpath, $this->tokenId));
@@ -123,6 +134,13 @@ class Token {
 		}
 	}
 
+	private function checkValuesQuery(){
+		if(self::$valuesQuery === null){
+			self::$valuesQuery = $this->document->getPDO()->
+				prepare("SELECT user_id, value, date FROM values WHERE (document_id, property_xpath, token_id) = (?, ?, ?) ORDER BY date DESC");
+		}
+	}
+	
 	/**
 	 * 
 	 * @return \DOMNode

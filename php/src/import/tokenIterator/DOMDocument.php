@@ -73,7 +73,7 @@ class DOMDocument extends TokenIterator {
 		$this->next();
 	}
 	
-	public function export(){
-		$this->dom->save('../sample_data/export.xml');
+	public function export($path){
+		$this->dom->save($path);
 	}
 }

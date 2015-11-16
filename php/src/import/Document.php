@@ -133,8 +133,23 @@ class Document implements \IteratorAggregate {
 		$this->schema->save($this->documentId);
 	}
 	
-	public function export(){
-		$this->tokenIterator->export();
+	/**
+	 * 
+	 * @param boolean $replace If true, changes will be made in-place 
+	 *   (taking the most current value provided by usesrs as the right one). 
+	 *   If false, review results will be provided as TEI <fs> elements
+	 */
+	public function export($path, $replace = false){
+		if($replace){
+			foreach($this as $token){
+				$token->update();
+			}
+		}else{
+			foreach($this as $token){
+				$token->enrich();
+			}
+		}
+		$this->tokenIterator->export($path);
 	}
 
 	public function getIterator() {
