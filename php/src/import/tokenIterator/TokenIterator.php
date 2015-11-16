@@ -75,4 +75,6 @@ abstract class TokenIterator implements \Iterator {
 	public function valid() {
 		return $this->token !== false;
 	}
+	
+	abstract public function export($path);
 }

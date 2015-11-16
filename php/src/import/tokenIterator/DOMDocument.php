@@ -53,7 +53,9 @@ class DOMDocument extends TokenIterator {
 		$this->token = false;
 		$this->pos++;
 		if($this->pos < $this->tokens->length){
-			$this->token = new \import\Token($this->tokens[$this->pos], $this->document);
+			$doc = new \DOMDocument();
+			$tokenNode = $doc->importNode($this->tokens[$this->pos], true);
+			$this->token = new \import\Token($tokenNode, $this->document);
 		}
 	}
 

@@ -88,6 +88,13 @@ namespace utils;
 		/**
 		 * 
 		 */
+		public function finish(){
+			$this->show();
+		}
+		
+		/**
+		 * 
+		 */
 		private function show(){
 			$t = self::stopwatch();
 			$this->N += $this->n;

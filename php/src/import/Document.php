@@ -135,18 +135,26 @@ class Document implements \IteratorAggregate {
 	
 	/**
 	 * 
+	 * @param string $path path to the file where document will be xported
 	 * @param boolean $replace If true, changes will be made in-place 
 	 *   (taking the most current value provided by usesrs as the right one). 
 	 *   If false, review results will be provided as TEI <fs> elements
+	 * @param type $progressBar
 	 */
-	public function export($path, $replace = false){
+	public function export($path, $replace = false, $progressBar){
 		if($replace){
 			foreach($this as $token){
 				$token->update();
+				if($progressBar){
+					$progressBar->next();
+				}
 			}
 		}else{
 			foreach($this as $token){
 				$token->enrich();
+				if($progressBar){
+					$progressBar->next();
+				}
 			}
 		}
 		$this->tokenIterator->export($path);

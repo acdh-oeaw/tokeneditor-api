@@ -101,4 +101,8 @@ class PDO extends TokenIterator {
 		$this->pos = -1;
 		$this->next();
 	}
+
+	public function export($path) {
+		throw new \BadMethodCallException('export() is not not implemented for this TokenIterator class');
+	}
 }
