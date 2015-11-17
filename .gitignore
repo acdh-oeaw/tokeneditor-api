@@ -3,3 +3,7 @@
 /sample_data/SwissProt.xml
 /doc
 /php/apigility
+.bash*
+.vim*
+/.gitconfig
+/.ssh
