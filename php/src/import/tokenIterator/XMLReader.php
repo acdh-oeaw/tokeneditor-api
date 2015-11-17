@@ -47,8 +47,8 @@ class XMLReader extends TokenIterator {
 	 * @param \PDO $PDO
 	 * @throws \RuntimeException
 	 */
-	public function __construct($path, \import\Document $document){
-		parent::__construct($path, $document);
+	public function __construct(\utils\readContent\ReadContenctInterface $xml, \import\Document $document){
+		parent::__construct($xml, $document);
 
 		$this->reader = new \XMLReader();
 		$tokenXPath = $this->document->getSchema()->getTokenXPath();
@@ -81,7 +81,7 @@ class XMLReader extends TokenIterator {
 	 * 
 	 */
 	public function rewind() {
-		$this->reader->open($this->path);
+		$this->reader->open($this->xml->getPath());
 		$this->pos = -1;
 		$this->next();
 	}

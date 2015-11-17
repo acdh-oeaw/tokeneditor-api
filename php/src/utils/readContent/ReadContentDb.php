@@ -24,57 +24,36 @@
  * THE SOFTWARE.
  */
 
-namespace import\tokenIterator;
+namespace utils\readContent;
 
 /**
- * Description of TokenIterator
+ * Description of ReadContentDb
  *
  * @author zozlak
  */
-abstract class TokenIterator implements \Iterator {
-	/**
-	 *
-	 * @var \import\Document
-	 */
-	protected $document;
-	protected $xml;
-	protected $pos;
-	protected $token = false;
-
-	/**
-	 * 
-	 * @param type $path
-	 * @param \import\Schema $schema
-	 * @param \PDO $PDO
-	 */
-	public function __construct(\utils\readContent\ReadContenctInterface $xml, \import\Document $document){
-		$this->xml = $xml;
-		$this->document = $document;
-	}
+class ReadContentDb implements ReadContenctInterface {
+	private $query;
+	private $param;
+	private $fetchStyle;
 	
 	/**
 	 * 
-	 * @return import\Token
+	 * @param \PDOStatement $query
+	 * @param array $param
 	 */
-	public function current() {
-		return $this->token;
+	public function __construct(\PDOStatement $query, array $param, $fetchStyle = \PDO::FETCH_COLUMN) {
+		$this->query = $query;
+		$this->param = $param;
+		$this->fetchStyle = $fetchStyle;
 	}
 	
-	/**
-	 * 
-	 * @return int
-	 */
-	public function key() {
-		return $this->pos;
+	public function read(){
+		$this->query->execute($this->param);
+		return $this->query->fetch($this->fetchStyle);
 	}
 
-	/**
-	 * 
-	 * @return boolean
-	 */
-	public function valid() {
-		return $this->token !== false;
+	public function getPath() {
+		throw new \BadMethodCallException('ReadContentDb does not support getPath()');
 	}
-	
-	abstract public function export($path);
+
 }

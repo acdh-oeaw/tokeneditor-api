@@ -1,7 +1,7 @@
 <!DOCTYPE>
-<html lang="en">
+<html ng-app="myApp" lang="en">
     <head>
-        <title data-template="config:app-title">TreeTagger WebInterface</title>
+        <title data-template="config:app-title">TokenEditor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta data-template="config:app-meta"/>
         <link rel="shortcut icon" href="$shared/resources/images/exist_icon_16x16.ico"/>
@@ -19,23 +19,45 @@
         <script type="text/javascript" src="https://raw.githubusercontent.com/Mottie/tablesorter/master/js/jquery.tablesorter.js"></script>
         <script type="text/javascript" src="https://raw.githubusercontent.com/Mottie/tablesorter/master/js/jquery.tablesorter.widgets.js"></script>           
         <script type="text/javascript" src="https://raw.githubusercontent.com/Mottie/tablesorter/js/parsers/parser-input-select.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("option").click(function(){
+            $(this).parent().parent().submit();
+        });
+    });
+    </script>
     </head>
     <body>
+        
         <div class="container">
-            <h3> Your files:</h3> 
-            <ul>
+            <div class="row">
+                <div class="col-md-3">
+            <h3> Your files:</h3>
+            <form action="generatejson.php" method="post">
+            <select name='docid' class="form-control" size="10">
 <?php 
-include 'config.inc.php';
+require_once('config.inc.php');
 include 'Documentlist.php';
-$userid = $_SERVER['HTTP_EPPN'];
-var_dump($userid);
+include 'TokenArray.php';
+$userid = 'mzoltak@oeaw.ac.at';
+$documentid = 40;
+echo $userid;
 $con = new PDO($CONFIG['dbConn'], $CONFIG['dbUser'], $CONFIG['dbPasswd']);
+
 $doclist = new Documentlist();
 $list = $doclist->createList($userid,$con);
 foreach ($list as $docid){
-    echo "<li>".$docid['name']."</li>";
+    echo "<option value=".$docid['document_id'].">".$docid['name']."</option>";
 }
+
+/**/
+
 ?>
-            </ul>
+            </select>
+            </form>
             </div>
+                <div class="col-md-9">
+                  
+                </div>
+        </div>
 </html>
