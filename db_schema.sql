@@ -4,7 +4,9 @@ CREATE TABLE users (
 
 CREATE TABLE documents (
 	document_id int primary key,
-	token_xpath text not null
+	token_xpath text not null,
+        name text not null,
+        xml xml not null
 );
 CREATE SEQUENCE document_id_seq;
 

@@ -24,57 +24,13 @@
  * THE SOFTWARE.
  */
 
-namespace import\tokenIterator;
+namespace utils\readContent;
 
 /**
- * Description of TokenIterator
  *
  * @author zozlak
  */
-abstract class TokenIterator implements \Iterator {
-	/**
-	 *
-	 * @var \import\Document
-	 */
-	protected $document;
-	protected $xml;
-	protected $pos;
-	protected $token = false;
-
-	/**
-	 * 
-	 * @param type $path
-	 * @param \import\Schema $schema
-	 * @param \PDO $PDO
-	 */
-	public function __construct(\utils\readContent\ReadContenctInterface $xml, \import\Document $document){
-		$this->xml = $xml;
-		$this->document = $document;
-	}
-	
-	/**
-	 * 
-	 * @return import\Token
-	 */
-	public function current() {
-		return $this->token;
-	}
-	
-	/**
-	 * 
-	 * @return int
-	 */
-	public function key() {
-		return $this->pos;
-	}
-
-	/**
-	 * 
-	 * @return boolean
-	 */
-	public function valid() {
-		return $this->token !== false;
-	}
-	
-	abstract public function export($path);
+interface ReadContenctInterface {
+	public function read();
+	public function getPath();
 }

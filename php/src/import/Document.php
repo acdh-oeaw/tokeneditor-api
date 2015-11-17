@@ -36,7 +36,8 @@ class Document implements \IteratorAggregate {
 	const XML_READER = '\import\tokenIterator\XMLReader';
 	const PDO = '\import\tokenIterator\PDO';
 
-	private $path;
+	private $datafile;
+	private $name;
 	private $schema;
 	private $PDO;
 	private $tokenIteratorClassName;
@@ -56,11 +57,12 @@ class Document implements \IteratorAggregate {
 		$this->schema = new Schema($this->PDO);
 	}
 	
-	public function loadFile($filePath, $schemaPath, $iteratorClass = null){
+	public function loadFile($filePath, $schemaPath, $name, $iteratorClass = null){
 		if(!is_file($filePath)){
 			throw new \RuntimeException($filePath . ' is not a valid file');
 		}
-		$this->path   = $filePath;
+		$this->datafile = new \utils\readContent\ReadContentFile($filePath);
+		$this->name = $name;
 		$this->schema->loadFile($schemaPath);
 		$this->chooseTokenIterator();
 		
@@ -78,9 +80,12 @@ class Document implements \IteratorAggregate {
 		$this->documentId = $documentId;
 		$this->schema->loadDb($this->documentId);
 		
-		$query = $this->PDO->prepare("SELECT path FROM documents WHERE document_id = ?");
+		$query = $this->PDO->prepare("SELECT name FROM documents WHERE document_id = ?");
 		$query->execute(array($this->documentId));
-		$this->path = $query->fetch(\PDO::FETCH_COLUMN);
+		$this->name = $query->fetch(\PDO::FETCH_COLUMN);
+
+		$query = $this->PDO->prepare("SELECT xml FROM documents WHERE document_id = ?");
+		$this->datafile = new \utils\readContent\ReadContentDb($query, array($this->documentId));
 		
 		$this->tokenIteratorClassName = self::DOM_DOCUMENT;
 	}
@@ -103,6 +108,14 @@ class Document implements \IteratorAggregate {
 	
 	/**
 	 * 
+	 * @return type
+	 */
+	public function getName(){
+		return $this->name;
+	}
+	
+	/**
+	 * 
 	 * @return PDO
 	 */
 	public function getPDO(){
@@ -120,17 +133,29 @@ class Document implements \IteratorAggregate {
 
 	/**
 	 * 
-	 * @param \PDO $PDO
+	 * @param int $limit
+	 * @param \utils\ProgressBar $progressBar
 	 */
-	public function save(){
+	public function save($limit = 0, $progressBar = null){
 		$this->documentId = $this->PDO->
 			query("SELECT nextval('document_id_seq')")->
 			fetchColumn();
 		
-		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, path) VALUES (?, ?, ?)");
-		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->path));
+		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, name, xml) VALUES (?, ?, ?, ?)");
+		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->name, $this->datafile->read()));
+		unset($query); // free memory
 				
 		$this->schema->save($this->documentId);
+		
+		foreach($this as $n => $token){
+			$token->save();
+			if($progressBar){
+				$progressBar->next();
+			}
+			if($n > $limit && $limit > 0){
+				break;
+			}
+		}
 	}
 	
 	/**
@@ -141,7 +166,7 @@ class Document implements \IteratorAggregate {
 	 *   If false, review results will be provided as TEI <fs> elements
 	 * @param type $progressBar
 	 */
-	public function export($path, $replace = false, $progressBar){
+	public function export($replace = false, $path = null, $progressBar = null){
 		if($replace){
 			foreach($this as $token){
 				$token->update();
@@ -157,17 +182,17 @@ class Document implements \IteratorAggregate {
 				}
 			}
 		}
-		$this->tokenIterator->export($path);
+		return $this->tokenIterator->export($path);
 	}
 
 	public function getIterator() {
-		$this->tokenIterator = new $this->tokenIteratorClassName($this->path, $this);
+		$this->tokenIterator = new $this->tokenIteratorClassName($this->datafile, $this);
 		return $this->tokenIterator;
 	}
 
 	private function chooseTokenIterator() {
 		try{
-			new tokenIterator\XMLReader($this->path, $this);
+			new tokenIterator\XMLReader($this->datafile, $this);
 			$this->tokenIteratorClassName = self::XML_READER;
 		} catch (\RuntimeException $ex) {
 			$this->tokenIteratorClassName = self::DOM_DOCUMENT;
