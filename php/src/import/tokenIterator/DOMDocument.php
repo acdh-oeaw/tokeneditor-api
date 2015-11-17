@@ -65,7 +65,7 @@ class DOMDocument extends TokenIterator {
 	public function rewind() {
 		$this->dom = new \DOMDocument();
 		$this->dom->preserveWhiteSpace = false;
-		$this->dom->Load($this->path);
+		$this->dom->LoadXML($this->xml->read());
 		$xpath = new \DOMXPath($this->dom);
 		foreach($this->document->getSchema()->getNs() as $prefix => $ns){
 			$xpath->registerNamespace($prefix, $ns);
@@ -75,7 +75,16 @@ class DOMDocument extends TokenIterator {
 		$this->next();
 	}
 	
+	/**
+	 * 
+	 * @param string $path
+	 * @return string
+	 */
 	public function export($path){
-		$this->dom->save($path);
+		if($path != ''){
+			$this->dom->save($path);
+		}else{
+			return $this->dom->saveXML();
+		}
 	}
 }
