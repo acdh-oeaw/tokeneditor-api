@@ -154,7 +154,7 @@ $timeout(callAtTimeout, 3000);
   $scope.data;
   
   } 
-
+$("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
      }
 }]);
 

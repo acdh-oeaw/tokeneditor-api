@@ -33,7 +33,7 @@
     <script>
     $(document).ready(function(){
       $("option").click(function(){
-     $("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
+    // $("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
       });
         new TokenEditorImporter(
             $('#import').get(0), 
