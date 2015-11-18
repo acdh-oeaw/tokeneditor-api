@@ -164,7 +164,8 @@ app.controller("DoughnutCtrl", function ($scope) {
  $scope.data;
   
 });
-app.controller("StatsCtrl", function ($scope,$timeout) {
+
+/*app.controller("StatsCtrl", function ($scope,$timeout) {
  $scope.labels =[];
  $scope.items =[];
   $scope.data =[];
@@ -200,4 +201,4 @@ statsData = _.countBy($scope.$parent.gridOptions.data, function(item){
 $scope.labels;
   $scope.data;
   }
-});
+});*/
