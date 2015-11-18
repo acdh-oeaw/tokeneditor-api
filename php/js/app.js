@@ -11,7 +11,7 @@ app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($s
   //  $scope.parts = parts[1];
   $scope.httprequest = function(){
       $scope.creategrid = true;
-      console.log(creategrid);
+      console.log($scope.creategrid);
         $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid=40').success(function (data) {
         $scope.gridOptions.data = data;
     });
