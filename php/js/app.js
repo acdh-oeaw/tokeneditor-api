@@ -2,8 +2,8 @@
 
 var app = angular.module('myApp', ['ui.grid','ui.grid.pagination','ui.grid.edit','ui.grid.cellNav','ui.grid.exporter','chart.js','ui.grid.selection']);
 
-console.log(creategrid);
- 
+function print() {console.log(creategrid);
+}
 
 app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($scope,$http,$timeout,$locationProvider,$location) {
     var url = $locationProvider.$$absUrl;

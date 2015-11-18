@@ -75,7 +75,7 @@
                             $doclist = new Documentlist();
                             $list = $doclist->createList($userid,$con);
                             foreach ($list as $docid){
-                                echo "<option ng-click='creategrid=true' value=".$docid['document_id'].">".$docid['name']."</option>";
+                                echo "<option ng-click='print();creategrid=true' value=".$docid['document_id'].">".$docid['name']."</option>";
                             }
                             ?>
                         </select>
