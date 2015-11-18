@@ -2,16 +2,18 @@
 
 var app = angular.module('myApp', ['ui.grid','ui.grid.pagination','ui.grid.edit','ui.grid.cellNav','ui.grid.exporter','chart.js','ui.grid.selection']);
 
-function print() {console.log(creategrid);
-}
+
+
 
 app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($scope,$http,$timeout,$locationProvider,$location) {
-    var url = $locationProvider.$$absUrl;
-    var parts = url.split("=");
-    $scope.parts = parts[1];
-    $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+ parts[1]).success(function (data) {
+  //  var url = $locationProvider.$$absUrl;
+  //  var parts = url.split("=");
+  //  $scope.parts = parts[1];
+  $scope.httprequest = function(){
+        $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+ parts[1]).success(function (data) {
         $scope.gridOptions.data = data;
     });
+  }
     $scope.filterOptions = {
         filterText: "",
         useExternalFilter: true
