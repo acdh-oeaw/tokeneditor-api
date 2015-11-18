@@ -44,7 +44,7 @@
                 }
             }
         );
- /*       $('#docid').change(function(){
+     /*   $('#docid').change(function(){
             var docId = $(this).attr('value');
             $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+ docId).success(function (data) {
                 $scope.gridOptions.data = data;
@@ -75,7 +75,7 @@
                             $doclist = new Documentlist();
                             $list = $doclist->createList($userid,$con);
                             foreach ($list as $docid){
-                                echo "<option ng-click='print();creategrid=true' value=".$docid['document_id'].">".$docid['name']."</option>";
+                                echo "<option ng-click='print()' value=".$docid['document_id'].">".$docid['name']."</option>";
                             }
                             ?>
                         </select>
