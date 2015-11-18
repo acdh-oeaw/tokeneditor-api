@@ -26,15 +26,22 @@
         <script type="text/javascript" src="https://raw.githubusercontent.com/Mottie/tablesorter/master/js/jquery.tablesorter.widgets.js"></script>           
         <script type="text/javascript" src="https://raw.githubusercontent.com/Mottie/tablesorter/js/parsers/parser-input-select.js"></script>-->
         <script type="text/javascript" src="https://raw.githubusercontent.com/nnnick/Chart.js/master/Chart.js"></script>
-         <script type="text/javascript" src="js/angular-chartjs/angular-chart.js"></script>
+        <script type="text/javascript" src="js/angular-chartjs/angular-chart.js"></script>
+        <script type="text/javascript" src="js/TokenEditorImporter.js"></script>
         <link rel="stylesheet" href="js/angular-chartjs/angular-chart.css">
     <script src="https://raw.githubusercontent.com/jashkenas/underscore/master/underscore.js"></script>
     <script>
     $(document).ready(function(){
       $("option").click(function(){
-        window.history.replaceState(null, null, "index.php?docid="+$(this).val());
+     //   window.history.replaceState(null, null, "index.php?docid="+$(this).val());
       });
-    
+        new TokenEditorImporter(
+            $('#import').get(0), 
+            'document',
+            function(data){
+                console.log(data);
+            }
+        );
 });
             
           
@@ -64,6 +71,8 @@
                             }
                             ?>
                         </select>
+                        <div id="import">
+                        </div>
                         <!--      </form>-->
                          <h4>Progress</h4>
               <span class="text-muted"><div ng-controller="DoughnutCtrl">
