@@ -54,7 +54,7 @@ class DOMDocument extends TokenIterator {
 		$this->pos++;
 		if($this->pos < $this->tokens->length){
 			$doc = new \DOMDocument();
-			$tokenNode = $doc->importNode($this->tokens[$this->pos], true);
+			$tokenNode = $doc->importNode($this->tokens->item($this->pos), true);
 			$this->token = new \import\Token($tokenNode, $this->document);
 		}
 	}
@@ -73,6 +73,12 @@ class DOMDocument extends TokenIterator {
 		$this->tokens = $xpath->query($this->document->getSchema()->getTokenXPath());
 		$this->pos = -1;
 		$this->next();
+	}
+	
+	public function replaceCurrentToken(\DOMNode $new){
+		$old = $this->tokens->item($this->pos);
+		$new = $this->dom->importNode($new, true);
+		$old->parentNode->replaceChild($new, $old);
 	}
 	
 	/**

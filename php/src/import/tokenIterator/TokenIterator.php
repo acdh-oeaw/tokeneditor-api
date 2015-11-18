@@ -77,4 +77,5 @@ abstract class TokenIterator implements \Iterator {
 	}
 	
 	abstract public function export($path);
+	abstract public function replaceCurrentToken(\DOMNode $new);
 }

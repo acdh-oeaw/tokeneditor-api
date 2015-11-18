@@ -89,4 +89,8 @@ class XMLReader extends TokenIterator {
 	public function export($path) {
 		throw new \BadMethodCallException('export() is not not implemented for this TokenIterator class');
 	}
+
+	public function replaceCurrentToken(\DOMNode $new) {
+		throw new \BadMethodCallException('replaceCurrentToken() is not not implemented for this TokenIterator class');
+	}
 }

@@ -11,9 +11,9 @@ new utils\ClassLoader();
 require_once 'config.inc.php';
 
 // document id in the tokeneditor database (see the documents table)
-$documentId = 39;
+$documentId = 64;
 // replate properties values in-place or add full <fs> structures
-$inPlace = true;
+$inPlace = false;
 // path to the export file to create
 $exportPath = '../sample_data/export.xml';
 

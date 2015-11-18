@@ -14,13 +14,13 @@ require_once 'config.inc.php';
 // token iterator class; if you do not know it, set to NULL
 $iterator = import\Document::XML_READER;
 // if processed data should be stored in the database
-$save = false; 
+$save = true; 
 // allows to limit number of processed tokens (put 0 to process all)
 $limit = 0; 
 // path to the XML file describing schema
-$schemaPath = '../sample_data/baffleLex_v_0.2_zmorge_20151002-schema.xml';
+$schemaPath = '../sample_data/testcases-rm-toks-schema.xml';
 // path to the XML file with data
-$dataPath   = '../sample_data/baffleLex_v_0.2_zmorge_20151002.xml';
+$dataPath   = '../sample_data/testcases-rm-toks.xml';
 
 //$schemaPath = '../sample_data/testcases-rm-toks-schema.xml';
 //$dataPath   = '../sample_data/testcases-rm-toks.xml';

@@ -94,6 +94,10 @@ class Token {
 		}
 	}
 	
+	/**
+	 * 
+	 * @return \DOMNode
+	 */
 	public function update(){
 		$this->checkValuesQuery();
 		
@@ -108,8 +112,14 @@ class Token {
 				}
 			}
 		}
+		
+		return $this->dom;
 	}
 	
+	/**
+	 * 
+	 * @return \DOMNode
+	 */
 	public function enrich(){
 		$this->checkValuesQuery();
 		
@@ -132,6 +142,8 @@ class Token {
 				}
 			}
 		}
+		
+		return $this->dom;
 	}
 
 	private function checkValuesQuery(){
