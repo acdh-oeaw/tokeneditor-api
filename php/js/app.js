@@ -4,12 +4,12 @@ var app = angular.module('myApp', ['ui.grid','ui.grid.pagination','ui.grid.edit'
 
 
 
-$scope.httprequest = function(){
+
 app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($scope,$http,$timeout,$locationProvider,$location) {
   //  var url = $locationProvider.$$absUrl;
   //  var parts = url.split("=");
   //  $scope.parts = parts[1];
-  
+  $scope.httprequest = function(){
       $scope.creategrid = true;
       console.log($scope.creategrid);
         $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid=40').success(function (data) {
@@ -155,10 +155,10 @@ $timeout(callAtTimeout, 3000);
   
   } 
 
-     
+     }
 }]);
 
-}
+
 app.controller("DoughnutCtrl", function ($scope) {
  $scope.labels;
  $scope.data;
