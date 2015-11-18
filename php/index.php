@@ -33,7 +33,7 @@
     <script>
     $(document).ready(function(){
       $("option").click(function(){
-     //   window.history.replaceState(null, null, "index.php?docid="+$(this).val());
+     $("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
       });
         new TokenEditorImporter(
             $('#import').get(0), 
@@ -89,8 +89,9 @@
                      </span>
                 </div>
                 <div class="col-md-9">
-                    <div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>
-                  
+                    <div id="gridcontainer">
+                   
+                    </div>
               
              
               
