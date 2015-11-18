@@ -40,7 +40,7 @@
             'document',
             function(data){
                 if(data.status == 'OK'){
-                    $('docId').append('<option value="' + data.document_id + '">' + data.name + '</option>')
+                    $('#docid').append('<option value="' + data.document_id + '">' + data.name + '</option>');
                 }
             }
         );

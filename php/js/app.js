@@ -150,28 +150,15 @@ $timeout(callAtTimeout, 3000);
   $scope.data;
   
   } 
-  $scope.refreshstats = function(){
-       $scope.labels = [];
-     $scope.data = [];
-statsData = _.countBy($scope.gridOptions.data, function(item){
-    return item.type;
-            });
-    angular.forEach(statsData, function(key,item) {
-       
-     $scope.labels.push(item);
-     $scope.data.push(key);
-});
 
-  };
      
 }]);
 
 
 app.controller("DoughnutCtrl", function ($scope) {
- //$scope.labels;
- //$scope.data;
-  $scope.labels = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
-  $scope.data = [300, 500, 100];
+ $scope.labels;
+ $scope.data;
+  
 });
 app.controller("StatsCtrl", function ($scope,$timeout) {
  $scope.labels =[];
