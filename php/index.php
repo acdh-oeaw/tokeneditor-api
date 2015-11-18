@@ -84,12 +84,12 @@
                         <!--      </form>-->
                          <h4>Progress</h4>
               <span class="text-muted"><div ng-controller="DoughnutCtrl">
-                        <canvas id="doughnut" ng-if="{{creategrid}}"  class="chart chart-doughnut" data="data" labels="labels"></canvas> 
+                        <canvas id="doughnut"   class="chart chart-doughnut" data="data" labels="labels"></canvas> 
                     </div>
                      </span>
                 </div>
                 <div class="col-md-9">
-                    <div id="grid1" ng-if='{{creategrid}}' ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>
+                    <div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>
                   
               
              
