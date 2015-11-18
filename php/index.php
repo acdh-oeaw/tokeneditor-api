@@ -42,6 +42,12 @@
                 console.log(data);
             }
         );
+        $('#docid').change(function(){
+            var docId = $(this).attr('value');
+            $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+ docId).success(function (data) {
+                $scope.gridOptions.data = data;
+            });
+        });
 });
             
           
@@ -55,7 +61,7 @@
                 <div class="col-md-3">
                      <h3> Your files:</h3>
                      <!--  <form action="generatejson.php">-->
-                         <select name='docid' class="form-control" size="10">
+                         <select id='docid' class="form-control" size="10">
                             <?php 
                             require_once('config.inc.php');
                             include 'Documentlist.php';
