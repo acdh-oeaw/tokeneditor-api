@@ -39,7 +39,9 @@
             $('#import').get(0), 
             'document',
             function(data){
-                console.log(data);
+                if(data.status == 'OK'){
+                    $('docId').append('<option value="' + data.document_id + '">' + data.name + '</option>')
+                }
             }
         );
         $('#docid').change(function(){
