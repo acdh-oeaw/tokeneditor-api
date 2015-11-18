@@ -44,12 +44,12 @@
                 }
             }
         );
-        $('#docid').change(function(){
+ /*       $('#docid').change(function(){
             var docId = $(this).attr('value');
             $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+ docId).success(function (data) {
                 $scope.gridOptions.data = data;
             });
-        });
+        });*/
 });
             
           
