@@ -10,7 +10,8 @@ app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($s
   //  var parts = url.split("=");
   //  $scope.parts = parts[1];
   $scope.httprequest = function(){
-      var creategrid = true;
+      $scope.creategrid = true;
+      console.log(creategrid);
         $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid=40').success(function (data) {
         $scope.gridOptions.data = data;
     });
