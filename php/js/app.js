@@ -13,6 +13,7 @@ app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($s
       $scope.creategrid = true;
       console.log($scope.creategrid);
         $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid=40').success(function (data) {
+         $("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
         $scope.gridOptions.data = data;
     });
   
@@ -154,7 +155,7 @@ $timeout(callAtTimeout, 3000);
   $scope.data;
   
   } 
-$("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
+
      }
 }]);
 
