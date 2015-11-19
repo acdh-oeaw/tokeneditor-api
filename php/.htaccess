@@ -3,5 +3,5 @@ RewriteRule ^document$ interface.php
 RewriteRule ^document/([0-9]+)$ interface.php?document_id=$1 [QSA]
 
 # for local testing
-RewriteCond %{ENV:STATUS} ^$
-RewriteRule .* - [E=HTTP_EPPN:mzoltak@oeaw.ac.at]
+#RewriteCond %{ENV:HTTP_EPPN} ^$
+#RewriteRule .* - [E=HTTP_EPPN:mzoltak@oeaw.ac.at]
