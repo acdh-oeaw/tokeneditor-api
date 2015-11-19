@@ -1,6 +1,6 @@
 /* global input */
 
-var app = angular.module('myApp', ['ui.grid','ui.grid.pagination','ui.grid.edit','ui.grid.cellNav','ui.grid.exporter','chart.js','ui.grid.selection']);
+var app = angular.module('myApp', ['ui.grid','ui.grid.pagination','ui.grid.edit','ui.grid.cellNav','ui.grid.exporter','chart.js','ui.grid.selection','ui.bootstrap']);
 
 
 
@@ -9,61 +9,11 @@ app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($s
   //  var url = $locationProvider.$$absUrl;
   //  var parts = url.split("=");
   //  $scope.parts = parts[1];
-  $scope.httprequest = function(){
-      $scope.creategrid = true;
-      console.log($scope.creategrid);
-        $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid=40').success(function (data) {
-        $scope.gridOptions.data = data;
-    });
-  
-    $scope.filterOptions = {
-        filterText: "",
-        useExternalFilter: true
-    };
-
- 
- 
- 
- 
-$scope.update = function(column, row, cellValue) {
-    
-};
-  //  $scope.saveItem = function(id,type,lemma) {
-    //                          $http.post('http://tokeneditor.hephaistos.arz.oeaw.ac.at/exist/apps/tagging/xmltojson.xq',{id: id,type: type,lemma: lemma}).success(function(data) {
-      //                            alert('update completed!');
-        //                      });
- //Array für veränderte Objekte
- $scope.arrayOfChangedObjects = [];
- 
- 
-    $scope.gridOptions = {
-        multiselect:true,
-        enableFiltering: true,
-        enableSelectAll: true,
-  //      plugins: [new ngGridFlexibleHeightPlugin()],
-         enableRowSelection: true,
-        paginationPageSizes: [25, 50, 75],
+  $scope.gridOptions = { paginationPageSizes: [25, 50, 75],
         paginationPageSize: 25,
-        enableGridMenu: true,
-       enableCellEditOnFocus: true,
-        
-            
-        columnDefs: [
-      { field:'id',name: 'id',enableCellEdit: false},
-      { name: 'value', displayName: 'Token',resizable: true,enableCellEdit: false },
-      { name: 'properties[1].type',displayName: 'Type'},
-      { name: 'properties[0].lemma',displayName: 'Lemma' },
-      { name: 'properties[2].morph',displayName: 'Morph' },
-	{name: 'properties[3].state',displayName: 'State' }
-        ], exporterAllDataFn: function() {
-        return getPage(1, $scope.gridOptions.totalItems, paginationOptions.sort)
-        .then(function() {
-          $scope.gridOptions.useExternalPagination = false;
-          $scope.gridOptions.useExternalSorting = false;
-          $scope.gridOptions.multiSelect = true;
-          getPage = null;
-        });
-      } , onRegisterApi: function(gridApi) {
+        enableFiltering: true,
+         enableGridMenu: true,
+       enableCellEditOnFocus: true,onRegisterApi: function(gridApi) {
         $scope.gridApi = gridApi;
  // $scope.gridApi.cellNav.on.navigate($scope,function(newRowCol, oldRowCol) {      
              
@@ -94,12 +44,12 @@ $scope.selectedstate= null;
         
     if (newValue != oldValue){
         $scope.$apply();
-        $scope.refreshstats();
+      $scope.refreshstats();
         $http({ 
     method: 'POST',
-    url: 'http://tokeneditor.hephaistos.arz.oeaw.ac.at/exist/apps/tagging/syncwithxml.xq?col='+$scope.parts,
-    data:'<?xml version="1.0" encoding="UTF-8" standalone="no"?><TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><tei:w  id="'+rowEntity.id+'"  type="'+rowEntity.type+'" lemma="'+ rowEntity.lemma+'" >'+rowEntity['#text']+'</tei:w></TEI>',
-    headers: { "Content-Type": "application/xml" }
+    url: 'https://clarin.oeaw.ac.at/tokenEditor/storejson.php',
+    data:rowEntity,
+    headers: { "Content-Type": "application/json" }
 })
         // $http.post('http://tokeneditor.hephaistos.arz.oeaw.ac.at/exist/apps/tagging/syncjsonwithxml.xq',{id: rowEntity.id,type: rowEntity.type,lemma: rowEntity.lemma}).success(function(data) {
         //                        alert('update completed!');
@@ -124,10 +74,72 @@ $scope.selectedstate= null;
             getPage(newPage, pageSize, paginationOptions.sort);
           }
         });
-      }, rowTemplate: 
+      },rowTemplate: 
         '<div ng-class="{ \'green\': grid.appScope.rowFormatter( row ),\'grey\':row.entity.state===\'u\' }">' +
                  '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader,\'custom\': true  }"  ui-grid-cell></div>' +
                  '</div>'
+        };
+       
+ 
+  $scope.httprequest = function(docid){init(); }
+     function init(){
+      $scope.creategrid = true;
+      var docid = $("select").val();
+      console.log(docid);
+      
+        $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+docid).success(function (data) {
+			//$scope.gridOptions = {};
+        $scope.gridOptions.data = data;
+        
+
+    });
+  
+     $scope.filterOptions = {
+        filterText: "",
+        useExternalFilter: true
+    };
+
+ 
+ 
+ 
+ 
+$scope.update = function(column, row, cellValue) {
+    
+};
+  //  $scope.saveItem = function(id,type,lemma) {
+    //                          $http.post('http://tokeneditor.hephaistos.arz.oeaw.ac.at/exist/apps/tagging/xmltojson.xq',{id: id,type: type,lemma: lemma}).success(function(data) {
+      //                            alert('update completed!');
+        //                      });
+ //Array für veränderte Objekte
+ $scope.arrayOfChangedObjects = [];
+ 
+ 
+    $scope.gridOptions = {
+        multiselect:true,
+        enableFiltering: true,
+        enableSelectAll: true,
+  //      plugins: [new ngGridFlexibleHeightPlugin()],
+         enableRowSelection: true,
+        enableGridMenu: true,
+       enableCellEditOnFocus: true,
+        
+            
+        columnDefs: [
+      { field:'id',name: 'id',enableCellEdit: false},
+      { name: 'value', displayName: 'Token',resizable: true,enableCellEdit: false },
+      { name: 'properties[1].type',displayName: 'Type'},
+      { name: 'properties[0].lemma',displayName: 'Lemma' },
+      { name: 'properties[2].morph',displayName: 'Morph' },
+	{name: 'properties[3].state',displayName: 'State' }
+        ], exporterAllDataFn: function() {
+        return getPage(1, $scope.gridOptions.totalItems, paginationOptions.sort)
+        .then(function() {
+          $scope.gridOptions.useExternalPagination = false;
+          $scope.gridOptions.useExternalSorting = false;
+          $scope.gridOptions.multiSelect = true;
+          getPage = null;
+        });
+      } 
    
     };
     
@@ -143,7 +155,7 @@ $timeout(callAtTimeout, 3000);
   function callAtTimeout() {
   var countData = _.countBy($scope.gridOptions.data, function(item){
     
-    return item.type;
+    return item.properties[1].type;
 }); 
  angular.forEach(countData, function(key,item) {
      $scope.labels.push(item);
@@ -154,8 +166,21 @@ $timeout(callAtTimeout, 3000);
   $scope.data;
   
   } 
-$("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
+//$("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
      }
+       $scope.refreshstats = function(){
+       $scope.labels = [];
+     $scope.data = [];
+statsData = _.countBy($scope.gridOptions.data, function(item){
+    return item.properties[1].type;
+            });
+    angular.forEach(statsData, function(key,item) {
+       
+     $scope.labels.push(item);
+     $scope.data.push(key);
+});
+
+  };
 }]);
 
 
