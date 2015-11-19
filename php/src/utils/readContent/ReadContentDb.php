@@ -31,7 +31,7 @@ namespace utils\readContent;
  *
  * @author zozlak
  */
-class ReadContentDb implements ReadContenctInterface {
+class ReadContentDb implements ReadContentInterface {
 	private $query;
 	private $param;
 	private $fetchStyle;

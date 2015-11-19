@@ -31,7 +31,7 @@ namespace utils\readContent;
  *
  * @author zozlak
  */
-class ReadContentFile implements ReadContenctInterface {
+class ReadContentFile implements ReadContentInterface {
 	private $path;
 	
 	/**

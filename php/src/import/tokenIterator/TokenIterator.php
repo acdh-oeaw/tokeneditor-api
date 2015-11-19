@@ -47,7 +47,7 @@ abstract class TokenIterator implements \Iterator {
 	 * @param \import\Schema $schema
 	 * @param \PDO $PDO
 	 */
-	public function __construct(\utils\readContent\ReadContenctInterface $xml, \import\Document $document){
+	public function __construct(\utils\readContent\ReadContentInterface $xml, \import\Document $document){
 		$this->xml = $xml;
 		$this->document = $document;
 	}

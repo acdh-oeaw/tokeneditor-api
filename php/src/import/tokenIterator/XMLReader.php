@@ -47,7 +47,7 @@ class XMLReader extends TokenIterator {
 	 * @param \PDO $PDO
 	 * @throws \RuntimeException
 	 */
-	public function __construct(\utils\readContent\ReadContenctInterface $xml, \import\Document $document){
+	public function __construct(\utils\readContent\ReadContentInterface $xml, \import\Document $document){
 		parent::__construct($xml, $document);
 
 		$this->reader = new \XMLReader();

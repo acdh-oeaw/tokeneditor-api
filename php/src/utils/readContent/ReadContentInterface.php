@@ -30,7 +30,7 @@ namespace utils\readContent;
  *
  * @author zozlak
  */
-interface ReadContenctInterface {
+interface ReadContentInterface {
 	public function read();
 	public function getPath();
 }
