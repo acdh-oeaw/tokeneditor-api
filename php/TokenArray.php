@@ -13,9 +13,10 @@ class TokenArray {
 					JOIN tokens t USING (document_id, token_id) 
 					LEFT JOIN values uv USING (document_id, property_xpath, token_id
 				)
+				WHERE document_id = $documentid AND (user_id = $userid OR user_id is NULL) 
+				GROUP BY 1, 2, 3 
 				ORDER BY token_id
-			WHERE document_id = $documentid AND (user_id = $userid OR user_id is NULL) 
-			GROUP BY 1, 2, 3 ) t1");
+			) t1");
 		$query->execute(array($documentid, $userid));
 		//$result = $query->fetch(PDO::FETCH_COLUMN);
 		$result = $query->fetch(PDO::FETCH_COLUMN);
