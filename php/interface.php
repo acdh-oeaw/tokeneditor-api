@@ -85,14 +85,22 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			$doc->getId(), 
 			filter_input(INPUT_SERVER, $CONFIG['userid'])
 		));
-		$PDO->commit();
 		header('Content-type: application/json');
-		echo json_encode(array(
-			'status' => 'OK',
-			'document_id' => $doc->getId(),
-			'name' => filter_input(INPUT_POST, 'name'),
-			'tokensCount' => $n
-		));
+		if($n > 0){
+			$PDO->commit();
+			echo json_encode(array(
+				'status' => 'OK',
+				'document_id' => $doc->getId(),
+				'name' => filter_input(INPUT_POST, 'name'),
+				'tokensCount' => $n
+			));
+		}else{
+			$PDO->rollBack();
+			echo json_encode(array(
+				'status' => 'ERROR',
+				'message' => 'no tokens found - maybe your schema is wrong'
+			));
+		}
 	} catch (Exception $ex) {
 		exit(json_encode(array(
 			'status' => 'ERROR',
