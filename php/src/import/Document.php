@@ -142,7 +142,7 @@ class Document implements \IteratorAggregate {
 			fetchColumn();
 		
 		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, name, xml) VALUES (?, ?, ?, ?)");
-		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->name, preg_replace('/^[^<]/', '', $this->datafile->read())));
+		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->name, preg_replace('/^[^<]+/', '', $this->datafile->read())));
 		unset($query); // free memory
 				
 		$this->schema->save($this->documentId);
