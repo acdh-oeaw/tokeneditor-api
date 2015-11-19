@@ -81,10 +81,12 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 		);
 		$n = $doc->save();
 		
-		try{
+		$query = $PDO->prepare("SELECT count(*) FROM users WHERE user_id = ?");
+		$query->execute(array(filter_input(INPUT_SERVER, $CONFIG['userid'])));
+		if($query->fetch(PDO::FETCH_COLUMN) == 0){
 			$query = $PDO->prepare("INSERT INTO users (user_id) VALUES (?)");
 			$query->execute(array(filter_input(INPUT_SERVER, $CONFIG['userid'])));
-		} catch (Exception $ex) {}
+		}
 		
 		$query = $PDO->prepare("INSERT INTO documents_users (document_id, user_id) VALUES (?, ?)");
 		$query->execute(array(
