@@ -80,6 +80,12 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			filter_input(INPUT_POST, 'name')
 		);
 		$n = $doc->save();
+		
+		try{
+			$query = $PDO->prepare("INSERT INTO users (user_id) VALUES (?)");
+			$query->execute(array(filter_input(INPUT_SERVER, $CONFIG['userid'])));
+		} catch (Exception $ex) {}
+		
 		$query = $PDO->prepare("INSERT INTO documents_users (document_id, user_id) VALUES (?, ?)");
 		$query->execute(array(
 			$doc->getId(), 
