@@ -10,6 +10,7 @@ app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($s
   //  var parts = url.split("=");
   //  $scope.parts = parts[1];
   $scope.gridOptions = { paginationPageSizes: [25, 50, 75],
+		minRowsToShow:20,
         paginationPageSize: 25,
         enableFiltering: true,
          enableGridMenu: true,
@@ -45,9 +46,10 @@ $scope.selectedstate= null;
     if (newValue != oldValue){
         $scope.$apply();
       $scope.refreshstats();
+	  
         $http({ 
     method: 'POST',
-    url: 'https://clarin.oeaw.ac.at/tokenEditor/storejson.php',
+    url: 'storejson.php',
     data:rowEntity,
     headers: { "Content-Type": "application/json" }
 })
@@ -87,10 +89,10 @@ $scope.selectedstate= null;
       var docid = $("select").val();
       console.log(docid);
       
-        $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+docid).success(function (data) {
+        $http.get('generatejson.php?docid='+docid).success(function (data) {
 			//$scope.gridOptions = {};
         $scope.gridOptions.data = data;
-        
+     
 
     });
   
@@ -157,11 +159,15 @@ $timeout(callAtTimeout, 3000);
     
     return item.properties[1].type;
 }); 
+
+$scope.stats = {};
+
  angular.forEach(countData, function(key,item) {
      $scope.labels.push(item);
      $scope.data.push(key);
+
 }); 
-  
+ console.log(countData);
   $scope.labels;
   $scope.data;
   
