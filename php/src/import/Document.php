@@ -135,6 +135,7 @@ class Document implements \IteratorAggregate {
 	 * 
 	 * @param int $limit
 	 * @param \utils\ProgressBar $progressBar
+	 * @return int number of proccessed tokens
 	 */
 	public function save($limit = 0, $progressBar = null){
 		$this->documentId = $this->PDO->
@@ -147,6 +148,7 @@ class Document implements \IteratorAggregate {
 				
 		$this->schema->save($this->documentId);
 		
+		$nn = 0;
 		foreach($this as $n => $token){
 			$token->save();
 			if($progressBar){
@@ -155,7 +157,9 @@ class Document implements \IteratorAggregate {
 			if($n > $limit && $limit > 0){
 				break;
 			}
+			$nn = $n + 1;
 		}
+		return $nn;
 	}
 	
 	/**

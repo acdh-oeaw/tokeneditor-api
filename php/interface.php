@@ -79,7 +79,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			$_FILES['schema']['tmp_name'],
 			filter_input(INPUT_POST, 'name')
 		);
-		$doc->save();
+		$n = $doc->save();
 		$query = $PDO->prepare("INSERT INTO documents_users (document_id, user_id) VALUES (?, ?)");
 		$query->execute(array(
 			$doc->getId(), 
@@ -90,7 +90,8 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 		echo json_encode(array(
 			'status' => 'OK',
 			'document_id' => $doc->getId(),
-			'name' => filter_input(INPUT_POST, 'name')
+			'name' => filter_input(INPUT_POST, 'name'),
+			'tokensCount' => $n
 		));
 	} catch (Exception $ex) {
 		exit(json_encode(array(
