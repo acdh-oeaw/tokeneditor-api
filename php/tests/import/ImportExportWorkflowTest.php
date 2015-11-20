@@ -15,11 +15,11 @@ class ImportExportWorkflowTest extends \PHPUnit_Framework_TestCase {
 	static private $PDO;
 	static private $validInPlace = <<<RES
 <?xml version="1.0" standalone="no"?>
-<TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><tei:w id="w1" lemma="aaa">Hello<type>aaa</type></tei:w><tei:w id="w2" lemma="aaa">World<type>aaa</type></tei:w><tei:w id="w3" lemma="aaa">!<type>aaa</type></tei:w></body></text></TEI>
+<TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><tei:w id="w1" lemma="aaa">Hello<type>bbb</type></tei:w><tei:w id="w2" lemma="ccc">World<type>ddd</type></tei:w><tei:w id="w3" lemma="eee">!<type>fff</type></tei:w></body></text></TEI>
 RES;
 	static private $validFull = <<<RES
 <?xml version="1.0" standalone="no"?>
-<TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><tei:w id="w1" lemma="Hello">Hello<type>NE<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>aaa</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></tei:w><tei:w id="w2" lemma="World">World<type>NN<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>aaa</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></tei:w><tei:w id="w3" lemma="!">!<type>$.<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>aaa</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></tei:w></body></text></TEI>
+<TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><tei:w id="w1" lemma="Hello">Hello<type>NE<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>bbb</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></tei:w><tei:w id="w2" lemma="World">World<type>NN<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>ddd</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>ccc</string></f></fs></tei:w><tei:w id="w3" lemma="!">!<type>$.<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>fff</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>eee</string></f></fs></tei:w></body></text></TEI>
 RES;
 
 	static public function setUpBeforeClass() {
@@ -44,9 +44,14 @@ RES;
 		$query->execute(array($docId));
 		$query = self::$PDO->prepare("
 			INSERT INTO values (document_id, property_xpath, token_id, user_id, value, date) 
-			SELECT document_id, property_xpath, token_id, 'test', 'aaa', now() FROM orig_values WHERE document_id = ?
+			SELECT document_id, property_xpath, token_id, 'test', ?, now() FROM orig_values WHERE document_id = ? AND property_xpath = ? AND token_id = ?
 		");
-		$query->execute(array($docId));
+		$query->execute(array('aaa', $docId, '@lemma', 1));
+		$query->execute(array('bbb', $docId, './type', 1));
+		$query->execute(array('ccc', $docId, '@lemma', 2));
+		$query->execute(array('ddd', $docId, './type', 2));
+		$query->execute(array('eee', $docId, '@lemma', 3));
+		$query->execute(array('fff', $docId, './type', 3));
 	}
 
 
