@@ -27,8 +27,12 @@
 namespace import;
 
 /**
- * Description of Token
- *
+ * Represents a token.
+ * In tokeneditor every document is as set of tokens and each token has the same
+ * set of properties (but of course property values may differ among tokens).
+ * 
+ * It is implemented on top of the \DOMElement class.
+ * 
  * @author zozlak
  */
 class Token {
@@ -52,6 +56,20 @@ class Token {
 	private $properties = array();
 	
 	/**
+	 * If the $dom->ownerDocument is a large \DOMDocument, please consider
+	 * detaching $dom from it before passing it to the constructor.
+	 * 
+	 * \DOMXPath is used internally to search for token's property values and as 
+	 * it can operate on \DOMDocument only, it is using $dom->ownerDocument. if 
+	 * this \DOMDocument is large, \DOMXPath will be slow, no matter how small 
+	 * and simple \DOMElement you are passing in $dom is.
+	 * 
+	 * Detaching is simple:
+	 *   $tmpDoc = new \DOMDocument();
+	 *   new Token($tmpDoc->importNode($dom, true), $myDoc);
+	 * 
+	 * What is important, detached tokens will still synchronize their content 
+	 * with parent document (by calling \import\Document->replaceToken())
 	 * 
 	 * @param type $xml
 	 * @param \import\Schema $schema
@@ -73,12 +91,10 @@ class Token {
 			}catch (\LengthException $e){}
 		}
 	}
-	
+
 	/**
-	 * 
-	 * @param \PDO $PDO
-	 * @param type $documentId
-	 * @param $tokenId
+	 * Saves token in the database
+	 * (db connection handle is taken from parent document)
 	 */
 	public function save(){
 		$PDO = $this->document->getPDO();
@@ -96,7 +112,6 @@ class Token {
 	
 	/**
 	 * 
-	 * @return \DOMNode
 	 */
 	public function update(){
 		$this->checkValuesQuery();
@@ -112,13 +127,11 @@ class Token {
 				}
 			}
 		}
-		
-		return $this->dom;
+		$this->document->getIterator(false)->replaceToken($this->tokenId - 1, $this->dom);
 	}
 	
 	/**
 	 * 
-	 * @return \DOMNode
 	 */
 	public function enrich(){
 		$this->checkValuesQuery();
@@ -141,8 +154,7 @@ class Token {
 				}
 			}
 		}
-		
-		return $this->dom;
+		$this->document->getIterator(false)->replaceToken($this->tokenId - 1, $this->dom);
 	}
 
 	private function checkValuesQuery(){
@@ -153,7 +165,9 @@ class Token {
 	}
 	
 	/**
-	 * 
+	 * Creates a \DOMNode representing TEI feature set
+	 * (as it is a lot of boilerplate code)
+	 *  
 	 * @return \DOMNode
 	 */
 	private function createTeiFeatureSet(){

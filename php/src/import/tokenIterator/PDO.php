@@ -106,7 +106,7 @@ class PDO extends TokenIterator {
 		throw new \BadMethodCallException('export() is not not implemented for this TokenIterator class');
 	}
 
-	public function replaceCurrentToken(\DOMNode $new) {
-		throw new \BadMethodCallException('replaceCurrentToken() is not not implemented for this TokenIterator class');
+	public function replaceToken($tokenId, \DOMNode $newToken) {
+		throw new \BadMethodCallException('replaceToken() is not not implemented for this TokenIterator class');
 	}
 }
