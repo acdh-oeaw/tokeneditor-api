@@ -122,7 +122,6 @@ class Token {
 	 */
 	public function enrich(){
 		$this->checkValuesQuery();
-		
 		foreach($this->properties as $xpath => $prop){
 			self::$valuesQuery->execute(array($this->document->getId(), $xpath, $this->tokenId));
 			while($value = self::$valuesQuery->fetch(\PDO::FETCH_OBJ)){

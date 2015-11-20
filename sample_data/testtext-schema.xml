@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<schema xmlns:tei="http://www.tei-c.org/ns/1.0">
+    <tokenXPath>//tei:w</tokenXPath>
+    <properties>
+        <property>
+            <propertyName>lemma</propertyName>
+            <propertyXPath>@lemma</propertyXPath>
+            <propertyType>free text</propertyType>
+        </property>
+        <property>
+            <propertyName>type</propertyName>
+            <propertyXPath>./type</propertyXPath>
+            <propertyType>free text</propertyType>
+        </property>
+    </properties>
+</schema>
