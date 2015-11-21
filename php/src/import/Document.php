@@ -173,14 +173,14 @@ class Document implements \IteratorAggregate {
 	public function export($replace = false, $path = null, $progressBar = null){
 		if($replace){
 			foreach($this as $token){
-				$token->update();
+				$this->tokenIterator->replaceCurrentToken($token->update());
 				if($progressBar){
 					$progressBar->next();
 				}
 			}
 		}else{
 			foreach($this as $token){
-				$token->enrich();
+				$this->tokenIterator->replaceCurrentToken($token->enrich());
 				if($progressBar){
 					$progressBar->next();
 				}
@@ -189,10 +189,8 @@ class Document implements \IteratorAggregate {
 		return $this->tokenIterator->export($path);
 	}
 
-	public function getIterator($new = true) {
-		if($new){
-			$this->tokenIterator = new $this->tokenIteratorClassName($this->datafile, $this);
-		}
+	public function getIterator() {
+		$this->tokenIterator = new $this->tokenIteratorClassName($this->datafile, $this);
 		return $this->tokenIterator;
 	}
 

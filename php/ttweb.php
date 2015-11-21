@@ -26,9 +26,9 @@
              <!--   <div class="alert alert-success"/>-->
                 <div class="formcontainer">
                     <div class="row clearfix">
-                        <form action="http://tokeneditor.hephaistos.arz.oeaw.ac.at/taggingservice/rest/files/ttweb" enctype="multipart/form-data" accept-charset="utf-8" method="post">
+                        <form action="https://ttweb.eos.arz.oeaw.ac.at/rest/files/ttweb" enctype="multipart/form-data" accept-charset="utf-8" method="post">
                       <!--  <form action="http://tokeneditor.hephaistos.arz.oeaw.ac.at/taggingservice/rest/files/ttweb" enctype="multipart/form-data" accept-charset="utf-8" method="post">
-<!--                        <form action="http://taggingservice.digital-humanities.at/" enctype="multipart/form-data" accept-charset="utf-8" method="post">
+                      <form action="http://taggingservice.digital-humanities.at/" enctype="multipart/form-data" accept-charset="utf-8" method="post">
                       <form action="http://clarin.aac.ac.at/tomcat/ttweb/rest/files/upload" enctype="multipart/form-data" accept-charset="utf-8" method="post">-->
                             <div class="col-md-12">
                            <!--     <div class="form-group">
