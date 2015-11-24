@@ -4,6 +4,11 @@
 	box-sizing: border-box;
     margin-top:0;}
 
+.ui-grid-row .ui-grid-cell {
+   background-color: inherit !important;
+}
+
+
 #container {
 	margin: 4rem auto 0;
 
@@ -231,7 +236,12 @@ text-transform: uppercase;
 box-shadow: 0 0 7px black;
 }
 .green {
-    background: #70FF70;
+    background: #66ff99;
+}
+
+
+.grey {
+    background: #c2c2d6;
 }
 
 .yellow {

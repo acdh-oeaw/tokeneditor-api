@@ -30,10 +30,15 @@
         <script type="text/javascript" src="js/TokenEditorImporter.js"></script>
         <script type="text/javascript" src="js/ui-bootstrap-tpls-0.14.3.min.js"></script>
         <link rel="stylesheet" href="js/angular-chartjs/angular-chart.css">
+		 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
     <script src="https://raw.githubusercontent.com/jashkenas/underscore/master/underscore.js"></script>
     <script>
         
     $(document).ready(function(){
+		$("#popup").click(function(){
+			$("#popup").hide();
+		});
       $("option").click(function(){
           
           $('#docids').text($(this).attr('value'));
@@ -44,8 +49,19 @@
             'document',
             function(data){
                 if(data.status == 'OK'){
-                    $('#docid').append('<option value="' + data.document_id + '">' + data.name + '</option>');
-                }
+                    $('#docid').append('<option ng-click="httprequest()" value="' + data.document_id + '">' + data.name + '</option>');
+					$('select').on('click','option:last',function(){angular.element($("#MainCtrl")).scope().httprequest()});
+					$('#imp').click();
+					$('#yf').click();
+					
+					 BootstrapDialog.show({
+            message: 'Your import was successful!'
+        });
+                } else { 
+				BootstrapDialog.show({
+            message: 'Something went wrong! Please check your input again.'
+        });
+		}
             }
         );
       
@@ -58,15 +74,27 @@
           
        
     </script>
+ <style>
+ #popup {
+	 
+	 width:200px;
+	 height:50px;
+    left: 0px;
+    top: 0px;
+    z-index: +1;
+	display:none;
+}
+ 
+ </style>
  
     </head>
     <body>
-         <div class="container" style="width:90%;"  ng-controller="MainCtrl" >
+         <div class="container" style="width:90%;" id="MainCtrl" ng-controller="MainCtrl" >
              <div class="row">
                 <div class="col-md-3">
                     <h3>Controls</h3>
                     <div class="panel panel-default">
-                            <div class="panel-heading" ng-init="collapsefiles = !collapsefiles" ng-click="collapsefiles = !collapsefiles">
+                            <div class="panel-heading" id="yf" ng-click="collapsefiles = !collapsefiles">
                                  <h4 class="panel-title">Your Files</h4>
                            </div>
                    
@@ -89,15 +117,16 @@
                         </select>
                         </div>
                         <div class="panel panel-default">
-                            <div class="panel-heading" ng-init="collapseimport = !collapseimport" ng-click="collapseimport = !collapseimport">
+                            <div class="panel-heading" id="imp"   ng-click="collapseimport = !collapseimport">
                                  <h4 class="panel-title">Import</h4>
                            </div>
                         <div collapse="collapseimport" id="import">
                         </div>
                         </div>
+						<div id="popup" class="modal-dialog"></div>
                         <!--      </form>-->
                         <div class="panel panel-default">
-                            <div class="panel-heading" ng-init="collapsestats = !collapsestats" ng-click="collapsestats = !collapsestats">
+                            <div class="panel-heading"  ng-click="collapsestats = !collapsestats">
                                  <h4 class="panel-title"> PoS Stats</h4>
                            </div>
                         
@@ -109,8 +138,8 @@
                                 </div>
                             </span>
                        </div>
-                       <div class="panel panel-default">
-                            <div class="panel-heading" ng-init="collapseexport = !collapseexport" ng-click="collapseexport = !collapseexport">
+                     <!--  <div class="panel panel-default">
+                            <div class="panel-heading"  ng-click="collapseexport = !collapseexport">
                                  <h4 class="panel-title">Export</h4>
                            </div>
                             <div collapse="collapseexport" id="export">
@@ -119,11 +148,22 @@
                                  <li><a href="">Updated Src-File</a></li>
                                 </ul>    
                             </div>
-                       </div>
+                       </div>-->
+					<!--   <div class="panel panel-default">
+                            <div class="panel-heading" ng-init="collapsestats2 = !collapseprogress" ng-click="collapseprogress = !collapseprogress">
+                                 <h4 class="panel-title">Progress</h4>
+                           </div>
+                            <div collapse="collapseprogress">
+                                <ul style="list-style:none;">
+                               
+								 <li></li>
+                                </ul>    
+                            </div>
+                       </div>-->
                     </div>
                 <div class="col-md-9">
                     <h3>tokenEditor</h3>
-                  <div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>
+                  <div id="grid1" style="height:500px;"  ui-grid="gridOptions"   gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>
              
               
                     </div>
