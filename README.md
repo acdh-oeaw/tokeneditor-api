@@ -37,6 +37,7 @@ Example Apache virtual host config for an Apache+Shibboleth config:
 It is also possible to make it work with an HTTP Digest authentication. In that case you should:
 - set up the `$CONFIG['userid']` variable to `HTTP_AUTHORIZATION` in the php/config-sample.inc.php
 - append php/config-sample.inc.php with
+
     ```
     $tmp = filter_input(INPUT_SERVER, $CONFIG['userid']);
     if(preg_match('/^Digest username/', $tmp)){
