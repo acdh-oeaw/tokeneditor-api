@@ -151,7 +151,7 @@
                        <div class="panel-body"  collapse="collapseinfo">
                          <h3>How to use</h3>
                          <h4>Import</h4>
-                         <p>Import your XML-File (<a href="">demofile</a>) and your schema (<a href="tokeneditor-schema.xml">demofile</a>) for the tokeneditor.
+                         <p>Import your XML-File (<a href="../sample_data/HausamSee.xml">demofile</a>) and your schema (<a href="../sampleData/tokeneditor-schema.xml">demofile</a>) for the tokeneditor.
                              For producing the needed XML from plain text please go to the <a href="https://ttweb.eos.arz.oeaw.ac.at/">TreeTagger Web Interface</a>.
                         <h4>Loading data</h4>
                         <p>After the successful import you can see your file in the "Your Files" panel.<br/>
