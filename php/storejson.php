@@ -21,13 +21,16 @@ $propofchangedval = $result["changedproperty"];
  echo "INSERT INTO values (document_id,property_xpath,token_id,user_id,value) VALUES (".$documentId.",'@".key($item)."',".$tokenId.",'".$userid."','".$item[key($item)]."')";
 
 }*/
+$lookup = $con->prepare("SELECT document_id,property_xpath,token_id,user_id FROM values where document_id = ? AND property_xpath = ? AND token_id = ? AND user_id = ?");
+$lookupquery->execute(array($documentId, '@'.$propofchangedval, $tokenId, $userid));
+if (num_rows($lookupquery)== 0) {
 $query = $con->prepare("INSERT INTO values (document_id,property_xpath,token_id,user_id,value) VALUES (?, ?, ?, ?, ?)"); 
-/*foreach ($propertyxpath as $item){ */
+} else {
+    $query = $con->prepare("UPDATE values SET document_id = ?,property_xpath = ?,token_id = ?,user_id = ?,value = ?"); 
+}
 
 $query->execute(array($documentId, '@'.$propofchangedval, $tokenId, $userid, $changedvalue));
-/*};*/
 
-//var_dump($result);
 
 //var_dump($propertyxpath]);
 		
