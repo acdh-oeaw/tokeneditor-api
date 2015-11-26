@@ -8,7 +8,7 @@ $documentId = $result['document_id'];
 $tokenId = $result['token_id'];
 //*$propertyxpath = $result["properties"];
 $changedvalue = $result["value"];
-$propofchangedval = $result["changedproperty"];
+$propofchangedval = "@".$result["changedproperty"];
 
 //$lemma = $item['lemma'];
 //$query = "INSERT INTO values ($documentId, $tokenId, @lemma, $lemma) VALUES (?, ?, ?, ?)";
@@ -21,13 +21,23 @@ $propofchangedval = $result["changedproperty"];
  echo "INSERT INTO values (document_id,property_xpath,token_id,user_id,value) VALUES (".$documentId.",'@".key($item)."',".$tokenId.",'".$userid."','".$item[key($item)]."')";
 
 }*/
-$query = $con->prepare("INSERT INTO values (document_id,property_xpath,token_id,user_id,value) VALUES (?, ?, ?, ?, ?)"); 
-/*foreach ($propertyxpath as $item){ */
+    $lookup = $con->prepare("SELECT document_id,property_xpath,token_id,user_id FROM values where document_id = ? AND property_xpath = ? AND token_id = ? AND user_id = ?");
+    $lookup->execute(array($documentId, $propofchangedval, $tokenId, $userid));
+    $resultlkup = $lookup->fetch(PDO::FETCH_COLUMN);
+   
+    if ($resultlkup > 0) {
+        $updquery = $con->prepare("UPDATE values SET value = ? WHERE document_id = ? AND property_xpath = ? AND token_id = ? AND user_id = ?"); 
+     $updquery->execute(array($changedvalue, $documentId, $propofchangedval, $tokenId, $userid));
+        
+}   else {
+      
+      $query = $con->prepare("INSERT INTO values (document_id,property_xpath,token_id,user_id,value) VALUES (?, ?, ?, ?, ?)"); 
+     //   $query->execute(array($documentId, '@'.$propofchangedval, $tokenId, $userid, $changedvalue));
+         $query->execute(array($documentId, $propofchangedval, $tokenId, $userid, $changedvalue));
+     
+}
 
-$query->execute(array($documentId, '@'.$propofchangedval, $tokenId, $userid, $changedvalue));
-/*};*/
 
-//var_dump($result);
 
 //var_dump($propertyxpath]);
 		

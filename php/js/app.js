@@ -37,7 +37,7 @@
                   $scope.refreshstats();
                   $http({
                       method: 'POST',
-                      url: 'https://clarin.oeaw.ac.at/tokenEditor/storejson.php?docid=' + $("#docids").text(),
+                      url: 'storejson.php?docid=' + $("#docids").text(),
                       data:JSON.stringify(postdata),
                       headers: { "Content-Type": "application/json" }
                       })
