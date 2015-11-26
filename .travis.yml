@@ -18,5 +18,5 @@ before_script:
   - mkdir -p build/logs
 
 after_success:
-  - sh -c 'php vendor/bin/coveralls -v'
+  - php vendor/bin/coveralls -v
 
