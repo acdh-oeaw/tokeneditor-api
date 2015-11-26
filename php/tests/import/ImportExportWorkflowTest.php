@@ -99,7 +99,7 @@ RES;
 		$this->assertEquals(trim(self::$validInPlace), trim($doc->export(true)));
 	}
 
-	public function testPDO(){
+/*	public function testPDO(){
 		$doc = new Document(self::$PDO);
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test', Document::PDO);
 		$doc->save();
@@ -110,7 +110,7 @@ RES;
 		$doc = new Document(self::$PDO);
 		$doc->loadDb($docId);
 		$this->assertEquals(trim(self::$validInPlace), trim($doc->export(true)));
-	}
+	}*/
 	
 	public function testDOMDocument(){
 		$doc = new Document(self::$PDO);
