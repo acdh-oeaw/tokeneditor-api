@@ -2,8 +2,8 @@
 
 namespace import;
 
-require_once '../src/utils/ClassLoader.php';
-new \utils\ClassLoader('../src');
+require_once 'utils/ClassLoader.php';
+new \utils\ClassLoader('php/src');
 
 /**
  * Description of ImportExportWorkflowTest
@@ -19,7 +19,7 @@ class ImportExportWorkflowTest extends \PHPUnit_Framework_TestCase {
 RES;
 	static private $validFull = <<<RES
 <?xml version="1.0" standalone="no"?>
-<TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><tei:w id="w1" lemma="Hello">Hello<type>NE<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>bbb</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></tei:w><tei:w id="w2" lemma="World">World<type>NN<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>ddd</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>ccc</string></f></fs></tei:w><tei:w id="w3" lemma="!">!<type>$.<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>fff</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>2015-11-20</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>eee</string></f></fs></tei:w></body></text></TEI>
+<TEI xmlns:tei="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><tei:w id="w1" lemma="Hello">Hello<type>NE<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>bbb</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></tei:w><tei:w id="w2" lemma="World">World<type>NN<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>ddd</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>ccc</string></f></fs></tei:w><tei:w id="w3" lemma="!">!<type>$.<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./type</string></f><f name="value"><string>fff</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>eee</string></f></fs></tei:w></body></text></TEI>
 RES;
 
 	static public function setUpBeforeClass() {
@@ -29,6 +29,7 @@ RES;
 		self::$PDO->query("TRUNCATE documents CASCADE");
 		self::$PDO->query("TRUNCATE users CASCADE");
 		self::$PDO->query("INSERT INTO users VALUES ('test')");
+		self::$validFull = str_replace('%DATE', date('Y-m-d'), self::$validFull);
 	}
 	
 	public static function tearDownAfterClass(){
@@ -57,7 +58,7 @@ RES;
 
 	public function testDefaultInPlace(){
 		$doc = new Document(self::$PDO);
-		$doc->loadFile('../../sample_data/testtext.xml', '../../sample_data/testtext-schema.xml', 'test');
+		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test');
 		$doc->save();
 		$docId = $doc->getId();
 		
@@ -71,7 +72,7 @@ RES;
 	
 	public function testDefaultFull(){
 		$doc = new Document(self::$PDO);
-		$doc->loadFile('../../sample_data/testtext.xml', '../../sample_data/testtext-schema.xml', 'test');
+		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test');
 		$doc->save();
 		$docId = $doc->getId();
 		
@@ -87,7 +88,7 @@ RES;
 
 	public function testXMLReader(){
 		$doc = new Document(self::$PDO);
-		$doc->loadFile('../../sample_data/testtext.xml', '../../sample_data/testtext-schema.xml', 'test', Document::XML_READER);
+		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test', Document::XML_READER);
 		$doc->save();
 		$docId = $doc->getId();
 		
@@ -100,7 +101,7 @@ RES;
 
 	public function testPDO(){
 		$doc = new Document(self::$PDO);
-		$doc->loadFile('../../sample_data/testtext.xml', '../../sample_data/testtext-schema.xml', 'test', Document::PDO);
+		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test', Document::PDO);
 		$doc->save();
 		$docId = $doc->getId();
 		
@@ -113,7 +114,7 @@ RES;
 	
 	public function testDOMDocument(){
 		$doc = new Document(self::$PDO);
-		$doc->loadFile('../../sample_data/testtext.xml', '../../sample_data/testtext-schema.xml', 'test', Document::DOM_DOCUMENT);
+		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test', Document::DOM_DOCUMENT);
 		$doc->save();
 		$docId = $doc->getId();
 		

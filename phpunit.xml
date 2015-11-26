@@ -1,0 +1,8 @@
+<phpunit colors="true" strict="true" verbose="true">
+	<php>
+		<includePath>php/src</includePath>
+	</php>
+	<testsuite name="Interface tests">
+		<directory>php/tests/import/</directory>
+	</testsuite>
+</phpunit>

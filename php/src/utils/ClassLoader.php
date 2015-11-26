@@ -37,7 +37,7 @@ class ClassLoader{
 		$this->baseDir = (string)$baseDir;
 		
 		if(!is_dir($this->baseDir)){
-			throw new RuntimeException($this->baseDir . ' is no a valid directory');
+			throw new \RuntimeException($this->baseDir . ' is no a valid directory');
 		}
 		spl_autoload_register(array($this, 'loadClass'));
 	}
