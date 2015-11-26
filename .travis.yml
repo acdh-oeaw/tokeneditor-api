@@ -1,3 +1,14 @@
 language: php
 php:
   - 5.5
+
+services:
+  - postgresql
+
+addons:
+  postgresql: "9.3"
+  
+before_script:
+  - createuser -U postgres root
+  - createdb -U postgres -O root tokeneditor
+
