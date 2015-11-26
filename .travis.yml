@@ -11,4 +11,5 @@ addons:
 before_script:
   - createuser -U postgres root
   - createdb -U postgres -O root tokeneditor
+  - psql -f db_schema.sql tokeneditor
 
