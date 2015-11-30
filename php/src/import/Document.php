@@ -157,23 +157,23 @@ class Document implements \IteratorAggregate {
 	
 	/**
 	 * 
-	 * @param string $path path to the file where document will be xported
 	 * @param boolean $replace If true, changes will be made in-place 
 	 *   (taking the most current value provided by usesrs as the right one). 
 	 *   If false, review results will be provided as TEI <fs> elements
+	 * @param string $path path to the file where document will be xported
 	 * @param type $progressBar
 	 */
 	public function export($replace = false, $path = null, $progressBar = null){
 		if($replace){
 			foreach($this as $token){
-				$this->tokenIterator->replaceCurrentToken($token->update());
+				$token->update();
 				if($progressBar){
 					$progressBar->next();
 				}
 			}
 		}else{
 			foreach($this as $token){
-				$this->tokenIterator->replaceCurrentToken($token->enrich());
+				$token->enrich();
 				if($progressBar){
 					$progressBar->next();
 				}
@@ -184,6 +184,14 @@ class Document implements \IteratorAggregate {
 
 	public function getIterator() {
 		$this->tokenIterator = new $this->tokenIteratorClassName($this->datafile, $this);
+		return $this->tokenIterator;
+	}
+	
+	/**
+	 * 
+	 * @return \import\tokenIterator\TokenInterator
+	 */
+	public function getTokenIterator(){
 		return $this->tokenIterator;
 	}
 

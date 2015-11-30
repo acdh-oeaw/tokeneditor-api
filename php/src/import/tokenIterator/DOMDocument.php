@@ -69,9 +69,13 @@ class DOMDocument extends TokenIterator {
 		$this->next();
 	}
 	
-	public function replaceCurrentToken(\DOMNode $new){
-		$old = $this->tokens->item($this->pos);
-		$new = $this->dom->importNode($new, true);
+	/**
+	 * 
+	 * @param \import\Token $new
+	 */
+	public function replaceToken(\import\Token $new){
+		$old = $this->tokens->item($new->getId() - 1);
+		$new = $this->dom->importNode($new->getNode(), true);
 		$old->parentNode->replaceChild($new, $old);
 	}
 	

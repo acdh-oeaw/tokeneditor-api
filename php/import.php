@@ -18,9 +18,9 @@ $save = true;
 // allows to limit number of processed tokens (put 0 to process all)
 $limit = 0; 
 // path to the XML file describing schema
-$schemaPath = '../sample_data/testcases-rm-toks-schema.xml';
+$schemaPath = '../sample_data/testtext-schema.xml';
 // path to the XML file with data
-$dataPath   = '../sample_data/testcases-rm-toks.xml';
+$dataPath   = '../sample_data/testtext.xml';
 
 //$schemaPath = '../sample_data/testcases-rm-toks-schema.xml';
 //$dataPath   = '../sample_data/testcases-rm-toks.xml';

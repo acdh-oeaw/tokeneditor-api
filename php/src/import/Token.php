@@ -46,8 +46,8 @@ class Token {
 	
 	/**
 	 * 
-	 * @param type $xml
-	 * @param \import\Schema $schema
+	 * @param \DOMElement $dom
+	 * @param \import\Document $document
 	 * @throws \LengthException
 	 */
 	public function __construct(\DOMElement $dom, Document $document){
@@ -59,6 +59,9 @@ class Token {
 		foreach($this->document->getSchema() as $prop){
 			try{
 				$value = $xpath->query($prop->getXPath(), $dom);
+				foreach($this->document->getSchema()->getNs() as $prefix => $ns){
+					$xpath->registerNamespace($prefix, $ns);
+				}
 				if($value->length != 1){
 					throw new \LengthException('property not found or many properties found');
 				}
@@ -89,7 +92,7 @@ class Token {
 	
 	/**
 	 * 
-	 * @return \DOMNode
+	 * @return boolean
 	 */
 	public function update(){
 		$this->checkValuesQuery();
@@ -106,12 +109,12 @@ class Token {
 			}
 		}
 		
-		return $this->dom;
+		return $this->updateDocument();
 	}
 	
 	/**
 	 * 
-	 * @return \DOMNode
+	 * @return boolean
 	 */
 	public function enrich(){
 		$this->checkValuesQuery();
@@ -136,14 +139,44 @@ class Token {
 			}
 		}
 		
-		return $this->dom;
+		return $this->updateDocument();
 	}
 
+	/**
+	 * 
+	 * @return \DOMNode
+	 */
+	public function getNode(){
+		return $this->dom;
+	}
+	
+	/**
+	 * 
+	 * @return int
+	 */
+	public function getId(){
+		return $this->tokenId;
+	}
+	
+	/**
+	 * 
+	 */
 	private function checkValuesQuery(){
 		if(self::$valuesQuery === null){
 			self::$valuesQuery = $this->document->getPDO()->
 				prepare("SELECT user_id, value, date FROM values WHERE (document_id, property_xpath, token_id) = (?, ?, ?) ORDER BY date DESC");
 		}
+	}
+	
+	/**
+	 * 
+	 */
+	private function updateDocument(){
+		try{
+			$this->document->getTokenIterator()->replaceToken($this);
+			return true;
+		} catch (\BadMethodCallException $ex) {}
+		return false;
 	}
 	
 	/**

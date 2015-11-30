@@ -49,6 +49,14 @@ class XMLReader extends TokenIterator {
 			throw new \RuntimeException('Token XPath is too complicated for XMLReader');
 		}
 		$this->tokenXPath = mb_substr($tokenXPath, 2);
+		$nsPrefixPos = mb_strpos($this->tokenXPath, ':');
+		if($nsPrefixPos !== false){
+			$prefix = mb_substr($this->tokenXPath, 0, $nsPrefixPos);
+			$ns = $this->document->getSchema()->getNs();
+			if(isset($ns[$prefix])){
+				$this->tokenXPath = $ns[$prefix] . mb_substr($this->tokenXPath, $nsPrefixPos);
+			}
+		}
 	}
 	
 	/**
@@ -59,10 +67,14 @@ class XMLReader extends TokenIterator {
 		$this->token = false;
 		do{
 			$res = $this->reader->read();
-		}while(
-			($this->reader->nodeType != \XMLReader::ELEMENT || $this->reader->name != $this->tokenXPath) 
-			&& $res
-		);
+			$name = null;
+			if($this->reader->nodeType === \XMLReader::ELEMENT){
+				$nsPrefixPos = mb_strpos($this->reader->name, ':');
+				$name = 
+					($this->reader->namespaceURI ? $this->reader->namespaceURI . ':' : '') .
+					($nsPrefixPos ? mb_substr($this->reader->name, $nsPrefixPos + 1) : $this->reader->name);
+			}
+		}while($res && $name !== $this->tokenXPath);
 		if($res){
 			$tokenDom = new \DOMDocument();
 			$tokenDom->loadXml($this->reader->readOuterXml());
@@ -79,11 +91,21 @@ class XMLReader extends TokenIterator {
 		$this->next();
 	}
 	
+	/**
+	 * 
+	 * @param type $path
+	 * @throws \BadMethodCallException
+	 */
 	public function export($path) {
 		throw new \BadMethodCallException('export() is not not implemented for this TokenIterator class');
 	}
 
-	public function replaceCurrentToken(\DOMNode $new) {
-		throw new \BadMethodCallException('replaceCurrentToken() is not not implemented for this TokenIterator class');
+	/**
+	 * 
+	 * @param \import\Token $new
+	 * @throws \BadMethodCallException
+	 */
+	public function replaceToken(\import\Token $new) {
+		throw new \BadMethodCallException('replaceToken() is not not implemented for this TokenIterator class');
 	}
 }

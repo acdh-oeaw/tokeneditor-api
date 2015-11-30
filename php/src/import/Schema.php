@@ -67,19 +67,25 @@ class Schema implements \IteratorAggregate {
 			$this->properties[] = new Property($i);
 		}
 		
-		$this->namespaces = $dom->getDocNamespaces();
+		if(isset($dom->namespaces) && isset($dom->namespaces->namespace)){
+			foreach($dom->namespaces->namespace as $i){
+				$this->namespaces[(string)$i->prefix[0]] = (string)$i->uri[0];
+			}
+		}
 	}
 	
 	public function loadDb($documentId){
 		$this->documentId = $documentId;
 		
-		$schema = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><schema';
+		$schema = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><schema>';
+
+		$schema .= '<namespaces>';
 		$query = $this->PDO->prepare("SELECT prefix, ns FROM documents_namespaces WHERE document_id = ?");
 		$query->execute(array($this->documentId));
 		while($ns = $query->fetch(\PDO::FETCH_OBJ)){
-			$schema .= ' xmlns:' . $ns->prefix . '="' . $ns->ns . '"';
+			$schema .= '<namespace><prefix>' . $ns->prefix . '</prefix><uri>' . $ns->ns . '</uri></namespace>';
 		}
-		$schema .= '>';
+		$schema .= '</namespaces>';
 		
 		$query = $this->PDO->prepare("SELECT token_xpath FROM documents WHERE document_id = ?");
 		$query->execute(array($this->documentId));
@@ -126,7 +132,7 @@ class Schema implements \IteratorAggregate {
 	 * @return array
 	 */
 	public function getNs(){
-		return $this->tokenXPath->getDocNamespaces();
+		return $this->namespaces;
 	}
 	
 	/**

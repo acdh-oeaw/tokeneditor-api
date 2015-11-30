@@ -6,14 +6,15 @@
  * - assure proper database connection settings in config.inc.php
  * - set up configuration variables in lines 13-18
  * - run script from the command line 'php export.php'
- */require_once 'src/utils/ClassLoader.php';
+ */
+require_once 'src/utils/ClassLoader.php';
 new utils\ClassLoader();
 require_once 'config.inc.php';
 
 // document id in the tokeneditor database (see the documents table)
-$documentId = 64;
+$documentId = 313;
 // replate properties values in-place or add full <fs> structures
-$inPlace = false;
+$inPlace = true;
 // path to the export file to create
 $exportPath = '../sample_data/export.xml';
 
