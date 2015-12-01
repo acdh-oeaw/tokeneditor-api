@@ -15,7 +15,7 @@
         </property>
         <property>
             <propertyName>type</propertyName>
-            <propertyXPath>./type</propertyXPath>
+            <propertyXPath>./tei:type</propertyXPath>
             <propertyType>free text</propertyType>
         </property>
     </properties>
