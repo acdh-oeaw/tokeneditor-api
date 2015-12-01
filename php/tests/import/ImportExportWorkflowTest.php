@@ -55,13 +55,19 @@ RES;
 		$query->execute(array('fff', $docId, './tei:type', 3));
 	}
 
-
+	protected function checkImport($docId){
+		$query = self::$PDO->prepare("SELECT count(*) FROM orig_values WHERE document_id = ?");
+		$query->execute(array($docId));
+		$this->assertEquals(6, $query->fetch(\PDO::FETCH_COLUMN));
+	}
+	
 	public function testDefaultInPlace(){
 		$doc = new Document(self::$PDO);
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test');
 		$doc->save();
 		$docId = $doc->getId();
 		
+		$this->checkImport($docId);
 		$this->insertValues($docId);
 		
 		$doc = new Document(self::$PDO);
@@ -75,7 +81,8 @@ RES;
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test');
 		$doc->save();
 		$docId = $doc->getId();
-		
+
+		$this->checkImport($docId);
 		$this->insertValues($docId);
 		
 		$doc = new Document(self::$PDO);
@@ -92,6 +99,7 @@ RES;
 		$doc->save();
 		$docId = $doc->getId();
 		
+		$this->checkImport($docId);
 		$this->insertValues($docId);
 		
 		$doc = new Document(self::$PDO);
@@ -105,6 +113,7 @@ RES;
 		$doc->save();
 		$docId = $doc->getId();
 		
+		$this->checkImport($docId);
 		$this->insertValues($docId);
 		
 		$doc = new Document(self::$PDO);
@@ -118,6 +127,7 @@ RES;
 		$doc->save();
 		$docId = $doc->getId();
 		
+		$this->checkImport($docId);
 		$this->insertValues($docId);
 		
 		$doc = new Document(self::$PDO);
