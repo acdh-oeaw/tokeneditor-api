@@ -172,11 +172,7 @@ class Token {
 	 * 
 	 */
 	private function updateDocument(){
-		try{
-			$this->document->getTokenIterator()->replaceToken($this);
-			return true;
-		} catch (\BadMethodCallException $ex) {}
-		return false;
+		$this->document->getTokenIterator()->replaceToken($this);
 	}
 	
 	/**

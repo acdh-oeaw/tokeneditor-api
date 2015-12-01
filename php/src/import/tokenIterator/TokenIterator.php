@@ -32,6 +32,10 @@ abstract class TokenIterator implements \Iterator {
 	protected $document;
 	protected $xml;
 	protected $pos;
+	/**
+	 *
+	 * @var type \import\Token
+	 */
 	protected $token = false;
 
 	/**

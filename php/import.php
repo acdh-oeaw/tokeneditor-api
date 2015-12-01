@@ -14,7 +14,7 @@ require_once 'config.inc.php';
 // token iterator class; if you do not know it, set to NULL
 $iterator = import\Document::XML_READER;
 // if processed data should be stored in the database
-$save = true; 
+$save = false; 
 // allows to limit number of processed tokens (put 0 to process all)
 $limit = 0; 
 // path to the XML file describing schema

@@ -35,6 +35,7 @@ class Document implements \IteratorAggregate {
 	private $PDO;
 	private $tokenIteratorClassName;
 	private $tokenIterator;
+	private $exportFlag;
 
 	private $documentId;
 	private $tokenId = 0;
@@ -63,13 +64,13 @@ class Document implements \IteratorAggregate {
 			$this->chooseTokenIterator();
 		}else{
 			if(!in_array($iteratorClass, array(self::DOM_DOCUMENT, self::XML_READER, self::PDO))){
-				throw new \InvalidArgumentException('tokenIteratorClass should be one of import\Datafile::DOM_DOCUMENT, import\Datafile::XML_READER or import\Datafile::PDO');
+				throw new \InvalidArgumentException('tokenIteratorClass should be one of \import\Datafile::DOM_DOCUMENT, \import\Datafile::XML_READER or \import\Datafile::PDO');
 			}
 			$this->tokenIteratorClassName = $iteratorClass;
 		}
 	}
 	
-	public function loadDb($documentId){
+	public function loadDb($documentId, $iteratorClass = self::DOM_DOCUMENT){
 		$this->documentId = $documentId;
 		$this->schema->loadDb($this->documentId);
 		
@@ -80,7 +81,10 @@ class Document implements \IteratorAggregate {
 		$query = $this->PDO->prepare("SELECT xml FROM documents WHERE document_id = ?");
 		$this->datafile = new \utils\readContent\ReadContentDb($query, array($this->documentId));
 		
-		$this->tokenIteratorClassName = self::DOM_DOCUMENT;
+		if(!in_array($iteratorClass, array(self::DOM_DOCUMENT, self::XML_READER))){
+			throw new \InvalidArgumentException('tokenIteratorClass should be one of \import\Datafile::DOM_DOCUMENT or \import\Datafile::XML_READER');
+		}
+		$this->tokenIteratorClassName = $iteratorClass;
 	}
 	
 	/**
@@ -164,6 +168,7 @@ class Document implements \IteratorAggregate {
 	 * @param type $progressBar
 	 */
 	public function export($replace = false, $path = null, $progressBar = null){
+		$this->exportFlag = true;
 		if($replace){
 			foreach($this as $token){
 				$token->update();
@@ -183,7 +188,8 @@ class Document implements \IteratorAggregate {
 	}
 
 	public function getIterator() {
-		$this->tokenIterator = new $this->tokenIteratorClassName($this->datafile, $this);
+		$this->tokenIterator = new $this->tokenIteratorClassName($this->datafile, $this, $this->exportFlag);
+		$this->exportFlag = false;
 		return $this->tokenIterator;
 	}
 	

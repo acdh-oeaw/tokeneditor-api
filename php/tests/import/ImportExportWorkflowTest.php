@@ -15,11 +15,11 @@ class ImportExportWorkflowTest extends \PHPUnit_Framework_TestCase {
 	static private $PDO;
 	static private $validInPlace = <<<RES
 <?xml version="1.0" standalone="no"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><w id="w1" lemma="aaa">Hello<type>bbb</type></w><w id="w2" lemma="ccc">World<type>ddd</type></w><w id="w3" lemma="eee">!<type>fff</type></w></body></text></TEI>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"><!--sample comment--><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><w id="w1" lemma="aaa">Hello<type>bbb</type></w><w id="w2" lemma="ccc">World<type>ddd</type></w><w id="w3" lemma="eee">!<type>fff</type></w></body></text></TEI>
 RES;
 	static private $validFull = <<<RES
 <?xml version="1.0" standalone="no"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0"><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><w id="w1" lemma="Hello">Hello<type>NE<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>bbb</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></w><w id="w2" lemma="World">World<type>NN<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>ddd</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>ccc</string></f></fs></w><w id="w3" lemma="!">!<type>$.<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>fff</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>eee</string></f></fs></w></body></text></TEI>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"><!--sample comment--><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><w id="w1" lemma="Hello">Hello<type>NE<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>bbb</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></w><w id="w2" lemma="World">World<type>NN<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>ddd</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>ccc</string></f></fs></w><w id="w3" lemma="!">!<type>$.<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>fff</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>eee</string></f></fs></w></body></text></TEI>
 RES;
 
 	static public function setUpBeforeClass() {
@@ -103,8 +103,10 @@ RES;
 		$this->insertValues($docId);
 		
 		$doc = new Document(self::$PDO);
-		$doc->loadDb($docId);
-		$this->assertEquals(trim(self::$validInPlace), trim($doc->export(true)));
+		$doc->loadDb($docId, Document::XML_READER);
+		$res = trim($doc->export(true));
+		$res = str_replace('w xmlns="http://www.tei-c.org/ns/1.0"', 'w', $res);
+		$this->assertEquals(trim(self::$validInPlace), $res);
 	}
 
 	public function testPDO(){

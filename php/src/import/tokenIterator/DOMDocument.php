@@ -36,8 +36,8 @@ class DOMDocument extends TokenIterator {
 	 * 
 	 * @param type $path
 	 */
-	public function __construct($path, \import\Document $document) {
-		parent::__construct($path, $document);
+	public function __construct(\utils\readContent\ReadContentInterface $xml, \import\Document $document) {
+		parent::__construct($xml, $document);
 	}
 	
 	/**

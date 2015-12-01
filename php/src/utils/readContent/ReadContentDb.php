@@ -32,9 +32,12 @@ namespace utils\readContent;
  * @author zozlak
  */
 class ReadContentDb implements ReadContentInterface {
+	static public $tmpDir = '/tmp/';
+	
 	private $query;
 	private $param;
 	private $fetchStyle;
+	private $path;
 	
 	/**
 	 * 
@@ -47,13 +50,25 @@ class ReadContentDb implements ReadContentInterface {
 		$this->fetchStyle = $fetchStyle;
 	}
 	
+	public function __destruct() {
+		if($this->path !== null){
+			unlink($this->path);
+		}
+	}
+
+
 	public function read(){
 		$this->query->execute($this->param);
 		return $this->query->fetch($this->fetchStyle);
 	}
 
+	/**
+	 * The only way to do it is to gather data from database and store them
+	 * in a temporary file
+	 */
 	public function getPath() {
-		throw new \BadMethodCallException('ReadContentDb does not support getPath()');
+		$this->path = tempnam(sys_get_temp_dir(), '');
+		file_put_contents($this->path, $this->read());
+		return $this->path;
 	}
-
 }
