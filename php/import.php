@@ -21,6 +21,8 @@ $limit = 0;
 $schemaPath = '../sample_data/testtext-schema.xml';
 // path to the XML file with data
 $dataPath   = '../sample_data/testtext.xml';
+// path to the directory where imported XMLs are stored
+$saveDir = 'docStorage';
 
 //$schemaPath = '../sample_data/testcases-rm-toks-schema.xml';
 //$dataPath   = '../sample_data/testcases-rm-toks.xml';
@@ -41,7 +43,7 @@ $pb = new utils\ProgressBar(null, 10);
 
 $doc = new import\Document($PDO);
 $doc->loadFile($dataPath, $schemaPath, $name, $iterator);
-$doc->save($limit, $pb);
+$doc->save($saveDir, $limit, $pb);
 
 if($save){
 	$PDO->commit();

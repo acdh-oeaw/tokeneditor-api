@@ -1,9 +1,13 @@
 /nbproject
 /php/config.inc.php
 /sample_data/SwissProt.xml
+/sample_data/export.xml
+/sample_data/baffle*
 /doc
 /php/apigility
 .bash*
 .vim*
 /.gitconfig
 /.ssh
+/php/docStorage
+/build

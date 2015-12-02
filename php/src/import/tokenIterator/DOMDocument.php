@@ -36,8 +36,8 @@ class DOMDocument extends TokenIterator {
 	 * 
 	 * @param type $path
 	 */
-	public function __construct(\utils\readContent\ReadContentInterface $xml, \import\Document $document) {
-		parent::__construct($xml, $document);
+	public function __construct($xmlPath, \import\Document $document) {
+		parent::__construct($xmlPath, $document);
 	}
 	
 	/**
@@ -59,7 +59,7 @@ class DOMDocument extends TokenIterator {
 	public function rewind() {
 		$this->dom = new \DOMDocument();
 		$this->dom->preserveWhiteSpace = false;
-		$this->dom->LoadXML($this->xml->read());
+		$this->dom->LoadXML(file_get_contents($this->xmlPath));
 		$xpath = new \DOMXPath($this->dom);
 		foreach($this->document->getSchema()->getNs() as $prefix => $ns){
 			$xpath->registerNamespace($prefix, $ns);

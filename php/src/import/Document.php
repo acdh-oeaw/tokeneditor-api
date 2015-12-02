@@ -29,7 +29,7 @@ class Document implements \IteratorAggregate {
 	const XML_READER = '\import\tokenIterator\XMLReader';
 	const PDO = '\import\tokenIterator\PDO';
 
-	private $datafile;
+	private $path;
 	private $name;
 	private $schema;
 	private $PDO;
@@ -55,7 +55,7 @@ class Document implements \IteratorAggregate {
 		if(!is_file($filePath)){
 			throw new \RuntimeException($filePath . ' is not a valid file');
 		}
-		$this->datafile = new \utils\readContent\ReadContentFile($filePath);
+		$this->path = $filePath;
 		$this->name = $name;
 		$this->schema->loadFile($schemaPath);
 		$this->chooseTokenIterator();
@@ -74,12 +74,16 @@ class Document implements \IteratorAggregate {
 		$this->documentId = $documentId;
 		$this->schema->loadDb($this->documentId);
 		
-		$query = $this->PDO->prepare("SELECT name FROM documents WHERE document_id = ?");
+		$query = $this->PDO->prepare("SELECT name, save_path, hash FROM documents WHERE document_id = ?");
 		$query->execute(array($this->documentId));
-		$this->name = $query->fetch(\PDO::FETCH_COLUMN);
-
-		$query = $this->PDO->prepare("SELECT xml FROM documents WHERE document_id = ?");
-		$this->datafile = new \utils\readContent\ReadContentDb($query, array($this->documentId));
+		$data = $query->fetch(\PDO::FETCH_OBJ);
+		$this->name = $data->name;
+		$this->path = $data->save_path;
+		
+		$hash = md5_file($this->path);
+		if($hash !== $data->hash){
+			throw new \RuntimeException('Raw document XML file changed since import');
+		}
 		
 		if(!in_array($iteratorClass, array(self::DOM_DOCUMENT, self::XML_READER))){
 			throw new \InvalidArgumentException('tokenIteratorClass should be one of \import\Datafile::DOM_DOCUMENT or \import\Datafile::XML_READER');
@@ -134,14 +138,18 @@ class Document implements \IteratorAggregate {
 	 * @param \utils\ProgressBar $progressBar
 	 * @return int number of proccessed tokens
 	 */
-	public function save($limit = 0, $progressBar = null){
+	public function save($saveDir, $limit = 0, $progressBar = null){
 		$this->documentId = $this->PDO->
 			query("SELECT nextval('document_id_seq')")->
 			fetchColumn();
 		
-		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, name, xml) VALUES (?, ?, ?, ?)");
-		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->name, preg_replace('/^[^<]+/', '', $this->datafile->read())));
+		$savePath = $saveDir . '/' . $this->documentId . '.xml';
+		copy($this->path, $savePath);
+		
+		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, name, save_path, hash) VALUES (?, ?, ?, ?, ?)");
+		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->name, $savePath, md5_file($savePath)));
 		unset($query); // free memory
+		
 				
 		$this->schema->save($this->documentId);
 		
@@ -188,7 +196,7 @@ class Document implements \IteratorAggregate {
 	}
 
 	public function getIterator() {
-		$this->tokenIterator = new $this->tokenIteratorClassName($this->datafile, $this, $this->exportFlag);
+		$this->tokenIterator = new $this->tokenIteratorClassName($this->path, $this, $this->exportFlag);
 		$this->exportFlag = false;
 		return $this->tokenIterator;
 	}
@@ -203,7 +211,7 @@ class Document implements \IteratorAggregate {
 
 	private function chooseTokenIterator() {
 		try{
-			new tokenIterator\XMLReader($this->datafile, $this);
+			new tokenIterator\XMLReader($this->path, $this);
 			$this->tokenIteratorClassName = self::XML_READER;
 		} catch (\RuntimeException $ex) {
 			$this->tokenIteratorClassName = self::DOM_DOCUMENT;

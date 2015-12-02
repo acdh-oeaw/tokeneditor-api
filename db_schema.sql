@@ -6,7 +6,8 @@ CREATE TABLE documents (
 	document_id int primary key,
 	token_xpath text not null,
         name text not null,
-        xml xml not null
+        save_path text not null,
+        hash text not null
 );
 CREATE SEQUENCE document_id_seq;
 

@@ -30,7 +30,7 @@ abstract class TokenIterator implements \Iterator {
 	 * @var \import\Document
 	 */
 	protected $document;
-	protected $xml;
+	protected $xmlPath;
 	protected $pos;
 	/**
 	 *
@@ -44,8 +44,8 @@ abstract class TokenIterator implements \Iterator {
 	 * @param \import\Schema $schema
 	 * @param \PDO $PDO
 	 */
-	public function __construct(\utils\readContent\ReadContentInterface $xml, \import\Document $document){
-		$this->xml = $xml;
+	public function __construct($xmlPath, \import\Document $document){
+		$this->xmlPath = $xmlPath;
 		$this->document = $document;
 	}
 	

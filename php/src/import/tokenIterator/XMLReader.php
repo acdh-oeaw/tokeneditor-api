@@ -41,8 +41,8 @@ class XMLReader extends TokenIterator {
 	 * @param type $export should an export() call be available
 	 * @throws \RuntimeException
 	 */
-	public function __construct(\utils\readContent\ReadContentInterface $xml, \import\Document $document, $export = false){
-		parent::__construct($xml, $document);
+	public function __construct($xmlPath, \import\Document $document, $export = false){
+		parent::__construct($xmlPath, $document);
 
 		$this->reader = new \XMLReader();
 		$tokenXPath = $this->document->getSchema()->getTokenXPath();
@@ -62,7 +62,7 @@ class XMLReader extends TokenIterator {
 		if($export){
 			$filename = tempnam(sys_get_temp_dir(), '');
 			$this->outStream = new \SplFileObject($filename, 'w');
-			$this->outStream->fwrite('<?xml version="1.0" standalone="no"?>' . "\n");
+			$this->outStream->fwrite('<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . "\n");
 		}
 	}
 	
@@ -113,7 +113,7 @@ class XMLReader extends TokenIterator {
 	 * 
 	 */
 	public function rewind() {
-		$this->reader->open($this->xml->getPath());
+		$this->reader->open($this->xmlPath);
 		$this->pos = -1;
 		$this->next();
 	}

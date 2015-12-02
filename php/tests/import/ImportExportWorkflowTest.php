@@ -11,17 +11,20 @@ new \utils\ClassLoader('php/src');
  * @author zozlak
  */
 class ImportExportWorkflowTest extends \PHPUnit_Framework_TestCase {
+	static private $saveDir = 'php/docStorage';
 	static private $connSettings = 'pgsql: dbname=tokeneditor';
 	static private $PDO;
 	static private $validInPlace = <<<RES
-<?xml version="1.0" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0"><!--sample comment--><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><w id="w1" lemma="aaa">Hello<type>bbb</type></w><w id="w2" lemma="ccc">World<type>ddd</type></w><w id="w3" lemma="eee">!<type>fff</type></w></body></text></TEI>
 RES;
 	static private $validFull = <<<RES
-<?xml version="1.0" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0"><!--sample comment--><teiHeader><fileDesc><titleStmt><title>testtext</title></titleStmt><publicationStmt><p/></publicationStmt><sourceDesc/></fileDesc></teiHeader><text><body><w id="w1" lemma="Hello">Hello<type>NE<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>bbb</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>aaa</string></f></fs></w><w id="w2" lemma="World">World<type>NN<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>ddd</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>ccc</string></f></fs></w><w id="w3" lemma="!">!<type>$.<fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>./tei:type</string></f><f name="value"><string>fff</string></f></fs></type><fs type="tokeneditor"><f name="user"><string>test</string></f><f name="date"><string>%DATE</string></f><f name="property_xpath"><string>@lemma</string></f><f name="value"><string>eee</string></f></fs></w></body></text></TEI>
 RES;
 
+	private $docsToClean = array();
+	
 	static public function setUpBeforeClass() {
 		self::$PDO = new \PDO(self::$connSettings);
 		self::$PDO->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -37,7 +40,15 @@ RES;
 		unlink('tmp.xml');
 	}
 	
-	protected function setUp(){
+	protected function setUp() {
+		parent::setUp();
+	}
+	
+	protected function tearDown() {
+		parent::tearDown();
+		foreach($this->docsToClean as $i){
+			unlink(self::$saveDir . '/' . $i . '.xml');
+		}
 	}
 	
 	protected function insertValues($docId){
@@ -64,8 +75,9 @@ RES;
 	public function testDefaultInPlace(){
 		$doc = new Document(self::$PDO);
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test');
-		$doc->save();
+		$doc->save(self::$saveDir);
 		$docId = $doc->getId();
+		$this->docsToClean[] = $docId;
 		
 		$this->checkImport($docId);
 		$this->insertValues($docId);
@@ -79,8 +91,9 @@ RES;
 	public function testDefaultFull(){
 		$doc = new Document(self::$PDO);
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test');
-		$doc->save();
+		$doc->save(self::$saveDir);
 		$docId = $doc->getId();
+		$this->docsToClean[] = $docId;
 
 		$this->checkImport($docId);
 		$this->insertValues($docId);
@@ -96,8 +109,9 @@ RES;
 	public function testXMLReader(){
 		$doc = new Document(self::$PDO);
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test', Document::XML_READER);
-		$doc->save();
+		$doc->save(self::$saveDir);
 		$docId = $doc->getId();
+		$this->docsToClean[] = $docId;
 		
 		$this->checkImport($docId);
 		$this->insertValues($docId);
@@ -112,8 +126,9 @@ RES;
 	public function testPDO(){
 		$doc = new Document(self::$PDO);
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test', Document::PDO);
-		$doc->save();
+		$doc->save(self::$saveDir);
 		$docId = $doc->getId();
+		$this->docsToClean[] = $docId;
 		
 		$this->checkImport($docId);
 		$this->insertValues($docId);
@@ -126,8 +141,9 @@ RES;
 	public function testDOMDocument(){
 		$doc = new Document(self::$PDO);
 		$doc->loadFile('sample_data/testtext.xml', 'sample_data/testtext-schema.xml', 'test', Document::DOM_DOCUMENT);
-		$doc->save();
+		$doc->save(self::$saveDir);
 		$docId = $doc->getId();
+		$this->docsToClean[] = $docId;
 		
 		$this->checkImport($docId);
 		$this->insertValues($docId);

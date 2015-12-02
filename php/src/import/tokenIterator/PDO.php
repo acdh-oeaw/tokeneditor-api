@@ -38,8 +38,8 @@ class PDO extends TokenIterator {
 	 * @param \import\Schema $schema
 	 * @param \PDO $PDO
 	 */
-	public function __construct(\utils\readContent\ReadContentInterface $xml, \import\Document $document){
-		parent::__construct($xml, $document);
+	public function __construct($xmlPath, \import\Document $document){
+		parent::__construct($xmlPath, $document);
 		$this->PDO = $this->document->getPDO();
 		
 		$this->id = $this->PDO->
@@ -47,7 +47,7 @@ class PDO extends TokenIterator {
 			fetchColumn();
 		
 		$query = $this->PDO->prepare("INSERT INTO import_tmp VALUES (?, ?)");
-		$query->execute(array($this->id, preg_replace('/^[^<]*/', '', $this->xml->read())));
+		$query->execute(array($this->id, preg_replace('/^[^<]*/', '', file_get_contents($this->xmlPath))));
 	}
 	
 	/**
