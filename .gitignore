@@ -9,5 +9,5 @@
 .vim*
 /.gitconfig
 /.ssh
-/php/docStorage
+/php/docStorage/*
 /build

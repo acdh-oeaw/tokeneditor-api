@@ -79,7 +79,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			$_FILES['schema']['tmp_name'],
 			filter_input(INPUT_POST, 'name')
 		);
-		$n = $doc->save();
+		$n = $doc->save($CONFIG['storageDir']);
 		
 		$query = $PDO->prepare("SELECT count(*) FROM users WHERE user_id = ?");
 		$query->execute(array(filter_input(INPUT_SERVER, $CONFIG['userid'])));
