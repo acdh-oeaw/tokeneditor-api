@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <schema>
-    <tokenXPath>//w</tokenXPath>
+    <namespaces>
+        <namespace>
+            <prefix>tei</prefix>
+            <uri>http://www.tei-c.org/ns/1.0</uri>
+        </namespace>
+    </namespaces>
+    <tokenXPath>//tei:w</tokenXPath>
     <properties>
         <property>
             <propertyName>morph</propertyName>
