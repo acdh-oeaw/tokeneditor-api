@@ -41,7 +41,7 @@ TokenEditorImporter = function (domElement, apiUrl, callback) {
     this.callback = callback;
     $(this.dom).html(
         '<form method="post" enctype="multipart/form-data">' +
-            '<input type="hidden" name="MAX_FILE_SIZE" value="100000000"/>' +
+            '<input type="hidden" name="MAX_FILE_SIZE" value="900000000"/>' +
             '<div class="form-group">' +
                 '<label for="documentName">Document name</label> ' +
                 '<input type="text" name="name" required="required" placeholder="Document name" class="form-control" id="documentName"/>' +
