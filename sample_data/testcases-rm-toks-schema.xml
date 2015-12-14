@@ -7,6 +7,7 @@
         </namespace>
     </namespaces>
     <tokenXPath>//tei:w</tokenXPath>
+    <tokenValueXPath></tokenValueXPath>
     <properties>
         <property>
             <propertyName>lemma</propertyName>

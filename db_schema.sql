@@ -5,6 +5,7 @@ CREATE TABLE users (
 CREATE TABLE documents (
 	document_id int primary key,
 	token_xpath text not null,
+        token_value_xpath text not null,
         name text not null,
         save_path text not null,
         hash text not null
@@ -41,7 +42,9 @@ CREATE TABLE properties (
 	property_xpath text not null,
 	type_id text not null references property_types (type_id),
 	name text not null,
-	primary key (document_id, property_xpath)
+        ord int not null,
+	primary key (document_id, property_xpath),
+        unique (document_id, order)
 );
 
 CREATE TABLE dict_values (

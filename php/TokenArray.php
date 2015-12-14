@@ -18,8 +18,13 @@ class TokenArray {
 		$this->tokenValueFilter = $val;
 	}
 	
-	public function addFilter(){
-		
+	/**
+	 * 
+	 * @param type $prop property xpath
+	 * @param type $val filter value
+	 */
+	public function addFilter($prop, $val){
+		$this->filters[$prop] = $val;
 	}
 	
 	public function generateJSON($documentid, $userid) {
@@ -27,7 +32,7 @@ class TokenArray {
 		$query = $this->con->prepare("
 			SELECT json_agg(json_object(array_cat(array['token id', 'token'], names), array_cat(array[token_id::text, value], values))) AS data
 			FROM (
-				SELECT token_id, t.value, array_agg(COALESCE(uv.value, v.value)) AS values, array_agg(p.name) AS names
+				SELECT token_id, t.value, array_agg(COALESCE(uv.value, v.value) ORDER BY ord) AS values, array_agg(p.property_xpath ORDER BY ord) AS names
 				FROM 
 					properties p
 					JOIN orig_values v USING (document_id, property_xpath) 
@@ -46,24 +51,43 @@ class TokenArray {
 	}
 	
 	private function getFilters(){
+		$query = "";
+		$n = 1;
+		$params = array();
 		if(count($this->filters) == 0 && $this->tokenIdFilter === null && $this->tokenValueFilter === null){
-			return array('', array());
+			return array($query, $params);
 		}
 		if($this->tokenIdFilter !== null){
-			return array(
-				"JOIN (
+			$query .= "
+				JOIN (
 					SELECT ?::int AS token_id
-				) f1 USING (token_id)",
-				array($this->tokenIdFilter)
-			);
+				) f" . $n++ . " USING (token_id)";
+			$params[] = $this->tokenIdFilter;
 		}
-		if($this->tokenValue !== null){
-			
+		if($this->tokenValueFilter !== null){
+			$query .= "
+				JOIN (
+					SELECT token_id
+					FROM tokens
+					WHERE value = ?
+				) f" . $n++ . " USING (token_id)";
+			$params[] = $this->tokenValueFilter;
 		}
 		
 		foreach($this->filters as $prop=>$val){
-			
+			$query .= "
+				JOIN (
+					SELECT token_id
+					FROM orig_values
+					WHERE
+						property_xpath = ?
+						AND value = ?
+				) f" . $n++ . " USING (token_id)";
+			$params[] = $prop;
+			$params[] = $val;
 		}
+		
+		return array($query, $params);
 	}
 	
 }

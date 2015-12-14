@@ -28,6 +28,7 @@ class Schema implements \IteratorAggregate {
 	private $PDO;
 	private $documentId;
 	private $tokenXPath;
+	private $tokenValueXPath;
 	private $namespaces = array();
 	private $properties = array();
 	
@@ -56,6 +57,11 @@ class Schema implements \IteratorAggregate {
 		}
 		$this->tokenXPath = $dom->tokenXPath;
 		
+		if(!isset($dom->tokenValueXPath) || count($dom->tokenValueXPath) != 1){
+			throw new \LengthException('exactly one tokenValueXPath has to be provided');
+		}
+		$this->tokenValueXPath = $dom->tokenValueXPath;		
+		
 		if(
 			!isset($dom->properties) 
 			|| !isset($dom->properties->property) 
@@ -63,8 +69,9 @@ class Schema implements \IteratorAggregate {
 		){
 			throw new \LengthException('no token properties defined');
 		}
+		$n = 1;
 		foreach($dom->properties->property as $i){
-			$this->properties[] = new Property($i);
+			$this->properties[] = new Property($i, $n++);
 		}
 		
 		if(isset($dom->namespaces) && isset($dom->namespaces->namespace)){
@@ -87,9 +94,11 @@ class Schema implements \IteratorAggregate {
 		}
 		$schema .= '</namespaces>';
 		
-		$query = $this->PDO->prepare("SELECT token_xpath FROM documents WHERE document_id = ?");
+		$query = $this->PDO->prepare("SELECT token_xpath, token_value_xpath FROM documents WHERE document_id = ?");
 		$query->execute(array($this->documentId));
-		$schema .= '<tokenXPath>' . $query->fetch(\PDO::FETCH_COLUMN) . '</tokenXPath>';
+		$data = $quer->fetch(PDO::FETCH_OBJ);
+		$schema .= '<tokenXPath>' . $data->token_xpath . '</tokenXPath>';
+		$schema .= '<tokenValueXPath>' . $data->token_value_xpath . '</tokenValueXPath>';
 		
 		$schema .= '<properties>';
 		$query = $this->PDO->prepare("SELECT property_xpath, type_id, name FROM properties WHERE document_id = ?");
@@ -125,6 +134,14 @@ class Schema implements \IteratorAggregate {
 	 */
 	public function getTokenXPath(){
 		return (string)$this->tokenXPath;
+	}
+	
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getTokenValueXPath(){
+		return (string)$this->tokenValueXPath;
 	}
 	
 	/**

@@ -52,17 +52,61 @@ if(filter_input(INPUT_SERVER, $CONFIG['userid']) === null){
 }
 
 if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
-	// EXPORT
-	try{
-		$doc = new import\Document($PDO);
-		$doc->loadDb(filter_input(INPUT_GET, 'document_id', FILTER_VALIDATE_INT));
-		
-		header('Content-type: text/xml');
-		echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'));
-	} catch (Exception $ex) {
+	$docId = filter_input(INPUT_GET, 'document_id');
+	if($docId != ''){
+		// EXPORT
+		try{
+			$doc = new import\Document($PDO);
+			$doc->loadDb($docId);
+
+			header('Content-type: text/xml');
+			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'));
+		} catch (Exception $ex) {
+			exit(json_encode(array(
+				'status' => 'ERROR',
+				'message' => $ex->getMessage()
+			)));
+		}
+	}else{
+		// DOCUMENTS LIST
+		$propQuery = $PDO->prepare('
+			SELECT 
+				property_xpath AS "propertyXPath", 
+				name, 
+				type_id AS "typeId",
+				ord,
+				json_agg(value) AS values
+			FROM 
+				properties
+				LEFT JOIN dict_values USING (document_id, property_xpath)
+			WHERE document_id = ?
+			GROUP BY document_id, 1, 2, 3, 4
+			ORDER BY ord	
+		');
+		$query = $PDO->prepare('
+			SELECT document_id AS "documentId", name, count(*) AS "tokenCount"
+			FROM 
+				documents 
+				JOIN documents_users USING (document_id) 
+				JOIN tokens using (document_id)
+			WHERE user_id = ?
+			GROUP BY 1, 2
+			ORDER BY 2
+		');
+		$query->execute(array(filter_input(INPUT_SERVER, $CONFIG['userid'])));
+		$docs = $query->fetchAll(\PDO::FETCH_OBJ);
+		foreach($docs as &$i){
+			$propQuery->execute(array($i->documentId));
+			$i->properties = array();
+			while($prop = $propQuery->fetch(\PDO::FETCH_OBJ)){
+				$prop->values = json_decode($prop->values);
+				$i->properties[$prop->propertyXPath] = $prop;
+			}
+		}
+		unset($i);
 		exit(json_encode(array(
-			'status' => 'ERROR',
-			'message' => $ex->getMessage()
+			'status' => 'OK',
+			'data' => $docs
 		)));
 	}
 }else if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST'){

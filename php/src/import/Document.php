@@ -146,8 +146,8 @@ class Document implements \IteratorAggregate {
 		$savePath = $saveDir . '/' . $this->documentId . '.xml';
 		copy($this->path, $savePath);
 		
-		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, name, save_path, hash) VALUES (?, ?, ?, ?, ?)");
-		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->name, $savePath, md5_file($savePath)));
+		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, token_value_xpath, name, save_path, hash) VALUES (?, ?, ?, ?, ?, ?)");
+		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->schema->getTokenValueXPath(), $this->name, $savePath, md5_file($savePath)));
 		unset($query); // free memory
 		
 				

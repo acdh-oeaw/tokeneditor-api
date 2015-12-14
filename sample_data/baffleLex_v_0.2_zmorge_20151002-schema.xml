@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<schema xmlns:tei="http://www.tei-c.org/ns/1.0">
+<schema>
     <tokenXPath>//entry</tokenXPath>
+    <tokenValueXPath>./form[@type='lemma']/orth</tokenValueXPath>
     <properties>
         <property>
             <propertyName>pos</propertyName>
             <propertyXPath>//gram[@type='pos']</propertyXPath>
-            <propertyType>free text</propertyType>
+            <propertyType>read only</propertyType>
+            
         </property>
         <property>
             <propertyName>gen</propertyName>
             <propertyXPath>//gram[@type='gen']</propertyXPath>
-            <propertyType>free text</propertyType>
+            <propertyType>read only</propertyType>
         </property>
         <property>
-            <propertyName>lemma</propertyName>
-            <propertyXPath>//form[@type='lemma']/orth</propertyXPath>
-            <propertyType>free text</propertyType>
+            <propertyName>inflection table</propertyName>
+            <propertyXPath>//inflectionTable</propertyXPath>
+            <propertyType>inflection table</propertyType>
+        </property>
+        <property>
+            <propertyName>review</propertyName>
+            <propertyXPath>//f[@name='review']/string</propertyXPath>
+            <propertyType>closed list</propertyType>
+            <propertyValues>
+                <value>good</value>
+                <value>bad</value>
+                <value>ugly</value>
+            </propertyValues>
         </property>
     </properties>
 </schema>

@@ -33,7 +33,7 @@ class Token {
 	
 	/**
 	 *
-	 * @var DomElement
+	 * @var \DomElement
 	 */
 	private $dom;
 	/**
@@ -42,6 +42,11 @@ class Token {
 	 */
 	private $document;
 	private $tokenId;
+	/**
+	 *
+	 * @var type \DOMElement
+	 */
+	private $value;
 	private $properties = array();
 	
 	/**
@@ -56,18 +61,45 @@ class Token {
 		$this->tokenId = $this->document->generateTokenId();
 		
 		$xpath = new \DOMXPath($dom->ownerDocument);
+		foreach($this->document->getSchema()->getNs() as $prefix => $ns){
+			$xpath->registerNamespace($prefix, $ns);
+		}
+		
+		$valueXPath = $this->document->getSchema()->getTokenValueXPath();
+		if($valueXPath == ''){
+			$this->value = $this->dom->nodeValue;
+		}else{
+			$value = $xpath->query($valueXPath, $this->dom);
+			if($value->length != 1){
+				throw new \LengthException('token has no value or more then one value');
+			}else{
+				$value = $value->item(0);
+				$this->value = isset($value->value) ? $value->value : $this->innerXml($value);
+			}
+		}
+		
 		foreach($this->document->getSchema() as $prop){
 			try{
-				$value = $xpath->query($prop->getXPath(), $dom);
-				foreach($this->document->getSchema()->getNs() as $prefix => $ns){
-					$xpath->registerNamespace($prefix, $ns);
-				}
+				$value = $xpath->query($prop->getXPath(), $this->dom);
 				if($value->length != 1){
 					throw new \LengthException('property not found or many properties found');
 				}
 				$this->properties[$prop->getXPath()] = $value->item(0);
 			}catch (\LengthException $e){}
 		}
+	}
+	
+	/**
+	 * 
+	 * @param \DOMNode $node
+	 * @return string
+	 */
+	private function innerXml(\DOMNode $node){
+		$out = '';
+		for($i = 0; $i < $node->childNodes->length; $i++){
+			$out .= $node->ownerDocument->saveXML($node->childNodes->item($i));
+		}
+		return $out;
 	}
 	
 	/**
@@ -81,11 +113,11 @@ class Token {
 		$docId = $this->document->getId();
 		
 		$query = $PDO->prepare("INSERT INTO tokens (document_id, token_id, value) VALUES (?, ?, ?)");
-		$query->execute(array($docId, $this->tokenId, $this->dom->nodeValue));
+		$query->execute(array($docId, $this->tokenId, $this->value));
 		
 		$query = $PDO->prepare("INSERT INTO orig_values (document_id, token_id, property_xpath, value) VALUES (?, ?, ?, ?)");
 		foreach ($this->properties as $xpath => $prop){
-			$value = isset($prop->value) ? $prop->value : $prop->nodeValue;
+			$value = isset($prop->value) ? $prop->value : $this->innerXml($prop);
 			$query->execute(array($docId, $this->tokenId, $xpath, $value));
 		}
 	}

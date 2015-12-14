@@ -2,13 +2,11 @@
 require_once('config.inc.php');
 $con = new PDO($CONFIG['dbConn'], $CONFIG['dbUser'], $CONFIG['dbPasswd']);
 $userid = $_SERVER[$CONFIG['userid']];
-$result = (json_decode($HTTP_RAW_POST_DATA,true));
 //$documentId = $result['document_id'];
-$documentId = $result['document_id'];
-$tokenId = $result['token_id'];
-//*$propertyxpath = $result["properties"];
-$changedvalue = $result["value"];
-$propofchangedval = "@".$result["changedproperty"];
+$documentId = filter_input(INPUT_POST, 'document_id');
+$tokenId = filter_input(INPUT_POST, 'token_id');
+$changedvalue = filter_input(INPUT_POST, "value");
+$propofchangedval = filter_input(INPUT_POST, "property_xpath");
 
 //$lemma = $item['lemma'];
 //$query = "INSERT INTO values ($documentId, $tokenId, @lemma, $lemma) VALUES (?, ?, ?, ?)";
@@ -37,10 +35,4 @@ $propofchangedval = "@".$result["changedproperty"];
      
 }
 
-
-
-//var_dump($propertyxpath]);
-		
-//$documentid = $_GET["docid"];
-
-
+echo(json_encode(array('status' => 'OK')));

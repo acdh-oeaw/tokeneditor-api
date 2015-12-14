@@ -17,6 +17,15 @@ if($tokenid){
 	$ta->setTokenIdFilter($tokenid);
 }
 
+$propQuery = $con->prepare('SELECT property_xpath FROM properties WHERE document_id = ?');
+$propQuery->execute(array($documentid));
+while($prop = $propQuery->fetch(PDO::FETCH_COLUMN)){
+	$value = (string)filter_input(INPUT_GET, $prop);
+	if($value !== ''){
+		$ta->addFilter($prop, $value);
+	}
+}
+
 $json = $ta->generateJSON($documentid, $userid);
 header('Content-Type: application/json');
 echo $json;

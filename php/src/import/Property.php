@@ -28,6 +28,7 @@ class Property {
 	private $xpath;
 	private $type;
 	private $name;
+	private $ord;
 	private $values = array();
 	
 	/**
@@ -35,7 +36,9 @@ class Property {
 	 * @param \SimpleXMLElement $xml
 	 * @throws \LengthException
 	 */
-	public function __construct(\SimpleXMLElement $xml) {
+	public function __construct(\SimpleXMLElement $xml, $ord) {
+		$this->ord = $ord;
+		
 		if(!isset($xml->propertyXPath) || count($xml->propertyXPath) != 1){
 			throw new \LengthException('exactly one propertyXPath has to be provided');
 		}
@@ -70,8 +73,8 @@ class Property {
 	 * @param type $documentId
 	 */
 	public function save(\PDO $PDO, $documentId){
-		$query = $PDO->prepare("INSERT INTO properties (document_id, property_xpath, type_id, name) VALUES (?, ?, ?, ?)");
-		$query->execute(array($documentId, $this->xpath, $this->type, $this->name));
+		$query = $PDO->prepare("INSERT INTO properties (document_id, property_xpath, type_id, name, ord) VALUES (?, ?, ?, ?, ?)");
+		$query->execute(array($documentId, $this->xpath, $this->type, $this->name, $this->ord));
 		
 		$query = $PDO->prepare("INSERT INTO dict_values (document_id, property_xpath, value) VALUES (?, ?, ?)");
 		foreach($this->values as $v){
