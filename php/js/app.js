@@ -76,16 +76,16 @@
         var getPage = function() {
     var url;
     switch(paginationOptions.sort) {
-      case uiGridConstants.ASC:
+     /* case uiGridConstants.ASC:
         url = '/data/100_ASC.json';
         break;
       case uiGridConstants.DESC:
         url = '/data/100_DESC.json';
-        break;
+        break;*/
       default:
-        url = 'generatejson.php?docid='+ docid + '&pagesize='+ $scope.gridOptions.paginationPageSize + ;
+        url = 'generatejson.php?docid='+ docid + '&pagesize='+ $scope.gridOptions.paginationPageSize;
         break;
-    }
+		}}
    //    $scope.newdata =[];
       //  $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+docid).success(function (data) {
 			//$scope.gridOptions = {};
