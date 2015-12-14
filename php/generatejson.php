@@ -9,6 +9,8 @@ $con = new PDO($CONFIG['dbConn'], $CONFIG['dbUser'], $CONFIG['dbPasswd']);
 $con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 $userid = filter_input(INPUT_SERVER, $CONFIG['userid']);
+$pagesize = filter_input(INPUT_GET, 'pagesize');
+$offset =  filter_input(INPUT_GET, 'offset');
 $documentid = filter_input(INPUT_GET, 'docid');
 $tokenid = filter_input(INPUT_GET, 'tokenid');
 
@@ -17,6 +19,6 @@ if($tokenid){
 	$ta->setTokenIdFilter($tokenid);
 }
 
-$json = $ta->generateJSON($documentid, $userid);
+$json = $ta->generateJSON($documentid, $userid, $pagesize,$offset);
 header('Content-Type: application/json');
 echo $json;

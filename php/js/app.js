@@ -11,24 +11,26 @@
 		enableFiltering: true,
 		enableGridMenu: true,
 		enableCellEditOnFocus: true,
-    columnDefs: [ { displayName: 'Id',field:'token_id',enableCellEdit: false},
+		useExternalPagination: true,
+		useExternalSorting: true,
+    columnDefs: [ 
+	/*{ displayName: 'Id',field:'token_id',enableCellEdit: false},
       { displayName: 'Token',field:'value',enableCellEdit: false},
       { displayName: 'Type', field: 'type'},
       { displayName: 'Lemma',field: 'lemma'},
       {displayName: 'Morph',field: 'morph' },
       {displayName: 'State',field: 'state' }
-        ],
-       
+     */   ],
+    
 		onRegisterApi: function(gridApi) { 
         $scope.gridApi = gridApi;
         $scope.gridApi.edit.on.afterCellEdit($scope, function(rowEntity, colDef, newValue, oldValue) {
 			
               if (newValue != oldValue){
-				     
                 var postdata = new Object();
                 postdata.document_id = parseInt($("#docids").text());
-                postdata.token_id = rowEntity.token_id;
-                postdata.changedproperty = colDef.field; 
+                postdata.token_id = rowEntity['token id'];
+                postdata.changedproperty = colDef.name; 
                 postdata.value = newValue;
                 
                 
@@ -53,6 +55,7 @@
                   getPage(grid.options.paginationCurrentPage, grid.options.paginationPageSize, paginationOptions.sort)
              }
        });
+	   
        gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
           if(getPage) {
               getPage(newPage, pageSize, paginationOptions.sort);
@@ -65,6 +68,8 @@
 				init();
 				}
 		function init() {
+
+			 $scope.gridOptions.columnDefs = [];
 			$scope.creategrid = true;
 			$scope.refreshstats();
 			var docid = $("select").val();
@@ -74,12 +79,12 @@
 			//$scope.gridOptions = {};
 			 $http({
                       method: 'GET',
-                      url: 'generatejson.php?docid='+ docid,
+                      url: 'generatejson.php?docid='+ docid + '&pagesize=' + $scope.gridOptions.paginationPageSize,
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
 						$scope.flattened = [];	
                   
-						$.each(data,function(i,item){
+		/*				$.each(data,function(i,item){
 							$scope.obj = new Object;
 							$scope.obj.value = item.value;
               $scope.obj.token_id = item.token_id;
@@ -98,18 +103,18 @@
 								}
 							
 								});
-				/*	
+					
 							$scope.obj.type = (item.properties[0].type);
 							$scope.obj.lemma = (item.properties[0].lemma);
 							$scope.obj.state = (item.properties[0].state);
 							$scope.obj.morph = (item.properties[0].morph);
-				*/			$scope.flattened.push($scope.obj);
+							$scope.flattened.push($scope.obj);
 						});
 						console.log($scope.obj);
+					
 						
-						
-						
-						$scope.gridOptions.data = $scope.flattened;
+						*/
+						$scope.gridOptions.data = data	
   
 				});
  
