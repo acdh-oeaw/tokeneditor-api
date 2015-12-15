@@ -39,7 +39,8 @@
                   $scope.refreshstats();
                   $http({
                       method: 'POST',
-                      url: 'storejson.php?docid=' + $("#docids").text(),
+                      url: 'storejson.php',
+					  params: {"docid":$("#docids").text()},
                       data:JSON.stringify(postdata),
                       headers: { "Content-Type": "application/json" }
                       })
@@ -68,13 +69,12 @@
 				init();
 				}
 		function init() {
-
-			 $scope.gridOptions.columnDefs = [];
+			var offset = 0;	
+			$scope.gridOptions.columnDefs = [];
 			$scope.creategrid = true;
 			$scope.refreshstats();
 			var docid = $("select").val();
         var getPage = function() {
-    var url;
     switch(paginationOptions.sort) {
      /* case uiGridConstants.ASC:
         url = '/data/100_ASC.json';
@@ -83,7 +83,7 @@
         url = '/data/100_DESC.json';
         break;*/
       default:
-        url = 'generatejson.php?docid='+ docid + '&pagesize='+ $scope.gridOptions.paginationPageSize;
+        offset = $scope.gridOptions.paginationPageSize + 1;
         break;
 		}}
    //    $scope.newdata =[];
@@ -91,7 +91,12 @@
 			//$scope.gridOptions = {};
 			 $http({
                       method: 'GET',
-                      url: 'generatejson.php?docid='+ docid + '&pagesize=' + $scope.gridOptions.paginationPageSize,
+                      url: 'generatejson.php',
+					  params:{
+						  "docid":docid,
+						  "pagesize": $scope.gridOptions.paginationPageSize,
+						  "offset": offset
+						  },
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
 						$scope.flattened = [];	
@@ -129,7 +134,7 @@
 						$scope.gridOptions.data = data	
   
 				});
- 
+				getPage();
  
  
        
