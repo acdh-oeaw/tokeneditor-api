@@ -70,8 +70,14 @@ class Schema implements \IteratorAggregate {
 			throw new \LengthException('no token properties defined');
 		}
 		$n = 1;
+		$names = array();
 		foreach($dom->properties->property as $i){
-			$this->properties[] = new Property($i, $n++);
+			$prop = new Property($i, $n++);
+			$this->properties[] = $prop;
+			$names[] = $prop->getName();
+		}
+		if(count($names) !== count(array_unique($names))){
+			throw new \RuntimeException('property names are not unique');
 		}
 		
 		if(isset($dom->namespaces) && isset($dom->namespaces->namespace)){

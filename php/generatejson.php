@@ -12,14 +12,18 @@ $userid = filter_input(INPUT_SERVER, $CONFIG['userid']);
 $pagesize = filter_input(INPUT_GET, 'pagesize');
 $offset =  filter_input(INPUT_GET, 'offset');
 $documentid = filter_input(INPUT_GET, 'docid');
-$tokenid = filter_input(INPUT_GET, 'tokenid');
+$tokenid = filter_input(INPUT_GET, 'token_id');
+$tokenF = filter_input(INPUT_GET, 'token');
 
 $ta = new TokenArray($con);
 if($tokenid){
 	$ta->setTokenIdFilter($tokenid);
 }
+if($tokenF){
+	$ta->setTokenValueFilter($tokenF);
+}
 
-$propQuery = $con->prepare('SELECT property_xpath FROM properties WHERE document_id = ?');
+$propQuery = $con->prepare('SELECT name FROM properties WHERE document_id = ?');
 $propQuery->execute(array($documentid));
 while($prop = $propQuery->fetch(PDO::FETCH_COLUMN)){
 	$value = (string)filter_input(INPUT_GET, $prop);
