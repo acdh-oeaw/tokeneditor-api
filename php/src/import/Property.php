@@ -54,7 +54,7 @@ class Property {
 			throw new \LengthException('exactly one propertyName has to be provided');
 		}
 		$this->name = (string)$xml->propertyName;
-		if(in_array($this->name, array('token_id', 'token'))){
+		if(in_array($this->name, array('token_id', 'token', '_offset', '_pagesize', '_docid'))){
 			throw new \RuntimeException('property uses a reserved name');
 		}
 		
