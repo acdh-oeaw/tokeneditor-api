@@ -26,7 +26,7 @@
 /**
  * Quick and dirty HTTP API allowing documents import/export
  * 
- * - POST request treated as a new document import
+ * - POST request are treated as a new document import
  *   It has to contain:
  *   - "document" file
  *   - "schema" file
@@ -75,7 +75,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 				name, 
 				type_id AS "typeId",
 				ord,
-				read_only,
+				read_only AS "readOnly",
 				json_agg(value) AS values
 			FROM 
 				properties
@@ -101,7 +101,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			$i->properties = array();
 			while($prop = $propQuery->fetch(\PDO::FETCH_OBJ)){
 				$prop->values = json_decode($prop->values);
-				$i->properties[$prop->propertyXPath] = $prop;
+				$i->properties[$prop->name] = $prop;
 			}
 		}
 		unset($i);
