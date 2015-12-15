@@ -53,6 +53,9 @@ class Property {
 			throw new \LengthException('exactly one propertyName has to be provided');
 		}
 		$this->name = (string)$xml->propertyName;
+		if(in_array($this->name, array('token_id', 'token'))){
+			throw new \RuntimeException('property uses reserved name');
+		}
 		
 		if(isset($xml->propertyValues) && isset($xml->propertyValues->value)){
 			$this->values = $xml->propertyValues->value;
@@ -67,6 +70,22 @@ class Property {
 		return $this->xpath;
 	}
 
+	/**
+	 * 
+	 * @return string
+	 */
+	public function getName(){
+		return $this->name;
+	}
+	
+	/**
+	 * 
+	 * @return int
+	 */
+	public function getOrd(){
+		return $this->ord;
+	}
+	
 	/**
 	 * 
 	 * @param \PDO $PDO

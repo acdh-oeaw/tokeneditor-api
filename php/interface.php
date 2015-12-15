@@ -100,7 +100,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			$i->properties = array();
 			while($prop = $propQuery->fetch(\PDO::FETCH_OBJ)){
 				$prop->values = json_decode($prop->values);
-				$i->properties[$prop->propertyXPath] = $prop;
+				$i->properties[$prop->name] = $prop;
 			}
 		}
 		unset($i);

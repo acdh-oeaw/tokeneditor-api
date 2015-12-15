@@ -30,9 +30,9 @@ class TokenArray {
 	public function generateJSON($documentid, $userid, $pagesize = 1000, $offset = 0) {
 		list($filterTable, $filterParam) = $this->getFilters();
 		$query = $this->con->prepare("
-			SELECT json_agg(json_object(array_cat(array['token id', 'token'], names), array_cat(array[token_id::text, value], values))) AS data
+			SELECT json_agg(json_object(array_cat(array['token_id', 'token'], names), array_cat(array[token_id::text, value], values))) AS data
 			FROM (
-				SELECT token_id, t.value, array_agg(COALESCE(uv.value, v.value) ORDER BY ord) AS values, array_agg(p.property_xpath ORDER BY ord) AS names
+				SELECT token_id, t.value, array_agg(COALESCE(uv.value, v.value) ORDER BY ord) AS values, array_agg(p.name ORDER BY ord) AS names
 				FROM 
 					properties p
 					JOIN orig_values v USING (document_id, property_xpath) 
@@ -44,7 +44,7 @@ class TokenArray {
 				ORDER BY token_id 
 				LIMIT ? 
 				OFFSET ?
-				) t");
+			) t");
 		$params = array_merge($filterParam, array($documentid, $userid,$pagesize,$offset));
 		$query->execute($params);
 		$result = $query->fetch(PDO::FETCH_COLUMN);

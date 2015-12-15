@@ -41,10 +41,11 @@ CREATE TABLE properties (
 	document_id int not null references documents (document_id),
 	property_xpath text not null,
 	type_id text not null references property_types (type_id),
-	name text not null,
+	name text not null check (name not in ('token_id, token')),
         ord int not null,
 	primary key (document_id, property_xpath),
-        unique (document_id, order)
+        unique (document_id, order),
+        unique (document_id, name)
 );
 
 CREATE TABLE dict_values (
