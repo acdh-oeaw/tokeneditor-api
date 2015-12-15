@@ -2,11 +2,16 @@
 
 	var app = angular.module('myApp', ['ui.grid','ui.grid.pagination','ui.grid.edit','ui.grid.cellNav','ui.grid.exporter','chart.js','ui.grid.selection','ui.bootstrap']);
 
-
+var paginationOptions = {
+					pageNumber: 1,
+					pageSize: 25,
+					sort: null
+				};
 
 	app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($scope,$http,$timeout,$locationProvider,$location) {
+		
 		$scope.gridOptions = {};
-		$scope.gridOptions = { paginationPageSizes: [25, 50, 75],
+		$scope.gridOptions = { paginationPageSizes: [25, 50, 75,100,150,200,250,300,400,500,750,1000],
 		paginationPageSize: 25,
 		enableFiltering: true,
 		enableGridMenu: true,
@@ -63,29 +68,52 @@
           }
        });
        },
+	   
 		rowTemplate: '<div ng-class="{ \'green\': grid.appScope.rowFormatter( row ),\'grey\':row.entity.state===\'u\' }">' + '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader,\'custom\': true  }"  ui-grid-cell></div>' +   '</div>'  };
-		$scope.httprequest = function(docid)
-			{
-				init();
+		var docid;
+		$scope.httprequest = function(totaltoken,docid)
+			{ 
+				init(totaltoken);
 				}
-		function init() {
-			var offset = 0;	
+				
+				var offset = 0;
+				var getPage = function() {
+				
+				switch(paginationOptions.sort) {
+					
+					/* case uiGridConstants.ASC:
+						url = '/data/100_ASC.json';
+						break;
+						case uiGridConstants.DESC:
+						url = '/data/100_DESC.json';
+						break;*/
+				default:
+				
+				offset = ($scope.gridOptions.paginationCurrentPage - 1) * $scope.gridOptions.paginationPageSize;
+				break;
+				}
+				 $http({
+                      method: 'GET',
+                      url: 'generatejson.php',
+					  params:{
+						  "docid":$("select").val(),
+						  "pagesize": $scope.gridOptions.paginationPageSize,
+						  "offset": offset
+						  },
+                      headers: { "Content-Type": "application/json" }
+                      }).success(function (data){
+						$scope.flattened = [];	
+						$scope.gridOptions.data = data	
+  
+				});
+			}
+		function init(totaltoken) {
+			$scope.gridOptions.totalItems = totaltoken;
 			$scope.gridOptions.columnDefs = [];
 			$scope.creategrid = true;
 			$scope.refreshstats();
 			var docid = $("select").val();
-        var getPage = function() {
-    switch(paginationOptions.sort) {
-     /* case uiGridConstants.ASC:
-        url = '/data/100_ASC.json';
-        break;
-      case uiGridConstants.DESC:
-        url = '/data/100_DESC.json';
-        break;*/
-      default:
-        offset = $scope.gridOptions.paginationPageSize + 1;
-        break;
-		}}
+			
    //    $scope.newdata =[];
       //  $http.get('https://clarin.oeaw.ac.at/tokenEditor/generatejson.php?docid='+docid).success(function (data) {
 			//$scope.gridOptions = {};
@@ -100,41 +128,10 @@
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
 						$scope.flattened = [];	
-                  
-		/*				$.each(data,function(i,item){
-							$scope.obj = new Object;
-							$scope.obj.value = item.value;
-              $scope.obj.token_id = item.token_id;
-							$.each(item.properties,function(e,element) {
-								if (element.hasOwnProperty('lemma')) {
-									$scope.obj.lemma = element.lemma;
-								}
-								else if (element.hasOwnProperty('type')) {
-									$scope.obj.type = element.type;
-								}
-								else if (element.hasOwnProperty('morph')) {
-									$scope.obj.morph = element.morph;
-								}
-								else if (element.hasOwnProperty('state')) {
-									$scope.obj.state = element.state;
-								}
-							
-								});
-					
-							$scope.obj.type = (item.properties[0].type);
-							$scope.obj.lemma = (item.properties[0].lemma);
-							$scope.obj.state = (item.properties[0].state);
-							$scope.obj.morph = (item.properties[0].morph);
-							$scope.flattened.push($scope.obj);
-						});
-						console.log($scope.obj);
-					
-						
-						*/
 						$scope.gridOptions.data = data	
   
 				});
-				getPage();
+				
  
  
        

@@ -44,8 +44,8 @@
                          'document',
                          function(data){
                              if(data.status == 'OK'){
-                                 $('#docid').append('<option ng-click="httprequest()" value="' + data.document_id + '">' + data.name + '</option>');
-                                 $('select').on('click','option:last',function(){angular.element($("#MainCtrl")).scope().httprequest()});
+                                 $('#docid').append('<option ng-click="httprequest()"  value="' + data.document_id + '">' + data.name + '</option>');
+                                 $('select').on('click','option:last',function(){angular.element($("#MainCtrl")).scope().httprequest(data.tokens_count,data.document_id)});
                                  $('#imp').click();
                                  $('#yf').click();
                                  BootstrapDialog.show({
@@ -105,7 +105,7 @@
                             $doclist = new Documentlist();
                             $list = $doclist->createList($userid,$con);
                             foreach ($list as $docid){
-                                echo "<option ng-click='httprequest()' value=".$docid['document_id'].">".$docid['name']."</option>";
+                                echo "<option ng-click='httprequest(".$docid['tokens_count'].",".$docid['document_id'].")' value=".$docid['document_id'].">".$docid['name']."</option>";
                             }
                             ?>
                         </select>
@@ -182,5 +182,6 @@
                         </div>
         </div>
         <div id="docids" style="display:none;"></div>
+		<div id="tokencount" style="display:none;"></div>
         </body>
 </html>
