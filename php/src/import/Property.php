@@ -29,6 +29,7 @@ class Property {
 	private $type;
 	private $name;
 	private $ord;
+	private $readOnly = false;
 	private $values = array();
 	
 	/**
@@ -60,6 +61,10 @@ class Property {
 		if(isset($xml->propertyValues) && isset($xml->propertyValues->value)){
 			$this->values = $xml->propertyValues->value;
 		}
+		
+		if(isset($xml->readOnly)){
+			$this->readOnly = true;
+		}
 	}
 
 	/**
@@ -84,8 +89,8 @@ class Property {
 	 * @param type $documentId
 	 */
 	public function save(\PDO $PDO, $documentId){
-		$query = $PDO->prepare("INSERT INTO properties (document_id, property_xpath, type_id, name, ord) VALUES (?, ?, ?, ?, ?)");
-		$query->execute(array($documentId, $this->xpath, $this->type, $this->name, $this->ord));
+		$query = $PDO->prepare("INSERT INTO properties (document_id, property_xpath, type_id, name, ord, read_only) VALUES (?, ?, ?, ?, ?, ?)");
+		$query->execute(array($documentId, $this->xpath, $this->type, $this->name, $this->ord, (int)$this->readOnly));
 		
 		$query = $PDO->prepare("INSERT INTO dict_values (document_id, property_xpath, value) VALUES (?, ?, ?)");
 		foreach($this->values as $v){

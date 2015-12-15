@@ -7,16 +7,23 @@
         </namespace>
     </namespaces>
     <tokenXPath>//tei:w</tokenXPath>
+    <tokenValueXPath>.</tokenValueXPath>
     <properties>
         <property>
             <propertyName>lemma</propertyName>
             <propertyXPath>@lemma</propertyXPath>
             <propertyType>free text</propertyType>
+            <readOnly/>
         </property>
         <property>
             <propertyName>type</propertyName>
             <propertyXPath>./tei:type</propertyXPath>
-            <propertyType>free text</propertyType>
+            <propertyType>closed list</propertyType>
+            <propertyValues>
+                <value>$.</value>
+                <value>NN</value>
+                <value>NE</value>
+            </propertyValues>
         </property>
     </properties>
 </schema>

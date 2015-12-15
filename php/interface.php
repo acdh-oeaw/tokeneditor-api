@@ -75,6 +75,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 				name, 
 				type_id AS "typeId",
 				ord,
+				read_only,
 				json_agg(value) AS values
 			FROM 
 				properties
