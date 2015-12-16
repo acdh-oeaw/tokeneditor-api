@@ -20,7 +20,7 @@ $limit = 0;
 // path to the XML file describing schema
 $schemaPath = '../sample_data/baffleLex_v_0.2_zmorge_20151002-schema.xml';
 // path to the XML file with data
-$dataPath   = '../sample_data/baffleLex.xml';
+$dataPath   = '../sample_data/baffleLex_v_0.3_zmorge_20151002_fixed.xml';
 // path to the directory where imported XMLs are stored
 $saveDir = 'docStorage';
 

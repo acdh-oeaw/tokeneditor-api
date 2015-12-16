@@ -53,7 +53,33 @@ if(filter_input(INPUT_SERVER, $CONFIG['userid']) === null){
 
 if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 	$docId = filter_input(INPUT_GET, 'document_id');
-	if($docId != ''){
+	$tokenId = filter_input(INPUT_GET, 'token_id');
+	if($docId != '' && $tokenId !== null){
+		// GET TOKENS LIST
+		include 'TokenArray.php';
+		$tokenArray = new TokenArray($PDO);
+		$userId = filter_input(INPUT_SERVER, $CONFIG['userid']);
+		$pagesize = filter_input(INPUT_GET, '_pagesize');
+		$offset =  filter_input(INPUT_GET, '_offset');
+		$tokenId = filter_input(INPUT_GET, 'token_id');
+		$tokenF = filter_input(INPUT_GET, 'token');
+		if($tokenId){
+			$tokenArray->setTokenIdFilter($tokenId);
+		}
+		if($tokenF){
+			$tokenArray->setTokenValueFilter($tokenF);
+		}
+		$propQuery = $PDO->prepare('SELECT name FROM properties WHERE document_id = ?');
+		$propQuery->execute(array($docId));
+		while($prop = $propQuery->fetch(PDO::FETCH_COLUMN)){
+			$value = (string)filter_input(INPUT_GET, $prop);
+			if($value !== ''){
+				$tokenArray->addFilter($prop, $value);
+			}
+		}
+		header('Content-Type: application/json');
+		echo $tokenArray->getTokensOnly($docId, $userId, $pagesize ? $pagesize : 1000, $offset ? $offset : 0);
+	}elseif($docId != ''){
 		// EXPORT
 		try{
 			$doc = new import\Document($PDO);
