@@ -34,7 +34,7 @@ class Schema implements \IteratorAggregate {
 	
 	/**
 	 * 
-	 * @param type $path
+	 * @param \PDO $PDO
 	 * @throws \RuntimeException
 	 * @throws \LengthException
 	 */
@@ -70,8 +70,14 @@ class Schema implements \IteratorAggregate {
 			throw new \LengthException('no token properties defined');
 		}
 		$n = 1;
+		$names = array();
 		foreach($dom->properties->property as $i){
-			$this->properties[] = new Property($i, $n++);
+			$prop = new Property($i, $n++);
+			$this->properties[] = $prop;
+			$names[] = $prop->getName();
+		}
+		if(count($names) !== count(array_unique($names))){
+			throw new \RuntimeException('property names are not unique');
 		}
 		
 		if(isset($dom->namespaces) && isset($dom->namespaces->namespace)){
@@ -96,12 +102,12 @@ class Schema implements \IteratorAggregate {
 		
 		$query = $this->PDO->prepare("SELECT token_xpath, token_value_xpath FROM documents WHERE document_id = ?");
 		$query->execute(array($this->documentId));
-		$data = $quer->fetch(PDO::FETCH_OBJ);
+		$data = $query->fetch(\PDO::FETCH_OBJ);
 		$schema .= '<tokenXPath>' . $data->token_xpath . '</tokenXPath>';
 		$schema .= '<tokenValueXPath>' . $data->token_value_xpath . '</tokenValueXPath>';
 		
 		$schema .= '<properties>';
-		$query = $this->PDO->prepare("SELECT property_xpath, type_id, name FROM properties WHERE document_id = ?");
+		$query = $this->PDO->prepare("SELECT property_xpath, type_id, name, read_only FROM properties WHERE document_id = ? ORDER BY ord");
 		$valuesQuery = $this->PDO->prepare("SELECT value FROM dict_values WHERE (document_id, property_xpath) = (?, ?)");
 		$query->execute(array($this->documentId));
 		while($prop = $query->fetch(\PDO::FETCH_OBJ)){
@@ -109,6 +115,10 @@ class Schema implements \IteratorAggregate {
 			$schema .= '<propertyName>' . $prop->name . '</propertyName>';
             $schema .= '<propertyXPath>' . $prop->property_xpath . '</propertyXPath>';
             $schema .= '<propertyType>' . $prop->type_id . '</propertyType>';
+			
+			if($prop->read_only){
+				$schema .= '<readOnly/>';
+			}
 			
 			$valuesQuery->execute(array($this->documentId, $prop->property_xpath));
 			$values = $valuesQuery->fetchAll(\PDO::FETCH_COLUMN);

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2015 zozlak
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+    <head>
+        <title>TokenViewer</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+        <!--
+        <script src="js/jquery.js"></script>
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <link href="css/font-awesome.css" rel="stylesheet">
+        -->
+        <script type="text/javascript">
+            var docs = [];
+            var doc = {};
+            var token = {};
+            
+            function propSave(){
+                var name = $(this).attr('data-value');
+                var prop;
+                $.each(doc.properties, function(key, value){
+                    if(value.name === name){
+                        prop = value;
+                    }
+                });
+                var param = {
+                    document_id: doc.documentId,
+                    token_id: $('#tokenNo').val(),
+                    property_xpath: prop.propertyXPath,
+                    value: $(this).val()
+                };
+                var parent = $(this).parent();
+                parent.addClass('has-warning');
+                $.post('storejson.php', param, function(data){
+                    data = JSON.parse(data);
+                    if(data.status && data.status === 'OK'){
+                        parent.removeClass('has-warning');
+                    }
+                });
+            }
+            
+            function newPropertyWidget(prop){
+                var widget;
+                switch(prop.typeId){
+                    case 'free text':
+                        widget = new FreeText(prop, prop.readOnly);
+                        break;
+                    case 'closed list':
+                        widget = new ClosedList(prop, prop.readOnly);
+                        break;
+                    case 'inflection table':
+                        widget = new InflectionTable(prop, prop.readOnly);
+                        break;
+                    default:
+                        widget = new FreeText(prop, true);
+                }
+                return widget;
+            }
+
+            function tokenGet(){
+                var val = $('#tokenNo').val();
+                if(val > $('#tokenNo').prop('max')){
+                    $('#tokenNo').val($('#tokenNo').prop('max'));
+                }
+                if(val < 1){
+                    $('#tokenNo').val(1);
+                }
+                var uri = 'generatejson.php?_docid=' + encodeURIComponent(doc.documentId) + 
+                    '&_offset=' + encodeURIComponent(parseInt($('#tokenNo').val()) - 1);
+                $.getJSON(uri, tokenDisplay);
+            }
+        
+            function tokenDisplay(data){
+                token = data[0];
+                var c = $('#content');
+                c.html('');
+                $.each(token, function(key, value){
+                    var prop = doc.properties[key];
+                    if(!prop){
+                        prop = {name: key, typeId: ''};
+                        prop.widget = newPropertyWidget(prop);
+                    }
+                    c.append(
+                        '<div class="panel panel-default">' +
+                            '<div class="panel-heading">' + prop.name + '</div>' +
+                            '<div class="panel-body"></div>' +
+                        '</div>'
+                    );
+                    prop.widget.draw(value, c.find('div:last-child div.panel-body'), propSave);
+                });
+                c.find('select, input').focus();
+            }
+
+            $().ready(function(){
+                $.getJSON('document', function(data){
+                    var list = $('#documentId');
+                    docs = data.data;
+                    list.html('');
+                    $.each(docs, function(key, value){
+                        list.append('<option value="' + key + '">' + value.name + ' (' + value.tokenCount + ')</option>');
+                        $.each(value.properties, function(key, value){
+                           value.widget = newPropertyWidget(value); 
+                        });
+                    });
+                    if(docs.length > 0){
+                        list.change();
+                    }else{
+                        
+                    }
+                });
+                                    
+                $('#documentId').change(function(){
+                    doc = docs[$(this).val()];
+                    $('#tokenNo').prop('max', doc.tokenCount);
+                    $('#tokenNo').change();
+                    
+                    $('#search input[type="number"]:first').attr('max', doc.tokenCount);                    
+                    var search = $('#filters');
+                    search.empty();
+                    $.each(doc.properties, function(key, value){
+                        search.append(
+                            '<div class="input-group">' +
+                                '<div class="input-group-addon"></div>' +
+                                '<span></span>' +
+                            '</div>'
+                        );
+                        var node = search.find('div.input-group').last();
+                        node.find('.input-group-addon').text(value.name);
+                        var ret = value.widget.search(node.find('span'));
+                        if(!ret){
+                            node.remove();
+                        }
+                    });
+                });
+
+                $('#search').on('change', 'input, select', tokenGet);
+                $('#tokenNo').change(tokenGet);
+
+                $('#goFirst').click(function(){
+                    $('#tokenNo').val(1);
+                    $('#tokenNo').change();
+                });
+
+                $('#goPrev').click(function(){
+                    $('#tokenNo').val(parseInt($('#tokenNo').val()) - 1);
+                    $('#tokenNo').change();
+                });
+
+                $('#goNext').click(function(){
+                    $('#tokenNo').val(parseInt($('#tokenNo').val()) + 1);
+                    $('#tokenNo').change();
+                });
+
+                $('#goLast').click(function(){
+                    $('#tokenNo').val(doc.tokenCount);
+                    $('#tokenNo').change();
+                });
+
+            });
+            
+            ClosedList = function(prop, readOnly){
+                var that = this;
+                
+                this.prop = prop;
+                this.readOnly = readOnly | false;
+
+                this.draw = function(value, node, handler){
+                    if(that.readOnly){
+                        node.text(value);
+                    }else{
+                        node.append(document.createElement('select'));
+                        var sel = node.find('select')
+                            .attr('data-value', that.prop.name)
+                            .addClass('form-control');
+                        that.fillWithOptions(sel);
+                        sel.val(value);
+                        if(handler){
+                            sel.change(handler);
+                        }
+                    }
+                };
+                
+                this.search = function(node){
+                    node.append(document.createElement('select'));
+                    var sel = node.find('select')
+                        .addClass('form-control')
+                        .attr('data-value', that.prop.name);
+                    that.fillWithOptions(sel, true);
+                    return sel;
+                };
+                
+                this.fillWithOptions = function(sel, addEmpty){
+                    if(addEmpty && that.prop.values.indexOf('') < 0){
+                        sel.get(0).add(new Option(''));
+                    }
+                    $.each(that.prop.values, function(key, value){
+                        sel.get(0).add(new Option(value));
+                    });
+                };
+            };
+            
+            FreeText = function(prop, readOnly){
+                var that = this;
+                
+                this.prop = prop;
+                this.readOnly = readOnly | false;
+                
+                this.draw = function(value, node, handler){
+                    if(that.readOnly){
+                        node.html(value);
+                    }else{
+                        node.append(document.createElement('input'));
+                        var inp = node.find('input')
+                            .attr('data-value', that.prop.name)
+                            .val(value);
+                        if(handler){
+                            inp.change(handler);
+                        }
+                    }
+                };
+                
+                this.search = function(node){
+                    node.append(document.createElement('input'));
+                    var inp = node.find('input')
+                        .addClass('string')
+                        .addClass('form-control')
+                        .attr('data-value', that.prop.name);
+                    return inp;
+                };
+            };
+                        
+            InflectionTable = function(prop){
+                var that = this;
+                
+                this.prop = prop;
+                
+                this.rules = {
+                    nn: {
+                       NomSg: /^.*nom_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
+                       GenSg: /^.*gen_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
+                       DatSg: /^.*dat_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
+                       AccSg: /^.*acc_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
+                       NomPl: /^.*nom_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
+                       GenPl: /^.*gen_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
+                       DatPl: /^.*dat_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
+                       AccPl: /^.*acc_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/
+                    }
+                };
+                
+                this.templates = {
+                    nn: '<table class="inflectionTable">' +
+                       '<thead><tr><th></th><th>Singular</th><th>Plural</th></tr></thead>' +
+                       '<tbody>' +
+                       '<tr><td class="header">Nom</td><td>%NomSg%</td><td>%NomPl%</td></tr>' +
+                       '<tr><td class="header">Gen</td><td>%GenSg%</td><td>%GenPl%</td></tr>' +
+                       '<tr><td class="header">Dat</td><td>%DatSg%</td><td>%DatPl%</td></tr>' +
+                       '<tr><td class="header">Acc</td><td>%AccSg%</td><td>%AccPl%</td></tr>' +
+                       '</tbody>' +
+                       '</table>'
+                };
+                
+                this.draw = function(value, node){
+                    // strip new lines so that our regexp work in a predictable way
+                    value = value.replace(/\s/gm, '');
+                    var pos = value.replace(/^.*ana="#/, '').replace(/_.*$/, '');
+                    if(!pos || !that.templates[pos] || !that.rules[pos]){
+                        node.html('no inflection table template for ' + pos);
+                        return;
+                    }
+                    var template = that.templates[pos];
+                    $.each(that.rules[pos], function(key, rule){
+                        template = template.replace('%' + key + '%', value.replace(rule, '$1'));
+                    });
+                    node.html(template);
+                };
+                
+                this.search = function(){
+                };
+            };
+        </script>
+        <style type="text/css">
+            .inpNumber {width: 100px !important;}
+            .inpString {width: 150px !important;}
+            #content {padding-left: 25px;}
+            #content div.panel {display: inline-block; margin: 5px; vertical-align: top;}
+            #search {padding-top: 5px;}
+            .inflectionTable td, .inflectionTable th {border: solid 1px #DDD; padding: 5px;}
+            .inflectionTable th, .inflectionTable .header {background-color: #F5F5F5;}
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <form class="navbar-form">
+                    <select id="documentId" class="form-control"></select>
+                    <div class="form-group">
+                        <button id="goFirst" type="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i></button>
+                        <button id="goPrev" type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                        <input  id="tokenNo" type="number" class="form-control inpNumber" min="1" max="1" value="1"/>
+                        <button id="goNext" type="button" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                        <button id="goLast" type="button" class="btn btn-default"><i class="fa fa-angle-double-right"></i></button>
+                    </div>
+                    <div id="search">
+                        <div class="input-group">
+                            <div class="input-group-addon">Token id:</div>
+                            <input type="number" class="form-control inpNumber" min="1" max="1" data-value="_offset"/>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-group-addon">Token:</div>
+                            <input type="text" class="form-control inpString" data-value="token"/>
+                        </div>
+                        <div class="form-group" id="filters"></div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <div>
+            <form id="content">
+            </form>
+        </div>
+    </body>
+</html>

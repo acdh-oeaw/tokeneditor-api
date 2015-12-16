@@ -27,12 +27,12 @@ class TokenArray {
 		$this->filters[$prop] = $val;
 	}
 	
-	public function generateJSON($documentid, $userid, $pagesize = 1000, $offset = 0) {
-		list($filterTable, $filterParam) = $this->getFilters();
-		$query = $this->con->prepare("
-			SELECT json_agg(json_object(array_cat(array['token id', 'token'], names), array_cat(array[token_id::text, value], values))) AS data
+	public function generateJSON($documentId, $userId, $pageSize = 1000, $offset = 0) {
+		list($filterTable, $filterParam) = $this->getFilters($documentId);
+		$queryStr = "
+			SELECT json_agg(json_object(array_cat(array['token_id', 'token'], names), array_cat(array[token_id::text, value], values))) AS data
 			FROM (
-				SELECT token_id, t.value, array_agg(COALESCE(uv.value, v.value) ORDER BY ord) AS values, array_agg(p.property_xpath ORDER BY ord) AS names
+				SELECT token_id, t.value, array_agg(COALESCE(uv.value, v.value) ORDER BY ord) AS values, array_agg(p.name ORDER BY ord) AS names
 				FROM 
 					properties p
 					JOIN orig_values v USING (document_id, property_xpath) 
@@ -44,14 +44,22 @@ class TokenArray {
 				ORDER BY token_id 
 				LIMIT ? 
 				OFFSET ?
-				) t");
-		$params = array_merge($filterParam, array($documentid, $userid,$pagesize,$offset));
+				) t";
+		$query = $this->con->prepare($queryStr);
+		$params = array_merge($filterParam, array($documentId, $userId, $pageSize, $offset));
 		$query->execute($params);
 		$result = $query->fetch(PDO::FETCH_COLUMN);
 		return $result;
 	}
 	
-	private function getFilters(){
+	private function getFilters($docId){
+		$query = $this->con->prepare("SELECT property_xpath, name FROM properties WHERE document_id = ?");
+		$query->execute(array($docId));
+		$propDict = array();
+		while($prop = $query->fetch(PDO::FETCH_OBJ)){
+			$propDict[$prop->name] = $prop->property_xpath;
+		}
+		
 		$query = "";
 		$n = 1;
 		$params = array();
@@ -70,21 +78,29 @@ class TokenArray {
 				JOIN (
 					SELECT token_id
 					FROM tokens
-					WHERE value = ?
+					WHERE 
+						document_id = ?
+						AND value = ?
 				) f" . $n++ . " USING (token_id)";
+			$params[] = $docId;
 			$params[] = $this->tokenValueFilter;
 		}
 		
 		foreach($this->filters as $prop=>$val){
+			if(!isset($propDict[$prop])){
+				continue;
+			}
 			$query .= "
 				JOIN (
 					SELECT token_id
 					FROM orig_values
 					WHERE
-						property_xpath = ?
+						document_id = ?
+						AND property_xpath = ?
 						AND value = ?
 				) f" . $n++ . " USING (token_id)";
-			$params[] = $prop;
+			$params[] = $docId;
+			$params[] = $propDict[$prop];
 			$params[] = $val;
 		}
 		

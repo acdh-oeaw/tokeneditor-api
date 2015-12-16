@@ -6,18 +6,35 @@
         <property>
             <propertyName>pos</propertyName>
             <propertyXPath>//gram[@type='pos']</propertyXPath>
-            <propertyType>read only</propertyType>
-            
+            <propertyType>closed list</propertyType>
+            <readOnly/>
+            <propertyValues>
+                <value>ABBR</value>
+                <value>ADJ</value>
+                <value>ADV</value>
+                <value>NN</value>
+                <value>OTHER</value>
+                <value>NPROP</value>
+                <value>V</value>
+            </propertyValues>
         </property>
         <property>
             <propertyName>gen</propertyName>
             <propertyXPath>//gram[@type='gen']</propertyXPath>
-            <propertyType>read only</propertyType>
+            <propertyType>closed list</propertyType>
+            <readOnly/>
+            <propertyValues>
+                <value></value>
+                <value>Fem</value>
+                <value>Masc</value>
+                <value>Neut</value>
+            </propertyValues>
         </property>
         <property>
             <propertyName>inflection table</propertyName>
             <propertyXPath>//inflectionTable</propertyXPath>
             <propertyType>inflection table</propertyType>
+            <readOnly/>
         </property>
         <property>
             <propertyName>review</propertyName>

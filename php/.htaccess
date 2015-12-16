@@ -1,7 +1,8 @@
 RewriteEngine on
 RewriteRule ^document$ interface.php
 RewriteRule ^document/([0-9]+)$ interface.php?document_id=$1 [QSA]
+RewriteRule ^document/([0-9]+)/([^/]+)$ interface.php?document_id=$1&property_name=$2 [QSA]
 
 # for local testing
 #RewriteCond %{ENV:HTTP_EPPN} ^$
-#RewriteRule .* - [E=HTTP_EPPN:mzoltak@oeaw.ac.at]
+#RewriteRule .* - [E=HTTP_EPPN:test]
