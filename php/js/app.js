@@ -18,14 +18,15 @@ var paginationOptions = {
 		enableCellEditOnFocus: true,
 		useExternalPagination: true,
 		useExternalSorting: true,
-    columnDefs: [ 
+		columnDefs: [ 
 	/*{ displayName: 'Id',field:'token_id',enableCellEdit: false},
       { displayName: 'Token',field:'value',enableCellEdit: false},
       { displayName: 'Type', field: 'type'},
       { displayName: 'Lemma',field: 'lemma'},
       {displayName: 'Morph',field: 'morph' },
-      {displayName: 'State',field: 'state' }
-     */   ],
+      {displayName: 'State',field: 'state' }*/
+      ],
+	 
     
 		onRegisterApi: function(gridApi) { 
         $scope.gridApi = gridApi;
@@ -33,9 +34,10 @@ var paginationOptions = {
 			
               if (newValue != oldValue){
                 var postdata = new Object();
-                postdata.document_id = parseInt($("#docids").text());
+                postdata.document_id = $("#docids").text();
+				console.log(colDef.name);
                 postdata.token_id = rowEntity['token id'];
-                postdata.changedproperty = colDef.name; 
+                postdata.property_xpath = colDef.name; 
                 postdata.value = newValue;
                 
                 
@@ -45,7 +47,6 @@ var paginationOptions = {
                   $http({
                       method: 'POST',
                       url: 'storejson.php',
-					  params: {"docid":$("#docids").text()},
                       data:JSON.stringify(postdata),
                       headers: { "Content-Type": "application/json" }
                       })
@@ -103,13 +104,16 @@ var paginationOptions = {
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
 						$scope.flattened = [];	
-						$scope.gridOptions.data = data	
+					
+						$scope.gridOptions.data = data;	
+						
   
 				});
 			}
 		function init(totaltoken) {
+			
 			$scope.gridOptions.totalItems = totaltoken;
-			$scope.gridOptions.columnDefs = [];
+			$scope.gridOptions.columnDefs =[];
 			$scope.creategrid = true;
 			$scope.refreshstats();
 			var docid = $("select").val();
@@ -128,8 +132,9 @@ var paginationOptions = {
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
 						$scope.flattened = [];	
-						$scope.gridOptions.data = data	
-  
+						$scope.gridOptions.columnDefs =[];
+						$scope.gridOptions.data = data;
+						
 				});
 				
  
