@@ -31,7 +31,6 @@ CREATE TABLE tokens (
 	value text not null,
 	primary key (document_id, token_id)
 );
-CREATE INDEX tokens_value_idx ON tokens (lower(value));
 
 CREATE TABLE property_types (
 	type_id text primary key

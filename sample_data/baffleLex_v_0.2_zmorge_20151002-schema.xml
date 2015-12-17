@@ -32,7 +32,7 @@
         </property>
         <property>
             <propertyName>inflection table</propertyName>
-            <propertyXPath>.</propertyXPath>
+            <propertyXPath>//inflectionTable</propertyXPath>
             <propertyType>inflection table</propertyType>
             <readOnly/>
         </property>
