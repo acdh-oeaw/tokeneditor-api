@@ -18,6 +18,7 @@ var paginationOptions = {
 		enableCellEditOnFocus: true,
 		useExternalPagination: true,
 		useExternalSorting: true,
+		 useExternalFiltering: true,
 		columnDefs: [ 
 	/*{ displayName: 'Id',field:'token_id',enableCellEdit: false},
       { displayName: 'Token',field:'value',enableCellEdit: false},
@@ -35,9 +36,9 @@ var paginationOptions = {
               if (newValue != oldValue){
                 var postdata = new Object();
                 postdata.document_id = $("#docids").text();
-				console.log(colDef.name);
-                postdata.token_id = rowEntity['token id'];
-                postdata.property_xpath = colDef.name; 
+				console.log(rowEntity);
+                postdata.token_id = rowEntity['token_id'];
+                postdata.property_xpath = '@'+colDef.name; 
                 postdata.value = newValue;
                 
                 
@@ -47,8 +48,8 @@ var paginationOptions = {
                   $http({
                       method: 'POST',
                       url: 'storejson.php',
-                      data:JSON.stringify(postdata),
-                      headers: { "Content-Type": "application/json" }
+                      data:postdata,
+                      ContentType: "application/json"
                       })
                 }
        });
@@ -68,8 +69,57 @@ var paginationOptions = {
               getPage(newPage, pageSize, paginationOptions.sort);
           }
        });
+	      $scope.gridApi.core.on.filterChanged( $scope, function() {
+			var grid = this.grid;
+			
+			params = {};
+			params['_docid'] = $("select").val();
+			params["_pagesize"] = $scope.gridOptions.paginationPageSize,
+			params["_offset"] = offset;
+		 grid.columns.forEach(function(value, key) {
+		console.log($scope);
+		if(value.filters[0].term) {
+		
+			params[value.name] = value.filters[0].term;
+			$http({
+                      method: 'GET',
+                      url: 'generatejson.php',
+					  params:params,
+                      headers: { "Content-Type": "application/json" }
+                      }).success(function (data){
+						$scope.flattened = [];	
+					
+						$scope.gridOptions.data = data;	
+						
+  
+				});
+		}
+		else if (!value.filters[0].term) {
+			delete params[value.name];
+			$http({
+                      method: 'GET',
+                      url: 'generatejson.php',
+					  params:params,
+                      headers: { "Content-Type": "application/json" }
+                      }).success(function (data){
+						$scope.flattened = [];	
+					
+						$scope.gridOptions.data = data;	
+						
+  
+				});
+			
+		}
+			
+		
+       
+			
+          
+				
+		 });
+        });
        },
-	   
+	
 		rowTemplate: '<div ng-class="{ \'green\': grid.appScope.rowFormatter( row ),\'grey\':row.entity.state===\'u\' }">' + '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader,\'custom\': true  }"  ui-grid-cell></div>' +   '</div>'  };
 		var docid;
 		$scope.httprequest = function(totaltoken,docid)
@@ -97,9 +147,9 @@ var paginationOptions = {
                       method: 'GET',
                       url: 'generatejson.php',
 					  params:{
-						  "docid":$("select").val(),
-						  "pagesize": $scope.gridOptions.paginationPageSize,
-						  "offset": offset
+						  "_docid":$("select").val(),
+						  "_pagesize": $scope.gridOptions.paginationPageSize,
+						  "_offset": offset
 						  },
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
@@ -125,9 +175,9 @@ var paginationOptions = {
                       method: 'GET',
                       url: 'generatejson.php',
 					  params:{
-						  "docid":docid,
-						  "pagesize": $scope.gridOptions.paginationPageSize,
-						  "offset": offset
+						  "_docid":docid,
+						  "_pagesize": $scope.gridOptions.paginationPageSize,
+						  "_offset": offset
 						  },
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
