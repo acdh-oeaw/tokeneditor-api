@@ -53,14 +53,40 @@ if(filter_input(INPUT_SERVER, $CONFIG['userid']) === null){
 
 if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 	$docId = filter_input(INPUT_GET, 'document_id');
-	if($docId != ''){
+	$tokenId = filter_input(INPUT_GET, 'token_id');
+	if($docId != '' && $tokenId !== null){
+		// GET TOKENS LIST
+		include 'TokenArray.php';
+		$tokenArray = new TokenArray($PDO);
+		$userId = filter_input(INPUT_SERVER, $CONFIG['userid']);
+		$pagesize = filter_input(INPUT_GET, '_pagesize');
+		$offset =  filter_input(INPUT_GET, '_offset');
+		$tokenId = filter_input(INPUT_GET, 'token_id');
+		$tokenF = filter_input(INPUT_GET, 'token');
+		if($tokenId){
+			$tokenArray->setTokenIdFilter($tokenId);
+		}
+		if($tokenF){
+			$tokenArray->setTokenValueFilter($tokenF);
+		}
+		$propQuery = $PDO->prepare('SELECT name FROM properties WHERE document_id = ?');
+		$propQuery->execute(array($docId));
+		while($prop = $propQuery->fetch(PDO::FETCH_COLUMN)){
+			$value = (string)filter_input(INPUT_GET, $prop);
+			if($value !== ''){
+				$tokenArray->addFilter($prop, $value);
+			}
+		}
+		header('Content-Type: application/json');
+		echo $tokenArray->getTokensOnly($docId, $userId, $pagesize ? $pagesize : 1000, $offset ? $offset : 0);
+	}elseif($docId != ''){
 		// EXPORT
 		try{
 			$doc = new import\Document($PDO);
 			$doc->loadDb($docId);
 
 			header('Content-type: text/xml');
-			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'));
+			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'), \import\DOM_DOCUMENT);
 		} catch (Exception $ex) {
 			exit(json_encode(array(
 				'status' => 'ERROR',
@@ -171,10 +197,21 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			)));
 		}
 	}else{
+		$dir = $file = '';
 		// IMPORT
 		try{
 			if(!isset($_FILES['document']) || !isset($_FILES['schema'])){
 				throw new RuntimeException('document or schema not uploaded');
+			}
+			$zip = new ZipArchive();
+			if($zip->open($_FILES['document']['tmp_name']) === true){
+				$name = $zip->getNameIndex(0);
+				$dir = 'tmp/' . time() . rand();
+				mkdir($dir);
+				$zip->extractTo($dir, $name);
+				$zip->close();
+				$file = $dir . '/' . $name;
+				$_FILES['document']['tmp_name'] = $file;
 			}
 
 			$PDO->beginTransaction();
@@ -198,12 +235,13 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 				$doc->getId(), 
 				filter_input(INPUT_SERVER, $CONFIG['userid'])
 			));
+			
 			header('Content-type: application/json');
 			if($n > 0){
 				$PDO->commit();
 				echo json_encode(array(
 					'status' => 'OK',
-					'document_id' => $doc->getId(),
+					'documentId' => $doc->getId(),
 					'name' => filter_input(INPUT_POST, 'name'),
 					'tokensCount' => $n
 				));
@@ -215,10 +253,18 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 				));
 			}
 		} catch (Exception $ex) {
+			header('Content-type: application/json');
 			exit(json_encode(array(
 				'status' => 'ERROR',
 				'message' => $ex->getMessage()
 			)));
+		} finally {
+			if($file !== ''){
+				unlink($file);
+			}
+			if($dir !== ''){
+				rmdir($dir);
+			}
 		}
 	}
 }else{
