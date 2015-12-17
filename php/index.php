@@ -131,6 +131,19 @@
                                 </div>
                             </span>
                        </div>
+					    <div class="panel panel-default">
+                            <div class="panel-heading"  ng-click="collapsecontext = !collapsecontext">
+                                 <h4 class="panel-title">Context</h4>
+                           </div>
+                        
+                            <span class="text-muted">
+                                <div collapse="collapsecontext" >
+                                    <div class="panel-body">
+                                        
+                                    </div>
+                                </div>
+                            </span>
+                       </div>
                      <!--  <div class="panel panel-default">
                             <div class="panel-heading"  ng-click="collapseexport = !collapseexport">
                                  <h4 class="panel-title">Export</h4>

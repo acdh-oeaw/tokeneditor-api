@@ -49,8 +49,8 @@
                   $http({
                       method: 'POST',
                       url: 'storejson.php',
-                      data:postdata
- //                     ContentType: "application/json"
+                      data:$.param(postdata),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}	
                       })
                 }
        });
