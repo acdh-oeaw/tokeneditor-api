@@ -76,42 +76,21 @@ app.controller('MainCtrl', ['$scope', '$http', '$timeout', '$location', function
                             params["_offset"] = offset;
                     grid.columns.forEach(function (value, key) {
                         if (value.filters[0].term) {
-
                             params[value.name] = value.filters[0].term;
-                            $http({
-                                method: 'GET',
-                                url: 'generatejson.php',
-                                params: params,
-                                headers: {"Content-Type": "application/json"}
-                            }).success(function (data) {
-                                $scope.flattened = [];
-
-                                $scope.gridOptions.data = data.data;
-
-
-                            });
                         } else if (!value.filters[0].term) {
                             delete params[value.name];
-                            $http({
-                                method: 'GET',
-                                url: 'generatejson.php',
-                                params: params,
-                                headers: {"Content-Type": "application/json"}
-                            }).success(function (data) {
-                                $scope.flattened = [];
-
-                                $scope.gridOptions.data = data.data;
-                                $scope.gridOptions.totalItems = data.tokenCount;
-
-                            });
-
                         }
+                    });
 
+                    $http({
+                        method: 'GET',
+                        url: 'generatejson.php',
+                        params: params,
+                        headers: {"Content-Type": "application/json"}
+                    }).success(function (data) {
+                        $scope.flattened = [];
 
-
-
-
-
+                        $scope.gridOptions.data = data.data;
                     });
                 });
             },
