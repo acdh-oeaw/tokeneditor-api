@@ -77,7 +77,6 @@ var paginationOptions = {
 			params["_pagesize"] = $scope.gridOptions.paginationPageSize,
 			params["_offset"] = offset;
 		 grid.columns.forEach(function(value, key) {
-		console.log($scope);
 		if(value.filters[0].term) {
 		
 			params[value.name] = value.filters[0].term;
@@ -89,7 +88,7 @@ var paginationOptions = {
                       }).success(function (data){
 						$scope.flattened = [];	
 					
-						$scope.gridOptions.data = data;	
+						$scope.gridOptions.data = data.data;	
 						
   
 				});
@@ -104,13 +103,13 @@ var paginationOptions = {
                       }).success(function (data){
 						$scope.flattened = [];	
 					
-						$scope.gridOptions.data = data;	
+						$scope.gridOptions.data = data.data;	
 						
   
 				});
 			
 		}
-			
+		
 		
        
 			
@@ -155,7 +154,7 @@ var paginationOptions = {
                       }).success(function (data){
 						$scope.flattened = [];	
 					
-						$scope.gridOptions.data = data;	
+						$scope.gridOptions.data = data.data;	
 						
   
 				});
@@ -183,7 +182,7 @@ var paginationOptions = {
                       }).success(function (data){
 						$scope.flattened = [];	
 						$scope.gridOptions.columnDefs =[];
-						$scope.gridOptions.data = data;
+						$scope.gridOptions.data = data.data;
 						
 				});
 				
