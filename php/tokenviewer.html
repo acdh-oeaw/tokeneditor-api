@@ -46,10 +46,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         prop = value;
                     }
                 });
+                console.log(token);
                 var param = {
                     document_id: doc.documentId,
-                    token_id: $('#tokenNo').val(),
-                    property_xpath: prop.propertyXPath,
+                    token_id: token.token_id,
+                    name: prop.name,
                     value: $(this).val()
                 };
                 var parent = $(this).parent();
