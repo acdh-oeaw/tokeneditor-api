@@ -104,7 +104,7 @@ var paginationOptions = {
 						$scope.flattened = [];	
 					
 						$scope.gridOptions.data = data.data;	
-						
+						$scope.gridOptions.totalItems = data.tokenCount;
   
 				});
 			
@@ -121,9 +121,9 @@ var paginationOptions = {
 	
 		rowTemplate: '<div ng-class="{ \'green\': grid.appScope.rowFormatter( row ),\'grey\':row.entity.state===\'u\' }">' + '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader,\'custom\': true  }"  ui-grid-cell></div>' +   '</div>'  };
 		var docid;
-		$scope.httprequest = function(totaltoken,docid)
+		$scope.httprequest = function(docid)
 			{ 
-				init(totaltoken);
+				init();
 				}
 				
 				var offset = 0;
@@ -155,13 +155,13 @@ var paginationOptions = {
 						$scope.flattened = [];	
 					
 						$scope.gridOptions.data = data.data;	
-						
+						$scope.gridOptions.totalItems = data.tokenCount;
   
 				});
 			}
-		function init(totaltoken) {
+		function init() {
 			
-			$scope.gridOptions.totalItems = totaltoken;
+			
 			$scope.gridOptions.columnDefs =[];
 			$scope.creategrid = true;
 			$scope.refreshstats();
@@ -183,7 +183,7 @@ var paginationOptions = {
 						$scope.flattened = [];	
 						$scope.gridOptions.columnDefs =[];
 						$scope.gridOptions.data = data.data;
-						
+						$scope.gridOptions.totalItems = data.tokenCount;
 				});
 				
  
@@ -264,11 +264,11 @@ $timeout(callAtTimeout, 2000);
   
   } 
 //$("#gridcontainer").append('<div id="grid1"  ui-grid="gridOptions"  ui-grid-selection gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>');
-     }
-       $scope.refreshstats = function(){
-       $scope.labels = [];
-     $scope.data = [];
-countData = _.countBy($scope.gridOptions.data, function(item){
+    }
+	$scope.refreshstats = function(){
+    $scope.labels = [];
+	$scope.data = [];
+	countData = _.countBy($scope.gridOptions.data, function(item){
     return item.type;
             });
     angular.forEach(countData, function(key,item) {
