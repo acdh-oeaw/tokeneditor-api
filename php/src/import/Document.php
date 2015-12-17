@@ -70,7 +70,7 @@ class Document implements \IteratorAggregate {
 		}
 	}
 	
-	public function loadDb($documentId, $iteratorClass = self::DOM_DOCUMENT){
+	public function loadDb($documentId, $iteratorClass = null){
 		$this->documentId = $documentId;
 		$this->schema->loadDb($this->documentId);
 		
@@ -85,10 +85,14 @@ class Document implements \IteratorAggregate {
 			throw new \RuntimeException('Raw document XML file changed since import');
 		}
 		
-		if(!in_array($iteratorClass, array(self::DOM_DOCUMENT, self::XML_READER))){
-			throw new \InvalidArgumentException('tokenIteratorClass should be one of \import\Datafile::DOM_DOCUMENT or \import\Datafile::XML_READER');
+		if($iteratorClass === null){
+			$this->chooseTokenIterator();
+		}else{
+			if(!in_array($iteratorClass, array(self::DOM_DOCUMENT, self::XML_READER))){
+				throw new \InvalidArgumentException('tokenIteratorClass should be one of \import\Datafile::DOM_DOCUMENT or \import\Datafile::XML_READER');
+			}
+			$this->tokenIteratorClassName = $iteratorClass;
 		}
-		$this->tokenIteratorClassName = $iteratorClass;
 	}
 	
 	/**

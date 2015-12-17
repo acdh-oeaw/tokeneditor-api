@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
         <!--
@@ -29,10 +30,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <link href="css/bootstrap.css" rel="stylesheet"/>
         <link href="css/font-awesome.css" rel="stylesheet">
         -->
+        <script type="text/javascript" src="js/TokenEditorImporter.js"></script>
         <script type="text/javascript">
             var docs = [];
             var doc = {};
             var token = {};
+            var tokenCount = 0;
+            var pageSize = 1000;
             
             function propSave(){
                 var name = $(this).attr('data-value');
@@ -76,23 +80,149 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 return widget;
             }
 
+            function documentsGet(){
+                $.getJSON('document', documentsDisplay);
+            }
+
+            function documentsDisplay(data){
+                var list = $('#documentId');
+                docs = data.data;
+                list.html('');
+                $.each(docs, function(key, value){
+                    list.append('<option value="' + key + '">' + value.name + ' (' + value.tokenCount + ')</option>');
+                    $.each(value.properties, function(key, value){
+                        value.widget = newPropertyWidget(value); 
+                    });
+                    if(doc && doc.documentId == value.documentId){
+                        list.val(key);
+                    }
+                });
+                if(docs.length > 0){
+                    list.change();
+                }
+            }
+                
+            function documentDisplay(){
+                doc = docs[$(this).val()];
+                    
+                $('#search input[type="number"]:first').attr('max', doc.tokenCount);                    
+                var search = $('#filters');
+                search.empty();
+                $.each(doc.properties, function(key, value){
+                    search.append(
+                        '<div class="input-group">' +
+                            '<div class="input-group-addon"></div>' +
+                            '<span></span>' +
+                        '</div>'
+                    );
+                    var node = search.find('div.input-group').last();
+                    node.find('.input-group-addon').text(value.name);
+                    var ret = value.widget.search(node.find('span'));
+                    if(!ret){
+                        node.remove();
+                    }
+                });
+                
+                $('#exportInPlace')
+                    .attr('href', 'document/' + encodeURIComponent(doc.documentId) + '?inPlace=')
+                    .attr('target', '_blank');
+                $('#exportEnriched')
+                    .attr('href', 'document/' + encodeURIComponent(doc.documentId))
+                    .attr('target', '_blank');            
+                
+                tokenGet();
+                indexGet();
+            }
+        
+            function getFilterParam(param){
+                $('#search').find('input, select').each(function(){
+                    var val = $(this).val();
+                    if(val !== ''){
+                        param[$(this).attr('data-value')] = val;
+                    }
+                });
+                return param;
+            }
+        
+            function indexGet(){
+                var url = 'document/' + encodeURIComponent(doc.documentId) + '/token';
+                var param = {
+                    _offset: pageSize * (parseInt($('#pageNo').val()) - 1),
+                    _pagesize: pageSize
+                };
+                param = getFilterParam(param);
+                $.get(url, param, indexDisplay);
+                $('#indexWait').show();
+                $('#indexPanel > dl').empty();
+                $('#tokensFound').empty();
+            }
+            
+            function indexDisplay(data){
+                var maxPage = Math.ceil(data.tokenCount / pageSize);
+                var helpText = '/ ' +  maxPage + ' (' + data.tokenCount + ' tokens)';
+                $('#pageNo').parent().find('.input-group-addon').text(helpText);
+                $('#pageNo').prop('max', maxPage);
+
+                var c = $('#indexPanel > dl');
+                $('#indexWait').hide();
+                
+                if(data.data.length === 0){
+                    c.html('<dt></dt><dd>No tokens found</dd>');
+                    return;
+                }
+
+                c.empty();
+                $.each(data.data, function(key, value){
+                   var tmp = $(document.createElement('dt'));
+                   tmp.text(value.tokenId);
+                   c.append(tmp);
+                   
+                   tmp = $(document.createElement('dd'));
+                   tmp.html('<a href="#"></a>');
+                   tmp.find('a')
+                        .attr('data-value', key + 1)
+                        .text(value.token);
+                   c.append(tmp);
+                });
+                
+                var p = $('#indexPanel ul.pagination');
+                p.empty();
+                for(var i = 1; i < Math.ceil(data.tokenCount / pageSize); i++){
+                    p.append('<li><a href="#">' + i + '</a></li>');
+                }        
+            }
+        
             function tokenGet(){
-                var val = $('#tokenNo').val();
-                if(val > $('#tokenNo').prop('max')){
-                    $('#tokenNo').val($('#tokenNo').prop('max'));
-                }
-                if(val < 1){
-                    $('#tokenNo').val(1);
-                }
-                var uri = 'generatejson.php?_docid=' + encodeURIComponent(doc.documentId) + 
-                    '&_offset=' + encodeURIComponent(parseInt($('#tokenNo').val()) - 1);
-                $.getJSON(uri, tokenDisplay);
+                var param = {
+                    _docid:  doc.documentId,
+                    _offset: parseInt($('#tokenNo').val()) - 1,
+                    _pagesize: 1
+                };
+                param = getFilterParam(param);
+                $.get('generatejson.php', param, tokenDisplay);
+                $('#tokenForm').html('<i class="fa fa-refresh fa-spin fa-2x"></i>');
             }
         
             function tokenDisplay(data){
-                token = data[0];
-                var c = $('#content');
-                c.html('');
+                var c = $('#tokenForm');
+                tokenCount = data.tokenCount;
+                $('#tokenNo').parent().find('.input-group-addon').text('/ ' + tokenCount);
+                $('#tokenNo').prop('max', tokenCount);
+                
+                if(data.data.length === 0){
+                    c.html(
+                        '<div class="panel panel-default">' +
+                            '<div class="panel-heading"></div>' +
+                            '<div class="panel-body">No such tokens</div>' +
+                        '</div>'
+                    );
+                    $('#tokenNo').prop('max', 1);
+                    return;
+                }
+                
+                token = data.data[0];
+
+                c.empty();
                 $.each(token, function(key, value){
                     var prop = doc.properties[key];
                     if(!prop){
@@ -110,50 +240,58 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 c.find('select, input').focus();
             }
 
-            $().ready(function(){
-                $.getJSON('document', function(data){
-                    var list = $('#documentId');
-                    docs = data.data;
-                    list.html('');
-                    $.each(docs, function(key, value){
-                        list.append('<option value="' + key + '">' + value.name + ' (' + value.tokenCount + ')</option>');
-                        $.each(value.properties, function(key, value){
-                           value.widget = newPropertyWidget(value); 
-                        });
-                    });
-                    if(docs.length > 0){
-                        list.change();
-                    }else{
-                        
-                    }
-                });
-                                    
-                $('#documentId').change(function(){
-                    doc = docs[$(this).val()];
-                    $('#tokenNo').prop('max', doc.tokenCount);
-                    $('#tokenNo').change();
-                    
-                    $('#search input[type="number"]:first').attr('max', doc.tokenCount);                    
-                    var search = $('#filters');
-                    search.empty();
-                    $.each(doc.properties, function(key, value){
-                        search.append(
-                            '<div class="input-group">' +
-                                '<div class="input-group-addon"></div>' +
-                                '<span></span>' +
-                            '</div>'
-                        );
-                        var node = search.find('div.input-group').last();
-                        node.find('.input-group-addon').text(value.name);
-                        var ret = value.widget.search(node.find('span'));
-                        if(!ret){
-                            node.remove();
-                        }
-                    });
-                });
+            function importHandle(data){
+                var message;
+                var helperClass;
+                var s = $('#importResult');
+                if(data && data.status && data.status === 'OK'){
+                    message = 'import successful';
+                    helperClass = 'text-success';
+                }else {
+                    message = 'import failed: ' + data.message;
+                    helperClass = 'text-danger';
+                }
+                s.removeClass('text-success')
+                    .removeClass('text-danger')
+                    .addClass(helperClass)
+                    .text(message);
+                if(data && data.status && data.status === 'OK'){
+                    var s = $('#documentId').get(0);
+                    doc.documentId = data.documentId;
+                    documentsGet();
+                }
+            }
 
-                $('#search').on('change', 'input, select', tokenGet);
-                $('#tokenNo').change(tokenGet);
+            $().ready(function(){
+                documentsGet();
+                
+                new TokenEditorImporter($('#import').get(0), 'document', importHandle);
+                               
+                $('#documentId').change(documentDisplay);
+                $('#search').on('change', 'input, select', function(){
+                    $('#tokenNo').val(1);
+                    $('#pageNo').val(1);
+                    indexGet();
+                    tokenGet();
+                });
+                $('#indexPanel > dl').on('click', 'a', function(){
+                    var no = parseInt($(this).attr('data-value')) +
+                        (parseInt($('#pageNo').val()) - 1) * pageSize;
+                    $('#tokenNo').val(no);
+                    tokenGet();
+                    $('a[href="#tokenPanel"]').click();
+                });
+                
+                $('#tokenNo').change(function(){
+                    var val = parseInt($('#tokenNo').val());
+                    if(val > $('#tokenNo').prop('max')){
+                        $('#tokenNo').val($('#tokenNo').prop('max'));
+                    }
+                    if(val < 1){
+                        $('#tokenNo').val(1);
+                    }
+                    tokenGet();
+                });
 
                 $('#goFirst').click(function(){
                     $('#tokenNo').val(1);
@@ -171,10 +309,40 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 });
 
                 $('#goLast').click(function(){
-                    $('#tokenNo').val(doc.tokenCount);
+                    $('#tokenNo').val($('#tokenNo').prop('max'));
                     $('#tokenNo').change();
                 });
 
+                $('#pageNo').change(function(){
+                    var val = parseInt($('#pageNo').val());
+                    if(val > $('#pageNo').prop('max')){
+                        $('#pageNo').val($('#pageNo').prop('max'));
+                    }
+                    if(val < 1){
+                        $('#pageNo').val(1);
+                    }
+                    indexGet();
+                });
+                
+                $('#pageFirst').click(function(){
+                    $('#pageNo').val(1);
+                    $('#pageNo').change();
+                });
+
+                $('#pagePrev').click(function(){
+                    $('#pageNo').val(parseInt($('#pageNo').val()) - 1);
+                    $('#pageNo').change();
+                });
+
+                $('#pageNext').click(function(){
+                    $('#pageNo').val(parseInt($('#pageNo').val()) + 1);
+                    $('#pageNo').change();
+                });
+
+                $('#pageLast').click(function(){
+                    $('#pageNo').val($('#pageNo').prop('max'));
+                    $('#pageNo').change();
+                });
             });
             
             ClosedList = function(prop, readOnly){
@@ -255,16 +423,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 
                 this.rules = {
                     nn: {
-                       NomSg: /^.*nom_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       GenSg: /^.*gen_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       DatSg: /^.*dat_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       AccSg: /^.*acc_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       NomPl: /^.*nom_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       GenPl: /^.*gen_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       DatPl: /^.*dat_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       AccPl: /^.*acc_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/
+                        NomSg: /nom_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        GenSg: /gen_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        DatSg: /dat_sg(_old)?"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        AccSg: /acc_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        NomPl: /nom_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        GenPl: /gen_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        DatPl: /dat_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        AccPl: /acc_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
+                    },
+                    adj: {
+                        PosAdv:  /pos_adv"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        CompAdv: /comp_adv"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        Sup:     /sup"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
+                    },
+                    v: {
+                        'Inf'       : /inf"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '1SgPresInd': /1_sg_pres_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '2SgPresInd': /2_sg_pres_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '3SgPresInd': /3_sg_pres_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '1SgPastInd': /1_sg_past_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        'PPast'     : /ppast"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
+                    },
+                    adv: {
+                        Adv: /adv"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
                     }
                 };
+                this.rules.abbr = this.rules.nn;
+                this.rules.nprop = this.rules.nn;
                 
                 this.templates = {
                     nn: '<table class="inflectionTable">' +
@@ -275,20 +461,55 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                        '<tr><td class="header">Dat</td><td>%DatSg%</td><td>%DatPl%</td></tr>' +
                        '<tr><td class="header">Acc</td><td>%AccSg%</td><td>%AccPl%</td></tr>' +
                        '</tbody>' +
+                       '</table>',
+                    adj: '<table class="inflectionTable">' +
+                       '<tbody>' +
+                       '<tr><td class="header">Pos Adv</td><td>%PosAdv%</td></tr>' +
+                       '<tr><td class="header">Comp Adv</td><td>%CompAdv%</td></tr>' +
+                       '<tr><td class="header">Sup</td><td>%Sup%</td></tr>' +
+                       '</tbody>' +
+                       '</table>',
+                    v: '<table class="inflectionTable">' +
+                       '<tbody>' +
+                       '<tr><td class="header">Inf</td><td>%Inf%</td></tr>' +
+                       '<tr><td class="header">1 Sg Pres Ind</td><td>%1SgPresInd%</td></tr>' +
+                       '<tr><td class="header">2 Sg Pres Ind</td><td>%2SgPresInd%</td></tr>' +
+                       '<tr><td class="header">3 Sg Pres Ind</td><td>%3SgPresInd%</td></tr>' +
+                       '<tr><td class="header">1 Sg Past Ind</td><td>%1SgPastInd%</td></tr>' +
+                       '<tr><td class="header">PPast</td><td>%PPast%</td></tr>' +
+                       '</tbody>' +
+                       '</table>',
+                    adv: '<table class="inflectionTable">' +
+                       '<tbody>' +
+                       '<tr><td class="header">Adv</td><td>%Adv%</td></tr>' +
+                       '</tbody>' +
                        '</table>'
                 };
+                this.templates.abbr = this.templates.nn;
+                this.templates.nprop = this.templates.nn;
                 
                 this.draw = function(value, node){
                     // strip new lines so that our regexp work in a predictable way
-                    value = value.replace(/\s/gm, '');
-                    var pos = value.replace(/^.*ana="#/, '').replace(/_.*$/, '');
+                    value = value.replace(/[\n\r]/gm, '');
+                    var pos = /ana="#([a-z]+)/.exec(value)[1];
                     if(!pos || !that.templates[pos] || !that.rules[pos]){
-                        node.html('no inflection table template for ' + pos);
+                        node.html('no inflection table template for "' + pos + '"');
                         return;
                     }
                     var template = that.templates[pos];
                     $.each(that.rules[pos], function(key, rule){
-                        template = template.replace('%' + key + '%', value.replace(rule, '$1'));
+                        var forms = '';
+                        var s;
+                        while((s = rule.exec(value))){
+                            var tmp = s[s.length - 1];
+                            if(tmp != 'no result'){
+                                forms += tmp + '<br/>';
+                            }else if(forms == ''){
+                                forms +=  '-<br/>';
+                            }
+                        }
+
+                        template = template.replace('%' + key + '%', forms);
                     });
                     node.html(template);
                 };
@@ -300,9 +521,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <style type="text/css">
             .inpNumber {width: 100px !important;}
             .inpString {width: 150px !important;}
-            #content {padding-left: 25px;}
-            #content div.panel {display: inline-block; margin: 5px; vertical-align: top;}
+            #tokenForm, #indexPanel > dl {padding-left: 25px;}
+            #tokenForm div.panel {display: inline-block; margin: 5px; vertical-align: top;}
             #search {padding-top: 5px;}
+            #import, #importResult {padding: 10px;}
             .inflectionTable td, .inflectionTable th {border: solid 1px #DDD; padding: 5px;}
             .inflectionTable th, .inflectionTable .header {background-color: #F5F5F5;}
         </style>
@@ -310,32 +532,96 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <body>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <form class="navbar-form">
-                    <select id="documentId" class="form-control"></select>
+                <form class="navbar-form navbar-left" onsubmit="return false;">
                     <div class="form-group">
-                        <button id="goFirst" type="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i></button>
-                        <button id="goPrev" type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
-                        <input  id="tokenNo" type="number" class="form-control inpNumber" min="1" max="1" value="1"/>
-                        <button id="goNext" type="button" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
-                        <button id="goLast" type="button" class="btn btn-default"><i class="fa fa-angle-double-right"></i></button>
+                        <select id="documentId" class="form-control"></select>
                     </div>
-                    <div id="search">
-                        <div class="input-group">
-                            <div class="input-group-addon">Token id:</div>
-                            <input type="number" class="form-control inpNumber" min="1" max="1" data-value="_offset"/>
+                </form>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Export document <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a id="exportInPlace" href="#">Updated in place</a></li>
+                            <li><a id="exportEnriched" href="#">Enriched</a></li>
+                        </ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Import document
+                        </a>
+                        <div class="dropdown-menu">
+                            <div id="import"></div>
+                            <div id="importResult"></div>
                         </div>
-                        <div class="input-group">
-                            <div class="input-group-addon">Token:</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-fluid">
+                <form id="search" class="navbar-form" onsubmit="return false;">
+                    <div class="input-group">
+                        <div class="input-group-addon">Token id:</div>
+                        <input type="number" class="form-control inpNumber" min="1" max="1" data-value="token_id"/>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-addon">Token:</div>
                             <input type="text" class="form-control inpString" data-value="token"/>
                         </div>
-                        <div class="form-group" id="filters"></div>
-                    </div>
+                    <div class="form-group" id="filters"></div>
                 </form>
             </div>
         </nav>
         <div>
-            <form id="content">
-            </form>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"><a href="#indexPanel" aria-controls="indexPanel" role="tab" data-toggle="tab">Index</a></li>
+                <li role="presentation" class="active"><a href="#tokenPanel" aria-controls="tokenPanel" role="tab" data-toggle="tab">Tokens</a></li>
+            </ul>
+            <div class="tab-content">
+                <!-- INDEX PANEL -->
+                <div role="tabpanel" class="tab-pane" id="indexPanel">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <form class="navbar-form" onsubmit="return false;">
+                                <div class="form-group">
+                                    <button id="pageFirst" type="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i></button>
+                                    <button id="pagePrev" type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                    <div class="input-group">
+                                        <input id="pageNo" type="number" class="form-control inpNumber" min="1" max="1" value="1"/>
+                                        <div class="input-group-addon"></div>
+                                    </div>
+                                    <button id="pageNext" type="button" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                    <button id="pageLast" type="button" class="btn btn-default"><i class="fa fa-angle-double-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                    <div id="indexWait">
+                        <i class="fa fa-refresh fa-2x fa-spin"></i>
+                    </div>
+                    <dl class="dl-horizontal"></dl>
+                </div>
+                <!-- TOKEN PANEL -->
+                <div role="tabpanel" class="tab-pane active" id="tokenPanel">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <form class="navbar-form" onsubmit="return false;">
+                                <div class="form-group">
+                                    <button id="goFirst" type="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i></button>
+                                    <button id="goPrev" type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                    <div class="input-group">
+                                        <input id="tokenNo" type="number" class="form-control inpNumber" min="1" max="1" value="1"/>
+                                        <div class="input-group-addon"></div>
+                                    </div>
+                                    <button id="goNext" type="button" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                    <button id="goLast" type="button" class="btn btn-default"><i class="fa fa-angle-double-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                    <form id="tokenForm" onsubmit="return false;">
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>
