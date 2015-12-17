@@ -148,13 +148,11 @@ class Document implements \IteratorAggregate {
 			fetchColumn();
 		
 		$savePath = $saveDir . '/' . $this->documentId . '.xml';
-		copy($this->path, $savePath);
 		
 		$query = $this->PDO->prepare("INSERT INTO documents (document_id, token_xpath, token_value_xpath, name, save_path, hash) VALUES (?, ?, ?, ?, ?, ?)");
-		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->schema->getTokenValueXPath(), $this->name, $savePath, md5_file($savePath)));
+		$query->execute(array($this->documentId, $this->schema->getTokenXPath(), $this->schema->getTokenValueXPath(), $this->name, $savePath, md5_file($this->path)));
 		unset($query); // free memory
 		
-				
 		$this->schema->save($this->documentId);
 		
 		$nn = 0;
@@ -168,6 +166,8 @@ class Document implements \IteratorAggregate {
 			}
 			$nn = $n + 1;
 		}
+		
+		copy($this->path, $savePath);
 		return $nn;
 	}
 	

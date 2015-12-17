@@ -13,8 +13,8 @@ CREATE TABLE documents (
 CREATE SEQUENCE document_id_seq;
 
 CREATE TABLE documents_users (
-	document_id int not null references documents (document_id),
-	user_id text not null references users (user_id),
+	document_id int not null references documents (document_id) ON UPDATE CASCADE ON DELETE CASCADE;,
+	user_id text not null references users (user_id)  ON UPDATE CASCADE ON DELETE CASCADE;,
 	primary key (document_id, user_id)
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE properties (
 	document_id int not null references documents (document_id),
 	property_xpath text not null,
 	type_id text not null references property_types (type_id),
-	name text not null check(name not in ('token_id', 'token'),
+	name text not null check(name not in ('token_id', 'token', '_offset', '_pagesize'),
         ord int not null,
 	primary key (document_id, property_xpath),
         unique (document_id, order),
@@ -70,7 +70,7 @@ CREATE TABLE values (
 	document_id int not null,
 	property_xpath text not null,
 	token_id int not null,
-	user_id text not null references users (user_id),
+	user_id text not null references users (user_id) ON UPDATE CASCADE,
 	value text not null,
         date timestamp not null default now(),
 	foreign key (document_id, token_id, property_xpath) references orig_values (document_id, token_id, property_xpath),

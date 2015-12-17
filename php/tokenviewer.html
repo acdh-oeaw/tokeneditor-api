@@ -503,9 +503,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         var s;
                         while((s = rule.exec(value))){
                             var tmp = s[s.length - 1];
-                            if(tmp != 'no result'){
-                                forms += tmp + '<br/>';
-                            }else if(forms == ''){
+                            if(tmp !== 'no result'){
+                                forms += tmp;
+                                var freq = new RegExp(rule.source + '.*?<measure quantity="([0-9]+)" commodity="tokens" type="haeufigkeitsklasse"').exec(value);
+                                if(freq){
+                                    forms += ' (' + freq[freq.length - 1] + ')';
+                                }
+                                forms += '<br/>';
+                            }else if(forms === ''){
                                 forms +=  '-<br/>';
                             }
                         }
