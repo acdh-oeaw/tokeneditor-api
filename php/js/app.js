@@ -41,7 +41,7 @@
                 postdata.token_id = rowEntity['token_id'];
                 postdata.name = colDef.name; 
                 postdata.value = newValue;
-                
+                console.log("hello");
                 
                 				          
                   $scope.$apply();
