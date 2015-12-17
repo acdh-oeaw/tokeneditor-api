@@ -2,12 +2,13 @@
 
 	var app = angular.module('myApp', ['ui.grid','ui.grid.pagination','ui.grid.edit','ui.grid.cellNav','ui.grid.exporter','chart.js','ui.grid.selection','ui.bootstrap']);
 
-var paginationOptions = {
+	var paginationOptions = {
 					pageNumber: 1,
 					pageSize: 25,
 					sort: null
 				};
-
+				
+	var filterQueryNo = 0;
 	app.controller('MainCtrl',['$scope', '$http','$timeout','$location', function($scope,$http,$timeout,$locationProvider,$location) {
 		
 		$scope.gridOptions = {};
@@ -38,7 +39,7 @@ var paginationOptions = {
                 postdata.document_id = $("#docids").text();
 				console.log(rowEntity);
                 postdata.token_id = rowEntity['token_id'];
-                postdata.property_xpath = '@'+colDef.name; 
+                postdata.name = colDef.name; 
                 postdata.value = newValue;
                 
                 
@@ -48,8 +49,8 @@ var paginationOptions = {
                   $http({
                       method: 'POST',
                       url: 'storejson.php',
-                      data:postdata,
-                      ContentType: "application/json"
+                      data:postdata
+ //                     ContentType: "application/json"
                       })
                 }
        });
@@ -69,6 +70,7 @@ var paginationOptions = {
               getPage(newPage, pageSize, paginationOptions.sort);
           }
        });
+		  
 	      $scope.gridApi.core.on.filterChanged( $scope, function() {
 			var grid = this.grid;
 			
@@ -85,7 +87,8 @@ var paginationOptions = {
 			delete params[value.name];
 		}
 		 });		
-	
+			filterQueryNo++;
+			var curFilterQueryNo = filterQueryNo;
 		
 			$http({
                       method: 'GET',
@@ -93,11 +96,12 @@ var paginationOptions = {
 					  params:params,
                       headers: { "Content-Type": "application/json" }
                       }).success(function (data){
+						    if(filterQueryNo == curFilterQueryNo) {
 						$scope.flattened = [];	
 					
 						$scope.gridOptions.data = data.data;	
 						$scope.gridOptions.totalItems = data.tokenCount;
-  
+						}
 				});
 			
 		
