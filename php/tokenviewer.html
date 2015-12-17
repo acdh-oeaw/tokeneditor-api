@@ -384,16 +384,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 
                 this.rules = {
                     nn: {
-                       NomSg: /^.*nom_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       GenSg: /^.*gen_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       DatSg: /^.*dat_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       AccSg: /^.*acc_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       NomPl: /^.*nom_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       GenPl: /^.*gen_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       DatPl: /^.*dat_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/, 
-                       AccPl: /^.*acc_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>.*$/
+                        NomSg: /nom_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        GenSg: /gen_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        DatSg: /dat_sg(_old)?"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        AccSg: /acc_sg"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        NomPl: /nom_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        GenPl: /gen_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        DatPl: /dat_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g, 
+                        AccPl: /acc_pl"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
+                    },
+                    adj: {
+                        PosAdv:  /pos_adv"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        CompAdv: /comp_adv"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        Sup:     /sup"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
+                    },
+                    v: {
+                        'Inf'       : /inf"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '1SgPresInd': /1_sg_pres_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '2SgPresInd': /2_sg_pres_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '3SgPresInd': /3_sg_pres_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        '1SgPastInd': /1_sg_past_ind"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g,
+                        'PPast'     : /ppast"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
+                    },
+                    adv: {
+                        Adv: /adv"[^>]+>[^<]*<orth>([^<]*)<\/orth>/g
                     }
                 };
+                this.rules.abbr = this.rules.nn;
+                this.rules.nprop = this.rules.nn;
                 
                 this.templates = {
                     nn: '<table class="inflectionTable">' +
@@ -404,20 +422,50 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                        '<tr><td class="header">Dat</td><td>%DatSg%</td><td>%DatPl%</td></tr>' +
                        '<tr><td class="header">Acc</td><td>%AccSg%</td><td>%AccPl%</td></tr>' +
                        '</tbody>' +
+                       '</table>',
+                    adj: '<table class="inflectionTable">' +
+                       '<tbody>' +
+                       '<tr><td class="header">Pos Adv</td><td>%PosAdv%</td></tr>' +
+                       '<tr><td class="header">Comp Adv</td><td>%CompAdv%</td></tr>' +
+                       '<tr><td class="header">Sup</td><td>%Sup%</td></tr>' +
+                       '</tbody>' +
+                       '</table>',
+                    v: '<table class="inflectionTable">' +
+                       '<tbody>' +
+                       '<tr><td class="header">Inf</td><td>%Inf%</td></tr>' +
+                       '<tr><td class="header">1 Sg Pres Ind</td><td>%1SgPresInd%</td></tr>' +
+                       '<tr><td class="header">2 Sg Pres Ind</td><td>%2SgPresInd%</td></tr>' +
+                       '<tr><td class="header">3 Sg Pres Ind</td><td>%3SgPresInd%</td></tr>' +
+                       '<tr><td class="header">1 Sg Past Ind</td><td>%1SgPastInd%</td></tr>' +
+                       '<tr><td class="header">PPast</td><td>%PPast%</td></tr>' +
+                       '</tbody>' +
+                       '</table>',
+                    adv: '<table class="inflectionTable">' +
+                       '<tbody>' +
+                       '<tr><td class="header">Adv</td><td>%Adv%</td></tr>' +
+                       '</tbody>' +
                        '</table>'
                 };
+                this.templates.abbr = this.templates.nn;
+                this.templates.nprop = this.templates.nn;
                 
                 this.draw = function(value, node){
                     // strip new lines so that our regexp work in a predictable way
-                    value = value.replace(/\s/gm, '');
-                    var pos = value.replace(/^.*ana="#/, '').replace(/_.*$/, '');
+                    value = value.replace(/[\n\r]/gm, '');
+                    var pos = /ana="#([a-z]+)/.exec(value)[1];
                     if(!pos || !that.templates[pos] || !that.rules[pos]){
-                        node.html('no inflection table template for ' + pos);
+                        node.html('no inflection table template for "' + pos + '"');
                         return;
                     }
                     var template = that.templates[pos];
                     $.each(that.rules[pos], function(key, rule){
-                        template = template.replace('%' + key + '%', value.replace(rule, '$1'));
+                        var forms = '';
+                        var s;
+                        while((s = rule.exec(value))){
+                            forms += s[s.length - 1] + '<br/>';
+                        }
+
+                        template = template.replace('%' + key + '%', forms);
                     });
                     node.html(template);
                 };
@@ -439,7 +487,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <body>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <form class="navbar-form">
+                <form class="navbar-form" onsubmit="return false;">
                     <select id="documentId" class="form-control"></select>
                     <div id="search">
                         <div class="input-group">
@@ -465,7 +513,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <div role="tabpanel" class="tab-pane" id="indexPanel">
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
-                            <form class="navbar-form">
+                            <form class="navbar-form" onsubmit="return false;">
                                 <div class="form-group">
                                     <button id="pageFirst" type="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i></button>
                                     <button id="pagePrev" type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
@@ -488,7 +536,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <div role="tabpanel" class="tab-pane active" id="tokenPanel">
                     <nav class="navbar navbar-default">
                         <div class="container-fluid">
-                            <form class="navbar-form">
+                            <form class="navbar-form" onsubmit="return false;">
                                 <div class="form-group">
                                     <button id="goFirst" type="button" class="btn btn-default"><i class="fa fa-angle-double-left"></i></button>
                                     <button id="goPrev" type="button" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
@@ -502,7 +550,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             </form>
                         </div>
                     </nav>
-                    <form id="tokenForm">
+                    <form id="tokenForm" onsubmit="return false;">
                     </form>
                 </div>
             </div>
