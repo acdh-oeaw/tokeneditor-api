@@ -41,7 +41,7 @@ TokenEditorImporter = function (domElement, apiUrl, callback) {
     this.callback = callback;
     $(this.dom).html(
         '<form method="post" enctype="multipart/form-data">' +
-            '<input type="hidden" name="MAX_FILE_SIZE" value="900000000"/>' +
+            '<input type="hidden" name="MAX_FILE_SIZE" value="50200100"/>' +
             '<div class="form-group">' +
                 '<label for="documentName">Document name</label> ' +
                 '<input type="text" name="name" required="required" placeholder="Document name" class="form-control" id="documentName"/>' +
@@ -55,16 +55,38 @@ TokenEditorImporter = function (domElement, apiUrl, callback) {
                 '<input type="file" name="schema" accept="text/xml" required="required" class="" id="documentSchema"/>' +
             '</div>' +
             '<button type="submit" class="btn btn-primary">Import document</button>' +
+            ' <span class="waitInd"></span>' +
         '</form>'
     );
+    this.interval;
+    this.step = 0;
+    this.animate = function(){
+        console.log(that.step);
+        var s = 'importing data';
+        for(var i = 0; i < that.step; i++){
+            s += '.';
+        }
+        $(that.dom).find('span.waitInd').text(s);
+        that.step = that.step > 2 ? 0 : that.step + 1;
+    };
     $(this.dom).find('form').submit(function () {
+        that.step = 0;
+        that.interval = setInterval(that.animate, 1000);
+        $(that.dom).find('button[type="submit"]').prop('disabled', true);
         $.ajax({
             url: that.apiUrl,
             type: 'POST',
             data: new FormData(this),
             processData: false,
             contentType: false,
-            success: that.callback
+            success: function(data){
+                that.callback(data);
+            },
+            complete: function(xhr, status){
+                clearInterval(that.interval);
+                $(that.dom).find('span.waitInd').empty();
+                $(that.dom).find('button[type="submit"]').prop('disabled', false);                
+            }
         });
         return false;
     });

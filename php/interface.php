@@ -86,7 +86,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			$doc->loadDb($docId);
 
 			header('Content-type: text/xml');
-			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'));
+			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'), \import\DOM_DOCUMENT);
 		} catch (Exception $ex) {
 			exit(json_encode(array(
 				'status' => 'ERROR',
@@ -197,10 +197,21 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			)));
 		}
 	}else{
+		$dir = $file = '';
 		// IMPORT
 		try{
 			if(!isset($_FILES['document']) || !isset($_FILES['schema'])){
 				throw new RuntimeException('document or schema not uploaded');
+			}
+			$zip = new ZipArchive();
+			if($zip->open($_FILES['document']['tmp_name']) === true){
+				$name = $zip->getNameIndex(0);
+				$dir = 'tmp/' . time() . rand();
+				mkdir($dir);
+				$zip->extractTo($dir, $name);
+				$zip->close();
+				$file = $dir . '/' . $name;
+				$_FILES['document']['tmp_name'] = $file;
 			}
 
 			$PDO->beginTransaction();
@@ -224,12 +235,13 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 				$doc->getId(), 
 				filter_input(INPUT_SERVER, $CONFIG['userid'])
 			));
+			
 			header('Content-type: application/json');
 			if($n > 0){
 				$PDO->commit();
 				echo json_encode(array(
 					'status' => 'OK',
-					'document_id' => $doc->getId(),
+					'documentId' => $doc->getId(),
 					'name' => filter_input(INPUT_POST, 'name'),
 					'tokensCount' => $n
 				));
@@ -241,10 +253,18 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 				));
 			}
 		} catch (Exception $ex) {
+			header('Content-type: application/json');
 			exit(json_encode(array(
 				'status' => 'ERROR',
 				'message' => $ex->getMessage()
 			)));
+		} finally {
+			if($file !== ''){
+				unlink($file);
+			}
+			if($dir !== ''){
+				rmdir($dir);
+			}
 		}
 	}
 }else{

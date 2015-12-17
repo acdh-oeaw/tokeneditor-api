@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <link href="css/bootstrap.css" rel="stylesheet"/>
         <link href="css/font-awesome.css" rel="stylesheet">
         -->
+        <script type="text/javascript" src="js/TokenEditorImporter.js"></script>
         <script type="text/javascript">
             var docs = [];
             var doc = {};
@@ -79,6 +80,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 return widget;
             }
 
+            function documentsGet(){
+                $.getJSON('document', documentsDisplay);
+            }
+
+            function documentsDisplay(data){
+                var list = $('#documentId');
+                docs = data.data;
+                list.html('');
+                $.each(docs, function(key, value){
+                    list.append('<option value="' + key + '">' + value.name + ' (' + value.tokenCount + ')</option>');
+                    $.each(value.properties, function(key, value){
+                        value.widget = newPropertyWidget(value); 
+                    });
+                    if(doc && doc.documentId == value.documentId){
+                        list.val(key);
+                    }
+                });
+                if(docs.length > 0){
+                    list.change();
+                }
+            }
+                
             function documentDisplay(){
                 doc = docs[$(this).val()];
                     
@@ -99,6 +122,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         node.remove();
                     }
                 });
+                
+                $('#exportInPlace')
+                    .attr('href', 'document/' + encodeURIComponent(doc.documentId) + '?inPlace=')
+                    .attr('target', '_blank');
+                $('#exportEnriched')
+                    .attr('href', 'document/' + encodeURIComponent(doc.documentId))
+                    .attr('target', '_blank');            
                 
                 tokenGet();
                 indexGet();
@@ -210,24 +240,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 c.find('select, input').focus();
             }
 
+            function importHandle(data){
+                var message;
+                var helperClass;
+                var s = $('#importResult');
+                if(data && data.status && data.status === 'OK'){
+                    message = 'import successful';
+                    helperClass = 'text-success';
+                }else {
+                    message = 'import failed: ' + data.message;
+                    helperClass = 'text-danger';
+                }
+                s.removeClass('text-success')
+                    .removeClass('text-danger')
+                    .addClass(helperClass)
+                    .text(message);
+                if(data && data.status && data.status === 'OK'){
+                    var s = $('#documentId').get(0);
+                    doc.documentId = data.documentId;
+                    documentsGet();
+                }
+            }
+
             $().ready(function(){
-                $.getJSON('document', function(data){
-                    var list = $('#documentId');
-                    docs = data.data;
-                    list.html('');
-                    $.each(docs, function(key, value){
-                        list.append('<option value="' + key + '">' + value.name + ' (' + value.tokenCount + ')</option>');
-                        $.each(value.properties, function(key, value){
-                           value.widget = newPropertyWidget(value); 
-                        });
-                    });
-                    if(docs.length > 0){
-                        list.change();
-                    }else{
-                        
-                    }
-                });
-                                    
+                documentsGet();
+                
+                new TokenEditorImporter($('#import').get(0), 'document', importHandle);
+                               
                 $('#documentId').change(documentDisplay);
                 $('#search').on('change', 'input, select', function(){
                     $('#tokenNo').val(1);
@@ -462,7 +501,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         var forms = '';
                         var s;
                         while((s = rule.exec(value))){
-                            forms += s[s.length - 1] + '<br/>';
+                            var tmp = s[s.length - 1];
+                            if(tmp != 'no result'){
+                                forms += tmp + '<br/>';
+                            }else if(forms == ''){
+                                forms +=  '-<br/>';
+                            }
                         }
 
                         template = template.replace('%' + key + '%', forms);
@@ -480,6 +524,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             #tokenForm, #indexPanel > dl {padding-left: 25px;}
             #tokenForm div.panel {display: inline-block; margin: 5px; vertical-align: top;}
             #search {padding-top: 5px;}
+            #import, #importResult {padding: 10px;}
             .inflectionTable td, .inflectionTable th {border: solid 1px #DDD; padding: 5px;}
             .inflectionTable th, .inflectionTable .header {background-color: #F5F5F5;}
         </style>
@@ -487,19 +532,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <body>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <form class="navbar-form" onsubmit="return false;">
-                    <select id="documentId" class="form-control"></select>
-                    <div id="search">
-                        <div class="input-group">
-                            <div class="input-group-addon">Token id:</div>
-                            <input type="number" class="form-control inpNumber" min="1" max="1" data-value="token_id"/>
+                <form class="navbar-form navbar-left" onsubmit="return false;">
+                    <div class="form-group">
+                        <select id="documentId" class="form-control"></select>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Export document <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a id="exportInPlace" href="#">Updated in place</a></li>
+                            <li><a id="exportEnriched" href="#">Enriched</a></li>
+                        </ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Import document
+                        </a>
+                        <div class="dropdown-menu">
+                            <div id="import"></div>
+                            <div id="importResult"></div>
                         </div>
-                        <div class="input-group">
-                            <div class="input-group-addon">Token:</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="container-fluid">
+                <form id="search" class="navbar-form" onsubmit="return false;">
+                    <div class="input-group">
+                        <div class="input-group-addon">Token id:</div>
+                        <input type="number" class="form-control inpNumber" min="1" max="1" data-value="token_id"/>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-addon">Token:</div>
                             <input type="text" class="form-control inpString" data-value="token"/>
                         </div>
-                        <div class="form-group" id="filters"></div>
-                    </div>
+                    <div class="form-group" id="filters"></div>
                 </form>
             </div>
         </nav>
