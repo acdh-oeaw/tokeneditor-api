@@ -61,7 +61,6 @@ TokenEditorImporter = function (domElement, apiUrl, callback) {
     this.interval;
     this.step = 0;
     this.animate = function(){
-        console.log(that.step);
         var s = 'importing data';
         for(var i = 0; i < that.step; i++){
             s += '.';

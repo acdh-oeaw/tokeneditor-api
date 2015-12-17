@@ -239,6 +239,9 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 			header('Content-type: application/json');
 			if($n > 0){
 				$PDO->commit();
+				if(1 == $PDO->query("SELECT count(*) FROM documents")->fetch(PDO::FETCH_COLUMN)){
+					$PDO->query("VACUUM ANALYZE");
+				}
 				echo json_encode(array(
 					'status' => 'OK',
 					'documentId' => $doc->getId(),
