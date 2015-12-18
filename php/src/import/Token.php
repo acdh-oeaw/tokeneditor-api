@@ -80,10 +80,13 @@ class Token {
 		
 		foreach($this->document->getSchema() as $prop){
 			try{
+				$this->properties[$prop->getXPath()] = null;
+				
 				$value = $xpath->query($prop->getXPath(), $this->dom);
 				if($value->length != 1){
 					throw new \LengthException('property not found or many properties found');
 				}
+				
 				$this->properties[$prop->getXPath()] = $value->item(0);
 			}catch (\LengthException $e){}
 		}
@@ -117,7 +120,10 @@ class Token {
 		
 		$query = $PDO->prepare("INSERT INTO orig_values (document_id, token_id, property_xpath, value) VALUES (?, ?, ?, ?)");
 		foreach ($this->properties as $xpath => $prop){
-			$value = isset($prop->value) ? $prop->value : $this->innerXml($prop);
+			$value = '';
+			if($prop){
+				$value = isset($prop->value) ? $prop->value : $this->innerXml($prop);
+			}
 			$query->execute(array($docId, $this->tokenId, $xpath, $value));
 		}
 	}
