@@ -4,7 +4,7 @@
  * 
  * To run it:
  * - assure proper database connection settings in config.inc.php
- * - set up configuration variables in lines 14-23
+ * - set up configuration variables in lines 14-25
  * - run script from the command line 'php import.php'
  */
 require_once 'src/utils/ClassLoader.php';
@@ -24,12 +24,14 @@ $dataPath   = '../sample_data/baffleLex.xml';
 // path to the directory where imported XMLs are stored
 $saveDir = 'docStorage';
 
+//$schemaPath = '../sample_data/testtext-schema.xml';
+//$dataPath   = '../sample_data/testtext.xml';
 //$schemaPath = '../sample_data/testcases-rm-toks-schema.xml';
 //$dataPath   = '../sample_data/testcases-rm-toks.xml';
 //$schemaPath = '../sample_data/SwissProt-schema.xml';
 //$dataPath   = '../sample_data/SwissProt.xml';
 //$schemaPath = '../sample_data/baffleLex_v_0.2_zmorge_20151002-schema.xml';
-//$dataPath   = '../sample_data/baffleLex_v_0.2_zmorge_20151002.xml';
+//$dataPath   = '../sample_data/baffleLex.xml';
 
 ###########################################################
 

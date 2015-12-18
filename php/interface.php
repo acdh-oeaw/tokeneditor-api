@@ -83,7 +83,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 		// EXPORT
 		try{
 			$doc = new import\Document($PDO);
-			$doc->loadDb($docId, import\Document::DOM_DOCUMENT);
+			$doc->loadDb($docId);
 
 			$fileName = 'tmp/' . time() . rand();
 			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'), $fileName);

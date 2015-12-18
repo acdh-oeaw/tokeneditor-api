@@ -90,6 +90,7 @@ class XMLReader extends TokenIterator {
 		do{
 			// in first step skip previous token subtree
 			$res = $firstStep ? $this->reader->next() : $this->reader->read();
+			$firstStep = false;
 			$name = null;
 			if($this->reader->nodeType === \XMLReader::ELEMENT){
 				$nsPrefixPos = mb_strpos($this->reader->name, ':');
@@ -226,7 +227,6 @@ class XMLReader extends TokenIterator {
 		if(in_array($this->reader->nodeType, $types)){
 			while($this->reader->moveToNextAttribute()){
 				$str .= ' ';
-				$str .= ($this->reader->prefix ? $this->reader->prefix . ':' : '');
 				$str .= $this->reader->name;
 				$str .= '="' . $this->reader->value . '"';
 			}
