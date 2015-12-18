@@ -102,7 +102,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 				type_id AS "typeId",
 				ord,
 				read_only AS "readOnly",
-				json_agg(value) AS values
+				json_agg(value ORDER BY value) AS values
 			FROM 
 				properties
 				LEFT JOIN dict_values USING (document_id, property_xpath)
