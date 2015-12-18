@@ -5,7 +5,7 @@
     <properties>
         <property>
             <propertyName>pos</propertyName>
-            <propertyXPath>//gram[@type='pos']</propertyXPath>
+            <propertyXPath>.//gram[@type='pos']</propertyXPath>
             <propertyType>closed list</propertyType>
             <readOnly/>
             <propertyValues>
@@ -20,7 +20,7 @@
         </property>
         <property>
             <propertyName>gen</propertyName>
-            <propertyXPath>//gram[@type='gen']</propertyXPath>
+            <propertyXPath>.//gram[@type='gen']</propertyXPath>
             <propertyType>closed list</propertyType>
             <readOnly/>
             <propertyValues>
@@ -38,7 +38,7 @@
         </property>
         <property>
             <propertyName>review</propertyName>
-            <propertyXPath>//f[@name='review']/string</propertyXPath>
+            <propertyXPath>.//f[@name='review']/string</propertyXPath>
             <propertyType>closed list</propertyType>
             <propertyValues>
                 <value>good</value>
