@@ -83,10 +83,14 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 		// EXPORT
 		try{
 			$doc = new import\Document($PDO);
-			$doc->loadDb($docId);
+			$doc->loadDb($docId, import\Document::DOM_DOCUMENT);
 
+			$fileName = 'tmp/' . time() . rand();
+			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'), $fileName);
 			header('Content-type: text/xml');
-			echo $doc->export((bool)filter_input(INPUT_GET, 'inPlace'), \import\DOM_DOCUMENT);
+			header('Content-Length: ' . filesize($fileName));
+			readfile($fileName);
+			unlink($fileName);
 		} catch (Exception $ex) {
 			exit(json_encode(array(
 				'status' => 'ERROR',
