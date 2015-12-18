@@ -46,5 +46,10 @@
                 <value>ugly</value>
             </propertyValues>
         </property>
+        <property>
+            <propertyName>lemma</propertyName>
+            <propertyXPath>.//f[@name='lemma']/string</propertyXPath>
+            <propertyType>free text</propertyType>
+        </property>
     </properties>
 </schema>
