@@ -11,3 +11,5 @@
 /.ssh
 /php/docStorage/*
 /build
+*~
+
