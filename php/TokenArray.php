@@ -54,8 +54,11 @@ class TokenArray {
 					JOIN tokens t USING (document_id, token_id) 
 					JOIN properties p USING (document_id)
 					JOIN orig_values v USING (document_id, property_xpath, token_id) 
-					LEFT JOIN values uv USING (document_id, property_xpath, token_id) 
-				WHERE user_id = ? OR user_id is NULL
+					LEFT JOIN (
+						SELECT *
+						FROM values 
+						WHERE user_id = ?
+					) uv USING (document_id, property_xpath, token_id) 
 				GROUP BY 1, 2 
 				ORDER BY token_id 
 			) t";
