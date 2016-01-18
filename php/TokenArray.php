@@ -30,14 +30,7 @@ class TokenArray {
 	public function generateJSON($documentId, $userId, $pageSize = 1000, $offset = 0) {
 		list($filterQuery, $filterParam) = $this->getFilters($documentId, $userId);
 		$queryStr = "
-			WITH filter AS (
-				SELECT * 
-				FROM (
-					" . $filterQuery . "
-				) ff
-				LIMIT ? 
-				OFFSET ?
-			)
+			WITH filter AS (" . $filterQuery . ")
 			SELECT
 				json_build_object(
 					'tokenCount', (SELECT count(*) FROM filter), 
@@ -52,7 +45,12 @@ class TokenArray {
 					array_agg(COALESCE(uv.value, cv.value, v.value) ORDER BY ord) AS values, 
 					array_agg(p.name ORDER BY ord) AS names 
 				FROM
-					filter
+					(
+						SELECT *
+						FROM filter
+						LIMIT ? 
+						OFFSET ?
+					) f
 					JOIN tokens t USING (document_id, token_id) 
 					JOIN properties p USING (document_id)
 					JOIN orig_values v USING (document_id, property_xpath, token_id) 
@@ -69,7 +67,12 @@ class TokenArray {
 								row_number() OVER (PARTITION BY document_id, property_xpath, token_id ORDER BY date DESC) AS n
 							FROM 
 								values
-								JOIN filter USING (document_id, token_id)
+								JOIN (
+									SELECT *
+									FROM filter
+									LIMIT ? 
+									OFFSET ?
+								) ff USING (document_id, token_id)
 						) t
 						WHERE n = 1
 					) cv USING (document_id, property_xpath, token_id)
@@ -78,7 +81,7 @@ class TokenArray {
 			) t";
 		
 		$query = $this->con->prepare($queryStr);
-		$params = array_merge($filterParam, array($pageSize, $offset, $userId));
+		$params = array_merge($filterParam, array($pageSize, $offset, $userId, $pageSize, $offset));
 		$query->execute($params);				
 		$result = $query->fetch(PDO::FETCH_COLUMN);
 		
