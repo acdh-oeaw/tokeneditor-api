@@ -30,7 +30,14 @@ class TokenArray {
 	public function generateJSON($documentId, $userId, $pageSize = 1000, $offset = 0) {
 		list($filterQuery, $filterParam) = $this->getFilters($documentId, $userId);
 		$queryStr = "
-			WITH filter AS (" . $filterQuery . ")
+			WITH filter AS (
+				SELECT * 
+				FROM (
+					" . $filterQuery . "
+				) ff
+				LIMIT ? 
+				OFFSET ?
+			)
 			SELECT
 				json_build_object(
 					'tokenCount', (SELECT count(*) FROM filter), 
@@ -42,15 +49,10 @@ class TokenArray {
 			FROM ( 
 				SELECT 
 					token_id, t.value, 
-					array_agg(COALESCE(uv.value, v.value) ORDER BY ord) AS values, 
+					array_agg(COALESCE(uv.value, cv.value, v.value) ORDER BY ord) AS values, 
 					array_agg(p.name ORDER BY ord) AS names 
 				FROM
-					(
-						SELECT * 
-						FROM filter 
-						LIMIT ? 
-						OFFSET ?
-					) f
+					filter
 					JOIN tokens t USING (document_id, token_id) 
 					JOIN properties p USING (document_id)
 					JOIN orig_values v USING (document_id, property_xpath, token_id) 
@@ -59,6 +61,18 @@ class TokenArray {
 						FROM values 
 						WHERE user_id = ?
 					) uv USING (document_id, property_xpath, token_id) 
+					LEFT JOIN (
+						SELECT *
+						FROM (
+							SELECT 
+								document_id, property_xpath, token_id, value, 
+								row_number() OVER (PARTITION BY document_id, property_xpath, token_id ORDER BY date DESC) AS n
+							FROM 
+								values
+								JOIN filter USING (document_id, token_id)
+						) t
+						WHERE n = 1
+					) cv USING (document_id, property_xpath, token_id)
 				GROUP BY 1, 2 
 				ORDER BY token_id 
 			) t";
