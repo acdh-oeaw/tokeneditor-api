@@ -18,9 +18,9 @@ $save = true;
 // allows to limit number of processed tokens (put 0 to process all)
 $limit = 0; 
 // path to the XML file describing schema
-$schemaPath = '../sample_data/baffleLex_v_0.2_zmorge_20151002-schema.xml';
+$schemaPath = '../sample_data/foo/foo-schema.xml';
 // path to the XML file with data
-$dataPath   = '../sample_data/baffleLex.xml';
+$dataPath   = '../sample_data/foo/foo10000.xml';
 // path to the directory where imported XMLs are stored
 $saveDir = 'docStorage';
 

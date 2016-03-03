@@ -12,4 +12,6 @@
 /php/docStorage/*
 /build
 *~
-
+php/css/bootstrap.css
+php/css/font-awesome.css
+php/js/jquery.js

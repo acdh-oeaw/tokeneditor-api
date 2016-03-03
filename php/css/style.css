@@ -308,3 +308,9 @@ input[type="radio"]:checked + label span {
 .login {float:left;}
 
 
+.inflectionTable td, .inflectionTable th {
+    border: solid 1px #DDD; padding: 5px;
+}
+.inflectionTable th, .inflectionTable .header {
+    background-color: #F5F5F5;
+}
