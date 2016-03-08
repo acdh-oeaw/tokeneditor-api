@@ -83,7 +83,7 @@ class Token {
 				$this->properties[$prop->getXPath()] = null;
 				
 				$value = $xpath->query($prop->getXPath(), $this->dom);
-				if($value->length != 1){
+				if($value->length !== 1){
 					throw new \LengthException('property not found or many properties found');
 				}
 				
