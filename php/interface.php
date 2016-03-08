@@ -72,7 +72,7 @@ if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET'){
 		$propQuery = $PDO->prepare('SELECT name FROM properties WHERE document_id = ?');
 		$propQuery->execute(array($docId));
 		while($prop = $propQuery->fetch(PDO::FETCH_COLUMN)){
-			$value = (string)filter_input(INPUT_GET, $prop);
+			$value = (string)filter_input(INPUT_GET, str_replace(' ', '_', $prop));
 			if($value !== ''){
 				$tokenArray->addFilter($prop, $value);
 			}

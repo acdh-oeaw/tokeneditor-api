@@ -29,7 +29,7 @@
             <propertyXPath>@type</propertyXPath>
             <propertyType>closed list</propertyType>
             <propertyValues>
-		<value>CC </value>
+                <value>CC </value>
                 <value>CD </value>
                 <value>DT </value>
                 <value>EX </value>

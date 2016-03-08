@@ -35,6 +35,7 @@ ClosedList = function (prop, readOnly) {
 
     this.search = function () {
         var sel = $(document.createElement('select'));
+        sel.attr('data-value', that.prop.name);
         sel.addClass('form-control');
         that.fillWithOptions(sel.get(0), true);
         return sel;

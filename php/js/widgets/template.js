@@ -48,6 +48,7 @@ WidgetClassName = function(prop, readOnly){
      */
     this.search = function(){
         var inp = $(document.createElement('someHTMLelement'));
+        inp.attr('data-value', that.prop.name);
         // add required attributes, etc. here
         return inp;        
     };

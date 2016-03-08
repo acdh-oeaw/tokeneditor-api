@@ -30,17 +30,18 @@ Link = function (prop, readOnly) {
             return aelement;
         }
         var inp = $(document.createElement('input'));
-        inp.addClass('form-control');
         inp.attr('data-value', that.prop.name);
         inp.attr('type', 'url');
+        inp.addClass('form-control');
         inp.val(value);
         return inp;
     };
 
     this.search = function(){
         var inp = $(document.createElement('input'));
-        inp.addClass('string');
+        inp.attr('data-value', that.prop.name);
         inp.attr('type', 'url');
+        inp.addClass('string');
         inp.addClass('form-control');
         return inp;        
     };

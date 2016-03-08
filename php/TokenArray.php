@@ -79,7 +79,6 @@ class TokenArray {
 				GROUP BY 1, 2 
 				ORDER BY token_id 
 			) t";
-		
 		$query = $this->con->prepare($queryStr);
 		$params = array_merge($filterParam, array($pageSize, $offset, $userId, $pageSize, $offset));
 		$query->execute($params);				

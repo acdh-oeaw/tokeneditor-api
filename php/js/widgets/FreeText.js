@@ -26,14 +26,15 @@ FreeText = function (prop, readOnly) {
             return $(document.createTextNode(value));
         }
         var inp = $(document.createElement('input'));
-        inp.addClass('form-control');
         inp.attr('data-value', that.prop.name);
+        inp.addClass('form-control');
         inp.val(value);
         return inp;
     };
 
     this.search = function(){
         var inp = $(document.createElement('input'));
+        inp.attr('data-value', that.prop.name);
         inp.addClass('string');
         inp.addClass('form-control');
         return inp;        
