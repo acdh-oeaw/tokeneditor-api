@@ -31,6 +31,7 @@
         <script type="text/javascript" src="js/widgets/ClosedList.js"></script>
         <script type="text/javascript" src="js/widgets/FreeText.js"></script>
         <script type="text/javascript" src="js/widgets/InflectionTable.js"></script>
+        <script type="text/javascript" src="js/widgets/Link.js"></script>
         <script src="js/app.js"></script>
 
         <script>

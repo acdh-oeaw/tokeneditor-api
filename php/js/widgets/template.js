@@ -17,7 +17,6 @@
 
 WidgetClassName = function(prop, readOnly){
     //<-- This should stay untouched
-    this.prototype = WidgetBaseClass;
     var that = this;
 
     this.prop = prop;
@@ -36,6 +35,7 @@ WidgetClassName = function(prop, readOnly){
             return $(document.createTextNode(value));
         }
         var inp = $(document.createElement('someHTMLelement'));
+        inp.attr('data-value', that.prop.name);
         // add required attributes, etc. here
         inp.val(value);
         return inp;
@@ -77,3 +77,5 @@ WidgetClassName = function(prop, readOnly){
         };
     };    
 };
+// DON'T FORGET TO UPDATE THIS ONE:
+WidgetClassName.prototype = WidgetBaseClass;

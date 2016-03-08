@@ -136,6 +136,9 @@ function widgetFactory(prop) {
         case 'inflection table':
             widget = new InflectionTable(prop, prop.readOnly);
             break;
+        case 'link':
+            widget = new Link(prop, prop.readOnly);
+            break;
         default:
             widget = new FreeText(prop, true);
     }

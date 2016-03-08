@@ -134,7 +134,6 @@ console.log('editEnded');
                 $scope.gridOptions.columnDefs.push(widget.registerInGrid($scope));
             });
         });
-        $scope.aaa = function(x){return 'bbb' + x;};
 
         $scope.filterOptions = {
             filterText: "",

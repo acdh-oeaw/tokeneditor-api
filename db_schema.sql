@@ -35,7 +35,7 @@ CREATE TABLE tokens (
 CREATE TABLE property_types (
 	type_id text primary key
 );
-INSERT INTO property_types VALUES ('closed list'), ('free text'), ('inflection table');
+INSERT INTO property_types VALUES ('closed list'), ('free text'), ('inflection table'), ('link');
 
 CREATE TABLE properties (
 	document_id int not null references documents (document_id),

@@ -128,8 +128,6 @@ InflectionTable = function (prop) {
 
     this.registerInGrid = function(scope){
         scope.FreeTextDraw = function(value){
-            //return('---');
-            // the problem is it can't return HTML nor DOM node (only text is available)
             return that.toTemplate(that.draw(value));
         };
         return {
