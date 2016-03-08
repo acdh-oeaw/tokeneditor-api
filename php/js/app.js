@@ -2,7 +2,7 @@
 
 var app = angular.module(
     'myApp', 
-    ['ngSanitize', 'ui.grid', 'ui.grid.pagination', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.exporter', 'chart.js', 'ui.grid.selection', 'ui.bootstrap']
+    ['ngSanitize', 'ui.grid', 'ui.grid.pagination','ui.grid.resizeColumns', 'ui.grid.edit', 'ui.grid.cellNav', 'ui.grid.exporter', 'chart.js', 'ui.grid.selection', 'ui.bootstrap']
 );
 
 var paginationOptions = {

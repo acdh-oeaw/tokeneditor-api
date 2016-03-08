@@ -153,7 +153,7 @@
 				</div>
                 <div class="col-md-9">
                     <h3>tokenEditor</h3>
-                    <div id="grid1" style="min-height:500px;height:84vh;"  ui-grid="gridOptions"   gri ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>
+                    <div id="grid1" style="min-height:500px;height:84vh;"  ui-grid="gridOptions"   ui-grid-resize-columns ui-grid-edit ui-grid-cellnav ui-grid-pagination ui-grid-exporter class="gridstyle"></div>
 				</div>
 			</div>
 			<div class="panel panel-default" style="position:absolute;z-index:1;top:0;right:0;">
