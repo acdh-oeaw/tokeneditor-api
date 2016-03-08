@@ -6,4 +6,4 @@ RewriteRule ^document/([0-9]+)/property/([^/]+)$ interface.php?document_id=$1&pr
 
 # for local testing
 RewriteCond %{ENV:HTTP_EPPN} ^$
-RewriteRule .* - [E=HTTP_EPPN:test]
+RewriteRule .* - [E=HTTP_EPPN:mzoltak@oeaw.ac.at]
