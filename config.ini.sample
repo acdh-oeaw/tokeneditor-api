@@ -1,7 +1,11 @@
 dbConn='pgsql: dbname=tokeneditor host=127.0.0.1'
-dbUser='sampleUser'
-dbPasswd='samplePswd'
-# name of the HTTP request variable providing user id
-userid='HTTP_EPPN'
-# directory in which raw document XMLs are stored
+; debug level 0-only generic error message, 1-exact error message, 2-traceback
+debug=0
+apiBase='/tokeneditor-api/'
+; name of the HTTP request variable providing user id
+userId='HTTP_EPPN'
+; user name to be used when not provided in the `userId` HTTP header
+guestUser='guest'
+; directory in which raw document XMLs are stored
 storageDir="docStorage"
+tmpDir="tmp"

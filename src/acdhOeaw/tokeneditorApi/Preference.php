@@ -28,9 +28,9 @@ namespace acdhOeaw\tokeneditorApi;
 
 use PDO;
 use RuntimeException;
+use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
-use zozlak\rest\HttpEndpoint;
 use zozlak\util\DbHandle;
 
 /**
@@ -38,108 +38,109 @@ use zozlak\util\DbHandle;
  *
  * @author zozlak
  */
-class Preference extends HttpEndpoint {
-	protected $userId;
-	protected $documentId;
-	protected $preferenceId;
-	
-	public function get(DataFormatter $f, HeadersFormatter $h) {
-		$pdo = DbHandle::getHandle();
-		$query = '
+class Preference extends BaseHttpEndpoint {
+
+    protected $documentId;
+    protected $preferenceId;
+
+    public function get(DataFormatter $f, HeadersFormatter $h) {
+        $pdo    = DbHandle::getHandle();
+        $query  = '
 			SELECT value
 			FROM 
 				documents_users_preferences
 			WHERE document_id = ? AND user_id = ? AND key = ?
         ';
-		$query = $pdo->prepare($query);
-		$query->execute([$this->documentId, $this->userId, $this->preferenceId]);
-		$result = $query->fetch(PDO::FETCH_OBJ);
-		if($result === false){
-			throw new RuntimeException('There is no such document and key', 400);
-		}
-		$f->data($result->value);
-	}
-	
-	public function delete(DataFormatter $f, HeadersFormatter $h) {
-		$pdo = DbHandle::getHandle();
-		$query = '
+        $query  = $pdo->prepare($query);
+        $query->execute([$this->documentId, $this->userId, $this->preferenceId]);
+        $result = $query->fetch(PDO::FETCH_OBJ);
+        if ($result === false) {
+            throw new RuntimeException('There is no such document and key', 400);
+        }
+        $f->data($result->value);
+    }
+
+    public function delete(DataFormatter $f, HeadersFormatter $h) {
+        $pdo   = DbHandle::getHandle();
+        $query = '
             DELETE FROM documents_users_preferences 
 			WHERE document_id = ? AND user_id = ? AND key = ?
         ';
-		$query = $pdo->prepare($query);
-		$query->execute([$this->documentId, $this->userId, $this->preferenceId]);
-		if($query->rowCount() !== 1){
-			throw new RuntimeException('There is no such document and key', 400);
-		}
-		$f->data([
-			'document_id' => $this->documentId,
-			'preference' => $this->preferenceId
-		]);	
-	}
-	
-	public function getCollection(DataFormatter $f, HeadersFormatter $h) {
-		$pdo = DbHandle::getHandle();
-		$query = '
+        $query = $pdo->prepare($query);
+        $query->execute([$this->documentId, $this->userId, $this->preferenceId]);
+        if ($query->rowCount() !== 1) {
+            throw new RuntimeException('There is no such document and key', 400);
+        }
+        $f->data([
+            'document_id' => $this->documentId,
+            'preference'  => $this->preferenceId
+        ]);
+    }
+
+    public function getCollection(DataFormatter $f, HeadersFormatter $h) {
+        $pdo    = DbHandle::getHandle();
+        $query  = '
 			SELECT key, value
 			FROM documents_users_preferences
 			WHERE document_id = ? AND user_id = ?
         ';
-		$query = $pdo->prepare($query);
-		$query->execute([$this->documentId, $this->userId]);
-		$result = [];
-		while($i = $query->fetch(PDO::FETCH_OBJ)){
-			$result[$i->key] = $i->value;
-		}
-		$f->data($result);
-	}
-	
-	public function put(DataFormatter $f, HeadersFormatter $h) {
-		$value = $this->filterInput('value');
-		$pdo = DbHandle::getHandle();
-		$query = '
+        $query  = $pdo->prepare($query);
+        $query->execute([$this->documentId, $this->userId]);
+        $result = [];
+        while ($i      = $query->fetch(PDO::FETCH_OBJ)) {
+            $result[$i->key] = $i->value;
+        }
+        $f->data($result);
+    }
+
+    public function put(DataFormatter $f, HeadersFormatter $h) {
+        $value = $this->filterInput('value');
+        $pdo   = DbHandle::getHandle();
+        $query = '
 			UPDATE documents_users_preferences
 			SET value = ?
 			WHERE document_id = ? AND user_id = ? AND key = ?
         ';
-		$query = $pdo->prepare($query);
-		$query->execute([$value, $this->documentId, $this->userId, $this->preferenceId]);
-		if($query->rowCount() !== 1){
-			throw new RuntimeException('There is no such document and key', 400);
-		}
-		$f->data([
-			'document_id' => $this->documentId,
-			'preference' => $this->preferenceId,
-			'value' => $value
-		]);
-	}
-	
-	public function postCollection(DataFormatter $f, HeadersFormatter $h) {
-		$key = $this->filterInput('preference');
-		$value = $this->filterInput('value');
-		$pdo = DbHandle::getHandle();
-		
-		$query = '
+        $query = $pdo->prepare($query);
+        $query->execute([$value, $this->documentId, $this->userId, $this->preferenceId]);
+        if ($query->rowCount() !== 1) {
+            throw new RuntimeException('There is no such document and key', 400);
+        }
+        $f->data([
+            'document_id' => $this->documentId,
+            'preference'  => $this->preferenceId,
+            'value'       => $value
+        ]);
+    }
+
+    public function postCollection(DataFormatter $f, HeadersFormatter $h) {
+        $key   = $this->filterInput('preference');
+        $value = $this->filterInput('value');
+        $pdo   = DbHandle::getHandle();
+
+        $query = '
 			SELECT count(*)
 			FROM documents_users_preferences 
 			WHERE document_id = ? AND user_id = ? AND key = ?
         ';
-		$query = $pdo->prepare($query);
-		$query->execute([$this->documentId, $this->userId, $key]);
-		if($query->fetchColumn() != 0){
-			throw new RuntimeException('Preference already defined', 400);
-		}
-		
-		$query = '
+        $query = $pdo->prepare($query);
+        $query->execute([$this->documentId, $this->userId, $key]);
+        if ($query->fetchColumn() != 0) {
+            throw new RuntimeException('Preference already defined', 400);
+        }
+
+        $query = '
 			INSERT INTO documents_users_preferences (document_id, user_id, key, value)
 			VALUES (?, ?, ?, ?)
         ';
-		$query = $pdo->prepare($query);
-		$query->execute([$this->documentId, $this->userId, $key, $value]);
+        $query = $pdo->prepare($query);
+        $query->execute([$this->documentId, $this->userId, $key, $value]);
 
-		$f->data([
-			'document_id' => $this->documentId,
-			'preference' => $key,
-			'value' => $value
-		]);
-	}
+        $f->data([
+            'document_id' => $this->documentId,
+            'preference'  => $key,
+            'value'       => $value
+        ]);
+    }
+
 }

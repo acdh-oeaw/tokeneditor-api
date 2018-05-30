@@ -28,11 +28,13 @@ namespace acdhOeaw\tokeneditorApi;
 
 use PDO;
 use RuntimeException;
+use stdClass;
 use ZipArchive;
+use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
-use zozlak\rest\HttpEndpoint;
+use zozlak\rest\HttpController;
 use zozlak\util\DbHandle;
 
 /**
@@ -40,16 +42,29 @@ use zozlak\util\DbHandle;
  *
  * @author zozlak
  */
-class Document extends HttpEndpoint {
+class Document extends BaseHttpEndpoint {
 
-    protected $userId;
     protected $documentId;
+
+    public function __construct(stdClass $path, HttpController $controller) {
+        parent::__construct($path, $controller);
+
+        $tmpDir = $this->getConfig('tmpDir');
+        if (!file_exists($tmpDir)) {
+            mkdir($tmpDir, 0700, true);
+        }
+        
+        $storageDir = $this->getConfig('storageDir');
+        if (!file_exists($storageDir)) {
+            mkdir($storageDir, 0700, true);
+        }
+    }
 
     public function get(DataFormatter $f, HeadersFormatter $h) {
         $doc = new mDocument(DbHandle::getHandle());
         $doc->loadDb($this->documentId);
 
-        $fileName = 'tmp/' . time() . rand();
+        $fileName = $this->getConfig('tmpDir') . '/' . time() . rand();
         $doc->export((bool) $this->filterInput('inPlace'), $fileName);
         $f->file($fileName, 'text/xml', basename($fileName));
         unlink($fileName);
@@ -110,7 +125,7 @@ class Document extends HttpEndpoint {
             $zip = new ZipArchive();
             if ($zip->open($_FILES['document']['tmp_name']) === true) {
                 $name = $zip->getNameIndex(0);
-                $dir  = 'tmp/' . time() . rand();
+                $dir  = $this->getConfig('tmpDir') . '/' . time() . rand();
                 mkdir($dir);
                 $zip->extractTo($dir, $name);
                 $zip->close();

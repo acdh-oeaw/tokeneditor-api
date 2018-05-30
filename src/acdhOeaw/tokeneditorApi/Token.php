@@ -27,10 +27,10 @@
 namespace acdhOeaw\tokeneditorApi;
 
 use PDO;
+use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\TokenCollection;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
-use zozlak\rest\HttpEndpoint;
 use zozlak\util\DbHandle;
 
 /**
@@ -38,7 +38,10 @@ use zozlak\util\DbHandle;
  *
  * @author zozlak
  */
-class Token extends HttpEndpoint {
+class Token extends BaseHttpEndpoint {
+
+    protected $documentId;
+    protected $tokenId;
 
     public function put(DataFormatter $f, HeadersFormatter $h) {
         $pdo = DbHandle::getHandle();
@@ -52,7 +55,7 @@ class Token extends HttpEndpoint {
             FROM values 
             WHERE document_id = ? AND property_xpath = ? AND token_id = ? AND user_id = ?
         ");
-        $param = [$this->documentId, $property, $this->tokenId, $this->userId];
+        $param      = [$this->documentId, $property, $this->tokenId, $this->userId];
         $lookup->execute($param);
         $resultlkup = $lookup->fetch(PDO::FETCH_COLUMN);
 
@@ -62,14 +65,15 @@ class Token extends HttpEndpoint {
                 SET value = ? 
                 WHERE document_id = ? AND property_xpath = ? AND token_id = ? AND user_id = ?
             ");
-            $param = [$value, $this->documentId, $property, $this->tokenId, $this->userId];
+            $param    = [$value, $this->documentId, $property, $this->tokenId, $this->userId];
             $updquery->execute($param);
         } else {
             $query = $pdo->prepare("
                 INSERT INTO values (document_id,property_xpath,token_id,user_id,value) 
                 VALUES (?, ?, ?, ?, ?)
             ");
-            $param = [$this->documentId, $property, $this->tokenId, $this->userId, $value];
+            $param = [$this->documentId, $property, $this->tokenId, $this->userId,
+                $value];
             $query->execute($param);
         }
 
