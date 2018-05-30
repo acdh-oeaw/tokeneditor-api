@@ -1,0 +1,10 @@
+RewriteEngine on
+
+# handle requests for existing files and directories as usual
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# redirect everyting else to index.php
+RewriteRule ^(.*)$ index.php [QSA]
+

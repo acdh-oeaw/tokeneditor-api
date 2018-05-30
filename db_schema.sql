@@ -13,9 +13,18 @@ CREATE TABLE documents (
 CREATE SEQUENCE document_id_seq;
 
 CREATE TABLE documents_users (
-	document_id int not null references documents (document_id) ON UPDATE CASCADE ON DELETE CASCADE;,
-	user_id text not null references users (user_id)  ON UPDATE CASCADE ON DELETE CASCADE;,
+	document_id int not null references documents (document_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	user_id text not null references users (user_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	primary key (document_id, user_id)
+);
+
+CREATE TABLE documents_users_preferences (
+	document_id int not null,
+	user_id text not null,
+	key text not null,
+	value text not null,
+	primary key (document_id, user_id, key),
+	foreign key (document_id, user_id) references documents_users (document_id, user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE documents_namespaces (

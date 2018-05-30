@@ -1,0 +1,7 @@
+{
+    "require": {
+        "acdh-oeaw/tokeneditor-model": "~1",
+        "zozlak/rest": "~4",
+        "zozlak/util": "^1.5"
+    }
+}

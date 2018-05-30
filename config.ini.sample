@@ -1,0 +1,7 @@
+dbConn='pgsql: dbname=tokeneditor host=127.0.0.1'
+dbUser='sampleUser'
+dbPasswd='samplePswd'
+# name of the HTTP request variable providing user id
+userid='HTTP_EPPN'
+# directory in which raw document XMLs are stored
+storageDir="docStorage"

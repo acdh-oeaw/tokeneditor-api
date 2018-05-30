@@ -1,8 +1,9 @@
 <?php
-/*
+
+/**
  * The MIT License
  *
- * Copyright 2015 zozlak.
+ * Copyright 2016 Austrian Centre for Digital Humanities.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,32 +23,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+use zozlak\rest\HttpController;
+use zozlak\util\ClassLoader;
+use zozlak\util\Config;
+use zozlak\util\DbHandle;
 
-namespace utils;
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-Requested-With, Content-Type');
+header('Cache-Control: no-cache');
 
-/**
- * Description of ClassLoader
- *
- * @author zozlak
- */
-class ClassLoader{
-	private $baseDir;
-	
-	public function __construct($baseDir = 'src'){
-		$this->baseDir = (string)$baseDir;
-		
-		if(!is_dir($this->baseDir)){
-			throw new \RuntimeException($this->baseDir . ' is no a valid directory');
-		}
-		spl_autoload_register(array($this, 'loadClass'));
-	}
-		
-	public function loadClass($className){
-		$path = $this->baseDir . '/' . str_replace('\\', '/', $className) . '.php';
-		if(file_exists($path)){
-			require_once($path);
-			return true;
-		}
-		return false;
-	}
+require_once 'vendor/autoload.php';
+new ClassLoader();
+
+set_error_handler('\zozlak\rest\HttpController::errorHandler');
+
+try {
+    $config = new Config('config.ini');
+
+    DbHandle::setHandle($config->get('db'));
+
+    $controller = new HttpController('acdhOeaw\\tokeneditorApi', $config->get('apiBase'));
+    $controller->setConfig($config);
+    $controller->handleRequest();
+
+    DbHandle::commit();
+} catch (Throwable $e) {
+    HttpController::reportError($e, $config->get('debug'));
 }
