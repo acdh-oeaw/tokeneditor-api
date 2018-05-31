@@ -1,8 +1,5 @@
 # tokeneditor
 
-[![Travis-CI Build Status](https://travis-ci.org/acdh-oeaw/tokeneditor.png?branch=master)](https://travis-ci.org/acdh-oeaw/tokeneditor)
-[![Coverage Status](https://coveralls.io/repos/acdh-oeaw/tokeneditor/badge.svg?branch=master&service=github)](https://coveralls.io/github/acdh-oeaw/tokeneditor?branch=master)
-
 Tokeneditor allows you manually revise your XML datafiles.
 
 The common use case is to revise results of automated data enrichment, e.g. part of speech recognition.
