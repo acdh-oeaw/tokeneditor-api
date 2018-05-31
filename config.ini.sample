@@ -1,4 +1,4 @@
-dbConn='pgsql: dbname=tokeneditor host=127.0.0.1'
+db='pgsql: dbname=tokeneditor host=127.0.0.1'
 ; debug level 0-only generic error message, 1-exact error message, 2-traceback
 debug=0
 apiBase='/tokeneditor-api/'
