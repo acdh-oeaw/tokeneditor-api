@@ -30,6 +30,7 @@ Example Apache virtual host config for an Apache+Shibboleth config:
 
 # API
 
+```
 GET /document
 POST /document
 GET /document/{documentId}
@@ -41,3 +42,4 @@ PUT /document/{documentId}/preference/{preferenceId}
 DELETE /document/{documentId}/preference/{preferenceId}
 GET /document/{documentId}/token
 PUT /document/{documentId}/token/{tokenId}
+```
