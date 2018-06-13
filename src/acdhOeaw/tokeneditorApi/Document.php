@@ -32,6 +32,7 @@ use stdClass;
 use ZipArchive;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
+use acdhOeaw\tokeneditorModel\Editor as mEditor;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
 use zozlak\rest\HttpController;
@@ -71,27 +72,39 @@ class Document extends BaseHttpEndpoint {
     }
 
     public function delete(DataFormatter $f, HeadersFormatter $h) {
-        $pdo = DbHandle::getHandle();
+        
+        //check the user rights
+        $editorModel = new mEditor(DbHandle::getHandle());
+        $data = $editorModel->getEditor($this->documentId, $this->userId);
+        if(count((array)$data) > 0){
+            if($data->editor == "owner"){
+                $pdo = DbHandle::getHandle();
+                $param = [$this->documentId];
+                $query = $pdo->prepare("DELETE FROM values WHERE document_id = ?");
+                $query->execute($param);
+                $query = $pdo->prepare("DELETE FROM orig_values WHERE document_id = ?");
+                $query->execute($param);
+                $query = $pdo->prepare("DELETE FROM tokens WHERE document_id = ?");
+                $query->execute($param);
+                $query = $pdo->prepare("DELETE FROM properties WHERE document_id = ?");
+                $query->execute($param);
+                $query = $pdo->prepare("DELETE FROM dict_values WHERE document_id = ?");
+                $query->execute($param);
+                $query = $pdo->prepare("DELETE FROM documents_users WHERE document_id = ?");
+                $query->execute($param);
+                $query = $pdo->prepare("DELETE FROM documents WHERE document_id = ?");
+                $query->execute($param);
 
-        $param = [$this->documentId];
-        $query = $pdo->prepare("DELETE FROM values WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM orig_values WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM tokens WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM properties WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM dict_values WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM documents_users WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM documents WHERE document_id = ?");
-        $query->execute($param);
+                unlink($this->getConfig('storageDir') . '/' . $this->documentId . '.xml'); //TODO do it without referencing global variables
 
-        unlink($this->getConfig('storageDir') . '/' . $this->documentId . '.xml'); //TODO do it without referencing global variables
-
-        $f->data(['documentId' => $this->documentId]);
+                $f->data(['documentId' => $this->documentId]);
+            } else {
+                throw new RuntimeException('You are not the owner of the document!', 400);
+            }
+        }else {
+            throw new RuntimeException('You are not the owner of the document!', 400);    
+        }
+        
     }
 
     public function getCollection(DataFormatter $f, HeadersFormatter $h) {
