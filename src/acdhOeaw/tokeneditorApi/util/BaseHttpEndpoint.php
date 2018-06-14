@@ -27,8 +27,10 @@
 namespace acdhOeaw\tokeneditorApi\util;
 
 use stdClass;
+use acdhOeaw\tokeneditorModel\User;
 use zozlak\rest\HttpController;
 use zozlak\rest\HttpEndpoint;
+use zozlak\util\DbHandle;
 
 /**
  * Extracts user name from request headers.
@@ -38,16 +40,36 @@ use zozlak\rest\HttpEndpoint;
  */
 class BaseHttpEndpoint extends HttpEndpoint {
 
+    protected $documentId;
     protected $userId;
+
+    /**
+     *
+     * @var \acdhOeaw\tokeneditorModel\User
+     */
+    protected $userMngr;
 
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
-        
+
         $tmp = filter_input(\INPUT_SERVER, $this->getConfig('userId'));
-        if(preg_match('/^Digest username/', $tmp)){
+        if (preg_match('/^Digest username/', $tmp)) {
             $tmp = preg_replace('/.*username="([^"]+)".*/', '\1', $tmp);
         }
         $this->userId = $tmp ?? $this->getConfig('guestUser');
+
+        if ($this->documentId) {
+            $query = DbHandle::getHandle()->prepare("SELECT count(*) FROM documents WHERE document_id = ?");
+            $query->execute([$this->documentId]);
+            if (1 !== $query->fetchColumn()) {
+                throw new RuntimeException('No such document', 404);
+            }
+
+            $this->userMngr = new User(DbHandle::getHandle(), $this->documentId);
+            if (!$this->userMngr->isEditor($this->userId)) {
+                throw new ForbiddenException('Not a document editor');
+            }
+        }
     }
 
 }

@@ -32,11 +32,12 @@ use stdClass;
 use ZipArchive;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
-use acdhOeaw\tokeneditorModel\Editor as mEditor;
+use acdhOeaw\tokeneditorModel\User;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
 use zozlak\rest\HttpController;
 use zozlak\util\DbHandle;
+use zozlak\rest\ForbiddenException;
 
 /**
  * Description of Document
@@ -54,7 +55,7 @@ class Document extends BaseHttpEndpoint {
         if (!file_exists($tmpDir)) {
             mkdir($tmpDir, 0700, true);
         }
-        
+
         $storageDir = $this->getConfig('storageDir');
         if (!file_exists($storageDir)) {
             mkdir($storageDir, 0700, true);
@@ -72,39 +73,30 @@ class Document extends BaseHttpEndpoint {
     }
 
     public function delete(DataFormatter $f, HeadersFormatter $h) {
-        
-        //check the user rights
-        $editorModel = new mEditor(DbHandle::getHandle());
-        $data = $editorModel->getEditor($this->documentId, $this->userId);
-        if(count((array)$data) > 0){
-            if($data->editor == "owner"){
-                $pdo = DbHandle::getHandle();
-                $param = [$this->documentId];
-                $query = $pdo->prepare("DELETE FROM values WHERE document_id = ?");
-                $query->execute($param);
-                $query = $pdo->prepare("DELETE FROM orig_values WHERE document_id = ?");
-                $query->execute($param);
-                $query = $pdo->prepare("DELETE FROM tokens WHERE document_id = ?");
-                $query->execute($param);
-                $query = $pdo->prepare("DELETE FROM properties WHERE document_id = ?");
-                $query->execute($param);
-                $query = $pdo->prepare("DELETE FROM dict_values WHERE document_id = ?");
-                $query->execute($param);
-                $query = $pdo->prepare("DELETE FROM documents_users WHERE document_id = ?");
-                $query->execute($param);
-                $query = $pdo->prepare("DELETE FROM documents WHERE document_id = ?");
-                $query->execute($param);
-
-                unlink($this->getConfig('storageDir') . '/' . $this->documentId . '.xml'); //TODO do it without referencing global variables
-
-                $f->data(['documentId' => $this->documentId]);
-            } else {
-                throw new RuntimeException('You are not the owner of the document!', 400);
-            }
-        }else {
-            throw new RuntimeException('You are not the owner of the document!', 400);    
+        if (!$this->userMngr->isOwner($this->userId)) {
+            throw new ForbiddenException('Not a document owner');
         }
-        
+
+        $pdo   = DbHandle::getHandle();
+        $param = [$this->documentId];
+        $query = $pdo->prepare("DELETE FROM values WHERE document_id = ?");
+        $query->execute($param);
+        $query = $pdo->prepare("DELETE FROM orig_values WHERE document_id = ?");
+        $query->execute($param);
+        $query = $pdo->prepare("DELETE FROM tokens WHERE document_id = ?");
+        $query->execute($param);
+        $query = $pdo->prepare("DELETE FROM properties WHERE document_id = ?");
+        $query->execute($param);
+        $query = $pdo->prepare("DELETE FROM dict_values WHERE document_id = ?");
+        $query->execute($param);
+        $query = $pdo->prepare("DELETE FROM documents_users WHERE document_id = ?");
+        $query->execute($param);
+        $query = $pdo->prepare("DELETE FROM documents WHERE document_id = ?");
+        $query->execute($param);
+
+        unlink($this->getConfig('storageDir') . '/' . $this->documentId . '.xml'); //TODO do it without referencing global variables
+
+        $f->data(['documentId' => $this->documentId]);
     }
 
     public function getCollection(DataFormatter $f, HeadersFormatter $h) {
@@ -116,7 +108,7 @@ class Document extends BaseHttpEndpoint {
 				documents 
 				JOIN documents_users USING (document_id) 
 				JOIN tokens using (document_id)
-			WHERE user_id = ?
+			WHERE user_id = ? AND role <> \'none\'
 			GROUP BY 1, 2
 			ORDER BY 2
 		');
@@ -154,15 +146,8 @@ class Document extends BaseHttpEndpoint {
             );
             $n   = $doc->save($this->getConfig('storageDir'));
 
-            $query = $pdo->prepare("SELECT count(*) FROM users WHERE user_id = ?");
-            $query->execute([$this->userId]);
-            if ($query->fetch(PDO::FETCH_COLUMN) == 0) {
-                $query = $pdo->prepare("INSERT INTO users (user_id) VALUES (?)");
-                $query->execute([$this->userId]);
-            }
-
-            $query = $pdo->prepare("INSERT INTO documents_users (document_id, user_id) VALUES (?, ?)");
-            $query->execute([$doc->getId(), $this->userId]);
+            $this->userMngr = new User($pdo, $doc->getId());
+            $this->userMngr->setRole($this->userId, User::ROLE_OWNER);
 
             if ($n > 0) {
                 $pdo->commit();
