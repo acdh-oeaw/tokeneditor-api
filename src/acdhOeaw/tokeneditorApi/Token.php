@@ -50,32 +50,14 @@ class Token extends BaseHttpEndpoint {
         $value    = $this->filterInput('value');
         $property = $this->propName2propXPath($this->filterInput('name'));
 
-        $lookup     = $pdo->prepare("
-            SELECT count(*) 
-            FROM values 
-            WHERE document_id = ? AND property_xpath = ? AND token_id = ? AND user_id = ?
+        $query = $pdo->prepare("
+            INSERT INTO values (document_id, property_xpath, token_id, user_id, value) 
+            VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT (document_id, property_xpath, token_id, user_id)
+            DO UPDATE SET value = EXCLUDED.value
         ");
-        $param      = [$this->documentId, $property, $this->tokenId, $this->userId];
-        $lookup->execute($param);
-        $resultlkup = $lookup->fetch(PDO::FETCH_COLUMN);
-
-        if ($resultlkup > 0) {
-            $updquery = $pdo->prepare("
-                UPDATE values 
-                SET value = ? 
-                WHERE document_id = ? AND property_xpath = ? AND token_id = ? AND user_id = ?
-            ");
-            $param    = [$value, $this->documentId, $property, $this->tokenId, $this->userId];
-            $updquery->execute($param);
-        } else {
-            $query = $pdo->prepare("
-                INSERT INTO values (document_id,property_xpath,token_id,user_id,value) 
-                VALUES (?, ?, ?, ?, ?)
-            ");
-            $param = [$this->documentId, $property, $this->tokenId, $this->userId,
-                $value];
-            $query->execute($param);
-        }
+        $param = [$this->documentId, $property, $this->tokenId, $this->userId, $value];
+        $query->execute($param);
 
         $f->data([
             'documentId'   => $this->documentId,
