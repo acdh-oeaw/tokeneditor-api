@@ -15,6 +15,7 @@ CREATE SEQUENCE document_id_seq;
 CREATE TABLE documents_users (
 	document_id int not null references documents (document_id) ON UPDATE CASCADE ON DELETE CASCADE,
 	user_id text not null references users (user_id) ON UPDATE CASCADE ON DELETE CASCADE,
+        editor text not null SET DEFAULT 'editor',
 	primary key (document_id, user_id)
 );
 

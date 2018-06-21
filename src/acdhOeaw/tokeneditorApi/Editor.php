@@ -3,7 +3,7 @@
 /**
  * The MIT License
  *
- * Copyright 2018 zozlak.
+ * Copyright 2016 Austrian Centre for Digital Humanities.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,52 +24,51 @@
  * THE SOFTWARE.
  */
 
-namespace acdhOeaw\tokeneditorApi\util;
+namespace acdhOeaw\tokeneditorApi;
 
 use stdClass;
+use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\User;
+use zozlak\rest\DataFormatter;
+use zozlak\rest\HeadersFormatter;
 use zozlak\rest\HttpController;
-use zozlak\rest\HttpEndpoint;
-use zozlak\util\DbHandle;
+use zozlak\rest\ForbiddenException;
 
 /**
- * Extracts user name from request headers.
- * 
- * In the future full authorization should be implemented.
+ * Description of Document
+ *
  * @author zozlak
  */
-class BaseHttpEndpoint extends HttpEndpoint {
+class Editor extends BaseHttpEndpoint {
 
     protected $documentId;
-    protected $userId;
-
-    /**
-     *
-     * @var \acdhOeaw\tokeneditorModel\User
-     */
-    protected $userMngr;
+    protected $editorId;
 
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
 
-        $tmp = filter_input(\INPUT_SERVER, $this->getConfig('userId'));
-        if (preg_match('/^Digest username/', $tmp)) {
-            $tmp = preg_replace('/.*username="([^"]+)".*/', '\1', $tmp);
+        if (!$this->userMngr->isOwner($this->userId)) {
+            throw new ForbiddenException('Not a document owner');
         }
-        $this->userId = $tmp ?? $this->getConfig('guestUser');
-
-        if ($this->documentId) {
-            $query = DbHandle::getHandle()->prepare("SELECT count(*) FROM documents WHERE document_id = ?");
-            $query->execute([$this->documentId]);
-            if (1 !== $query->fetchColumn()) {
-                throw new RuntimeException('No such document', 404);
-            }
-
-            $this->userMngr = new User(DbHandle::getHandle(), $this->documentId);
-            if (!$this->userMngr->isEditor($this->userId)) {
-                throw new ForbiddenException('Not a document editor');
-            }
+        if ($this->editorId) {
+            $this->editorId = urldecode($this->editorId);
         }
+    }
+
+    public function getCollection(DataFormatter $f, HeadersFormatter $h) {
+        $f->data($this->userMngr->getUsers());
+    }
+
+    public function delete(DataFormatter $f, HeadersFormatter $h) {
+        $this->userMngr->setRole($this->editorId, User::ROLE_NONE);
+        $h->setStatus(204);
+    }
+
+    public function put(DataFormatter $f, HeadersFormatter $h) {
+        $role = $this->filterInput('role');
+        $name = $this->filterInput('name');
+        $this->userMngr->setRole($this->editorId, $role, $name);
+        $h->setStatus(204);
     }
 
 }

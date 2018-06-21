@@ -33,10 +33,12 @@ use Throwable;
 use ZipArchive;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
+use acdhOeaw\tokeneditorModel\User;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
 use zozlak\rest\HttpController;
 use zozlak\util\DbHandle;
+use zozlak\rest\ForbiddenException;
 
 /**
  * Description of Document
@@ -54,7 +56,7 @@ class Document extends BaseHttpEndpoint {
         if (!file_exists($tmpDir)) {
             mkdir($tmpDir, 0700, true);
         }
-        
+
         $storageDir = $this->getConfig('storageDir');
         if (!file_exists($storageDir)) {
             mkdir($storageDir, 0700, true);
@@ -77,8 +79,11 @@ class Document extends BaseHttpEndpoint {
     }
 
     public function delete(DataFormatter $f, HeadersFormatter $h) {
-        $pdo = DbHandle::getHandle();
+        if (!$this->userMngr->isOwner($this->userId)) {
+            throw new ForbiddenException('Not a document owner');
+        }
 
+        $pdo   = DbHandle::getHandle();
         $param = [$this->documentId];
         $query = $pdo->prepare("DELETE FROM values WHERE document_id = ?");
         $query->execute($param);
@@ -109,7 +114,7 @@ class Document extends BaseHttpEndpoint {
 				documents 
 				JOIN documents_users USING (document_id) 
 				JOIN tokens using (document_id)
-			WHERE user_id = ?
+			WHERE user_id = ? AND role <> \'none\'
 			GROUP BY 1, 2
 			ORDER BY 2
 		');
@@ -147,15 +152,8 @@ class Document extends BaseHttpEndpoint {
             );
             $n   = $doc->save($this->getConfig('storageDir'));
 
-            $query = $pdo->prepare("SELECT count(*) FROM users WHERE user_id = ?");
-            $query->execute([$this->userId]);
-            if ($query->fetch(PDO::FETCH_COLUMN) == 0) {
-                $query = $pdo->prepare("INSERT INTO users (user_id) VALUES (?)");
-                $query->execute([$this->userId]);
-            }
-
-            $query = $pdo->prepare("INSERT INTO documents_users (document_id, user_id) VALUES (?, ?)");
-            $query->execute([$doc->getId(), $this->userId]);
+            $this->userMngr = new User($pdo, $doc->getId());
+            $this->userMngr->setRole($this->userId, User::ROLE_OWNER);
 
             if ($n > 0) {
                 $pdo->commit();
