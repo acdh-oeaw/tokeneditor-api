@@ -30,16 +30,41 @@ Example Apache virtual host config for an Apache+Shibboleth config:
 
 # API
 
-```
-GET /document
-POST /document
-GET /document/{documentId}
-DELETE /document/{documentId}
-GET /document/{documentId}/preference
-POST /document/{documentId}/preference
-GET /document/{documentId}/preference/{preferenceId}
-PUT /document/{documentId}/preference/{preferenceId}
-DELETE /document/{documentId}/preference/{preferenceId}
-GET /document/{documentId}/token
-PUT /document/{documentId}/token/{tokenId}
+* `GET /document` lists documents
+* `POST /document` creates new document
+  Required parameters (encoded as multipart/form-data):
+    * `schema` XML file containing document schema
+    * `document` XML file containing document
+    * `name` document name
+* `GET /document/{documentId}` returns information on a  document
+* `DELETE /document/{documentId}` deletes a document
+* `GET /document/{documentId}/preference` lists user-defined properties for a given document
+* `POST /document/{documentId}/preference` creates a new user-defined property for a given document
+  Required parameters:
+    * 'preference` property name
+    * `value` property value
+* `GET /document/{documentId}/preference/{preferenceId}` gets value of a given user-defined property for a given document
+* `PUT /document/{documentId}/preference/{preferenceId}` sets value of a given user-defined property for a given document
+  Supported parameters:
+    * `value` property value
+* `DELETE /document/{documentId}/preference/{preferenceId}` deletes given user-defined property for a given document
+* `GET /document/{documentId}/property` lists document properties
+* `GET /document/{documentId}/property/{propertyName}` returns information on a given document's property
+* `PATCH /document/{documentId}/property/{propertyName}` alters definition of a given document's property
+  Supported parameters (encoded as JSON):
+    * `name` property name
+    * `typeId` property type
+    * `ord` property order
+    * `readOnly` should property be read only?
+    * `values` list of possible property values (valid only for certain property types)
+* `GET /document/{documentId}/token` returns list of tokens for a given document
+  Supported parameters:
+    * `_pageSize` maximum number of returned tokens
+    * `_offset` returned tokens list offset
+    * `tokenId` token id filter
+    * `{tokenPropertyName}` filter for a given token property (`%` in filter value is interpreted as *any nummber of any characters*)
+* `PUT /document/{documentId}/token/{tokenId}` updates token property value
+  Required parameters:
+    * `name` token property name
+    * `value` token property value
 ```
