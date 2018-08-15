@@ -29,6 +29,7 @@ namespace acdhOeaw\tokeneditorApi;
 use PDO;
 use RuntimeException;
 use stdClass;
+use Throwable;
 use ZipArchive;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
@@ -66,10 +67,15 @@ class Document extends BaseHttpEndpoint {
         $doc = new mDocument(DbHandle::getHandle());
         $doc->loadDb($this->documentId);
 
-        $fileName = $this->getConfig('tmpDir') . '/' . time() . rand();
-        $doc->export((bool) $this->filterInput('inPlace'), $fileName);
-        $f->file($fileName, 'text/xml', basename($fileName));
-        unlink($fileName);
+        $fileName = $this->getConfig('tmpDir') . '/' . time() . rand() . '.xml';
+        try {
+            $doc->export((bool) $this->filterInput('inPlace'), $fileName);
+            $f->file($fileName, 'text/xml', $doc->getName() . '.xml');
+        } catch (Throwable $ex) {
+            if (file_exists($fileName)) {
+                unlink($fileName);
+            }
+        }
     }
 
     public function delete(DataFormatter $f, HeadersFormatter $h) {
