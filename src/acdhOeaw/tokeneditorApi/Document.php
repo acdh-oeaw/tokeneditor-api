@@ -92,7 +92,7 @@ class Document extends BaseHttpEndpoint {
 
     public function getCollection(DataFormatter $f, HeadersFormatter $h) {
         $pdo = DbHandle::getHandle();
-        $d   = new mDocument(DbHandle::getHandle());
+        $d   = new mDocument($pdo);
 
         $query = $pdo->prepare('
 			SELECT document_id AS "documentId", name, count(*) AS "tokenCount"
@@ -170,14 +170,7 @@ class Document extends BaseHttpEndpoint {
     private function getProperties(mDocument $doc) {
         $props = [];
         foreach ($doc->getSchema() as $p) {
-            $props[$p->getName()] = [
-                'propertyXPath' => $p->getXPath(),
-                'name'          => $p->getName(),
-                'typeId'        => $p->getType(),
-                'ord'           => $p->getOrd(),
-                'readOnly'      => $p->getReadOnly(),
-                'values'        => $p->getValues()
-            ];
+            $props[$p->getName()] = Property::encodeProperty($p);
         }
         return $props;
     }
