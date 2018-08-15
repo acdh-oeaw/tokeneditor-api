@@ -73,15 +73,11 @@ class Token extends BaseHttpEndpoint {
         $pageSize    = $this->filterInput('_pageSize');
         $offset      = $this->filterInput('_offset');
         $tokenId     = $this->filterInput('tokenId');
-        $tokenFilter = $this->filterInput('token');
         $propxpath   = $this->propName2propXPath($this->filterInput('propertyName'));
 
         $tokenArray = new TokenCollection($pdo, $this->documentId, $this->userId);
         if ($tokenId) {
             $tokenArray->setTokenIdFilter($tokenId);
-        }
-        if ($tokenFilter) {
-            $tokenArray->setTokenValueFilter($tokenFilter);
         }
 
         $propQuery = $pdo->prepare('SELECT name FROM properties WHERE document_id = ?');

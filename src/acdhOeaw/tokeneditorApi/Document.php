@@ -77,30 +77,16 @@ class Document extends BaseHttpEndpoint {
             throw new ForbiddenException('Not a document owner');
         }
 
-        $pdo   = DbHandle::getHandle();
-        $param = [$this->documentId];
-        $query = $pdo->prepare("DELETE FROM values WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM orig_values WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM tokens WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM properties WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM dict_values WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM documents_users WHERE document_id = ?");
-        $query->execute($param);
-        $query = $pdo->prepare("DELETE FROM documents WHERE document_id = ?");
-        $query->execute($param);
-
-        unlink($this->getConfig('storageDir') . '/' . $this->documentId . '.xml'); //TODO do it without referencing global variables
+        $doc = new mDocument(DbHandle::getHandle());
+        $doc->loadDb($this->documentId);
+        $doc->delete($this->getConfig('saveDir'));
 
         $f->data(['documentId' => $this->documentId]);
     }
 
     public function getCollection(DataFormatter $f, HeadersFormatter $h) {
         $pdo = DbHandle::getHandle();
+        $d   = new mDocument(DbHandle::getHandle());
 
         $query = $pdo->prepare('
 			SELECT document_id AS "documentId", name, count(*) AS "tokenCount"
@@ -115,7 +101,8 @@ class Document extends BaseHttpEndpoint {
         $query->execute([$this->userId]);
         $f->initCollection();
         while ($i     = $query->fetch(PDO::FETCH_OBJ)) {
-            $i->properties = $this->getProperties($i->documentId);
+            $d->loadDb($i->documentId);
+            $i->properties = $this->getProperties($d);
             $f->append($i);
         }
         $f->closeCollection();
@@ -157,7 +144,7 @@ class Document extends BaseHttpEndpoint {
                 $f->data([
                     'documentId'  => $doc->getId(),
                     'name'        => filter_input(INPUT_POST, 'name'),
-                    'properties'  => $this->getProperties($doc->getId()),
+                    'properties'  => $this->getProperties($doc),
                     'tokensCount' => $n
                 ]);
             } else {
@@ -174,32 +161,19 @@ class Document extends BaseHttpEndpoint {
         }
     }
 
-    private function getProperties($documentId) {
-        $pdo = DbHandle::getHandle();
-
-        $propQuery = $pdo->prepare('
-			SELECT 
-				property_xpath AS "propertyXPath", 
-				name, 
-				type_id AS "typeId",
-				ord,
-				read_only AS "readOnly",
-				json_agg(value ORDER BY value) AS values
-			FROM 
-				properties
-				LEFT JOIN dict_values USING (document_id, property_xpath)
-			WHERE document_id = ?
-			GROUP BY document_id, 1, 2, 3, 4
-			ORDER BY ord	
-		');
-
-        $propQuery->execute([$documentId]);
-        $properties = [];
-        while ($prop       = $propQuery->fetch(PDO::FETCH_OBJ)) {
-            $prop->values            = json_decode($prop->values);
-            $properties[$prop->name] = $prop;
+    private function getProperties(mDocument $doc) {
+        $props = [];
+        foreach ($doc->getSchema() as $p) {
+            $props[$p->getName()] = [
+                'propertyXPath' => $p->getXPath(),
+                'name'          => $p->getName(),
+                'typeId'        => $p->getType(),
+                'ord'           => $p->getOrd(),
+                'readOnly'      => $p->getReadOnly(),
+                'values'        => $p->getValues()
+            ];
         }
-        return $properties;
+        return $props;
     }
 
 }
