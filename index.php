@@ -53,7 +53,6 @@ try {
     $usersDb = new PdoDb($config->get('db'), 'users', 'user_id', 'data');
     AuthControllerStatic::init($usersDb);
     AuthControllerStatic::addMethod(new HttpBasic($config->get('authBasicRealm')), AuthController::ADVERTISE_NONE);
-    AuthControllerStatic::addMethod(new HttpDigest($config->get('authBasicRealm')), AuthController::ADVERTISE_NONE);
     AuthControllerStatic::addMethod(new GoogleToken(filter_input(INPUT_GET, $config->get('googleTokenVar')) ?? ''));
     AuthControllerStatic::addMethod(new TrustedHeader($config->get('shibUserHeader')));
     if ($config->get('guestUser')) {
