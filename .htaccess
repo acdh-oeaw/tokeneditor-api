@@ -8,3 +8,4 @@ RewriteRule ^ - [L]
 # redirect everyting else to index.php
 RewriteRule ^(.*)$ index.php [QSA]
 
+php_value max_execution_time 3600
