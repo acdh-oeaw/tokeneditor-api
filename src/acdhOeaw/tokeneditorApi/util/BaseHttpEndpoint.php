@@ -28,6 +28,7 @@ namespace acdhOeaw\tokeneditorApi\util;
 
 use stdClass;
 use acdhOeaw\tokeneditorModel\User;
+use zozlak\auth\AuthControllerStatic;
 use zozlak\rest\HttpController;
 use zozlak\rest\HttpEndpoint;
 use zozlak\util\DbHandle;
@@ -52,11 +53,7 @@ class BaseHttpEndpoint extends HttpEndpoint {
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
 
-        $tmp = filter_input(\INPUT_SERVER, $this->getConfig('userId'));
-        if (preg_match('/^Digest username/', $tmp)) {
-            $tmp = preg_replace('/.*username="([^"]+)".*/', '\1', $tmp);
-        }
-        $this->userId = $tmp ?? $this->getConfig('guestUser');
+        $this->userId = AuthControllerStatic::getUserName();
 
         if ($this->documentId) {
             $query = DbHandle::getHandle()->prepare("SELECT count(*) FROM documents WHERE document_id = ?");

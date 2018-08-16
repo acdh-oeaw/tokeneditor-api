@@ -2,6 +2,7 @@
     "require": {
         "acdh-oeaw/tokeneditor-model": "~2",
         "zozlak/rest": "~4",
-        "zozlak/util": "^1.5"
+        "zozlak/util": "^1.5",
+        "zozlak/auth": "~0"
     }
 }

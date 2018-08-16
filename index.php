@@ -27,6 +27,14 @@ use zozlak\rest\HttpController;
 use zozlak\util\ClassLoader;
 use zozlak\util\Config;
 use zozlak\util\DbHandle;
+use zozlak\auth\AuthController;
+use zozlak\auth\AuthControllerStatic;
+use zozlak\auth\usersDb\PdoDb;
+use zozlak\auth\authMethod\GoogleToken;
+use zozlak\auth\authMethod\TrustedHeader;
+use zozlak\auth\authMethod\HttpBasic;
+use zozlak\auth\authMethod\HttpDigest;
+use zozlak\auth\authMethod\Guest;
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: X-Requested-With, Content-Type');
@@ -41,6 +49,22 @@ try {
     $config = new Config('config.ini');
 
     DbHandle::setHandle($config->get('db'));
+
+    $usersDb = new PdoDb($config->get('db'), 'users', 'user_id', 'data');
+    AuthControllerStatic::init($usersDb);
+    AuthControllerStatic::addMethod(new HttpBasic($config->get('authBasicRealm')), AuthController::ADVERTISE_NONE);
+    AuthControllerStatic::addMethod(new HttpDigest($config->get('authBasicRealm')), AuthController::ADVERTISE_NONE);
+    AuthControllerStatic::addMethod(new GoogleToken(filter_input(INPUT_GET, $config->get('googleTokenVar')) ?? ''));
+    AuthControllerStatic::addMethod(new TrustedHeader($config->get('shibUserHeader')));
+    if ($config->get('guestUser')) {
+        AuthControllerStatic::addMethod(new Guest($config->get('guestUser')));
+    }
+    AuthControllerStatic::authenticate();
+    try {
+        header('TokeneditorUser: ' . AuthControllerStatic::getUserName());
+    } catch (\Exception $e) {
+        
+    }
 
     $controller = new HttpController('acdhOeaw\\tokeneditorApi', $config->get('apiBase'));
     $controller->setConfig($config);
