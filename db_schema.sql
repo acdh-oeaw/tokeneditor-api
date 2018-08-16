@@ -10,4 +10,4 @@ CREATE TABLE documents_users_preferences (
 	foreign key (document_id, user_id) references documents_users (document_id, user_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-ALTER TABLE users ADD data text;
+ALTER TABLE users ADD data text NOT NULL DEFAULT '{}';
