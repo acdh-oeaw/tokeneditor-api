@@ -71,7 +71,7 @@ class Document extends BaseHttpEndpoint {
         try {
             $doc->export((bool) $this->filterInput('inPlace'), $fileName);
             $f->file($fileName, 'text/xml', $doc->getName() . '.xml');
-        } catch (Throwable $ex) {
+        } finally {
             if (file_exists($fileName)) {
                 unlink($fileName);
             }
