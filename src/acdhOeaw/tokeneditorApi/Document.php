@@ -26,10 +26,10 @@
 
 namespace acdhOeaw\tokeneditorApi;
 
+use BadMethodCallException;
 use PDO;
 use RuntimeException;
 use stdClass;
-use Throwable;
 use ZipArchive;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
@@ -64,13 +64,31 @@ class Document extends BaseHttpEndpoint {
     }
 
     public function get(DataFormatter $f, HeadersFormatter $h) {
+        $inPlace = $this->filterInput('inPlace') ?? false;
+        
+        $csvPriority = array_search('text/csv', $this->getAccept());
+        $xmlPriority = min(array_search('application/xml', $this->getAccept()), array_search('text/xml', $this->getAccept()));
+        $format = $xmlPriority <= $csvPriority ? 'application/xml' : 'text/csv';
+        if ($this->filterInput('format'))  {
+            if (!in_array($this->filterInput('format'), ['application/xml', 'text/xml', 'text/csv'])) {
+                throw new BadMethodCallException('Format parameter has to be application/xml, text/xml or text/csv', 400);
+            }
+            $format = $this->filterInput('format');
+        }
+        $ext = substr($format, -3);
+        $fileName = $this->getConfig('tmpDir') . '/' . time() . rand() . '.' . $ext;
+        
         $doc = new mDocument(DbHandle::getHandle());
         $doc->loadDb($this->documentId);
-
-        $fileName = $this->getConfig('tmpDir') . '/' . time() . rand() . '.xml';
         try {
-            $doc->export((bool) $this->filterInput('inPlace'), $fileName);
-            $f->file($fileName, 'text/xml', $doc->getName() . '.xml');
+            switch ($format) {
+                case 'text/csv':
+                    $doc->exportCsv($fileName);
+                    break;
+                default:
+                    $doc->export($inPlace, $fileName);
+            }
+            $f->file($fileName, $format, $doc->getName() . '.' . $ext);
         } finally {
             if (file_exists($fileName)) {
                 unlink($fileName);
