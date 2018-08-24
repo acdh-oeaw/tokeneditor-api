@@ -70,12 +70,14 @@ class Token extends BaseHttpEndpoint {
     public function getCollection(DataFormatter $f, HeadersFormatter $h) {
         $pdo = DbHandle::getHandle();
 
-        $pageSize    = $this->filterInput('_pageSize');
-        $offset      = $this->filterInput('_offset');
-        $tokenId     = $this->filterInput('tokenId');
-        $propxpath   = $this->propName2propXPath($this->filterInput('propertyName'));
+        $pageSize  = $this->filterInput('_pageSize');
+        $offset    = $this->filterInput('_offset');
+        $tokenId   = $this->filterInput('tokenId');
+        $order     = $this->filterInput('_order');
+        $propxpath = $this->propName2propXPath($this->filterInput('propertyName'));
 
-        $tokenArray = new TokenCollection($pdo, $this->documentId, $this->userId);
+        $tokenArray = new TokenCollection($pdo, $this->documentId, $this->userId);        
+        $tokenArray->setSorting(is_array($order) ? $order : [$order]);
         if ($tokenId) {
             $tokenArray->setTokenIdFilter($tokenId);
         }
