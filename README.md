@@ -61,6 +61,7 @@ Example Apache virtual host config for an Apache+Shibboleth config:
   Supported parameters:
     * `_pageSize` maximum number of returned tokens
     * `_offset` returned tokens list offset
+    * `_order` defines sorting (prepend property name with a `-` to set descending order, supports array of property names or a single property name)
     * `tokenId` token id filter
     * `{tokenPropertyName}` filter for a given token property (`%` in filter value is interpreted as *any nummber of any characters*)
 * `PUT /document/{documentId}/token/{tokenId}` updates token property value
