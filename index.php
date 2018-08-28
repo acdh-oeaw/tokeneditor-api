@@ -33,7 +33,6 @@ use zozlak\auth\usersDb\PdoDb;
 use zozlak\auth\authMethod\GoogleToken;
 use zozlak\auth\authMethod\TrustedHeader;
 use zozlak\auth\authMethod\HttpBasic;
-use zozlak\auth\authMethod\HttpDigest;
 use zozlak\auth\authMethod\Guest;
 
 header('Access-Control-Allow-Origin: *');
@@ -53,7 +52,7 @@ try {
     $usersDb = new PdoDb($config->get('db'), 'users', 'user_id', 'data');
     AuthControllerStatic::init($usersDb);
     AuthControllerStatic::addMethod(new HttpBasic($config->get('authBasicRealm')), AuthController::ADVERTISE_NONE);
-    AuthControllerStatic::addMethod(new GoogleToken(filter_input(INPUT_GET, $config->get('googleTokenVar')) ?? ''));
+    AuthControllerStatic::addMethod(new GoogleToken(filter_input(INPUT_COOKIE, $config->get('googleTokenVar')) ?? ''));
     AuthControllerStatic::addMethod(new TrustedHeader($config->get('shibUserHeader')));
     if ($config->get('guestUser')) {
         AuthControllerStatic::addMethod(new Guest($config->get('guestUser')));
