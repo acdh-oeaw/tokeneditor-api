@@ -4,9 +4,11 @@ debug=0
 apiBase='/tokeneditor-api/'
 ; auth config
 authTokenVar='token'
+authTokenTime=600
 shibUserHeader='HTTP_EPPN'
 googleTokenVar='token'
 authBasicRealm='tokeneditor'
+; non-empty makes it impossible to use login+password auth in webbrowsers
 guestUser=''
 ; directory in which raw document XMLs are stored
 storageDir="docStorage"

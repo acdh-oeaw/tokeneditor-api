@@ -66,7 +66,21 @@ class Editor extends BaseHttpEndpoint {
         $data  = AuthControllerStatic::getUserData();
         $token = Token::createToken($data, $user);
         AuthControllerStatic::putUserData($data, false);
-        $f->data(['token' => $token]);
+
+        $shib = false;
+        foreach (array_keys($_COOKIE) as $i) {
+            if (substr($i, 0, 13) === '_shibsession_') {
+                $shib = true;
+                break;
+            }
+        }
+
+        $f->data([
+            'login' => $user,
+            'token' => $token,
+            'shibboleth' => $shib,
+            'timeout' => $this->getConfig('authTokenTime')
+        ]);
     }
 
     public function getCollection(DataFormatter $f, HeadersFormatter $h) {

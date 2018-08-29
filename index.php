@@ -52,8 +52,8 @@ try {
 
     $usersDb = new PdoDb($config->get('db'), 'users', 'user_id', 'data');
     AuthControllerStatic::init($usersDb);
-    AuthControllerStatic::addMethod(new Token(filter_input(INPUT_COOKIE, $config->get('authTokenVar')) ?? ''));
-    AuthControllerStatic::addMethod(new HttpBasic($config->get('authBasicRealm')), AuthController::ADVERTISE_NONE);
+    AuthControllerStatic::addMethod(new Token(filter_input(INPUT_COOKIE, $config->get('authTokenVar')) ?? '', $config->get('authTokenTime')));
+    AuthControllerStatic::addMethod(new HttpBasic($config->get('authBasicRealm')), AuthController::ADVERTISE_ONCE);
     AuthControllerStatic::addMethod(new GoogleToken(filter_input(INPUT_COOKIE, $config->get('googleTokenVar')) ?? ''));
     AuthControllerStatic::addMethod(new TrustedHeader($config->get('shibUserHeader')));
     if ($config->get('guestUser')) {
@@ -63,7 +63,7 @@ try {
     try {
         header('TokeneditorUser: ' . AuthControllerStatic::getUserName());
     } catch (\Exception $e) {
-        
+        AuthControllerStatic::advertise();
     }
 
     $controller = new HttpController('acdhOeaw\\tokeneditorApi', $config->get('apiBase'));
