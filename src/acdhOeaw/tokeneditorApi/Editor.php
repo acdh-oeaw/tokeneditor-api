@@ -26,12 +26,15 @@
 
 namespace acdhOeaw\tokeneditorApi;
 
+use Exception;
 use stdClass;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\User;
+use zozlak\auth\AuthControllerStatic;
+use zozlak\auth\authMethod\Token;
+use zozlak\rest\HttpController;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
-use zozlak\rest\HttpController;
 use zozlak\rest\ForbiddenException;
 
 /**
@@ -47,12 +50,23 @@ class Editor extends BaseHttpEndpoint {
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
 
-        if (!$this->userMngr->isOwner($this->userId)) {
+        if ($this->documentId && !$this->userMngr->isOwner($this->userId)) {
             throw new ForbiddenException('Not a document owner');
         }
         if ($this->editorId) {
             $this->editorId = urldecode($this->editorId);
         }
+    }
+
+    public function get(DataFormatter $f, HeadersFormatter $h) {
+        if ($this->editorId !== 'current') {
+            throw new Exception('Not Found', 404);
+        } 
+        $user = AuthControllerStatic::getUserName();
+        $data  = AuthControllerStatic::getUserData();
+        $token = Token::createToken($data, $user);
+        AuthControllerStatic::putUserData($data, false);
+        $f->data(['token' => $token]);
     }
 
     public function getCollection(DataFormatter $f, HeadersFormatter $h) {

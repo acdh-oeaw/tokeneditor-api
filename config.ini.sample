@@ -3,6 +3,7 @@ db='pgsql: dbname=tokeneditor host=127.0.0.1'
 debug=0
 apiBase='/tokeneditor-api/'
 ; auth config
+authTokenVar='token'
 shibUserHeader='HTTP_EPPN'
 googleTokenVar='token'
 authBasicRealm='tokeneditor'
