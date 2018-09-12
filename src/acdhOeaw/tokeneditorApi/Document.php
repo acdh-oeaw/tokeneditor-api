@@ -103,7 +103,7 @@ class Document extends BaseHttpEndpoint {
 
         $doc = new mDocument(DbHandle::getHandle());
         $doc->loadDb($this->documentId);
-        $doc->delete($this->getConfig('saveDir'));
+        $doc->delete($this->getConfig('storageDir'));
 
         $f->data(['documentId' => $this->documentId]);
     }
