@@ -76,7 +76,7 @@ class Token extends BaseHttpEndpoint {
         $order     = $this->filterInput('_order');
         $propxpath = $this->propName2propXPath($this->filterInput('propertyName'));
 
-        $tokenArray = new TokenCollection($pdo, $this->documentId, $this->userId);        
+        $tokenArray = new TokenCollection($pdo, $this->documentId, $this->userId);
         $tokenArray->setSorting(is_array($order) ? $order : [$order]);
         if ($tokenId) {
             $tokenArray->setTokenIdFilter($tokenId);
@@ -85,9 +85,9 @@ class Token extends BaseHttpEndpoint {
         $propQuery = $pdo->prepare('SELECT name FROM properties WHERE document_id = ?');
         $propQuery->execute([$this->documentId]);
         while ($prop      = $propQuery->fetch(PDO::FETCH_COLUMN)) {
-            $value = (string) $this->filterInput(str_replace(' ', '_', $prop));
-            if ($value !== '') {
-                $tokenArray->addFilter($prop, $value);
+            $value = $this->filterInput(str_replace(' ', '_', $prop));
+            if ($value !== null) {
+                $tokenArray->addFilter($prop, (string) $value);
             }
         }
 
