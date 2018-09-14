@@ -98,36 +98,12 @@ class Token extends BaseHttpEndpoint {
         } else {
             $res = $tokenArray->getData($pageSize ? $pageSize : 1000, $offset ? $offset : 0);
         }
-        
-        // quick & ugly solution - to be improoved in the future
-        $format    = $this->filterInput('_format');
-        if ($format !== 'text/csv') {
-            $f->raw($res, 'application/json');
-        } else {
-            $res = json_decode($res);
-            $res = $res->data;
 
-            $tmp = tempnam('/tmp', '');
-            $output = fopen($tmp, 'w');
-            if (count($res) > 0) {
-                $n = 0;
-                foreach ($res[0] as $col => $val) {
-                    fwrite($output, ($n > 0 ? ';' : '') . '"' . str_replace('"', '\\"', $col) . '"');
-                    $n++;
-                }
-                fwrite($output, "\n");
-            }
-            foreach($res as $i) {
-                $n = 0;
-                foreach($i as $val){
-                    fwrite($output, ($n > 0 ? ';' : '') . '"' . str_replace('"', '\\"', $val) . '"');
-                    $n++;
-                }
-                fwrite($output, "\n");
-            }
-            fclose($output);
-            $f->file($tmp, $this->tokenId . '.csv');
-            unlink($tmp);
+        if (preg_match('/Csv/', get_class($f))) {
+            $res = json_decode($res);
+            $f->data($res->data);
+        } else {
+            $f->raw($res, 'application/json');            
         }
     }
 

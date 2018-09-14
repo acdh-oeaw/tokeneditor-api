@@ -66,8 +66,17 @@ try {
         AuthControllerStatic::advertise();
     }
 
+    
     $controller = new HttpController('acdhOeaw\\tokeneditorApi', $config->get('apiBase'));
     $controller->setConfig($config);
+
+    $format = filter_input(INPUT_GET, '_format');
+    if ($format === 'text/csv') {
+        $controller->setFormatters(['default' => '\\zozlak\\rest\\CsvFormatter']);
+    } else if ($format === 'text/xml') {
+        $controller->setFormatters(['default' => '\\zozlak\\rest\\JsonFormatter']);
+    }
+
     $controller->handleRequest();
 
     DbHandle::commit();
