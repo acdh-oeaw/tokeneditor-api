@@ -51,6 +51,7 @@ try {
     DbHandle::setHandle($config->get('db'));
 
     $usersDb = new PdoDb($config->get('db'), 'users', 'user_id', 'data');
+    $usersDb->putUser($config->get('demoUser'), HttpBasic::pswdData($config->get('demoPswd')));
     AuthControllerStatic::init($usersDb);
     AuthControllerStatic::addMethod(new Token(filter_input(INPUT_COOKIE, $config->get('authTokenVar')) ?? '', $config->get('authTokenTime')));
     AuthControllerStatic::addMethod(new HttpBasic($config->get('authBasicRealm')), AuthController::ADVERTISE_ONCE);

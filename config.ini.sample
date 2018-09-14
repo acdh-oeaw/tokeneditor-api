@@ -10,6 +10,9 @@ googleTokenVar='token'
 authBasicRealm='tokeneditor'
 ; non-empty makes it impossible to use login+password auth in webbrowsers
 guestUser=''
+; demo user - can only edit existing documents
+demoUser='guest'
+demoPswd='guest'
 ; directory in which raw document XMLs are stored
 storageDir="docStorage"
 tmpDir="tmp"

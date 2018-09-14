@@ -26,7 +26,6 @@
 
 namespace acdhOeaw\tokeneditorApi;
 
-use BadMethodCallException;
 use PDO;
 use RuntimeException;
 use stdClass;
@@ -125,6 +124,10 @@ class Document extends BaseHttpEndpoint {
     }
 
     public function postCollection(DataFormatter $f, HeadersFormatter $h) {
+        if ($this->userId === $this->getConfig('demoUser')) {
+            throw new ForbiddenException('Demo user can not upload new documents');
+        }
+        
         $dir  = $file = '';
         try {
             if (!isset($_FILES['document']) || !isset($_FILES['schema']) || !is_file($_FILES['document']['tmp_name']) || !is_file($_FILES['schema']['tmp_name'])) {
