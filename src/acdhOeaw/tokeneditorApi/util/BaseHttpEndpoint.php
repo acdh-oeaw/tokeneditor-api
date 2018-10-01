@@ -63,8 +63,8 @@ class BaseHttpEndpoint extends HttpEndpoint {
             }
 
             $this->userMngr = new User(DbHandle::getHandle(), $this->documentId);
-            if (!$this->userMngr->isEditor($this->userId)) {
-                throw new ForbiddenException('Not a document editor');
+            if (!$this->userMngr->isViewer($this->userId)) {
+                throw new ForbiddenException('Access to the document denied');
             }
         }
     }

@@ -44,6 +44,10 @@ class Token extends BaseHttpEndpoint {
     protected $tokenId;
 
     public function put(DataFormatter $f, HeadersFormatter $h) {
+        if (!$this->userMngr->isEditor($this->userId)) {
+            throw new ForbiddenException('Document editor rights required');
+        }
+
         $pdo = DbHandle::getHandle();
 
         $propName = $this->filterInput('property_name');
@@ -103,7 +107,7 @@ class Token extends BaseHttpEndpoint {
             $res = json_decode($res);
             $f->data($res->data);
         } else {
-            $f->raw($res, 'application/json');            
+            $f->raw($res, 'application/json');
         }
     }
 
