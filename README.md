@@ -56,6 +56,7 @@ Example Apache virtual host config for an Apache+Shibboleth config:
     * `typeId` property type
     * `ord` property order
     * `readOnly` should property be read only?
+    * `optional` should property be optional?
     * `values` list of possible property values (valid only for certain property types)
 * `GET /document/{documentId}/token` returns list of tokens for a given document  
   Supported parameters:
