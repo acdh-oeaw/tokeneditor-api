@@ -74,7 +74,6 @@ class Token extends BaseHttpEndpoint {
         $offset    = $this->filterInput('_offset');
         $tokenId   = $this->filterInput('tokenId');
         $order     = $this->filterInput('_order');
-        $propxpath = $this->propName2propXPath($this->filterInput('propertyName'));
 
         $tokenArray = new TokenCollection($pdo, $this->documentId, $this->userId);
         $tokenArray->setSorting(is_array($order) ? $order : [$order]);
@@ -91,10 +90,10 @@ class Token extends BaseHttpEndpoint {
             }
         }
 
-        if ($this->filterInput('tokensOnly')) {
+        if ($this->filterInput('_tokensOnly')) {
             $res = $tokenArray->getTokensOnly($pageSize ? $pageSize : 1000, $offset ? $offset : 0);
-        } else if ($this->filterInput('stats')) {
-            $res = $tokenArray->getStats($propxpath ? $propxpath : '@state');
+        } else if ($this->filterInput('_stats')) {
+            $res = $tokenArray->getStats($this->filterInput('stats'));
         } else {
             $res = $tokenArray->getData($pageSize ? $pageSize : 1000, $offset ? $offset : 0);
         }
