@@ -64,6 +64,8 @@ Example Apache virtual host config for an Apache+Shibboleth config:
     * `_order` defines sorting (prepend property name with a `-` to set descending order, supports array of property names or a single property name)
     * `tokenId` token id filter
     * `{tokenPropertyName}` filter for a given token property (`%` in filter value is interpreted as *any nummber of any characters*)
+    * `tokensOnly` if present and have non-empty value, output is limited to tokenIds only (no property values are returned)
+    * `stats` if present, value frequency statistics are returned for a property indicated by the `stats` parameter
 * `PUT /document/{documentId}/token/{tokenId}` updates token property value
   Required parameters:
     * `name` token property name
