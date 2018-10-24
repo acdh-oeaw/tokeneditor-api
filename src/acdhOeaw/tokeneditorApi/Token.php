@@ -26,7 +26,9 @@
 
 namespace acdhOeaw\tokeneditorApi;
 
+use BadMethodCallException;
 use PDO;
+use PDOException;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\TokenCollection;
 use zozlak\rest\DataFormatter;
@@ -61,7 +63,15 @@ class Token extends BaseHttpEndpoint {
             DO UPDATE SET value = EXCLUDED.value
         ");
         $param = [$this->documentId, $property, $this->tokenId, $this->userId, $value];
-        $query->execute($param);
+        try {
+            $query->execute($param);
+        } catch (PDOException $e) {
+            if (strpos($e->getMessage(), 'values_document_id_fkey') !== false) {
+                throw new BadMethodCallException('This token does not have such a property', 400);
+            } else {
+                throw $e;
+            }
+        }
 
         $f->data([
             'documentId'   => $this->documentId,
