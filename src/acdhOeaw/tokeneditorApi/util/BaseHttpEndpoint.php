@@ -26,6 +26,7 @@
 
 namespace acdhOeaw\tokeneditorApi\util;
 
+use RuntimeException;
 use stdClass;
 use acdhOeaw\tokeneditorModel\User;
 use zozlak\auth\AuthControllerStatic;
