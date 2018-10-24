@@ -49,6 +49,7 @@ class Property extends BaseHttpEndpoint {
             'typeId'        => $p->getType(),
             'ord'           => $p->getOrd(),
             'readOnly'      => $p->getReadOnly(),
+            'optional'      => $p->getOptional(),
             'values'        => $p->getValues()
         ];
     }
@@ -96,6 +97,7 @@ class Property extends BaseHttpEndpoint {
         $type     = $this->filterInput('typeId');
         $ord      = $this->filterInput('ord');
         $readOnly = $this->filterInput('readOnly');
+        $optional = $this->filterInput('optional');
         $values   = $this->filterInput('values');
 
         if ($values !== null && !is_array($values)) {
@@ -129,6 +131,10 @@ class Property extends BaseHttpEndpoint {
         if ($readOnly !== null) {
             $set[]   = 'read_only = ?';
             $param[] = (int) ((bool) $readOnly);
+        }
+        if ($optional !== null) {
+            $set[]   = 'optional = ?';
+            $param[] = (int) ((bool) $optional);
         }
 
         if (count($set) > 0) {
