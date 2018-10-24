@@ -97,7 +97,7 @@ class Token extends BaseHttpEndpoint {
         if ($this->filterInput('_tokensOnly')) {
             $res = $tokenArray->getTokensOnly($pageSize ? $pageSize : 1000, $offset ? $offset : 0);
         } else if ($this->filterInput('_stats')) {
-            $res = $tokenArray->getStats($this->filterInput('stats'));
+            $res = $tokenArray->getStats($this->filterInput('_stats'));
         } else {
             $res = $tokenArray->getData($pageSize ? $pageSize : 1000, $offset ? $offset : 0);
         }
