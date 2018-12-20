@@ -13,31 +13,42 @@ Tokeneditor-api is a REST backend used by the [tokeneditor](https://github.com/a
 
 ### Authentication
 
-Tokeneditor doesn't provide any authentication mechanism but relies entirely on the web server.
+The tries to authenticate requests in a following order (`varName` denote config vars in the config.ini):
 
-It was mentioned to work with a HTTP Digest authentication or federated identity provider (like Shibboleth). In both cases the authorization is done by a web server which either denies access or attaches authenticated user id (or the whole authorization token for HTTP Digest) as an HTTP request header. Use the `user_id` configuration variable in `config.ini` to define the HTTP request header providing the user name.
+* Using it's own session token provided in the `authTokenVar` cookie.  
+  Corresponding cookie is automatically set after every successful authorization.
+* Using HTTP basic authentication
+* Using Google auth token provided in the `googleTokenVar` cookie
+* Using a `shibUserHeader` HTTP header containing a federated login user id
 
-Example Apache virtual host config for an Apache+Shibboleth config:
-```
-<VirtualHost *:80>
-  ServerName myDomain
-  DocumentRoot myTokeneditorPath
-  AuthType shibboleth
-  ShibRequireSession On
-  Require valid-user
-</VirtualHost>
-```
+Finally if all auth methods failed but the `guestUser` is set, the user is set to the `guestUser` config variable value.
 
 # API
 
+* `GET /editor/current` returns information on user whose credentials were used to authenticate the request
+* `PUT /document/{documentId}/editor/{userId}` sets role and/or name of a given user on a given document  
+  Supported parameters:
+    * `role` users' role - one of `owner`, `editor`, `viewer` or `none`
+    * `name` label to be used instead of the `userId`
 * `GET /document` lists documents
 * `POST /document` creates new document  
   Required parameters (encoded as multipart/form-data):
     * `schema` XML file containing document schema
     * `document` XML file containing document
     * `name` document name
-* `GET /document/{documentId}` returns information on a  document
+* `GET /document/{documentId}` exports document in a desired format
+  Supported parameters:
+    * `_format` export format - one of `text/xml` (default), `application/xml`, `text/csv`
+    * `inPlace` (for XML exports only, all other formats are exported *in place*) - 
+      should export contain detailed information on all editions made (who, when, what) or only a final version of the document
 * `DELETE /document/{documentId}` deletes a document
+* `GET /document/{documentId}/schema` returns document schema as an XML file
+* `GET /document/{documentId}/editor` lists all users having access to a given document
+* `PUT /document/{documentId}/editor/{userId}` sets role and/or name of a given user on a given document  
+  Supported parameters:
+    * `role` users' role - one of `owner`, `editor`, `viewer` or `none`
+    * `name` label to be used instead of the `userId`
+* `DELETE /document/{documentId}/editor/{userId}` revokes all privilesges on given document from a given user  
 * `GET /document/{documentId}/preference` lists user-defined properties for a given document
 * `POST /document/{documentId}/preference` creates a new user-defined property for a given document  
   Required parameters:
@@ -56,7 +67,6 @@ Example Apache virtual host config for an Apache+Shibboleth config:
     * `typeId` property type
     * `ord` property order
     * `readOnly` should property be read only?
-    * `optional` should property be optional?
     * `values` list of possible property values (valid only for certain property types)
 * `GET /document/{documentId}/token` returns list of tokens for a given document  
   Supported parameters:
@@ -65,10 +75,9 @@ Example Apache virtual host config for an Apache+Shibboleth config:
     * `_order` defines sorting (prepend property name with a `-` to set descending order, supports array of property names or a single property name)
     * `tokenId` token id filter
     * `{tokenPropertyName}` filter for a given token property (`%` in filter value is interpreted as *any nummber of any characters*)
-    * `_tokensOnly` if present and have non-empty value, output is limited to tokenIds only (no property values are returned); takes precedense over the `_stats` parameter
-    * `_stats` if present, given property value frequency statistics are returned instead of a matching tokens list (for such a request `_pageSize`, `_offset` and `_order` parameters are meaningless but all filters defined in the `{tokenPropertyName}` parameters take effect)
 * `PUT /document/{documentId}/token/{tokenId}` updates token property value
   Required parameters:
     * `name` token property name
     * `value` token property value
 ```
+
