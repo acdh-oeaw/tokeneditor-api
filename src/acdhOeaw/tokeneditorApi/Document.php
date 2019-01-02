@@ -78,15 +78,18 @@ class Document extends BaseHttpEndpoint {
                 case 'csv':
                     $ff = new ExportCsv($fileName);
                     $doc->exportTable($ff, $inPlace);
+                    $mime = 'text/csv; charset=utf-8';
                     break;
                 case 'json':
                     $ff = new ExportJson($fileName);
                     $doc->exportTable($ff, $inPlace);
+                    $mime = 'application/json; charset=utf-8';
                     break;
                 default:
                     $doc->export($inPlace, $fileName);
+                    $mime = 'text/xml';
             }
-            $f->file($fileName, '', $doc->getName() . '.' . $ext);
+            $f->file($fileName, $mime, $doc->getName() . '.' . $ext);
         } finally {
             if (file_exists($fileName)) {
                 unlink($fileName);
