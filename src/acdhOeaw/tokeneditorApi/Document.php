@@ -29,6 +29,7 @@ namespace acdhOeaw\tokeneditorApi;
 use PDO;
 use RuntimeException;
 use stdClass;
+use XMLWriter;
 use ZipArchive;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
@@ -64,11 +65,11 @@ class Document extends BaseHttpEndpoint {
 
     public function get(DataFormatter $f, HeadersFormatter $h) {
         $inPlace = $this->filterInput('inPlace') ?? false;
-        
-        $format = preg_match('/Csv/', get_class($f)) ? 'text/csv' : 'text/xml';
-        $ext = substr($format, -3);
+
+        $format   = preg_match('/Csv/', get_class($f)) ? 'text/csv' : 'text/xml';
+        $ext      = substr($format, -3);
         $fileName = $this->getConfig('tmpDir') . '/' . time() . rand() . '.' . $ext;
-        
+
         $doc = new mDocument(DbHandle::getHandle());
         $doc->loadDb($this->documentId);
         try {
@@ -127,9 +128,13 @@ class Document extends BaseHttpEndpoint {
         if ($this->userId === $this->getConfig('demoUser')) {
             throw new ForbiddenException('Demo user can not upload new documents');
         }
-        
+
         $dir  = $file = '';
         try {
+            if (!empty($this->filterInput('tokens')) && !empty($this->filterInput('schema'))) {
+                $this->json2xml();
+            }
+            
             if (!isset($_FILES['document']) || !isset($_FILES['schema']) || !is_file($_FILES['document']['tmp_name']) || !is_file($_FILES['schema']['tmp_name'])) {
                 throw new RuntimeException('document or schema not uploaded correctly');
             }
@@ -180,12 +185,94 @@ class Document extends BaseHttpEndpoint {
         }
     }
 
-    private function getProperties(mDocument $doc) {
+    private function getProperties(mDocument $doc): array {
         $props = [];
         foreach ($doc->getSchema() as $p) {
             $props[$p->getName()] = Property::encodeProperty($p);
         }
         return $props;
+    }
+
+    private function json2xml(): void {
+        $dataPath   = tempnam($this->getConfig('tmpDir'), '');
+        $schemaPath = tempnam($this->getConfig('tmpDir'), '');
+
+        $data = $this->filterInput('tokens');
+        if (is_string($data)) {
+            $data = parse_json($data);
+        }
+        $schema = $this->filterInput('schema');
+        if (is_string($schema)) {
+            $schema = parse_json($schema);
+        }
+
+        $propMap = [];
+
+        $writer = new XMLWriter();
+        $writer->openUri($schemaPath);
+        $writer->startDocument('1.0', 'UTF-8');
+        $writer->startElement('schema');
+        $writer->startElement('tokenXPath');
+        $writer->text('//t');
+        $writer->endElement();
+        $writer->startElement('properties');
+        foreach ($schema as $p) {
+            $tag                       = 't' . (count($propMap) + 1);
+            $propMap[$p->propertyName] = $tag;
+
+            $writer->startElement('property');
+            $writer->startElement('propertyName');
+            $writer->text($p->propertyName);
+            $writer->endElement();
+            $writer->startElement('propertyXPath');
+            $writer->text('./' . $tag);
+            $writer->endElement();
+            $writer->startElement('propertyType');
+            $writer->text($p->propertyType);
+            $writer->endElement();
+            if (isset($p->readOnly)) {
+                $writer->startElement('readOnly');
+                $writer->endElement();
+            }
+            if (isset($p->optional)) {
+                $writer->startElement('optional');
+                $writer->endElement();
+            }
+            if (isset($p->values)) {
+                $writer->startElement('propertyValues');
+                foreach ($p->values as $v) {
+                    $writer->startElement('value');
+                    $writer->text($v);
+                    $writer->endElement();
+                }
+                $writer->endElement();
+            }
+            $writer->endElement();
+        }
+        $writer->endDocument();
+        $writer->flush();
+
+        $writer = new XMLWriter();
+        $writer->openUri($dataPath);
+        $writer->startDocument('1.0', 'UTF-8');
+        $writer->startElement('root');
+        foreach ($data as $t) {
+            $writer->startElement('t');
+            foreach ($t as $k => $v) {
+                if (isset($propMap[$k])) {
+                    $writer->startElement($propMap[$k]);
+                    $writer->text($v);
+                    $writer->endElement();
+                }
+            }
+            $writer->endElement();
+        }
+        $writer->endElement();
+        $writer->endDocument();
+        $writer->flush();
+
+        $_FILES['document'] = ['tmp_name' => $dataPath];
+        $_FILES['schema']   = ['tmp_name' => $schemaPath];
     }
 
 }

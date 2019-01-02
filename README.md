@@ -31,11 +31,21 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
     * `role` users' role - one of `owner`, `editor`, `viewer` or `none`
     * `name` label to be used instead of the `userId`
 * `GET /document` lists documents
-* `POST /document` creates new document  
-  Required parameters (encoded as multipart/form-data):
-    * `schema` XML file containing document schema
-    * `document` XML file containing document
-    * `name` document name
+* `POST /document` creates new document
+  Two input formats are supported:
+    * A pair of XML files (encoded as multipart/form-data), one containing schema description and other containing the data.
+      Required parameters:
+        * `schema` XML file containing document schema - see examples on https://github.com/acdh-oeaw/tokeneditor-model/tree/master/sample_data
+        * `document` XML file containing document (can be compressed with zip)
+        * `name` document name
+    * A JSON object.
+      Required properties:
+        * `schema` an array of objects describing document schema. An object describing a single property is a simple JSON 
+          serialization of an XML describing a single property just the `propertyXPath` property is not needed, e.g.
+          `{"propertyName": "myProp", "propertyType": "free text"}`.
+        * `tokens` an array of object describing tokens, e.g. `[{"myProp1": 1, "myProp2": "a"}, {"myProp1": 2, "myProp2": "b"}]`.
+          All properties used in tokens have to be described in the shema.
+        * `name` document name
 * `GET /document/{documentId}` exports document in a desired format
   Supported parameters:
     * `_format` export format - one of `text/xml` (default), `application/xml`, `text/csv`
