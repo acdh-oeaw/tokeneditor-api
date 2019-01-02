@@ -51,9 +51,10 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
         * `name` document name
 * `GET /document/{documentId}` exports document in a desired format
   Supported parameters:
-    * `_format` export format - one of `text/xml` (default), `application/xml`, `text/csv`
-    * `inPlace` (for XML exports only, all other formats are exported *in place*) - 
-      should export contain detailed information on all editions made (who, when, what) or only a final version of the document
+    * `_format` export format - one of `text/xml`, `application/xml`, `text/csv` or `application/json` (default)
+       (can be also provided using the `Accept` HTTP request header)
+    * `inPlace` (for XML and JSON exports only, the CSV format is always exported *in place*) - 
+      should export contain detailed information on all editions made (who, when, what) or only a final version of the document?
 * `DELETE /document/{documentId}` deletes a document
 * `GET /document/{documentId}/schema` returns document schema as an XML file
 * `GET /document/{documentId}/editor` lists all users having access to a given document

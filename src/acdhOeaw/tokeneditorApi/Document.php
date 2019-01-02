@@ -32,6 +32,8 @@ use stdClass;
 use XMLWriter;
 use ZipArchive;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
+use acdhOeaw\tokeneditorModel\ExportCsv;
+use acdhOeaw\tokeneditorModel\ExportJson;
 use acdhOeaw\tokeneditorModel\Document as mDocument;
 use acdhOeaw\tokeneditorModel\User;
 use zozlak\rest\DataFormatter;
@@ -66,21 +68,25 @@ class Document extends BaseHttpEndpoint {
     public function get(DataFormatter $f, HeadersFormatter $h) {
         $inPlace = $this->filterInput('inPlace') ?? false;
 
-        $format   = preg_match('/Csv/', get_class($f)) ? 'text/csv' : 'text/xml';
-        $ext      = substr($format, -3);
+        $ext      = strtolower(preg_replace('|^.*\\\\([A-Za-z]+)Formatter$|', '\\1', get_class($f)));
         $fileName = $this->getConfig('tmpDir') . '/' . time() . rand() . '.' . $ext;
 
         $doc = new mDocument(DbHandle::getHandle());
         $doc->loadDb($this->documentId);
         try {
-            switch ($format) {
-                case 'text/csv':
-                    $doc->exportCsv($fileName);
+            switch ($ext) {
+                case 'csv':
+                    $ff = new ExportCsv($fileName);
+                    $doc->exportTable($ff, $inPlace);
+                    break;
+                case 'json':
+                    $ff = new ExportJson($fileName);
+                    $doc->exportTable($ff, $inPlace);
                     break;
                 default:
                     $doc->export($inPlace, $fileName);
             }
-            $f->file($fileName, $format, $doc->getName() . '.' . $ext);
+            $f->file($fileName, '', $doc->getName() . '.' . $ext);
         } finally {
             if (file_exists($fileName)) {
                 unlink($fileName);
@@ -105,15 +111,15 @@ class Document extends BaseHttpEndpoint {
         $d   = new mDocument($pdo);
 
         $query = $pdo->prepare('
-			SELECT document_id AS "documentId", name, count(*) AS "tokenCount"
-			FROM 
-				documents 
-				JOIN documents_users USING (document_id) 
-				JOIN tokens using (document_id)
-			WHERE user_id = ? AND role <> \'none\'
-			GROUP BY 1, 2
-			ORDER BY 2
-		');
+            SELECT document_id AS "documentId", name, count(*) AS "tokenCount"
+            FROM 
+                documents 
+                JOIN documents_users USING (document_id) 
+                JOIN tokens using (document_id)
+            WHERE user_id = ? AND role <> \'none\'
+            GROUP BY 1, 2
+            ORDER BY 2
+        ');
         $query->execute([$this->userId]);
         $f->initCollection();
         while ($i     = $query->fetch(PDO::FETCH_OBJ)) {

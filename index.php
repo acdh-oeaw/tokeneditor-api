@@ -71,13 +71,22 @@ try {
     $controller = new HttpController('acdhOeaw\\tokeneditorApi', $config->get('apiBase'));
     $controller->setConfig($config);
 
-    $format = filter_input(INPUT_GET, '_format');
-    if ($format === 'text/csv') {
-        $controller->setFormatters(['default' => '\\zozlak\\rest\\CsvFormatter']);
-    } else if ($format === 'text/xml') {
-        $controller->setFormatters(['default' => '\\zozlak\\rest\\JsonFormatter']);
+    $possible = [
+        'application/json' => '\\zozlak\\rest\\JsonFormatter',
+        'text/xml'         => '\\acdhOeaw\\tokeneditorApi\\util\\XmlFormatter', 
+        'application/xml'  => '\\acdhOeaw\\tokeneditorApi\\util\\XmlFormatter', 
+        'text/csv'         => '\\zozlak\\rest\\CsvFormatter', 
+    ];
+    $accepted = $controller->getAccept(array_keys($possible));
+    $forced = filter_input(INPUT_GET, '_format');
+    if (in_array($forced, array_keys($possible))) {
+        $accepted = [$forced];
     }
-
+    if (count($accepted) == 0) {
+        $accepted = ['text/xml'];
+    }
+    $controller->setFormatters(['default' => $possible[$accepted[0]]]);
+ 
     $controller->handleRequest();
 
     DbHandle::commit();
