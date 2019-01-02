@@ -105,11 +105,11 @@ class Token extends BaseHttpEndpoint {
         }
 
         if ($this->filterInput('_tokensOnly')) {
-            $res = $tokenArray->getTokensOnly($pageSize ? $pageSize : 1000, $offset ? $offset : 0);
+            $res = $tokenArray->getTokensOnly($pageSize ? (int) $pageSize : 1000, $offset ? (int) $offset : 0);
         } else if ($this->filterInput('_stats')) {
             $res = $tokenArray->getStats($this->filterInput('_stats'));
         } else {
-            $res = $tokenArray->getData($pageSize ? $pageSize : 1000, $offset ? $offset : 0);
+            $res = $tokenArray->getData($pageSize ? (int) $pageSize : 1000, $offset ? (int) $offset : 0);
         }
 
         if (preg_match('/Csv/', get_class($f))) {
