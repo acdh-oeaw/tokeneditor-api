@@ -31,6 +31,7 @@ use stdClass;
 use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\User;
 use zozlak\auth\AuthControllerStatic;
+use zozlak\auth\authMethod\HttpBasic;
 use zozlak\auth\authMethod\Token;
 use zozlak\rest\HttpController;
 use zozlak\rest\DataFormatter;
@@ -99,4 +100,17 @@ class Editor extends BaseHttpEndpoint {
         $h->setStatus(204);
     }
 
+    public function patch(DataFormatter $f, HeadersFormatter $h) {
+        if ($this->editorId !== 'current') {
+            throw new Exception('Not Found', 404);
+        } 
+
+        $pswd = $this->filterInput('password');
+        if (strlen($pswd) < 6) {
+            throw new Exception('Password has to be at least six characters long', 400);
+        }
+        AuthControllerStatic::putUserData(HttpBasic::pswdData($pswd));
+        $h->setStatus(204);
+    }
+    
 }

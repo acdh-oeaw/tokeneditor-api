@@ -26,6 +26,9 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
 # API
 
 * `GET /editor/current` returns information on user whose credentials were used to authenticate the request
+* `PATCH /editor/current` sets HTTP BASIC auth password for a user whose credentials were used to authenticate the request.
+   Required parameters:
+    * `password` password to be set
 * `PUT /document/{documentId}/editor/{userId}` sets role and/or name of a given user on a given document  
   Supported parameters:
     * `role` users' role - one of `owner`, `editor`, `viewer` or `none`
