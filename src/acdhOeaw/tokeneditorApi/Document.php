@@ -191,10 +191,10 @@ class Document extends BaseHttpEndpoint {
             if ($dir !== '') {
                 rmdir($dir);
             }
-            if (!is_file($_FILES['document']['tmp_name'])) {
+            if (isset($_FILES['document']) && is_file($_FILES['document']['tmp_name'])) {
                 unlink($_FILES['document']['tmp_name']);
             }
-            if (is_file($_FILES['schema']['tmp_name'])) {
+            if (isset($_FILES['schema']) && is_file($_FILES['schema']['tmp_name'])) {
                 unlink($_FILES['schema']['tmp_name']);
             }
         }
