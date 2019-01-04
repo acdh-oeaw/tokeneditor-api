@@ -25,14 +25,15 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
 
 # API
 
+## /editor
+
 * `GET /editor/current` returns information on user whose credentials were used to authenticate the request
 * `PATCH /editor/current` sets HTTP BASIC auth password for a user whose credentials were used to authenticate the request.
    Required parameters:
     * `password` password to be set
-* `PUT /document/{documentId}/editor/{userId}` sets role and/or name of a given user on a given document  
-  Supported parameters:
-    * `role` users' role - one of `owner`, `editor`, `viewer` or `none`
-    * `name` label to be used instead of the `userId`
+
+## /document
+
 * `GET /document` lists documents
 * `POST /document` creates new document
   Two input formats are supported:
@@ -41,7 +42,7 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
         * `schema` XML file containing document schema - see examples on https://github.com/acdh-oeaw/tokeneditor-model/tree/master/sample_data
         * `document` XML file containing document (can be compressed with zip)
         * `name` document name
-    * A JSON object.
+    * A JSON object (see also an example below).
       Required properties:
         * `schema` an array of objects describing document schema. An object describing a single property is a simple JSON 
           serialization of an XML describing a single property just the `propertyXPath` property is not needed, e.g.
@@ -56,13 +57,22 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
     * `inPlace` (for XML and JSON exports only, the CSV format is always exported *in place*) - 
       should export contain detailed information on all editions made (who, when, what) or only a final version of the document?
 * `DELETE /document/{documentId}` deletes a document
+
+## /document/{docId}/schema
+
 * `GET /document/{documentId}/schema` returns document schema as an XML file
+
+## /document/{docId}/editor
+
 * `GET /document/{documentId}/editor` lists all users having access to a given document
 * `PUT /document/{documentId}/editor/{userId}` sets role and/or name of a given user on a given document  
   Supported parameters:
     * `role` users' role - one of `owner`, `editor`, `viewer` or `none`
     * `name` label to be used instead of the `userId`
 * `DELETE /document/{documentId}/editor/{userId}` revokes all privilesges on given document from a given user  
+
+## /document/{docId}/preference
+
 * `GET /document/{documentId}/preference` lists user-defined properties for a given document
 * `POST /document/{documentId}/preference` creates a new user-defined property for a given document  
   Required parameters:
@@ -73,6 +83,9 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
   Supported parameters:
     * `value` property value
 * `DELETE /document/{documentId}/preference/{preferenceId}` deletes given user-defined property for a given document
+
+## /document/{docId}/property
+
 * `GET /document/{documentId}/property` lists document properties
 * `GET /document/{documentId}/property/{propertyName}` returns information on a given document's property
 * `PATCH /document/{documentId}/property/{propertyName}` alters definition of a given document's property  
@@ -82,6 +95,9 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
     * `ord` property order
     * `readOnly` should property be read only?
     * `values` list of possible property values (valid only for certain property types)
+
+## /document/{docId}/token
+
 * `GET /document/{documentId}/token` returns list of tokens for a given document  
   Supported parameters:
     * `_pageSize` maximum number of returned tokens
@@ -93,5 +109,36 @@ Finally if all auth methods failed but the `guestUser` is set, the user is set t
   Required parameters:
     * `name` token property name
     * `value` token property value
+
+# Examples
+
+## POST /document with a JSON payload
+
+`{placeholder}` should be substituted with values
+
+```bash
+curl -X POST {apiBase}/document -u '{myLogin}:{myPassword}' -H 'Content-Type: application/json' --data-binary '
+{
+  "schema": [ 
+      { 
+        "propertyName": "iob",
+        "propertyType": "closed list", 
+        "propertyValues": ["O", "B-LOC", "I-LOC", "B-ORG", "I-ORG", "B-MISC", "I-MISC", "B-PER", "I-PER"]
+      }, 
+      {
+        "propertyName": "lemma",
+        "propertyType": "free text" 
+      }, 
+      {
+        "propertyName": "token_id",
+        "propertyType": "free text" 
+      } 
+  ], 
+  "tokens": [ 
+    { "token_id": "id_4", "lemma": "Mufcnchen", "iob": "B-LOC" }, 
+    { "token_id": "id_5", "lemma": "Hansi", "iob": "B-PER" } 
+  ], 
+  "name": "test document" 
+}'
 ```
 
