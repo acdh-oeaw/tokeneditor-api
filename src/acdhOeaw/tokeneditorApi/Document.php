@@ -253,9 +253,9 @@ class Document extends BaseHttpEndpoint {
                 $writer->startElement('optional');
                 $writer->endElement();
             }
-            if (isset($p->values)) {
+            if (isset($p->propertyValues)) {
                 $writer->startElement('propertyValues');
-                foreach ($p->values as $v) {
+                foreach ($p->propertyValues as $v) {
                     $writer->startElement('value');
                     $writer->text($v);
                     $writer->endElement();
