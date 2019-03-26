@@ -26,6 +26,7 @@
 
 namespace acdhOeaw\tokeneditorApi;
 
+use Exception;
 use PDO;
 use RuntimeException;
 use stdClass;
@@ -126,9 +127,15 @@ class Document extends BaseHttpEndpoint {
         $query->execute([$this->userId]);
         $f->initCollection();
         while ($i     = $query->fetch(PDO::FETCH_OBJ)) {
-            $d->loadDb($i->documentId);
-            $i->properties = $this->getProperties($d);
-            $f->append($i);
+            try {
+                $d->loadDb($i->documentId);
+                $i->properties = $this->getProperties($d);
+                $f->append($i);
+            } catch (Exception $e) {
+                $i->error = 'Missing XML file';
+                $i->properties = [];
+                $f->append($i);
+            }
         }
         $f->closeCollection();
     }
