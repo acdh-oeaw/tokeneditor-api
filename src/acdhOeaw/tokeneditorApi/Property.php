@@ -51,7 +51,7 @@ class Property extends BaseHttpEndpoint {
             'readOnly'      => $p->getReadOnly(),
             'optional'      => $p->getOptional(),
         ];
-        return array_merge($base, $p->getAttributes());
+        return array_merge($base, (array) $p->getAttributes() ?? []);
     }
 
     protected $documentId;
