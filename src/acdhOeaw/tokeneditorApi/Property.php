@@ -43,15 +43,15 @@ use zozlak\util\DbHandle;
 class Property extends BaseHttpEndpoint {
 
     static public function encodeProperty(mProperty $p) {
-        return [
+        $base = [
             'propertyXPath' => $p->getXPath(),
             'name'          => $p->getName(),
             'typeId'        => $p->getType(),
             'ord'           => $p->getOrd(),
             'readOnly'      => $p->getReadOnly(),
             'optional'      => $p->getOptional(),
-            'values'        => $p->getValues()
         ];
+        return array_merge($base, $p->getAttributes());
     }
 
     protected $documentId;
@@ -83,7 +83,7 @@ class Property extends BaseHttpEndpoint {
         if (!$this->userMngr->isOwner($this->userId)) {
             throw new ForbiddenException('Not a document owner');
         }
-        
+
         $pdo = DbHandle::getHandle();
 
         $query = $pdo->prepare("SELECT property_xpath FROM properties WHERE document_id = ? AND name = ?");
@@ -93,16 +93,12 @@ class Property extends BaseHttpEndpoint {
             throw new \RuntimeException('no such property', 404);
         }
 
-        $name     = $this->filterInput('name');
-        $type     = $this->filterInput('typeId');
-        $ord      = $this->filterInput('ord');
-        $readOnly = $this->filterInput('readOnly');
-        $optional = $this->filterInput('optional');
-        $values   = $this->filterInput('values');
-
-        if ($values !== null && !is_array($values)) {
-            throw new \BadMethodCallException('values parameter must be an array', 400);
-        }
+        $name       = $this->filterInput('name');
+        $type       = $this->filterInput('typeId');
+        $ord        = $this->filterInput('ord');
+        $readOnly   = $this->filterInput('readOnly');
+        $optional   = $this->filterInput('optional');
+        $attributes = $this->filterInput('attributes');
 
         $set   = [];
         $param = [];
@@ -121,7 +117,7 @@ class Property extends BaseHttpEndpoint {
         if ($ord !== null) {
             $query = $pdo->prepare("SELECT name FROM properties WHERE document_id = ? AND ord = ?");
             $query->execute([$this->documentId, $ord]);
-            $tmp = $query->fetchColumn();
+            $tmp   = $query->fetchColumn();
             if ($tmp !== false && $tmp !== $this->propertyId) {
                 throw new \BadMethodCallException('order value already used by another property', 400);
             }
@@ -136,21 +132,16 @@ class Property extends BaseHttpEndpoint {
             $set[]   = 'optional = ?';
             $param[] = (int) ((bool) $optional);
         }
+        if ($attributes !== null) {
+            $set[]   = 'attributes = ?';
+            $param[] = $attributes;
+        }
 
         if (count($set) > 0) {
             $query = "UPDATE properties SET " . implode(', ', $set) . "WHERE document_id = ? AND property_xpath = ?";
             $param = array_merge($param, [$this->documentId, $xpath]);
             $query = $pdo->prepare($query);
             $query->execute($param);
-        }
-
-        if ($values !== null) {
-            $query = $pdo->prepare("DELETE FROM dict_values WHERE document_id = ? AND property_xpath = ?");
-            $query->execute([$this->documentId, $xpath]);
-            $query = $pdo->prepare("INSERT INTO dict_values (document_id, property_xpath, value) VALUES (?, ?, ?)");
-            foreach ($values as $i) {
-                $query->execute([$this->documentId, $xpath, $i]);
-            }
         }
 
         $this->propertyId = $name ?? $this->propertyId;

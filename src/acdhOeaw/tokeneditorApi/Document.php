@@ -129,11 +129,11 @@ class Document extends BaseHttpEndpoint {
         while ($i     = $query->fetch(PDO::FETCH_OBJ)) {
             try {
                 $d->loadDb($i->documentId);
-                $i->properties = $this->getProperties($d);
+                $i->attributes = $this->getAttributes($d);
                 $f->append($i);
             } catch (Exception $e) {
                 $i->error = 'Missing XML file';
-                $i->properties = [];
+                $i->attributes = [];
                 $f->append($i);
             }
         }
