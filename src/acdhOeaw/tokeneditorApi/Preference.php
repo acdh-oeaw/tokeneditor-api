@@ -40,10 +40,10 @@ use zozlak\util\DbHandle;
  */
 class Preference extends BaseHttpEndpoint {
 
-    protected $documentId;
-    protected $preferenceId;
+    protected int $documentId;
+    protected string $preferenceId;
 
-    public function get(DataFormatter $f, HeadersFormatter $h) {
+    public function get(DataFormatter $f, HeadersFormatter $h): void {
         $pdo    = DbHandle::getHandle();
         $query  = '
 			SELECT value
@@ -60,7 +60,7 @@ class Preference extends BaseHttpEndpoint {
         $f->data($result->value);
     }
 
-    public function delete(DataFormatter $f, HeadersFormatter $h) {
+    public function delete(DataFormatter $f, HeadersFormatter $h): void {
         $pdo   = DbHandle::getHandle();
         $query = '
             DELETE FROM documents_users_preferences 
@@ -77,7 +77,7 @@ class Preference extends BaseHttpEndpoint {
         ]);
     }
 
-    public function getCollection(DataFormatter $f, HeadersFormatter $h) {
+    public function getCollection(DataFormatter $f, HeadersFormatter $h): void {
         $pdo    = DbHandle::getHandle();
         $query  = '
 			SELECT key, value
@@ -93,7 +93,7 @@ class Preference extends BaseHttpEndpoint {
         $f->data($result);
     }
 
-    public function put(DataFormatter $f, HeadersFormatter $h) {
+    public function put(DataFormatter $f, HeadersFormatter $h): void {
         $value = $this->filterInput('value');
         $pdo   = DbHandle::getHandle();
         $query = '
@@ -113,7 +113,7 @@ class Preference extends BaseHttpEndpoint {
         ]);
     }
 
-    public function postCollection(DataFormatter $f, HeadersFormatter $h) {
+    public function postCollection(DataFormatter $f, HeadersFormatter $h): void {
         $key   = $this->filterInput('preference');
         $value = $this->filterInput('value');
         $pdo   = DbHandle::getHandle();

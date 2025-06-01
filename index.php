@@ -24,7 +24,6 @@
  * THE SOFTWARE.
  */
 use zozlak\rest\HttpController;
-use zozlak\util\ClassLoader;
 use zozlak\util\Config;
 use zozlak\util\DbHandle;
 use zozlak\auth\AuthController;
@@ -41,10 +40,10 @@ header('Access-Control-Allow-Headers: X-Requested-With, Content-Type');
 header('Cache-Control: no-cache');
 
 require_once 'vendor/autoload.php';
-new ClassLoader();
 
 set_error_handler('\zozlak\rest\HttpController::errorHandler');
 
+$config = null;
 try {
     $config = new Config('config.ini');
 
@@ -60,7 +59,7 @@ try {
     if ($config->get('guestUser')) {
         AuthControllerStatic::addMethod(new Guest($config->get('guestUser')));
     }
-    AuthControllerStatic::authenticate();
+    AuthControllerStatic::authenticate(false);
     try {
         header('TokeneditorUser: ' . AuthControllerStatic::getUserName());
     } catch (\Exception $e) {
@@ -91,5 +90,5 @@ try {
 
     DbHandle::commit();
 } catch (Throwable $e) {
-    HttpController::reportError($e, $config->get('debug'));
+    HttpController::reportError($e, $config?->get('debug'));
 }

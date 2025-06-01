@@ -40,15 +40,18 @@ class XmlFormatter extends DataFormatter {
         return 0;
     }
 
+    /**
+     * @return array<string, string>
+     */
     protected function getHeaders(): array {
         return ['Content-Type' => 'text/xml'];
     }
 
-    public function data($d): DataFormatter {
+    public function data(mixed $d): DataFormatter {
         throw new BadMethodCallException('Method not implemented');
     }
 
-    public function initCollection(string $key): DataFormatter {
+    public function initCollection(string $key = ''): DataFormatter {
         throw new BadMethodCallException('Method not implemented');
     }
 
@@ -64,7 +67,7 @@ class XmlFormatter extends DataFormatter {
         throw new BadMethodCallException('Method not implemented');
     }
 
-    public function append($d, string $key = ''): DataFormatter {
+    public function append(mixed $d, string $key = ''): DataFormatter {
         throw new BadMethodCallException('Method not implemented');
     }
 }

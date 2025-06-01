@@ -42,7 +42,10 @@ use zozlak\util\DbHandle;
  */
 class Property extends BaseHttpEndpoint {
 
-    static public function encodeProperty(mProperty $p) {
+    /**
+     * @return array<string, mixed>
+     */
+    static public function encodeProperty(mProperty $p): array {
         $base = [
             'propertyXPath' => $p->getXPath(),
             'name'          => $p->getName(),
@@ -51,13 +54,13 @@ class Property extends BaseHttpEndpoint {
             'readOnly'      => $p->getReadOnly(),
             'optional'      => $p->getOptional(),
         ];
-        return array_merge($base, (array) $p->getAttributes() ?? []);
+        return array_merge($base, (array) $p->getAttributes());
     }
 
-    protected $documentId;
-    protected $propertyId;
+    protected int $documentId;
+    protected string $propertyId;
 
-    public function getCollection(DataFormatter $f, HeadersFormatter $h) {
+    public function getCollection(DataFormatter $f, HeadersFormatter $h): void {
         $d     = new mDocument(DbHandle::getHandle());
         $d->loadDb($this->documentId);
         $props = [];
@@ -67,7 +70,7 @@ class Property extends BaseHttpEndpoint {
         $f->data($props);
     }
 
-    public function get(DataFormatter $f, HeadersFormatter $h) {
+    public function get(DataFormatter $f, HeadersFormatter $h): void {
         $d = new mDocument(DbHandle::getHandle());
         $d->loadDb($this->documentId);
         foreach ($d->getSchema() as $p) {
@@ -79,7 +82,7 @@ class Property extends BaseHttpEndpoint {
         throw new \RuntimeException('no such property', 404);
     }
 
-    public function patch(DataFormatter $f, HeadersFormatter $h) {
+    public function patch(DataFormatter $f, HeadersFormatter $h): void {
         if (!$this->userMngr->isOwner($this->userId)) {
             throw new ForbiddenException('Not a document owner');
         }

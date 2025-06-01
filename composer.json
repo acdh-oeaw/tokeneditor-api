@@ -1,8 +1,16 @@
 {
     "require": {
-        "acdh-oeaw/tokeneditor-model": "~4 >=4.1.1",
-        "zozlak/rest": "~4",
-        "zozlak/util": "^1.5",
-        "zozlak/auth": "~0"
+        "acdh-oeaw/tokeneditor-model": "^5",
+        "zozlak/rest": "~6",
+        "zozlak/auth": "^3",
+        "zozlak/util": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "acdhOeaw\\": "src/acdhOeaw" 
+        }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "*"
     }
 }

@@ -32,6 +32,7 @@ use acdhOeaw\tokeneditorModel\User;
 use zozlak\auth\AuthControllerStatic;
 use zozlak\rest\HttpController;
 use zozlak\rest\HttpEndpoint;
+use zozlak\rest\ForbiddenException;
 use zozlak\util\DbHandle;
 
 /**
@@ -42,14 +43,9 @@ use zozlak\util\DbHandle;
  */
 class BaseHttpEndpoint extends HttpEndpoint {
 
-    protected $documentId;
-    protected $userId;
-
-    /**
-     *
-     * @var \acdhOeaw\tokeneditorModel\User
-     */
-    protected $userMngr;
+    protected int $documentId;
+    protected string $userId;
+    protected User $userMngr;
 
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);

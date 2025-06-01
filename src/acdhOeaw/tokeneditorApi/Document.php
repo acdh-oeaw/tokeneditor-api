@@ -50,7 +50,7 @@ use zozlak\rest\ForbiddenException;
  */
 class Document extends BaseHttpEndpoint {
 
-    protected $documentId;
+    protected int $documentId;
 
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
@@ -66,7 +66,7 @@ class Document extends BaseHttpEndpoint {
         }
     }
 
-    public function get(DataFormatter $f, HeadersFormatter $h) {
+    public function get(DataFormatter $f, HeadersFormatter $h): void {
         $inPlace = $this->filterInput('inPlace') ?? false;
 
         $ext      = strtolower(preg_replace('|^.*\\\\([A-Za-z]+)Formatter$|', '\\1', get_class($f)));
@@ -98,7 +98,7 @@ class Document extends BaseHttpEndpoint {
         }
     }
 
-    public function delete(DataFormatter $f, HeadersFormatter $h) {
+    public function delete(DataFormatter $f, HeadersFormatter $h): void {
         if (!$this->userMngr->isOwner($this->userId)) {
             throw new ForbiddenException('Not a document owner');
         }
@@ -110,7 +110,7 @@ class Document extends BaseHttpEndpoint {
         $f->data(['documentId' => $this->documentId]);
     }
 
-    public function getCollection(DataFormatter $f, HeadersFormatter $h) {
+    public function getCollection(DataFormatter $f, HeadersFormatter $h): void {
         $pdo = DbHandle::getHandle();
         $d   = new mDocument($pdo);
 
@@ -140,7 +140,7 @@ class Document extends BaseHttpEndpoint {
         $f->closeCollection();
     }
 
-    public function postCollection(DataFormatter $f, HeadersFormatter $h) {
+    public function postCollection(DataFormatter $f, HeadersFormatter $h): void {
         if ($this->userId === $this->getConfig('demoUser')) {
             throw new ForbiddenException('Demo user can not upload new documents');
         }
@@ -207,6 +207,9 @@ class Document extends BaseHttpEndpoint {
         }
     }
 
+    /**
+     * @return array<string, array<string>>
+     */
     private function getProperties(mDocument $doc): array {
         $props = [];
         foreach ($doc->getSchema() as $p) {
@@ -221,11 +224,11 @@ class Document extends BaseHttpEndpoint {
 
         $data = $this->filterInput('tokens');
         if (is_string($data)) {
-            $data = parse_json($data);
+            $data = json_decode($data);
         }
         $schema = $this->filterInput('schema');
         if (is_string($schema)) {
-            $schema = parse_json($schema);
+            $schema = json_decode($schema);
         }
 
         $propMap = [];

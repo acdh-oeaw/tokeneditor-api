@@ -33,6 +33,7 @@ use acdhOeaw\tokeneditorApi\util\BaseHttpEndpoint;
 use acdhOeaw\tokeneditorModel\TokenCollection;
 use zozlak\rest\DataFormatter;
 use zozlak\rest\HeadersFormatter;
+use zozlak\rest\ForbiddenException;
 use zozlak\util\DbHandle;
 
 /**
@@ -42,10 +43,10 @@ use zozlak\util\DbHandle;
  */
 class Token extends BaseHttpEndpoint {
 
-    protected $documentId;
-    protected $tokenId;
+    protected int $documentId;
+    protected int $tokenId;
 
-    public function put(DataFormatter $f, HeadersFormatter $h) {
+    public function put(DataFormatter $f, HeadersFormatter $h): void {
         if (!$this->userMngr->isEditor($this->userId)) {
             throw new ForbiddenException('Document editor rights required');
         }
@@ -81,7 +82,7 @@ class Token extends BaseHttpEndpoint {
         ]);
     }
 
-    public function getCollection(DataFormatter $f, HeadersFormatter $h) {
+    public function getCollection(DataFormatter $f, HeadersFormatter $h): void {
         $pdo = DbHandle::getHandle();
 
         $pageSize  = $this->filterInput('_pageSize');
@@ -120,7 +121,7 @@ class Token extends BaseHttpEndpoint {
         }
     }
 
-    private function propName2propXPath($propName) {
+    private function propName2propXPath(string $propName): string {
         $pdo   = DbHandle::getHandle();
         $query = $pdo->prepare("
             SELECT property_xpath 

@@ -45,8 +45,8 @@ use zozlak\rest\ForbiddenException;
  */
 class Editor extends BaseHttpEndpoint {
 
-    protected $documentId;
-    protected $editorId;
+    protected int $documentId;
+    protected string $editorId;
 
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
@@ -59,7 +59,7 @@ class Editor extends BaseHttpEndpoint {
         }
     }
 
-    public function get(DataFormatter $f, HeadersFormatter $h) {
+    public function get(DataFormatter $f, HeadersFormatter $h): void {
         if ($this->editorId !== 'current') {
             throw new Exception('Not Found', 404);
         } 
@@ -84,23 +84,23 @@ class Editor extends BaseHttpEndpoint {
         ]);
     }
 
-    public function getCollection(DataFormatter $f, HeadersFormatter $h) {
+    public function getCollection(DataFormatter $f, HeadersFormatter $h): void {
         $f->data($this->userMngr->getUsers());
     }
 
-    public function delete(DataFormatter $f, HeadersFormatter $h) {
+    public function delete(DataFormatter $f, HeadersFormatter $h): void {
         $this->userMngr->setRole($this->editorId, User::ROLE_NONE);
         $h->setStatus(204);
     }
 
-    public function put(DataFormatter $f, HeadersFormatter $h) {
+    public function put(DataFormatter $f, HeadersFormatter $h): void {
         $role = $this->filterInput('role');
         $name = $this->filterInput('name');
         $this->userMngr->setRole($this->editorId, $role, $name);
         $h->setStatus(204);
     }
 
-    public function patch(DataFormatter $f, HeadersFormatter $h) {
+    public function patch(DataFormatter $f, HeadersFormatter $h): void {
         if ($this->editorId !== 'current') {
             throw new Exception('Not Found', 404);
         } 
