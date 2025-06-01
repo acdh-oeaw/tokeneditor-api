@@ -1,6 +1,6 @@
 {
     "require": {
-        "ext/zip": "*",
+        "ext-zip": "*",
         "acdh-oeaw/tokeneditor-model": "^5",
         "zozlak/rest": "~6",
         "zozlak/auth": "^3",
