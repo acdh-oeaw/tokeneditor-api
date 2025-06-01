@@ -40,7 +40,7 @@ use zozlak\util\DbHandle;
  */
 class Preference extends BaseHttpEndpoint {
 
-    protected int $documentId = -1;
+    protected int $documentId;
     protected string $preferenceId = '';
 
     public function get(DataFormatter $f, HeadersFormatter $h): void {

@@ -43,7 +43,7 @@ use zozlak\util\DbHandle;
  */
 class BaseHttpEndpoint extends HttpEndpoint {
 
-    protected int $documentId = -1;
+    protected int $documentId;
     protected string $userId = '';
     protected User $userMngr;
 

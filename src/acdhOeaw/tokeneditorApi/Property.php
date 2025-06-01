@@ -57,7 +57,7 @@ class Property extends BaseHttpEndpoint {
         return array_merge($base, (array) $p->getAttributes());
     }
 
-    protected int $documentId = -1;
+    protected int $documentId;
     protected string $propertyId = '';
 
     public function getCollection(DataFormatter $f, HeadersFormatter $h): void {

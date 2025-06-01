@@ -43,7 +43,7 @@ use zozlak\util\DbHandle;
  */
 class Token extends BaseHttpEndpoint {
 
-    protected int $documentId = -1;
+    protected int $documentId;
     protected int $tokenId = -1;
 
     public function put(DataFormatter $f, HeadersFormatter $h): void {
