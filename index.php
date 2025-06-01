@@ -28,6 +28,7 @@ use zozlak\util\Config;
 use zozlak\util\DbHandle;
 use zozlak\auth\AuthController;
 use zozlak\auth\AuthControllerStatic;
+use zozlak\auth\UnauthorizedException;
 use zozlak\auth\usersDb\PdoDb;
 use zozlak\auth\authMethod\GoogleToken;
 use zozlak\auth\authMethod\TrustedHeader;
@@ -66,10 +67,11 @@ try {
     AuthControllerStatic::authenticate(false);
     try {
         header('TokeneditorUser: ' . AuthControllerStatic::getUserName());
-    } catch (\Exception $e) {
-        AuthControllerStatic::advertise();
+    } catch (UnauthorizedException $e) {
+        http_response_code(401);
+	header('www-authenticate: Basic realm="' . $config->get('authBasicRealm') . '"');
+	echo "Unauthorized\n";
     }
-
     
     $controller = new HttpController('acdhOeaw\\tokeneditorApi', $config->get('apiBase'));
     $controller->setConfig($config);
