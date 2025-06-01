@@ -52,12 +52,16 @@ try {
     $usersDb = new PdoDb($config->get('db'), 'users', 'user_id', 'data');
     $usersDb->putUser($config->get('demoUser'), HttpBasic::pswdData($config->get('demoPswd')));
     AuthControllerStatic::init($usersDb);
-    AuthControllerStatic::addMethod(new Token(filter_input(INPUT_COOKIE, $config->get('authTokenVar')) ?? '', $config->get('authTokenTime')));
+    //AuthControllerStatic::addMethod(new Token(filter_input(INPUT_COOKIE, $config->get('authTokenVar')) ?? '', $config->get('authTokenTime')));
     AuthControllerStatic::addMethod(new HttpBasic($config->get('authBasicRealm')), AuthController::ADVERTISE_ONCE);
-    AuthControllerStatic::addMethod(new GoogleToken(filter_input(INPUT_COOKIE, $config->get('googleTokenVar')) ?? ''));
-    AuthControllerStatic::addMethod(new TrustedHeader($config->get('shibUserHeader')));
+    //AuthControllerStatic::addMethod(new GoogleToken(filter_input(INPUT_COOKIE, $config->get('googleTokenVar')) ?? ''));
+    //AuthControllerStatic::addMethod(new TrustedHeader($config->get('shibUserHeader')));
     if ($config->get('guestUser')) {
         AuthControllerStatic::addMethod(new Guest($config->get('guestUser')));
+    }
+    // For unknown reasons the cluster setup doesn't keep the HTTP_AUTHORIZATION
+    if (!empty($_SERVER['PHP_AUTH_USER'])) {
+        $_SERVER['HTTP_AUTHORIZATION'] = 'basic ' . base64_encode($_SERVER['PHP_AUTH_USER'] . ':' . $_SERVER['PHP_AUTH_PW']);
     }
     AuthControllerStatic::authenticate(false);
     try {
