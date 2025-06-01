@@ -40,8 +40,8 @@ use zozlak\util\DbHandle;
  */
 class Preference extends BaseHttpEndpoint {
 
-    protected int $documentId;
-    protected string $preferenceId;
+    protected int $documentId = -1;
+    protected string $preferenceId = '';
 
     public function get(DataFormatter $f, HeadersFormatter $h): void {
         $pdo    = DbHandle::getHandle();

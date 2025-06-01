@@ -43,8 +43,8 @@ use zozlak\util\DbHandle;
  */
 class BaseHttpEndpoint extends HttpEndpoint {
 
-    protected int $documentId;
-    protected string $userId;
+    protected int $documentId = -1;
+    protected string $userId = '';
     protected User $userMngr;
 
     public function __construct(stdClass $path, HttpController $controller) {
@@ -52,7 +52,7 @@ class BaseHttpEndpoint extends HttpEndpoint {
 
         $this->userId = AuthControllerStatic::getUserName();
 
-        if ($this->documentId) {
+        if (isset($this->documentId)) {
             $query = DbHandle::getHandle()->prepare("SELECT count(*) FROM documents WHERE document_id = ?");
             $query->execute([$this->documentId]);
             if (1 !== $query->fetchColumn()) {

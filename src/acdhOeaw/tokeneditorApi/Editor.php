@@ -45,8 +45,8 @@ use zozlak\rest\ForbiddenException;
  */
 class Editor extends BaseHttpEndpoint {
 
-    protected int $documentId;
-    protected string $editorId;
+    protected int $documentId = -1;
+    protected string $editorId = '';
 
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);

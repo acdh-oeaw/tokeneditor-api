@@ -37,7 +37,7 @@ use zozlak\util\DbHandle;
  * @author zozlak
  */
 class Schema extends BaseHttpEndpoint {
-    protected int $documentId;
+    protected int $documentId = -1;
     
     public function getCollection(DataFormatter $f, HeadersFormatter $h): void {
         $pdo   = DbHandle::getHandle();

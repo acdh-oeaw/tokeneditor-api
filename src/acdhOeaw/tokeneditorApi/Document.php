@@ -50,7 +50,7 @@ use zozlak\rest\ForbiddenException;
  */
 class Document extends BaseHttpEndpoint {
 
-    protected int $documentId;
+    protected int $documentId = -1;
 
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
