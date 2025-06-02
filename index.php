@@ -61,17 +61,11 @@ try {
         AuthControllerStatic::addMethod(new Guest($config->get('guestUser')));
     }
     // For unknown reasons the cluster setup doesn't keep the HTTP_AUTHORIZATION
-    if (!empty($_SERVER['PHP_AUTH_USER'])) {
+    if (!empty($_SERVER['PHP_AUTH_USER']) && !empty($_SERVER['PHP_AUTH_PW'])) {
         $_SERVER['HTTP_AUTHORIZATION'] = 'basic ' . base64_encode($_SERVER['PHP_AUTH_USER'] . ':' . $_SERVER['PHP_AUTH_PW']);
     }
     AuthControllerStatic::authenticate(false);
-    try {
-        header('TokeneditorUser: ' . AuthControllerStatic::getUserName());
-    } catch (UnauthorizedException $e) {
-        http_response_code(401);
-	header('www-authenticate: Basic realm="' . $config->get('authBasicRealm') . '"');
-	echo "Unauthorized\n";
-    }
+    header('TokeneditorUser: ' . AuthControllerStatic::getUserName());
     
     $controller = new HttpController('acdhOeaw\\tokeneditorApi', $config->get('apiBase'));
     $controller->setConfig($config);
@@ -95,6 +89,11 @@ try {
     $controller->handleRequest();
 
     DbHandle::commit();
+} catch (UnauthorizedException $e) {
+    //$resp = AuthControllerStatic::advertise();
+    http_response_code(401);
+    header('WWW-Authenticate: Basic realm="' . $config->get('authBasicRealm') . '"');
+    echo "Unauthorized\n";
 } catch (Throwable $e) {
     HttpController::reportError($e, $config?->get('debug'));
 }
