@@ -51,7 +51,7 @@ class Editor extends BaseHttpEndpoint {
     public function __construct(stdClass $path, HttpController $controller) {
         parent::__construct($path, $controller);
 
-        if ($this->documentId && !$this->userMngr->isOwner($this->userId)) {
+        if (isset($this->documentId) && !$this->userMngr->isOwner($this->userId)) {
             throw new ForbiddenException('Not a document owner');
         }
         if ($this->editorId) {
